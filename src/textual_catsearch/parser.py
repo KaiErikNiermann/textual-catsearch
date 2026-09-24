@@ -17,7 +17,7 @@ from __future__ import annotations
 import enum
 import re
 from collections.abc import Callable, Iterable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from textual_catsearch.lexer import QUOTE, WORD, Guarded, Token, lex
 from textual_catsearch.query import MAX_GROUPS, NOTHING, OR_WORDS, Diagnostic, Fault, Query
@@ -108,12 +108,31 @@ def parse[Row](source: str, schema: Schema[Row], *, empty_as_text: bool = False)
     items, stray = _items(lex(normalized))
     reader = _Reader(items, schema, empty_as_text=empty_as_text)
     expr = reader.group(closing=False)
-    faults = [*stray, *reader.faults]
+    faults = [_narrowed(d, normalized) for d in (*stray, *reader.faults)]
     if normalized.count(QUOTE) % 2:
         faults.append(
             Diagnostic(Fault.UNCLOSED_QUOTE, QUOTE, normalized.rindex(QUOTE), len(normalized))
         )
     return Query(schema, expr, tuple(faults))
+
+
+def _narrowed(d: Diagnostic, source: str) -> Diagnostic:
+    """The diagnostic's span cut from its whole token down to the fragment it names.
+
+    Faults are found per token, but ``nope`` is what is wrong in ``nope:1``, and the ``(`` in
+    ``(year:soon`` is not part of ``year:soon``: a span is for pointing at the text, so it
+    should hold exactly that. A surplus ``)`` is the last one in its token. Where the fragment
+    is not a run of the token (reserved characters gathered from across a value), the token
+    stays the span.
+    """
+    if not d.text:  # `:x` has an empty key: the token is the only thing to point at
+        return d
+    at = (
+        source.rfind(d.text, d.start, d.end)
+        if d.fault is Fault.STRAY_CLOSE
+        else source.find(d.text, d.start, d.end)
+    )
+    return d if at < 0 else replace(d, start=at, end=at + len(d.text))
 
 
 # --- the token stream ------------------------------------------------------------------------
@@ -221,7 +240,7 @@ class _Reader[Row]:
     def _at(self, item: Item, fault: Fault, text: str) -> None:
         self.faults.append(Diagnostic(fault, text, item.token.start, item.token.end))
 
-    def group(self, *, closing: bool) -> Expr:
+    def group(self, *, closing: bool, opened: Item | None = None) -> Expr:
         """A juxtaposition of alternatives, up to ``)`` or the end of the stream."""
         parts: list[Expr] = []
         while self.pos < len(self.items):
@@ -237,7 +256,8 @@ class _Reader[Row]:
             if (part := self.alternatives()) is not None:
                 parts.append(part)
         if closing:
-            self.faults.append(Diagnostic(Fault.UNCLOSED_GROUP, "(", 0, 0))
+            at = (opened.token.start, opened.token.end) if opened is not None else (0, 0)
+            self.faults.append(Diagnostic(Fault.UNCLOSED_GROUP, "(", *at))
         return And(_merged(parts, self.schema))
 
     def alternatives(self) -> Expr | None:
@@ -269,7 +289,7 @@ class _Reader[Row]:
             return None
         self.pos += 1
         if item.sym is Sym.OPEN:
-            inner = self.group(closing=True)
+            inner = self.group(closing=True, opened=item)
             return neg(inner) if item.negated else inner
         read = _read(item, self.schema, empty_as_text=self.empty_as_text)
         self.faults.extend(read.faults)

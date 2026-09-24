@@ -627,27 +627,32 @@ def test_a_quoted_or_is_a_title_rather_than_an_operator() -> None:
 
 
 @pytest.mark.parametrize(
-    ("source", "fault"),
+    ("source", "fault", "pointed"),
     [
-        ("(kind:tv", Fault.UNCLOSED_GROUP),
-        ("kind:tv)", Fault.STRAY_CLOSE),
-        ("kind:tv OR", Fault.DANGLING_OR),
-        ("year:soon", Fault.NOT_A_NUMBER),
-        ('cast:"unclosed', Fault.UNCLOSED_QUOTE),
-        ("nonsense:x", Fault.UNKNOWN_FIELD),
-        ("kind:", Fault.EMPTY_VALUE),
-        ("(" * 40, Fault.TOO_NESTED),
+        ("(kind:tv", Fault.UNCLOSED_GROUP, "("),
+        ("kind:tv)", Fault.STRAY_CLOSE, ")"),
+        ("kind:tv OR", Fault.DANGLING_OR, "OR"),
+        ("year:soon", Fault.NOT_A_NUMBER, "year:soon"),
+        ("(year:soon", Fault.NOT_A_NUMBER, "year:soon"),
+        ('cast:"unclosed', Fault.UNCLOSED_QUOTE, '"unclosed'),
+        ("nonsense:x", Fault.UNKNOWN_FIELD, "nonsense"),
+        ("kind:tv nonsense:x", Fault.UNKNOWN_FIELD, "nonsense"),
+        ("kind:", Fault.EMPTY_VALUE, "kind:"),
+        ("(" * 40, Fault.TOO_NESTED, "("),
     ],
 )
-def test_a_malformed_query_is_reported_rather_than_refused(source: str, fault: Fault) -> None:
+def test_a_malformed_query_is_reported_rather_than_refused(
+    source: str, fault: Fault, pointed: str
+) -> None:
     """Half-typed is the normal state of a query bar, so nothing here is an error.
 
     The clause still degrades to the most useful reading; the reason is carried out with the
-    tree instead of being dropped on the floor.
+    tree instead of being dropped on the floor, with the span of what it is about.
     """
     parsed = parse(source)
-    assert fault in {d.fault for d in parsed.diagnostics}
-    assert parsed.diagnostics[0].render()
+    found = next(d for d in parsed.diagnostics if d.fault is fault)
+    assert found.render()
+    assert source[found.start : found.end] == pointed
 
 
 def test_a_non_number_narrows_instead_of_vanishing() -> None:

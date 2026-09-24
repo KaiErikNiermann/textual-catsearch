@@ -37,6 +37,7 @@ from textual_catsearch import (
     suggest,
 )
 from textual_catsearch import parse as _parse
+from textual_catsearch.query import Fault
 from textual_catsearch.schema import FlagField, NumberField
 
 
@@ -159,6 +160,20 @@ def test_parsing_is_total(source: str) -> None:
     """
     assert isinstance(parse(source), Query)
     assert isinstance(_parse(source, SCHEMA, empty_as_text=True), Query)
+
+
+@_SETTINGS
+@given(st.text(alphabet=st.sampled_from("ab:()\"' -|.,<>=é\t"), max_size=60) | st.text(max_size=60))
+def test_every_diagnostic_points_into_what_was_typed(source: str) -> None:
+    """A span is for drawing under the text, so it has to be somewhere in it, and hold what the
+    diagnostic is about: never empty, never past the end, never a neighbour's characters."""
+    for d in parse(source).diagnostics:
+        assert 0 <= d.start < d.end <= len(source), (source, d)
+        pointed = source[d.start : d.end].replace("'", '"')  # quotes are normalised first
+        if d.fault is Fault.UNCLOSED_QUOTE:
+            assert pointed.startswith('"') and d.end == len(source)
+        else:
+            assert set(d.text) <= set(pointed) | {'"'}, (source, d)
 
 
 @pytest.mark.parametrize("depth", [1, 32, 33, 400, 5000])
