@@ -321,8 +321,10 @@ class Schema[Row]:
             for alias in spec.aliases:
                 self._alias(alias, spec.name)
         found = self.fields.get(bare)
-        if not isinstance(found, TextField):
-            raise ValueError(f"bare field {bare!r} must name a TextField of this schema")
+        if not isinstance(found, TextField | CustomField):
+            # Free text needs a field that takes any text: a TextField, or a CustomField whose
+            # test decides what a word matches (smart case, say, where TextField always folds).
+            raise ValueError(f"bare field {bare!r} must name a TextField or CustomField here")
         self.bare: str = bare
 
     def _claim(self, spec: Field[Row] | Relation[Row]) -> None:

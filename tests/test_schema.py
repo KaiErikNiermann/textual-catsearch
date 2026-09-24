@@ -8,6 +8,7 @@ import pytest
 
 from catalog import BUCKETS, SCHEMA, Work
 from textual_catsearch import (
+    CustomField,
     EnumField,
     FlagField,
     NumberField,
@@ -181,3 +182,16 @@ def test_the_pinned_value_is_read_off_the_conjunctive_core() -> None:
     assert pinned(parse("-is:upcoming", SCHEMA), "is", BUCKETS) is None
     assert pinned(parse("sequel-of.is:upcoming", SCHEMA), "is", BUCKETS) is None
     assert pinned(parse("is:blocked", SCHEMA), "is") == "blocked"
+
+
+def test_bare_words_can_go_to_a_custom_field_with_its_own_matching() -> None:
+    """A schema can give free text its own rule: here smart case, capitals exact."""
+
+    def smart(row: str, word: str) -> bool:
+        return word in row if any(c.isupper() for c in word) else word.lower() in row.lower()
+
+    schema: Schema[str] = Schema([CustomField("text", smart)], bare="text")
+    rows = ["Disk full", "disk ok"]
+    assert parse("disk", schema).filter(rows) == rows
+    assert parse("Disk", schema).filter(rows) == ["Disk full"]
+    assert parse("-Disk", schema).filter(rows) == ["disk ok"]
