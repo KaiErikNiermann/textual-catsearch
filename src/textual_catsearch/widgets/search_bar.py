@@ -35,7 +35,7 @@ from textual_catsearch.complete import Suggestion, suggest
 from textual_catsearch.parser import parse
 from textual_catsearch.query import Query
 from textual_catsearch.schema import Schema, Vocabulary
-from textual_catsearch.transform import pinned, with_term
+from textual_catsearch.transform import pinned, with_term, without
 from textual_catsearch.tree import Term
 from textual_catsearch.widgets.completing import WALK_LIMIT, CompletingInput, completion_hint
 
@@ -192,6 +192,11 @@ class SearchBar[Row](Widget):
         """
         rewritten = with_term(self.parsed, Term(field, (value,)), among=among)
         self.value = f"{rewritten} "
+
+    def unpin(self, field: str, *, among: Collection[str] | None = None) -> None:
+        """Rewrite the query so nothing pins ``field`` (the "all" tab), other clauses intact."""
+        rewritten = without(self.parsed, field, among=among)
+        self.value = f"{rewritten} " if rewritten else ""
 
     def focus(self, scroll_visible: bool = True) -> SearchBar[Row]:
         """Focusing the bar focuses the text field in it."""

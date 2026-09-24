@@ -24,7 +24,7 @@ from textual_catsearch.schema import (
     Vocabulary,
 )
 from textual_catsearch.text import fold
-from textual_catsearch.transform import pinned, with_term
+from textual_catsearch.transform import pinned, with_term, without
 from textual_catsearch.tree import And, Expr, Not, NumRange, Or, Term, neg
 from textual_catsearch.widgets import CompletingInput, Cycle, SearchBar, TextInput
 
@@ -68,4 +68,5 @@ __all__ = [
     "render",
     "suggest",
     "with_term",
+    "without",
 ]

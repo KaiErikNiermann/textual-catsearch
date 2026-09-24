@@ -16,7 +16,7 @@ from textual_catsearch.query import Query
 from textual_catsearch.render import render
 from textual_catsearch.tree import And, Expr, Term
 
-__all__ = ["pinned", "with_term"]
+__all__ = ["pinned", "with_term", "without"]
 
 
 def _top_level(expr: Expr) -> tuple[Expr, ...]:
@@ -84,3 +84,22 @@ def with_term[Row](
             kept.append(part)
     pin = replace(term, values=tuple(dict.fromkeys((*term.values, *others))))
     return render(And((pin, *kept)), query.schema)
+
+
+def without[Row](query: Query[Row], field: str, *, among: Collection[str] | None = None) -> str:
+    """The query with no pin on ``field`` — the "all" tab — every other clause left intact.
+
+    The inverse of :func:`with_term`: with ``among``, only the category values leave their
+    clause, so clearing the ``unread`` tab from ``is:unread,starred`` keeps ``is:starred``.
+    Returns source text, ready for the bar.
+    """
+    is_category = _category(among)
+    kept: list[Expr] = []
+    for part in _top_level(query.expr):
+        if isinstance(part, Term) and _here(part, field):
+            rest = tuple(v for v in part.values if not is_category(v))
+            if rest or part.absent:
+                kept.append(replace(part, values=rest))
+            continue
+        kept.append(part)
+    return render(And(tuple(kept)), query.schema)

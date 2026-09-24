@@ -23,6 +23,7 @@ from textual_catsearch import (
     rank_values,
     render,
     suggest,
+    without,
 )
 from textual_catsearch import parse as _parse
 
@@ -658,3 +659,12 @@ def test_the_notice_is_capped_for_a_status_line() -> None:
     notice = parse("a:1 b:2 c:3").notice
     assert notice.endswith("· +1")
     assert parse("kind:tv").notice == ""
+
+
+def test_without_clears_a_tab_and_keeps_everything_else() -> None:
+    q = parse("is:upcoming,airing tag:drama -kind:tv")
+    assert without(q, "is", among=("upcoming", "released")) == "is:airing tag:drama -kind:tv"
+    assert without(parse("is:upcoming"), "is", among=("upcoming", "released")) == ""
+    assert without(parse("(is:upcoming OR tag:x) tag:y"), "is") == "(is:upcoming OR tag:x) tag:y", (
+        "a disjunction pins nothing"
+    )
