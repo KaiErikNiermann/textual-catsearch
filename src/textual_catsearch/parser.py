@@ -130,7 +130,8 @@ def _narrowed(d: Diagnostic, source: str) -> Diagnostic:
     if not d.text:  # `:x` has an empty key: the token is the only thing to point at
         return d
     if d.fault is Fault.RESERVED:  # a set of characters: from the first of them to the last
-        hits = [i for i in range(d.start, d.end) if source[i] in d.text]
+        value = source.find(":", d.start, d.end) + 1 or d.start  # in the value, not its key
+        hits = [i for i in range(value, d.end) if source[i] in d.text]
         return replace(d, start=hits[0], end=hits[-1] + 1) if hits else d
     at = (
         source.rfind(d.text, d.start, d.end)

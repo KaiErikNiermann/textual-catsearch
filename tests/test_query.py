@@ -638,6 +638,8 @@ def test_a_quoted_or_is_a_title_rather_than_an_operator() -> None:
         ("nonsense:x", Fault.UNKNOWN_FIELD, "nonsense"),
         ("kind:tv nonsense:x", Fault.UNKNOWN_FIELD, "nonsense"),
         ("kind:", Fault.EMPTY_VALUE, "kind:"),
+        ("title:a:b", Fault.RESERVED, ":"),  # the value's colon, not the key's
+        ("-title:O.Connor", Fault.RESERVED, "."),
         ("(" * 40, Fault.TOO_NESTED, "("),
     ],
 )
