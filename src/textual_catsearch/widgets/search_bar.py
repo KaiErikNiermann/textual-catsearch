@@ -87,8 +87,9 @@ class SearchBar[Row](Widget):
     field, a ``year:soon`` — on the hint line when there are no candidates to show.
     """
 
-    COMPONENT_CLASSES: ClassVar[set[str]] = {"catsearch--diagnostic"}
-    """``catsearch--diagnostic`` styles the text a diagnostic is about, in the input."""
+    COMPONENT_CLASSES: ClassVar[set[str]] = {"catsearch--diagnostic", "catsearch--notice"}
+    """``catsearch--diagnostic`` styles the text a diagnostic is about, in the input;
+    ``catsearch--notice`` the hint line when it reports one."""
 
     DEFAULT_CSS = """
     SearchBar {
@@ -97,6 +98,9 @@ class SearchBar[Row](Widget):
     SearchBar > .catsearch--diagnostic {
         color: $warning;
         text-style: underline;
+    }
+    SearchBar > .catsearch--notice {
+        color: $warning;
     }
     SearchBar > CompletingInput {
         height: 1;
@@ -301,11 +305,15 @@ class SearchBar[Row](Widget):
         if picks := self._input.picks:
             hint.update(completion_hint(picks, self._input.index))
         elif here is not None:  # the caret is on it: say what is wrong with this one
-            hint.update(Text(f"? {here.render()}", style="yellow"))
+            hint.update(Text(f"? {here.render()}", style=self._notice_style))
         elif notice := notice_of(shown):
-            hint.update(Text(f"? {notice}", style="yellow"))
+            hint.update(Text(f"? {notice}", style=self._notice_style))
         else:
             hint.update("")
+
+    @property
+    def _notice_style(self) -> Style:
+        return self.get_component_rich_style("catsearch--notice", partial=True)
 
     def _mark(self, shown: tuple[Diagnostic, ...]) -> None:
         spans = tuple((d.start, d.end) for d in shown)
