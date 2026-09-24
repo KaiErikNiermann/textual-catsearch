@@ -1,0 +1,70 @@
+[project]
+name = "textual-catsearch"
+version = "0.1.0"
+description = "Discord-style category search for Textual apps: declare your fields, get a query language, filtering and tab completion."
+authors = [{ name = "Kai Niermann" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.13,<4.0"
+keywords = ["textual", "tui", "search", "autocomplete", "query-language"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+dependencies = ["textual (>=8.2,<9.0)"]
+
+[tool.poetry]
+packages = [{ include = "textual_catsearch", from = "src" }]
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.16.8,<0.17.0)",
+    "pyright (>=1.1.414,<2.0.0)",
+    "pytest (>=9.1.1,<10.0.0)",
+    "pytest-asyncio (>=1.4.0,<2.0.0)",
+    "hypothesis (>=6.168.1,<7.0.0)",
+    "radon (>=6.0.1,<7.0.0)"
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "S", "SIM", "RUF", "PTH"]
+# The formatter owns layout; a long line it chose to leave alone is not a lint failure.
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Lookalike characters (fullwidth Latin, a no-break space) are the point of these tests.
+"tests/*" = ["S101", "RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.flake8-bugbear]
+# Frozen dataclasses, so a shared default instance is safe.
+extend-immutable-calls = ["textual_catsearch.lexer.Guarded", "textual_catsearch.tree.And"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["textual_catsearch"]
+
+[tool.pyright]
+include = ["src", "tests", "examples"]
+extraPaths = ["tests", "examples"]
+typeCheckingMode = "strict"
+pythonVersion = "3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests", "examples"]
+addopts = "-q"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
