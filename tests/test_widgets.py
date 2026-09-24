@@ -11,6 +11,7 @@ import re
 from typing import ClassVar, cast
 
 import pytest
+from textual import events
 from textual.app import App, ComposeResult
 from textual.binding import Binding, BindingType
 from textual.pilot import Pilot
@@ -508,3 +509,86 @@ async def test_the_hint_names_the_diagnostic_under_the_caret() -> None:
         app.bar.input.cursor_position = 12
         await pilot.pause()
         assert "nope: not a field" in _hint(app)
+
+
+# --- a query longer than the bar -------------------------------------------------------------
+def _drawn(app: Browse) -> str:
+    return "".join(seg.text for seg in app.bar.input.render_line(0))
+
+
+def _word_at_caret(app: Browse) -> str:
+    value, caret = app.bar.value, app.bar.input.cursor_position
+    start = value.rfind(" ", 0, caret) + 1
+    end = value.find(" ", caret)
+    return value[start : end if end >= 0 else len(value)]
+
+
+@pytest.mark.parametrize(
+    "words",
+    [
+        [f"w{i:02d}" for i in range(40)],  # 160 cells in a 40-cell terminal
+        [f"漢{i:02d}" for i in range(40)],  # two cells a character: the scroll counts cells
+        [f"👨‍👩‍👧{i:02d}" for i in range(20)],  # several code points a glyph
+    ],
+)
+async def test_a_long_query_scrolls_to_keep_the_caret_in_view(words: list[str]) -> None:
+    """Typing past the edge follows the caret; home, end and the arrows take the view along,
+    so every part of a long query can be seen and edited, not just its first screenful."""
+    app = Browse()
+    async with app.run_test(size=(40, 10)) as pilot:
+        app.bar.focus()
+        await pilot.pause()
+        text = " ".join(words)
+        if "\u200d" in text:  # a joiner is not a key Textual inserts; it arrives in a paste
+            app.bar.input.insert_text_at_cursor(text)
+        else:
+            await pilot.press(*text)
+        await pilot.pause()
+        assert words[-1] in _drawn(app) and words[0] not in _drawn(app), "the end, as typed"
+        await pilot.press("home")
+        await pilot.pause()
+        assert words[0] in _drawn(app) and words[-1] not in _drawn(app)
+        for _ in range(len(" ".join(words)) // 2):
+            await pilot.press("right")
+        await pilot.pause()
+        middle = _word_at_caret(app)
+        assert middle in _drawn(app), f"the caret's word {middle!r} is on screen"
+        assert words[0] not in _drawn(app) and words[-1] not in _drawn(app)
+        await pilot.press("end")
+        await pilot.pause()
+        assert words[-1] in _drawn(app)
+
+
+async def test_a_mark_scrolled_out_of_view_comes_back_with_it() -> None:
+    app = Browse()
+    async with app.run_test(size=(40, 10)) as pilot:
+        await _settle(pilot, "nope:1 " + " ".join(f"w{i:02d}" for i in range(30)))
+        app.bar.focus()
+        await pilot.pause()  # the caret goes to the end: the mark is off screen
+        assert "nope" not in _drawn(app)
+        await pilot.press("home")
+        await pilot.pause()
+        assert _underlined(app) == "nope"
+
+
+@pytest.mark.parametrize(
+    "words",
+    [
+        [f"w{i:02d}" for i in range(40)],
+        [f"漢{i:02d}" for i in range(40)],
+        [f"👨‍👩‍👧{i:02d}" for i in range(20)],
+        [f"🇯🇵{i:02d}" for i in range(20)],
+        [f"é{i:02d}" for i in range(40)],
+    ],
+)
+async def test_a_pasted_query_longer_than_the_bar_shows_its_end(words: list[str]) -> None:
+    """Textual scrolls to the caret before layout widens the field for a paste, so the view
+    stayed at the start with the caret off screen; the input brings it back after layout."""
+    app = Browse()
+    async with app.run_test(size=(40, 10)) as pilot:
+        app.bar.focus()
+        await pilot.pause()
+        app.bar.input.post_message(events.Paste(" ".join(words)))
+        await pilot.pause()
+        await pilot.pause()
+        assert words[-1] in _drawn(app) and words[0] not in _drawn(app)
