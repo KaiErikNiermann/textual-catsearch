@@ -23,18 +23,23 @@ from typing import Final
 
 from textual_catsearch.lexer import QUOTE, WORD, Guarded, Token, lex
 from textual_catsearch.query import MAX_GROUPS, NOTHING, OR_WORDS, Diagnostic, Fault, Query
-from textual_catsearch.schema import Field, NumberField, Schema, unquoted
+from textual_catsearch.schema import Field, NumberField, Schema, Unit, unquoted
 from textual_catsearch.tree import And, Expr, NumRange, Or, Term, neg
 
 __all__ = ["parse", "reserved", "stepped"]
 
 
 # --- parsing ------------------------------------------------------------------------------
-def _parse_range(value: str, unit: Callable[[str], float | None] | None = None) -> NumRange | None:
+def _parse_range(value: str, unit: Unit | None = None) -> NumRange | None:
     """``2026`` / ``2020..2026`` / ``>=2026`` / ``<2030`` -> a window, or None if unparseable.
 
     With ``unit`` (a number field's ``parse``), each number is read by it, so ``>5m`` or
     ``1G..2G`` work, and strict comparisons stay strict (real quantities have no "next one").
+
+    A unit may read a value as a span, the half-open ``[lo, hi)`` it stands for: ``14:30`` on a
+    time field is the whole minute. Then ``14:30`` alone is within the minute, ``>14:30`` is from
+    its end on, ``<14:30`` before its start, ``<=14:30`` includes all of it, and ``..14:30`` ends
+    where it ends.
     """
     v = value.strip()
     read = _reader(unit)
@@ -43,37 +48,57 @@ def _parse_range(value: str, unit: Callable[[str], float | None] | None = None) 
             return compared
         if ".." in v:
             lo, _, hi = v.partition("..")
+            start = read(lo) if lo.strip() else None
+            stop = read(hi) if hi.strip() else None
             return NumRange(
-                lo=read(lo) if lo.strip() else None,
-                hi=read(hi) if hi.strip() else None,
+                lo=None if start is None else start[0],
+                hi=None if stop is None else stop[1],
+                hi_strict=stop is not None and _is_span(stop),
             )
         n = read(v)
     except ValueError:
         return None
-    return NumRange(lo=n, hi=n)
+    return NumRange(lo=n[0], hi=n[1], hi_strict=_is_span(n))
 
 
-def _comparison(v: str, read: Callable[[str], float], *, integral: bool) -> NumRange | None:
+def _is_span(n: tuple[float, float]) -> bool:
+    return n[1] > n[0]
+
+
+def _comparison(
+    v: str, read: Callable[[str], tuple[float, float]], *, integral: bool
+) -> NumRange | None:
     """``>=n``, ``<=n``, ``>n``, ``<n`` as a window; None if ``v`` is not a comparison."""
     for op, strict in ((">=", False), ("<=", False), (">", True), ("<", True)):
         if v.startswith(op):
-            n = read(v[len(op) :])
+            lo, hi = n = read(v[len(op) :])
             upper = op.startswith("<")
             if strict and integral:  # integers: > n is >= n + 1, the historical form
-                return NumRange(hi=n - 1) if upper else NumRange(lo=n + 1)
-            return NumRange(hi=n, hi_strict=strict) if upper else NumRange(lo=n, lo_strict=strict)
+                return NumRange(hi=lo - 1) if upper else NumRange(lo=lo + 1)
+            if _is_span(n):  # the span's edges: after all of it, before any of it
+                if upper:
+                    return NumRange(hi=lo if strict else hi, hi_strict=True)
+                return NumRange(lo=hi) if strict else NumRange(lo=lo)
+            return NumRange(hi=lo, hi_strict=strict) if upper else NumRange(lo=lo, lo_strict=strict)
     return None
 
 
-def _reader(unit: Callable[[str], float | None] | None) -> Callable[[str], float]:
-    """``int``, or the field's unit parser with its None (unreadable) turned into ValueError."""
+def _reader(unit: Unit | None) -> Callable[[str], tuple[float, float]]:
+    """``int``, or the field's unit parser, as a span (a number is the span of itself), with a
+    None (unreadable) turned into ValueError."""
     if unit is None:
-        return lambda text: int(text)
+        return lambda text: (int(text), int(text))
 
-    def read(text: str) -> float:
-        if (n := unit(text.strip())) is None:
-            raise ValueError(text)
-        return n
+    def read(text: str) -> tuple[float, float]:
+        match unit(text.strip()):
+            case None:
+                raise ValueError(text)
+            case (lo, hi):
+                if not lo <= hi:
+                    raise ValueError(text)
+                return lo, hi
+            case n:
+                return n, n
 
     return read
 
@@ -494,7 +519,5 @@ def _typed_term[Row](
     return Term(spec.name, values, ranges, negated, absent, via)
 
 
-def _ranges(
-    values: Iterable[str], unit: Callable[[str], float | None] | None = None
-) -> Iterable[NumRange]:
+def _ranges(values: Iterable[str], unit: Unit | None = None) -> Iterable[NumRange]:
     return (r for v in values if (r := _parse_range(v, unit)) is not None)

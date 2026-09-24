@@ -47,6 +47,7 @@ __all__ = [
     "Schema",
     "Strings",
     "TextField",
+    "Unit",
     "VocabEntry",
     "Vocabulary",
     "detail_of",
@@ -60,6 +61,9 @@ type Strings = str | Iterable[str] | None
 
 type Numbers = float | Iterable[float] | None
 """What a numeric accessor may hand back: one value, several, or nothing."""
+
+type Unit = Callable[[str], float | tuple[float, float] | None]
+"""A number field's reader for values with units: a number, a half-open span, or None."""
 
 
 def strings_of(value: Strings) -> tuple[str, ...]:
@@ -185,14 +189,19 @@ class NumberField[Row]:
 
     ``parse`` reads values with units — ``took:>5m``, ``mem:1G..4G`` — into the numbers ``get``
     returns (seconds, bytes); it returns None for text that is not a quantity. Without it,
-    values are integers.
+    values are integers. It may return a span, ``(lo, hi)``, for a value that stands for a
+    stretch rather than a point: a time written to the minute is the whole minute, so
+    ``time:14:30`` matches 14:30:59 and ``time:..14:30`` includes it (see ``parser._parse_range``).
     """
 
     name: str
     get: Callable[[Row], Numbers]
     aliases: tuple[str, ...] = ()
     detail: str = ""
-    parse: Callable[[str], float | None] | None = None
+    parse: Unit | None = None
+    unquoted: str = ""
+    """Punctuation ``parse`` reads, beyond the range operators: ``:`` for a time of day, ``+``
+    for an offset. Values may carry it without quotes."""
 
 
 @dataclass(frozen=True, slots=True)
@@ -258,13 +267,14 @@ def unquoted[Row](field: Field[Row]) -> str:
     """Punctuation this field's values may carry *without* quotes, beyond ``[A-Za-z0-9_-]``.
 
     Earned, not granted: a field gets a character because it declares an operator that spells
-    one. A number field reads ranges, so it gets ``<>=.``. Every other character has to be
+    one. A number field reads ranges, so it gets ``<>=.``, and whatever its parser declares it
+    reads. Every other character has to be
     quoted, which is what keeps the punctuation free for the grammar to claim later — see
     :data:`lexer.WORD`.
     """
     match field:
-        case NumberField():
-            return _NUMERIC_OPERATORS
+        case NumberField(unquoted=extra):
+            return _NUMERIC_OPERATORS + extra
         case CustomField(unquoted=extra):
             return extra
         case _:
