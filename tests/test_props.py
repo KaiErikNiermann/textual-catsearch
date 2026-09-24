@@ -169,11 +169,55 @@ def test_every_diagnostic_points_into_what_was_typed(source: str) -> None:
     diagnostic is about: never empty, never past the end, never a neighbour's characters."""
     for d in parse(source).diagnostics:
         assert 0 <= d.start < d.end <= len(source), (source, d)
-        pointed = source[d.start : d.end].replace("'", '"')  # quotes are normalised first
+        pointed = source[d.start : d.end]
         if d.fault is Fault.UNCLOSED_QUOTE:
-            assert pointed.startswith('"') and d.end == len(source)
+            assert pointed.startswith(('"', "'")) and d.end == len(source)
         else:
-            assert set(d.text) <= set(pointed) | {'"'}, (source, d)
+            assert set(d.text) <= set(pointed) | QUOTES, (source, d)  # `'v'` reads as `"v"`
+
+
+# Text that breaks offset arithmetic somewhere: more than one code point per glyph (flags, ZWJ
+# families, combining marks), two cells per code point (CJK, fullwidth), right-to-left runs and
+# the controls that flip them, NUL, and punctuation that looks like the grammar's but is not.
+_AWKWARD = (
+    "нет", "скоро", "الرسالة", "عربي", "漢字", "薬屋", "ヱヴァ", "한국어", "🇯🇵", "👨‍👩‍👧",
+    "😀", "x́", "e\u0301\u0301", "\x00", "a\x00b", "—", "–", "：", "（", "）", "“", "”",
+    "\u202e", "\u200b", "\u3000", "Ｄ", "ß", "İ",
+)  # fmt: skip
+QUOTES = frozenset("'\"")
+_GRAMMAR = ("kind:", "year:", "nope:", "(", ")", " OR ", " ", "-", '"', ":", ",", ">")
+
+
+@_SETTINGS
+@given(st.lists(st.sampled_from(_AWKWARD + _GRAMMAR), max_size=12).map("".join))
+def test_spans_stay_exact_through_scripts_emoji_and_control_characters(source: str) -> None:
+    """Offsets are code points into exactly what was typed, whatever the text is made of."""
+    for d in parse(source).diagnostics:
+        assert 0 <= d.start < d.end <= len(source), (source, d)
+        pointed = source[d.start : d.end]
+        if d.fault is Fault.UNCLOSED_QUOTE:
+            assert pointed.startswith(('"', "'")) and d.end == len(source)
+        else:
+            assert set(d.text) <= set(pointed) | QUOTES, (source, d)  # `'v'` reads as `"v"`
+
+
+@pytest.mark.parametrize(
+    ("source", "pointed"),
+    [
+        ("нет:1", "нет"),
+        ("kind:tv نعم:x", "نعم"),
+        ("(year:скоро", "year:скоро"),
+        ("year:漢字", "year:漢字"),
+        ("🇯🇵:x", "🇯🇵"),
+        ("👨‍👩‍👧:x kind:tv", "👨‍👩‍👧"),
+        ("e\u0301\u0301:x", "e\u0301\u0301"),
+        ("a\x00b:x", "a\x00b"),
+        ("kind:tv — year:—", "year:—"),
+        ("\u202eevil:x", "\u202eevil"),
+    ],
+)
+def test_a_span_covers_whole_characters_however_they_are_spelled(source: str, pointed: str) -> None:
+    assert pointed in [source[d.start : d.end] for d in parse(source).diagnostics]
 
 
 @pytest.mark.parametrize("depth", [1, 32, 33, 400, 5000])
