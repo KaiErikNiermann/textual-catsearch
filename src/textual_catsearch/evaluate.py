@@ -118,7 +118,7 @@ def _flagged[Row](
     return any(test(row) for name, test in flags.items() if fold(name) in wanted)
 
 
-def _match_num(ranges: Sequence[NumRange], values: Sequence[int]) -> bool:
+def _match_num(ranges: Sequence[NumRange], values: Sequence[float]) -> bool:
     return any(r.contains(n) for r in ranges for n in values)
 
 

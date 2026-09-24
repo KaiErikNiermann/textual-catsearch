@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import enum
 import re
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 
 from textual_catsearch.lexer import QUOTE, WORD, Guarded, Token, lex
@@ -28,28 +28,52 @@ __all__ = ["parse", "reserved", "stepped"]
 
 
 # --- parsing ------------------------------------------------------------------------------
-def _parse_range(value: str) -> NumRange | None:
-    """``2026`` / ``2020..2026`` / ``>=2026`` / ``<2030`` -> a window, or None if unparseable."""
+def _parse_range(value: str, unit: Callable[[str], float | None] | None = None) -> NumRange | None:
+    """``2026`` / ``2020..2026`` / ``>=2026`` / ``<2030`` -> a window, or None if unparseable.
+
+    With ``unit`` (a number field's ``parse``), each number is read by it, so ``>5m`` or
+    ``1G..2G`` work, and strict comparisons stay strict (real quantities have no "next one").
+    """
     v = value.strip()
+    read = _reader(unit)
     try:
-        if v.startswith(">="):
-            return NumRange(lo=int(v[2:]))
-        if v.startswith("<="):
-            return NumRange(hi=int(v[2:]))
-        if v.startswith(">"):
-            return NumRange(lo=int(v[1:]) + 1)
-        if v.startswith("<"):
-            return NumRange(hi=int(v[1:]) - 1)
+        if (compared := _comparison(v, read, integral=unit is None)) is not None:
+            return compared
         if ".." in v:
             lo, _, hi = v.partition("..")
             return NumRange(
-                lo=int(lo) if lo.strip() else None,
-                hi=int(hi) if hi.strip() else None,
+                lo=read(lo) if lo.strip() else None,
+                hi=read(hi) if hi.strip() else None,
             )
-        n = int(v)
+        n = read(v)
     except ValueError:
         return None
     return NumRange(lo=n, hi=n)
+
+
+def _comparison(v: str, read: Callable[[str], float], *, integral: bool) -> NumRange | None:
+    """``>=n``, ``<=n``, ``>n``, ``<n`` as a window; None if ``v`` is not a comparison."""
+    for op, strict in ((">=", False), ("<=", False), (">", True), ("<", True)):
+        if v.startswith(op):
+            n = read(v[len(op) :])
+            upper = op.startswith("<")
+            if strict and integral:  # integers: > n is >= n + 1, the historical form
+                return NumRange(hi=n - 1) if upper else NumRange(lo=n + 1)
+            return NumRange(hi=n, hi_strict=strict) if upper else NumRange(lo=n, lo_strict=strict)
+    return None
+
+
+def _reader(unit: Callable[[str], float | None] | None) -> Callable[[str], float]:
+    """``int``, or the field's unit parser with its None (unreadable) turned into ValueError."""
+    if unit is None:
+        return lambda text: int(text)
+
+    def read(text: str) -> float:
+        if (n := unit(text.strip())) is None:
+            raise ValueError(text)
+        return n
+
+    return read
 
 
 # A whole *value* wrapped in apostrophes, and nothing else: `author:'Ursula Le Guin'`.
@@ -425,9 +449,11 @@ def _typed_term[Row](
     """
     ranges: tuple[NumRange, ...] = ()
     if isinstance(spec, NumberField):
-        ranges = tuple(_ranges(values))
+        ranges = tuple(_ranges(values, spec.parse))
     return Term(spec.name, values, ranges, negated, absent, via)
 
 
-def _ranges(values: Iterable[str]) -> Iterable[NumRange]:
-    return (r for v in values if (r := _parse_range(v)) is not None)
+def _ranges(
+    values: Iterable[str], unit: Callable[[str], float | None] | None = None
+) -> Iterable[NumRange]:
+    return (r for v in values if (r := _parse_range(v, unit)) is not None)

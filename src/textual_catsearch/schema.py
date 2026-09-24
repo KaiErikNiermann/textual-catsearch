@@ -58,7 +58,7 @@ __all__ = [
 type Strings = str | Iterable[str] | None
 """What a string accessor may hand back: one value, several, or nothing."""
 
-type Numbers = int | Iterable[int] | None
+type Numbers = float | Iterable[float] | None
 """What a numeric accessor may hand back: one value, several, or nothing."""
 
 
@@ -76,11 +76,11 @@ def strings_of(value: Strings) -> tuple[str, ...]:
     return tuple(v for v in value if v)
 
 
-def numbers_of(value: Numbers) -> tuple[int, ...]:
-    """An accessor's answer as a tuple of ints."""
+def numbers_of(value: Numbers) -> tuple[float, ...]:
+    """An accessor's answer as a tuple of numbers."""
     if value is None:
         return ()
-    if isinstance(value, int):
+    if isinstance(value, int | float):
         return (value,)
     return tuple(value)
 
@@ -178,16 +178,21 @@ class EnumField[Row]:
 
 @dataclass(frozen=True, slots=True)
 class NumberField[Row]:
-    """Range containment against the ints ``get`` returns.
+    """Range containment against the numbers ``get`` returns.
 
     Values are ``2026``, ``2020..2026``, ``..2026``, ``>=2026``, ``<2030``. A value that does
     not read as a number keeps its clause and matches nothing — see :func:`parser._typed_term`.
+
+    ``parse`` reads values with units — ``took:>5m``, ``mem:1G..4G`` — into the numbers ``get``
+    returns (seconds, bytes); it returns None for text that is not a quantity. Without it,
+    values are integers.
     """
 
     name: str
     get: Callable[[Row], Numbers]
     aliases: tuple[str, ...] = ()
     detail: str = ""
+    parse: Callable[[str], float | None] | None = None
 
 
 @dataclass(frozen=True, slots=True)

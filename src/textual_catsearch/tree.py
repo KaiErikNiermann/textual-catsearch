@@ -9,13 +9,22 @@ __all__ = ["And", "Expr", "Not", "NumRange", "Or", "Term", "neg"]
 
 @dataclass(frozen=True, slots=True)
 class NumRange:
-    """An inclusive numeric window; an open end is ``None`` (``year:>=2026``)."""
+    """A numeric window; an open end is ``None`` (``year:>=2026``).
 
-    lo: int | None = None
-    hi: int | None = None
+    Inclusive, unless a bound is marked strict. Integer fields never need that — ``>2020`` is
+    ``>=2021`` — but a field with a unit parser reads real quantities, where ``took:>5m``
+    must keep 300.5 seconds, so its strict comparisons stay strict.
+    """
 
-    def contains(self, n: int) -> bool:
-        return (self.lo is None or n >= self.lo) and (self.hi is None or n <= self.hi)
+    lo: float | None = None
+    hi: float | None = None
+    lo_strict: bool = False
+    hi_strict: bool = False
+
+    def contains(self, n: float) -> bool:
+        above = self.lo is None or (n > self.lo if self.lo_strict else n >= self.lo)
+        below = self.hi is None or (n < self.hi if self.hi_strict else n <= self.hi)
+        return above and below
 
 
 @dataclass(frozen=True, slots=True)
