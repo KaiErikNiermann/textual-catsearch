@@ -673,3 +673,20 @@ def test_without_clears_a_tab_and_keeps_everything_else() -> None:
     assert without(parse("(is:upcoming OR tag:x) tag:y"), "is") == "(is:upcoming OR tag:x) tag:y", (
         "a disjunction pins nothing"
     )
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "title:проект",
+        "title:Ünïcode",
+        "title:備份",
+        "title:café",
+        "title:🚀",
+        "title:a—b",
+        "title:ＤＵＮＥ",
+    ],
+)
+def test_text_in_any_script_is_a_value_not_a_warning(source: str) -> None:
+    """Only ASCII punctuation can become grammar; a word in Cyrillic or an emoji never will."""
+    assert parse(source).diagnostics == ()

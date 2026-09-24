@@ -16,8 +16,10 @@ from __future__ import annotations
 
 import enum
 import re
+import string
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, replace
+from typing import Final
 
 from textual_catsearch.lexer import QUOTE, WORD, Guarded, Token, lex
 from textual_catsearch.query import MAX_GROUPS, NOTHING, OR_WORDS, Diagnostic, Fault, Query
@@ -121,12 +123,15 @@ def _narrowed(d: Diagnostic, source: str) -> Diagnostic:
 
     Faults are found per token, but ``nope`` is what is wrong in ``nope:1``, and the ``(`` in
     ``(year:soon`` is not part of ``year:soon``: a span is for pointing at the text, so it
-    should hold exactly that. A surplus ``)`` is the last one in its token. Where the fragment
-    is not a run of the token (reserved characters gathered from across a value), the token
-    stays the span.
+    should hold exactly that. A surplus ``)`` is the last one in its token; reserved characters
+    run from the first of them to the last. Where the fragment is not a run of the token (a
+    value the lexer unquoted), the token stays the span.
     """
     if not d.text:  # `:x` has an empty key: the token is the only thing to point at
         return d
+    if d.fault is Fault.RESERVED:  # a set of characters: from the first of them to the last
+        hits = [i for i in range(d.start, d.end) if source[i] in d.text]
+        return replace(d, start=hits[0], end=hits[-1] + 1) if hits else d
     at = (
         source.rfind(d.text, d.start, d.end)
         if d.fault is Fault.STRAY_CLOSE
@@ -430,12 +435,27 @@ def _noticed_about[Row](
     raised, and more than one can be true of the same clause.
     """
     found: list[Diagnostic] = []
-    if held := reserved("".join(piece.free_text() for piece in pieces), unquoted(spec)):
+    if held := claimed(reserved("".join(piece.free_text() for piece in pieces), unquoted(spec))):
         found.append(Diagnostic(Fault.RESERVED, held, token.start, token.end))
     numbers = [piece for piece in pieces if not _says_nothing(piece)]
     if isinstance(spec, NumberField) and len(term.ranges) < len(numbers):
         found.append(Diagnostic(Fault.NOT_A_NUMBER, body, token.start, token.end))
     return tuple(found)
+
+
+GRAMMAR_PUNCTUATION: Final[frozenset[str]] = frozenset(string.punctuation)
+
+
+def claimed(characters: str) -> str:
+    """Of the characters a value would be quoted for, the ones worth a warning unquoted.
+
+    Only ASCII punctuation can be claimed: the grammar is written in it, and nothing else is
+    ever going to be an operator. Letters, digits and marks of any script, emoji, and
+    punctuation from outside ASCII (an em dash, a fullwidth colon) are text, so `cwd:проект`
+    and `label:Ünïcode` are ordinary values, not warnings; `render` still quotes them, which
+    costs nothing.
+    """
+    return "".join(c for c in characters if c in GRAMMAR_PUNCTUATION)
 
 
 def reserved(text: str, extra: str) -> str:
