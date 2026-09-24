@@ -95,7 +95,7 @@ Accessors may return one value, an iterable of values, or `None`; a lone string 
 
 ## Widgets
 
-- `SearchBar(schema, vocabulary, *, value, placeholder, fields, limit, implicit_accept, show_notices)` is the drop-in: a completing input plus the candidate strip under it. It posts `SearchBar.Changed(source, query)` whenever what the bar means changes and `SearchBar.Submitted` on enter. `pin(field, value, among=…)` and `pinned(field, among)` implement category tabs as edits to the query, so pressing a tab shows its syntax in the bar.
+- `SearchBar(schema, vocabulary, *, value, placeholder, fields, limit, implicit_accept, show_notices)` is the drop-in: a completing input plus the candidate strip under it. It posts `SearchBar.Changed(source, query)` whenever what the bar means changes and `SearchBar.Submitted` on enter. `pin(field, value, among=…)` and `pinned(field, among)` implement category tabs as edits to the query, so pressing a tab shows its syntax in the bar. With `show_notices`, each diagnostic's span is underlined in the text (style it with the `catsearch--diagnostic` component class) and the hint line names the one under the caret; what is still being typed (a value ending at the caret, a quote or bracket still open at the end) is not marked. `SearchBar.diagnostics` gives what is marked.
 - `CompletingInput(suggester, *, implicit_accept)` is the input on its own, completing against any `(text, caret) -> Sequence[Suggestion]` function. `field_suggester(schema, field, vocab)` builds one that completes a whole form field against one field's values.
 - `TextInput` is a Textual `Input` whose ctrl/alt+backspace delete the word to the left.
 - `Cycle(values)` is a ←/→ picker over a short list.

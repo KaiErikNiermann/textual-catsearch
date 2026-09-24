@@ -19,6 +19,7 @@ __all__ = [
     "Diagnostic",
     "Fault",
     "Query",
+    "notice_of",
 ]
 
 # How many things a status line says at once before it says "and more" (see `Query.notice`).
@@ -69,6 +70,15 @@ class Diagnostic:
 
     def render(self) -> str:
         return WORDING[self.fault].format(text=self.text)
+
+
+def notice_of(diagnostics: Iterable[Diagnostic]) -> str:
+    """The status-line summary of some diagnostics: distinct wordings, the first two, a count."""
+    found = tuple(dict.fromkeys(d.render() for d in diagnostics))
+    if not found:
+        return ""
+    shown = " · ".join(found[:_MAX_NOTICES])
+    return shown if len(found) <= _MAX_NOTICES else f"{shown} · +{len(found) - _MAX_NOTICES}"
 
 
 # One wording per fault, as a table rather than a `match`. The cost is that a fault added
@@ -141,11 +151,7 @@ class Query[Row]:
         Capped because its destination is a status line. Two is enough to tell you the query is
         not doing what you think, and the rest are usually the same slip repeated.
         """
-        found = tuple(dict.fromkeys(d.render() for d in self.diagnostics))
-        if not found:
-            return ""
-        shown = " · ".join(found[:_MAX_NOTICES])
-        return shown if len(found) <= _MAX_NOTICES else f"{shown} · +{len(found) - _MAX_NOTICES}"
+        return notice_of(self.diagnostics)
 
     @property
     def is_empty(self) -> bool:

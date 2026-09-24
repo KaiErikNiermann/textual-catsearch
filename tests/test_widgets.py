@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 from typing import ClassVar, cast
 
+import pytest
 from textual.app import App, ComposeResult
 from textual.binding import Binding, BindingType
 from textual.pilot import Pilot
@@ -428,3 +429,82 @@ async def test_a_cycle_steps_and_wraps() -> None:
 
 def test_an_empty_vocabulary_is_fine() -> None:
     assert suggest("cast:x", 6, SCHEMA, Vocabulary()) == ()
+
+
+# --- diagnostics are drawn where they are ---------------------------------------------------
+def _underlined(app: Browse) -> str:
+    """The input's text as drawn with an underline: the diagnostic spans, cell for cell."""
+    strip = app.bar.input.render_line(0)
+    return "".join(seg.text for seg in strip if seg.style is not None and seg.style.underline)
+
+
+async def _settle(pilot: Pilot[None], source: str) -> Browse:
+    """Set the bar's text as a paste would, then leave it: what it marks once nobody types."""
+    app = pilot.app
+    assert isinstance(app, Browse)
+    app.bar.value = source
+    app.query_one("#rows").focus()
+    await pilot.pause()
+    return app
+
+
+@pytest.mark.parametrize(
+    ("source", "marked"),
+    [
+        ("nope:1 kind:movie", "nope"),
+        ("kind:movie year:soon", "year:soon"),
+        ("(kind:movie", "("),
+        ("kind:movie)", ")"),
+        ("title:O.Connor", "."),
+        ("kind:movie year:>|", "year:>|"),
+        ("нет:1", "нет"),
+        ("نعم:x", "نعم"),
+        ("漢字:1 kind:movie", "漢字"),
+        ("ＤＵＮＥ:x", "ＤＵＮＥ"),
+        ("🇯🇵:x", "🇯🇵"),
+        ("👨‍👩‍👧:x", "👨‍👩‍👧"),
+        ("é́:x", "é́"),
+        ("year:— kind:movie", "year:—"),
+        ("title:café title:проект", ""),
+    ],
+)
+async def test_a_diagnostic_is_underlined_exactly_where_it_is(source: str, marked: str) -> None:
+    """Whatever the script, the underline covers the characters the diagnostic names and no
+    neighbour: offsets are code points, and the drawing turns them into the right cells."""
+    app = Browse()
+    async with app.run_test(size=(140, 24)) as pilot:
+        await _settle(pilot, source)
+        assert _underlined(app) == marked
+
+
+async def test_control_characters_neither_crash_nor_shift_the_marks() -> None:
+    app = Browse()
+    async with app.run_test(size=(140, 24)) as pilot:
+        await _settle(pilot, "a\x00b:x nope:1")
+        assert "nope" in _underlined(app)
+        assert app.bar.diagnostics[-1].text == "nope"
+
+
+async def test_what_is_still_being_typed_is_not_marked() -> None:
+    app = Browse()
+    async with app.run_test(size=(140, 24)) as pilot:
+        await _type(pilot, "(kind:movie")
+        assert _underlined(app) == "", "every ( is unclosed until its ) is typed"
+        assert app.bar.diagnostics == ()
+        app.query_one("#rows").focus()
+        await pilot.pause()
+        assert _underlined(app) == "(", "left open, it is marked"
+
+
+async def test_the_hint_names_the_diagnostic_under_the_caret() -> None:
+    app = Browse()
+    async with app.run_test(size=(140, 24)) as pilot:
+        await _settle(pilot, "year:soon nope:1")
+        app.bar.focus()
+        await pilot.pause()  # focusing puts the caret at the end
+        app.bar.input.cursor_position = 2
+        await pilot.pause()
+        assert "not a number" in _hint(app) and "not a field" not in _hint(app)
+        app.bar.input.cursor_position = 12
+        await pilot.pause()
+        assert "nope: not a field" in _hint(app)
