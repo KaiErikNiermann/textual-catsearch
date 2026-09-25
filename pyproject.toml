@@ -35,6 +35,12 @@ dev = [
     "radon (>=6.0.1,<7.0.0)"
 ]
 
+# proc-mngr depends on this package by path. uv rebuilds a path dependency only when
+# a cache key changes, and by default the only key is pyproject.toml, so without the
+# source files here a `uv tool install` reuses a stale wheel after any code change.
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/**/*.py" }]
+
 [tool.ruff]
 target-version = "py313"
 line-length = 100
