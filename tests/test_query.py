@@ -11,10 +11,12 @@ import pytest
 from catalog import SCHEMA, Work, keep
 from textual_catsearch import (
     And,
+    CustomField,
     Diagnostic,
     Fault,
     Or,
     Query,
+    Schema,
     Term,
     VocabEntry,
     Vocabulary,
@@ -692,3 +694,34 @@ def test_without_clears_a_tab_and_keeps_everything_else() -> None:
 def test_text_in_any_script_is_a_value_not_a_warning(source: str) -> None:
     """Only ASCII punctuation can become grammar; a word in Cyrillic or an emoji never will."""
     assert parse(source).diagnostics == ()
+
+
+# --- a field's own check on its values -------------------------------------------------
+def _odd_length(value: str) -> str | None:
+    return None if len(value) % 2 else "needs an odd number of characters"
+
+
+CHECKED: Schema[str] = Schema(
+    [
+        CustomField("text", lambda row, v: v in row),
+        CustomField("odd", lambda row, v: v in row, aliases=("o",), check=_odd_length),
+    ],
+    bare="text",
+)
+
+
+def test_a_value_its_field_turns_down_is_reported_at_the_value() -> None:
+    source = 'a odd:abc,oddx -o:"ab cde"'
+    found = [d for d in _parse(source, CHECKED).diagnostics if d.fault is Fault.INVALID_VALUE]
+    assert [source[d.start : d.end] for d in found] == ["oddx", "ab cde"], "the value, not the key"
+    assert found[0].render() == "oddx: needs an odd number of characters"
+
+
+def test_a_turned_down_value_still_leaves_its_clause_standing() -> None:
+    query = _parse("odd:ab", CHECKED)
+    assert [t.values for t in query.terms] == [("ab",)]
+    assert list(query.filter(["xaby", "zz"])) == ["xaby"]
+
+
+def test_values_that_pass_are_not_reported() -> None:
+    assert not _parse("odd:abc o:x", CHECKED).diagnostics

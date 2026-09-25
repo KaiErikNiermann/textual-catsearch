@@ -226,6 +226,9 @@ class CustomField[Row]:
     without it ``field:none`` matches nothing. ``unquoted`` is punctuation the field's values
     may carry without quotes, for a field that reads an operator of its own (``netflix@us``).
     Values to complete come from ``choices`` or from a hand-built :class:`Vocabulary`.
+    ``check`` looks at a value once, as it is parsed, and returns why the field cannot use it
+    (``None`` when it can): a pattern that does not compile, say. The clause still stands, and
+    the reason becomes an ``invalid-value`` diagnostic pointing at the value.
     """
 
     name: str
@@ -235,6 +238,7 @@ class CustomField[Row]:
     choices: tuple[str, ...] = ()
     empty: Callable[[Row], bool] | None = None
     unquoted: str = ""
+    check: Callable[[str], str | None] | None = None
 
 
 type Field[Row] = (

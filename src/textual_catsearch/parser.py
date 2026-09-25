@@ -23,7 +23,7 @@ from typing import Final
 
 from textual_catsearch.lexer import QUOTE, WORD, Guarded, Token, lex
 from textual_catsearch.query import MAX_GROUPS, NOTHING, OR_WORDS, Diagnostic, Fault, Query
-from textual_catsearch.schema import Field, NumberField, Schema, Unit, unquoted
+from textual_catsearch.schema import CustomField, Field, NumberField, Schema, Unit, unquoted
 from textual_catsearch.tree import And, Expr, NumRange, Or, Term, neg
 
 __all__ = ["parse", "reserved", "stepped"]
@@ -154,14 +154,14 @@ def _narrowed(d: Diagnostic, source: str) -> Diagnostic:
     """
     if not d.text:  # `:x` has an empty key: the token is the only thing to point at
         return d
+    value = source.find(":", d.start, d.end) + 1 or d.start  # in the value, not its key
     if d.fault is Fault.RESERVED:  # a set of characters: from the first of them to the last
-        value = source.find(":", d.start, d.end) + 1 or d.start  # in the value, not its key
         hits = [i for i in range(value, d.end) if source[i] in d.text]
         return replace(d, start=hits[0], end=hits[-1] + 1) if hits else d
     at = (
         source.rfind(d.text, d.start, d.end)
         if d.fault is Fault.STRAY_CLOSE
-        else source.find(d.text, d.start, d.end)
+        else source.find(d.text, value if d.fault is Fault.INVALID_VALUE else d.start, d.end)
     )
     return d if at < 0 else replace(d, start=at, end=at + len(d.text))
 
@@ -466,6 +466,12 @@ def _noticed_about[Row](
     numbers = [piece for piece in pieces if not _says_nothing(piece)]
     if isinstance(spec, NumberField) and len(term.ranges) < len(numbers):
         found.append(Diagnostic(Fault.NOT_A_NUMBER, body, token.start, token.end))
+    if isinstance(spec, CustomField) and (check := spec.check) is not None:
+        found += [
+            Diagnostic(Fault.INVALID_VALUE, value, token.start, token.end, why)
+            for value in term.values
+            if (why := check(value)) is not None
+        ]
     return tuple(found)
 
 

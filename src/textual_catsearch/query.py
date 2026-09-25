@@ -52,6 +52,7 @@ class Fault(enum.StrEnum):
     STRAY_CLOSE = "stray-close"  # a `)` with nothing open; ignored
     TOO_NESTED = "too-nested"  # more groups than anyone means; the rest read as text
     DANGLING_OR = "dangling-or"  # `kind:tv OR` — nothing to be an alternative to
+    INVALID_VALUE = "invalid-value"  # `re:(a)\1` — a value its field's own check turned down
 
 
 @dataclass(frozen=True, slots=True)
@@ -67,9 +68,10 @@ class Diagnostic:
     text: str  # the offending fragment, as typed
     start: int  # inclusive offset into the source
     end: int  # exclusive
+    reason: str = ""  # why, in the field's words, where the fault alone does not say
 
     def render(self) -> str:
-        return WORDING[self.fault].format(text=self.text)
+        return WORDING[self.fault].format(text=self.text, reason=self.reason)
 
 
 def notice_of(diagnostics: Iterable[Diagnostic]) -> str:
@@ -93,6 +95,7 @@ WORDING: dict[Fault, str] = {
     Fault.UNCLOSED_GROUP: "unclosed ( — closed for you at the end",
     Fault.STRAY_CLOSE: "stray ) — ignored",
     Fault.DANGLING_OR: "{text} with nothing after it",
+    Fault.INVALID_VALUE: "{text}: {reason}",
     Fault.TOO_NESTED: f"more than {MAX_GROUPS} nested groups — the rest read as text",
 }
 

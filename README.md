@@ -86,7 +86,7 @@ A key written twice ORs (`format:ebook format:hardcover` is `format:ebook,hardco
 | `EnumField(name, get, normalize=…)` | case- and accent-insensitive equality; `normalize` maps synonyms | values on the rows, plus `choices` |
 | `NumberField(name, get)` | range containment | a hand-built `Vocabulary`, if any |
 | `FlagField(name, {flag: predicate})` | named predicates (`is:read`) | the flag names |
-| `CustomField(name, test, empty=…, unquoted=…)` | `test(row, value)` decides | `choices` or a hand-built `Vocabulary` |
+| `CustomField(name, test, empty=…, unquoted=…, check=…)` | `test(row, value)` decides; `check(value)` may say why a value cannot be used, reported as an `invalid-value` diagnostic on the value | `choices` or a hand-built `Vocabulary` |
 | `Relation(name, follow)` | a path step: `name.field:value` | offered as `name.` |
 
 Accessors may return one value, an iterable of values, or `None`; a lone string is one value, never its characters. Every field takes `aliases=` and `detail=` (the label shown next to its completions). `Schema` refuses names claimed twice, aliases that shadow a field, and names that cannot be typed as a key.
