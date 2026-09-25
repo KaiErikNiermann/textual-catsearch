@@ -321,3 +321,23 @@ class SearchBar[Row](Widget):
             self._spans.spans = spans
             self._spans.style = self.get_component_rich_style("catsearch--diagnostic")
             self._input.refresh()
+
+
+class _QueryMessage(Message):
+    def __init__(self, bar: SearchBar[Any], source: str, query: Query[Any]) -> None:
+        super().__init__()
+        self.bar = bar
+        self.source = source
+        self.query = query
+
+    @property
+    def control(self) -> SearchBar[Any]:
+        return self.bar
+
+
+class Changed(_QueryMessage):
+    """What the bar means changed."""
+
+
+class Submitted(_QueryMessage):
+    """Enter was pressed in the bar."""

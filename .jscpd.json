@@ -1,0 +1,10 @@
+{
+  "path": ["src"],
+  "format": ["python"],
+  "minTokens": 40,
+  "threshold": 1,
+  "ignore": ["**/migrations/versions/**", "**/__pycache__/**"],
+  "reporters": ["console"],
+  "absolute": false,
+  "gitignore": true
+}

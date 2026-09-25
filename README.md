@@ -110,9 +110,9 @@ Everything under the widgets is pure and usable on its own — for a CLI, shell 
 from textual_catsearch import parse, render, suggest
 
 query = parse('by:"le guin" -is:read', SCHEMA)
-query.filter(BOOKS)                       # the rows it keeps
-render(query.expr, SCHEMA)                # 'author:"le guin" -is:read'
-suggest("by:le", 5, SCHEMA, vocab)        # completions for the token under the caret
+query.filter(BOOKS)  # the rows it keeps
+render(query.expr, SCHEMA)  # 'author:"le guin" -is:read'
+suggest("by:le", 5, SCHEMA, vocab)  # completions for the token under the caret
 ```
 
 `render` is the inverse of `parse` (`parse(render(e)) == e`, checked by property tests), so queries can be edited as trees and written back out.
