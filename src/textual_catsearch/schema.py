@@ -229,6 +229,11 @@ class CustomField[Row]:
     ``check`` looks at a value once, as it is parsed, and returns why the field cannot use it
     (``None`` when it can): a pattern that does not compile, say. The clause still stands, and
     the reason becomes an ``invalid-value`` diagnostic pointing at the value.
+
+    A field's values are alternatives (``kind:tv,film``, or the field written twice), as for
+    every field. ``every`` makes them conditions that must all hold instead, for a field whose
+    values ask different things: ``kv:status>=500 kv:path=/api`` is one line with both, where
+    alternatives would take either.
     """
 
     name: str
@@ -239,6 +244,7 @@ class CustomField[Row]:
     empty: Callable[[Row], bool] | None = None
     unquoted: str = ""
     check: Callable[[str], str | None] | None = None
+    every: bool = False
 
 
 type Field[Row] = (

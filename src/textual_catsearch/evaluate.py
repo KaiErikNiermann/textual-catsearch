@@ -96,6 +96,8 @@ def _holds_value[Row](term: Term, spec: Field[Row], row: Row) -> bool:
             return _match_num(term.ranges, numbers_of(get(row)))
         case FlagField(flags=flags):
             return _flagged(term.values, flags, row)
+        case CustomField(test=test, every=True):
+            return bool(term.values) and all(test(row, v) for v in term.values)
         case CustomField(test=test):
             return any(test(row, v) for v in term.values)
 

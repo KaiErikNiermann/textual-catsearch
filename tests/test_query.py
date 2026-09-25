@@ -725,3 +725,19 @@ def test_a_turned_down_value_still_leaves_its_clause_standing() -> None:
 
 def test_values_that_pass_are_not_reported() -> None:
     assert not _parse("odd:abc o:x", CHECKED).diagnostics
+
+
+def test_a_field_whose_values_must_all_hold() -> None:
+    """`every`: a clause's values are conditions, not alternatives, however they were written."""
+    schema: Schema[str] = Schema(
+        [
+            CustomField("text", lambda row, v: v in row),
+            CustomField("has", lambda row, v: v in row, every=True),
+        ],
+        bare="text",
+    )
+    rows = ["ab", "a", "b"]
+    assert list(_parse("has:a has:b", schema).filter(rows)) == ["ab"]
+    assert list(_parse("has:a,b", schema).filter(rows)) == ["ab"]
+    assert list(_parse("-has:a,b", schema).filter(rows)) == ["a", "b"]
+    assert list(_parse("has:a", schema).filter(rows)) == ["ab", "a"]
