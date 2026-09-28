@@ -93,6 +93,25 @@ Accessors may return one value, an iterable of values, or `None`; a lone string 
 
 `Schema.vocabulary(rows)` counts each value once per row, merges spellings that fold together, and ranks by use; rebuild it when the rows change and assign it to `SearchBar.vocabulary`.
 
+## Dynamic fields
+
+Some rows carry keys the app cannot list in advance: a log line's `status=` or `"http": {"status": ...}`, a record's labels, a JSON document's properties. `Schema(..., dynamic=make)` lets a query name them as it names any field: a key no field, alias or relation path claims is handed to `make(key)`, which returns the field for it (named `key`) or `None` to decline it.
+
+```python
+def kv(key: str) -> CustomField[Line] | None:
+    return CustomField(key, lambda line, value: line.fields.get(key) == value, empty=lambda line: key not in line.fields)
+
+SCHEMA = Schema([TextField("text", lambda r: r.text), NumberField("level", ...)], bare="text", dynamic=kv)
+
+parse("status:500,502 http.status:503 -userId:7", SCHEMA)
+```
+
+- A key is taken as typed, case and all, dots included: data keys are not the schema's lowercase names, so `userId` and `userid` are two keys, and `http.status` (when `http` is no relation) is one key, not a path.
+- Declared names always win: `level:3` is the declared field in any case (`Level:3` too), and `parent.level:3` a declared path, never the data's own `level` key. An app that also wants that key offers an explicit field for it (pm's log search keeps `kv:level=warn`).
+- `make` is asked once per key; its answer, `None` included, is kept for the schema's life.
+- A key `make` declines, or one that cannot be a key (`[A-Za-z0-9_][A-Za-z0-9_.-]*`), reads as text with an `unknown-field` diagnostic, as without `dynamic`.
+- The data's keys complete after the declared names: pass them as `Vocabulary(keys=(VocabEntry("status", uses), ...))`. Values complete through the field `make` returns, as for any field.
+
 ## Widgets
 
 - `SearchBar(schema, vocabulary, *, value, placeholder, fields, limit, implicit_accept, show_notices)` is the drop-in: a completing input plus the candidate strip under it. It posts `SearchBar.Changed(source, query)` whenever what the bar means changes and `SearchBar.Submitted` on enter. `pin(field, value, among=…)` and `pinned(field, among)` implement category tabs as edits to the query, so pressing a tab shows its syntax in the bar. With `show_notices`, each diagnostic's span is underlined in the text (style it with the `catsearch--diagnostic` component class) and the hint line names the one under the caret; what is still being typed (a value ending at the caret, a quote or bracket still open at the end) is not marked. `SearchBar.diagnostics` gives what is marked.

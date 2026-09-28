@@ -112,7 +112,7 @@ class _Renderer[Row]:
 
     def _term(self, term: Term) -> str:
         sign = "-" if term.negated else ""
-        spec = self.schema.fields.get(term.field)
+        spec = self.schema.field(term.field)
         extra = "" if spec is None else unquoted(spec)
         # `none` leads, so `tag:horror,none` and `tag:none,horror` write back as one spelling —
         # the flag is a property of the clause and does not sit anywhere among the values.
