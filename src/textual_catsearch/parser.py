@@ -371,7 +371,9 @@ def _widened[Row](first: Term, extra: Term, schema: Schema[Row]) -> Term:
     """
     values = tuple(dict.fromkeys((*first.values, *extra.values)))
     absent = first.absent or extra.absent
-    spec = schema.fields[first.field]  # `_merged` only sees fields `_read` recognised
+    spec = schema.field(first.field)
+    if spec is None:  # `_merged` only sees fields `_read` recognised
+        raise AssertionError(f"merged a term of no field: {first.field!r}")
     return _typed_term(spec, values, negated=first.negated, absent=absent, via=first.via)
 
 
@@ -436,14 +438,17 @@ def stepped[Row](head: str, schema: Schema[Row]) -> tuple[tuple[str, ...], Field
 
     All or nothing, and that is the "never hard-fail" rule rather than strictness: a key with a
     dot in it that does not resolve is far more likely to be a title someone typed than a path
-    with a typo, so it degrades to text the way any unknown field does.
+    with a typo, so it degrades to text the way any unknown field does. Except where the schema
+    is ``dynamic``: a key that is not a path is then asked of it whole (`http.status`, a nested
+    key in the data), declared paths and fields always first.
     """
     *walked, tail = head.split(".")
     hops = tuple(r.name for piece in walked if (r := schema.relation(piece)) is not None)
-    spec = schema.field(tail)
-    if spec is None or len(hops) != len(walked):
-        return (), None
-    return hops, spec
+    if len(hops) == len(walked) and (spec := schema.field(tail)) is not None:
+        return hops, spec
+    if walked and (spec := schema.dynamic_field(head)) is not None:
+        return (), spec
+    return (), None
 
 
 def _says_nothing(piece: Guarded) -> bool:

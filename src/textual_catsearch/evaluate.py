@@ -40,7 +40,7 @@ def _match_term[Row](term: Term, row: Row, schema: Schema[Row]) -> bool:
     A clause names a field the schema no longer has only when a tree was built by hand against
     another schema; it answers no rather than matching everything.
     """
-    spec = schema.fields.get(term.field)
+    spec = schema.field(term.field)
     if spec is None:
         return False
     if term.via:

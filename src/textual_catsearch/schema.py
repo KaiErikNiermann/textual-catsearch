@@ -114,6 +114,9 @@ class Vocabulary:
     entries: Mapping[str, tuple[VocabEntry, ...]] = dc_field(
         default_factory=dict[str, tuple[VocabEntry, ...]]
     )
+    keys: tuple[VocabEntry, ...] = ()
+    """For a ``dynamic`` schema: the keys the data has, offered as field names after the declared
+    ones (`status:`, `http.status:`), as they are written."""
 
     def of(self, field: str) -> tuple[VocabEntry, ...]:
         return self.entries.get(field, ())
@@ -121,7 +124,18 @@ class Vocabulary:
     def merged(self, other: Vocabulary) -> Vocabulary:
         """Both vocabularies; where both name a field, ``other``'s entries follow this one's."""
         keys = dict.fromkeys((*self.entries, *other.entries))
-        return Vocabulary({k: _distinct((*self.of(k), *other.of(k))) for k in keys})
+        return Vocabulary(
+            {k: _distinct((*self.of(k), *other.of(k))) for k in keys},
+            keys=_distinct_keys((*self.keys, *other.keys)),
+        )
+
+
+def _distinct_keys(entries: Iterable[VocabEntry]) -> tuple[VocabEntry, ...]:
+    """One entry per key as written: keys keep their case (`userId` is not `userid`)."""
+    seen: dict[str, VocabEntry] = {}
+    for entry in entries:
+        seen.setdefault(entry.value, entry)
+    return tuple(seen.values())
 
 
 def _distinct(entries: Iterable[VocabEntry]) -> tuple[VocabEntry, ...]:
@@ -301,6 +315,9 @@ def detail_of[Row](field: Field[Row] | Relation[Row]) -> str:
 # lowercased on the way in. So: lowercase, no `.` (the path separator), no `:`, and no leading
 # `-` (which would read as negation).
 _NAME: Final[re.Pattern[str]] = re.compile(r"[a-z0-9_][a-z0-9_-]*")
+# A dynamic key is typed as it is written in the data, so it keeps its case and may have dots
+# (`http.status`, a nested key's name): letters, digits, `_`, `.` and `-`, not leading with `-`.
+_KEY: Final[re.Pattern[str]] = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_.\-]*")
 
 
 class Schema[Row]:
@@ -312,7 +329,7 @@ class Schema[Row]:
     it.
     """
 
-    __slots__ = ("_aliases", "_fields", "_relations", "bare")
+    __slots__ = ("_aliases", "_dynamic", "_dynamic_fields", "_fields", "_relations", "bare")
 
     def __init__(
         self,
@@ -320,7 +337,10 @@ class Schema[Row]:
         *,
         bare: str,
         relations: Iterable[Relation[Row]] = (),
+        dynamic: Callable[[str], Field[Row] | None] | None = None,
     ) -> None:
+        self._dynamic = dynamic
+        self._dynamic_fields: dict[str, Field[Row] | None] = {}
         self._fields: dict[str, Field[Row]] = {}
         self._relations: dict[str, Relation[Row]] = {}
         self._aliases: dict[str, str] = {}
@@ -378,8 +398,34 @@ class Schema[Row]:
         return self._aliases.get(lowered, lowered)
 
     def field(self, name: str) -> Field[Row] | None:
-        """The field a name or alias refers to, or None if nothing goes by that name."""
+        """The field a name or alias refers to, or None if nothing goes by that name: a
+        declared one first, then one ``dynamic`` makes for it."""
+        return self.declared(name) or self.dynamic_field(name)
+
+    def declared(self, name: str) -> Field[Row] | None:
+        """The declared field a name or alias refers to, or None."""
         return self.fields.get(self.canonical(name))
+
+    @property
+    def is_dynamic(self) -> bool:
+        """Whether keys the schema does not declare may still name fields (``dynamic``)."""
+        return self._dynamic is not None
+
+    def dynamic_field(self, key: str) -> Field[Row] | None:
+        """The field ``dynamic`` makes for a key no field or alias claims, asked once per key
+        and kept. The key is as typed, case and all (`userId`, `http.status`): data keys are
+        not the schema's lowercase names. None without ``dynamic``, for a key that cannot be
+        one, or where ``dynamic`` declines it (the key is then read as text, as any unknown
+        field is)."""
+        key = key.strip()
+        if self._dynamic is None or not _KEY.fullmatch(key) or self.declared(key) is not None:
+            return None
+        if key not in self._dynamic_fields:
+            made = self._dynamic(key)
+            if made is not None and made.name != key:
+                raise ValueError(f"dynamic field for {key!r} is named {made.name!r}, not the key")
+            self._dynamic_fields[key] = made
+        return self._dynamic_fields[key]
 
     def relation(self, name: str) -> Relation[Row] | None:
         """The relation a name or alias refers to, or None."""

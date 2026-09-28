@@ -98,17 +98,22 @@ def suggest[Row](
     negated = body[:1] in ("-", "!")
     head, sep, value = (body[1:] if negated else body).partition(":")
     walked, _, tail = head.rpartition(".")
+    vocab = vocab or Vocabulary()
+    prefix = token[: len(token) - len(body) + negated]
     if walked and any(schema.relation(piece) is None for piece in walked.split(".")):
-        return ()  # a dotted key that is not a path is a name, and names do not complete
-    at = _Slot(
-        start=start,
-        end=end,
-        prefix=token[: len(token) - len(body) + negated],
-        stem=head[: len(head) - len(tail)],
-    )
+        # A dotted key that is not a path is a name: one of the data's keys, if the schema
+        # takes those, else nothing that completes.
+        at = _Slot(start=start, end=end, prefix=prefix, stem="")
+        return _dotted(schema, head, sep, value, vocab, at, limit)
+    at = _Slot(start=start, end=end, prefix=prefix, stem=head[: len(head) - len(tail)])
     if not sep:
-        return _field_names(schema, tail, schema.names if fields is None else fields, at, limit)
-    return _field_values(schema, schema.canonical(tail), value, vocab or Vocabulary(), at, limit)
+        offered = schema.names if fields is None else fields
+        declared = _field_names(schema, tail, offered, at, limit)
+        return (*declared, *_key_names(schema, tail, vocab, at, limit - len(declared)))
+    spec = schema.field(tail)
+    if spec is None:
+        return ()
+    return _field_values(schema, spec.name, value, vocab, at, limit)
 
 
 def _field_names[Row](
@@ -118,6 +123,53 @@ def _field_names[Row](
     needle = head.strip().strip(QUOTE).lower()
     names = sorted(n for n in offered if n.startswith(needle) and n != schema.bare)
     return tuple(_name_suggestion(name, name in schema.relations, at) for name in names[:limit])
+
+
+def _key_names[Row](
+    schema: Schema[Row], head: str, vocab: Vocabulary, at: _Slot, limit: int
+) -> tuple[Suggestion, ...]:
+    """The data's own keys a ``dynamic`` schema takes, after its declared names: most used
+    first, those a declared name already covers left out."""
+    if not schema.is_dynamic or limit <= 0:
+        return ()
+    needle = fold(head.strip().strip(QUOTE))
+    keys = [
+        entry
+        for entry in vocab.keys
+        if fold(entry.value).startswith(needle) and schema.declared(entry.value) is None
+    ]
+    keys.sort(key=lambda e: (-e.uses, e.value))
+    return tuple(_key_suggestion(entry, at) for entry in keys[:limit])
+
+
+def _key_suggestion(entry: VocabEntry, at: _Slot) -> Suggestion:
+    written = f"{entry.value}:"
+    return Suggestion(
+        insert=f"{at.prefix}{written}",
+        label=written,
+        detail=f"key · {entry.uses}" if entry.uses else "key",
+        start=at.start,
+        end=at.end,
+        kind="field",
+    )
+
+
+def _dotted[Row](
+    schema: Schema[Row],
+    head: str,
+    sep: str,
+    value: str,
+    vocab: Vocabulary,
+    at: _Slot,
+    limit: int,
+) -> tuple[Suggestion, ...]:
+    """A dotted key that is no path: the data's key it begins, or that key's values."""
+    if not schema.is_dynamic:
+        return ()
+    if not sep:
+        return _key_names(schema, head, vocab, at, limit)
+    spec = schema.dynamic_field(head)
+    return () if spec is None else _field_values(schema, spec.name, value, vocab, at, limit)
 
 
 def _name_suggestion(name: str, relation: bool, at: _Slot) -> Suggestion:
@@ -142,7 +194,7 @@ def _field_values[Row](
     which is the opposite of the two the user was building, and unrecoverable without deleting
     the quotes by hand. What they already typed rides back out exactly as typed.
     """
-    spec = schema.fields.get(field)
+    spec = schema.field(field)
     if spec is None:
         return ()
     lead, _, segment = value.rpartition(",")
