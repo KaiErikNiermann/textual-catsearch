@@ -72,12 +72,16 @@ def completion_hint(picks: Sequence[Suggestion], active: int) -> Text:
     """The candidate strip: a window onto the list, with the active one picked out."""
     # scroll the window with the selection so a long list stays walkable
     first = max(0, min(active - HINT_WIDTH // 2, len(picks) - HINT_WIDTH))
-    shown = [
-        f"[reverse]{p.label}[/]" if i + first == active else f"[dim]{p.label}[/]"
-        for i, p in enumerate(picks[first : first + HINT_WIDTH])
-    ]
-    count = f"[dim]{active + 1}/{len(picks)}[/]" if len(picks) > 1 else ""
-    return Text.from_markup(f"[dim]↹[/] {'  '.join(shown)}  {count}")
+    # Text pieces, never markup: a label is the data's (a JSON key, a directory name), and
+    # `[/x]` in one raised MarkupError and closed the app; `[link=...]` made a live link.
+    hint = Text.assemble(("↹", "dim"), " ")
+    for i, p in enumerate(picks[first : first + HINT_WIDTH]):
+        if i:
+            hint.append("  ")
+        hint.append(p.label, "reverse" if i + first == active else "dim")
+    if len(picks) > 1:
+        hint.append("  ").append(f"{active + 1}/{len(picks)}", "dim")
+    return hint
 
 
 @dataclass(slots=True)

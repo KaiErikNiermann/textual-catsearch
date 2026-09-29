@@ -592,3 +592,19 @@ async def test_a_pasted_query_longer_than_the_bar_shows_its_end(words: list[str]
         await pilot.pause()
         await pilot.pause()
         assert words[-1] in _drawn(app) and words[0] not in _drawn(app)
+
+
+@pytest.mark.parametrize("label", ["zz[/x]", "[@click=app.quit]k", "[link=https://e.x]l[/]", "[b"])
+def test_a_label_is_shown_as_it_is_never_as_markup(label: str) -> None:
+    """Completions are the data's own words (a JSON key a command printed, a directory name):
+    `[/x]` in one raised MarkupError and closed the app, `[link=...]` made a live link."""
+    from textual_catsearch.complete import Suggestion
+    from textual_catsearch.widgets.completing import completion_hint
+    from textual_catsearch.widgets.cycle import Cycle
+
+    picks = [Suggestion(label, label, "key", 0, 1), Suggestion("ok", "ok", "key", 0, 1)]
+    for active in (0, 1):
+        hint = completion_hint(picks, active)
+        assert label in hint.plain
+        assert not any(span.style and "link" in str(span.style) for span in hint.spans)
+    assert label in Cycle([label]).render().plain

@@ -53,7 +53,7 @@ class Cycle(Widget):
         return self.values[self.index]
 
     def render(self) -> Text:
-        return Text.from_markup(f"[dim]◂[/] {self.value} [dim]▸[/]")
+        return Text.assemble(("◂", "dim"), f" {self.value} ", ("▸", "dim"))  # a value, not markup
 
     def action_step(self, delta: int) -> None:
         self.index = (self.index + delta) % len(self.values)
