@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import re
+import subprocess
+import sys
 from dataclasses import dataclass
 
 from hypothesis import given
@@ -146,3 +148,13 @@ def test_a_field_reads_the_punctuation_its_parser_declares_unquoted() -> None:
     assert parse("at:14:29..14:30", declared).diagnostics == ()
     [d] = parse("at:14:30", CLOCK).diagnostics  # undeclared: said, and pointed at
     assert "at:14:30"[d.start : d.end] == ":"
+
+
+def test_the_query_language_is_imported_without_textual() -> None:
+    """A CLI that only parses and evaluates queries paid for importing Textual (80 ms)."""
+    code = (
+        "import sys, textual_catsearch as c; "
+        "assert 'textual' not in sys.modules, 'textual imported'; "
+        "c.SearchBar; assert 'textual' in sys.modules"
+    )
+    subprocess.run([sys.executable, "-c", code], check=True)  # noqa: S603  # this interpreter, our code
