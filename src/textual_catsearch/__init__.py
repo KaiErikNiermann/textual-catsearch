@@ -3,7 +3,12 @@
 Declare the fields your rows have as a :class:`Schema`; get a query language over them
 (``author:"le guin" year:1960..1980 -is:read``), filtering, rendering back to text, and
 completion of field names and values. :class:`SearchBar` puts all of it in one widget.
+
+The widgets are imported on first use: the query language needs no Textual, and a program that
+only parses and evaluates queries (a CLI) does not pay for importing it.
 """
+
+from typing import TYPE_CHECKING, Any
 
 from textual_catsearch.complete import Suggestion, apply, rank_values, suggest
 from textual_catsearch.evaluate import holds
@@ -26,7 +31,6 @@ from textual_catsearch.schema import (
 from textual_catsearch.text import fold
 from textual_catsearch.transform import pinned, with_term, without
 from textual_catsearch.tree import And, Expr, Not, NumRange, Or, Term, neg
-from textual_catsearch.widgets import CompletingInput, Cycle, SearchBar, TextInput
 
 __all__ = [
     "NOTHING",
@@ -70,3 +74,16 @@ __all__ = [
     "with_term",
     "without",
 ]
+
+if TYPE_CHECKING:
+    from textual_catsearch.widgets import CompletingInput, Cycle, SearchBar, TextInput
+
+_WIDGETS = frozenset({"CompletingInput", "Cycle", "SearchBar", "TextInput"})
+
+
+def __getattr__(name: str) -> Any:
+    if name in _WIDGETS:
+        from textual_catsearch import widgets
+
+        return getattr(widgets, name)
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
