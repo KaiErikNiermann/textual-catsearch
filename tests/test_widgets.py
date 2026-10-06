@@ -511,6 +511,16 @@ async def test_the_hint_names_the_diagnostic_under_the_caret() -> None:
         assert "nope: not a field" in _hint(app)
 
 
+@pytest.mark.parametrize(("values", "index"), [((), 0), (("a",), 1), (("a", "b"), -3)])
+def test_a_cycle_with_nothing_to_show_is_refused_when_it_is_made(
+    values: tuple[str, ...], index: int
+) -> None:
+    """It used to be accepted and then raise IndexError on its first paint."""
+    with pytest.raises(ValueError):
+        Cycle(values, index=index)
+    assert Cycle(["a", "b"], index=-1).value == "b"
+
+
 @pytest.mark.parametrize("label", ["\x1b[2Jwiped", "two\nlines", "csi\x9b31m"])
 def test_a_label_s_control_characters_are_shown_never_sent(label: str) -> None:
     """Rich keeps ESC and Textual writes text out as it is, so an escape sequence in the data
