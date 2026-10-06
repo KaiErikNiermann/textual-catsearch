@@ -478,6 +478,17 @@ def test_a_double_quoted_value_containing_an_apostrophe_is_untouched() -> None:
     assert parse('cast:"Josh O\'Connor"').terms[0].values == ("Josh O'Connor",)
 
 
+def test_a_shell_shaped_value_inside_double_quotes_is_left_as_written() -> None:
+    """The normaliser runs before lexing, so it has to know a quoted value when it sees one.
+
+    It rewrote the apostrophes inside the quotes and split the title in two.
+    """
+    title = "The author:'Le Guin' and book"
+    assert parse(f'name:"{title}"').terms[0].values == (title,)
+    assert parse(f'name:"x ""y"" {title}"').terms[0].values == (f'x "y" {title}',)
+    assert parse("\"a\" cast:'Le Guin'").terms[1].values == ("Le Guin",)
+
+
 # --- asking somewhere else ----------------------------------------------------------------
 def _chain() -> tuple[Work, ...]:
     """Dune, its sequel, and the sequel of that — a path to walk down."""

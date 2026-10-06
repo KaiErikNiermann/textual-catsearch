@@ -118,8 +118,23 @@ def _normalize_quotes(source: str) -> str:
     unambiguous form beforehand fixes that without giving the lexer a second quote character:
     an apostrophe mid-word, or one opening a title like ``'71``, has no ``field:`` in front of
     it and is left exactly as typed.
+
+    Only outside double quotes: inside them the text is a value already, and rewriting its
+    apostrophes into quotes split ``title:"The author:'Le Guin' and book"`` into two titles.
+    An odd number of quotes before a match is exactly the lexer's "inside quotes" — a doubled
+    ``""`` adds two, so it leaves the count's parity alone.
     """
-    return _SINGLE_QUOTED_VALUE.sub(r'\1:"\2"', source)
+
+    # Counted incrementally, since matches arrive left to right; a match itself holds no `"`.
+    counted, quotes = 0, 0
+
+    def rewrite(match: re.Match[str]) -> str:
+        nonlocal counted, quotes
+        quotes += source.count(QUOTE, counted, match.start())
+        counted = match.end()
+        return match[0] if quotes % 2 else f'{match[1]}:"{match[2]}"'
+
+    return _SINGLE_QUOTED_VALUE.sub(rewrite, source)
 
 
 def parse[Row](source: str, schema: Schema[Row], *, empty_as_text: bool = False) -> Query[Row]:
