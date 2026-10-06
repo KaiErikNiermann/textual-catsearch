@@ -272,6 +272,12 @@ def test_a_row_with_no_number_matches_no_range() -> None:
     assert keep("year:2026", Work()) == []
 
 
+def test_nan_is_in_no_range_not_even_an_open_one() -> None:
+    """Every comparison with NaN is false, except none is made when both ends are open."""
+    nan = Work(season=float("nan"))  # pyright: ignore[reportArgumentType] — data is data
+    assert keep("season:..", nan) == keep("season:>=0", nan) == []
+
+
 def test_negation_inverts_the_term() -> None:
     horror = Work(title="H", genres=("horror",))
     comedy = Work(title="C", genres=("comedy",))
