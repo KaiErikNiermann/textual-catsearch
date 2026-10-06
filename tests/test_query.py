@@ -470,6 +470,21 @@ def test_negation_and_groups_are_preserved_through_completion() -> None:
     assert _suggest("(-genre:hor", 11)[0] == "(-genre:horror"
 
 
+def test_a_closing_bracket_is_kept_out_of_the_value_being_completed() -> None:
+    """`(kind:mo)` searched for a kind starting `mo)` and found nothing."""
+    source = "(kind:mo) year:2026"
+    top = suggest(source, len("(kind:mo"), SCHEMA, _VOCAB)[0]
+    assert apply(source, top) == "(kind:movie) year:2026"
+    assert _suggest("(tag:x (ca))", 10)[0] == "(ca" + "st:"
+
+
+def test_a_bracket_no_group_opened_is_still_part_of_the_value() -> None:
+    """The parser keeps `title:(2021)` literal, so completion must read it the same way."""
+    vocab = Vocabulary({"cast": (VocabEntry("Hello (2021)"),)})
+    source = "cast:Hello)"
+    assert [s.label for s in suggest(source, len(source), SCHEMA, vocab)] == []
+
+
 def test_an_alias_completes_to_its_canonical_field() -> None:
     assert _suggest("on:net", 6)[0] == "platform:Netflix"
 

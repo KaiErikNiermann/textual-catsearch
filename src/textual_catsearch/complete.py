@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 from textual_catsearch.lexer import QUOTE, active_span, separated
+from textual_catsearch.parser import open_groups
 from textual_catsearch.render import quote
 from textual_catsearch.schema import Completions, Schema, VocabEntry, Vocabulary, unquoted
 from textual_catsearch.text import fold, word_prefixed
@@ -95,6 +96,7 @@ def suggest[Row](
     Pure, so it is unit-testable without a terminal and reusable for shell completion.
     """
     start, end = active_span(source, cursor)
+    end -= _closers(source, start, end)
     token = source[start:end]
     body = token.lstrip("(")
     negated = body[:1] in ("-", "!")
@@ -118,6 +120,19 @@ def suggest[Row](
     if spec is None:
         return ()
     return _field_values(schema, spec.name, value, vocab, at, limit)
+
+
+def _closers(source: str, start: int, end: int) -> int:
+    """How many of the ``)`` ending the token at ``[start, end)`` close a group.
+
+    Those are grammar, not the value: ``(kind:mo)`` completes ``mo`` and keeps its bracket. A
+    ``)`` with no group open is text — ``title:(2021)`` — and stays in, as the parser keeps it.
+    """
+    token = source[start:end]
+    if token.count(QUOTE) % 2:  # inside an open quote, a bracket is a character
+        return 0
+    body = token.rstrip(")")
+    return min(len(token) - len(body), open_groups(source[:start] + body))
 
 
 def _field_names[Row](

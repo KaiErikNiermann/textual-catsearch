@@ -26,7 +26,7 @@ from textual_catsearch.query import MAX_GROUPS, NOTHING, OR_WORDS, Diagnostic, F
 from textual_catsearch.schema import CustomField, Field, NumberField, Schema, Unit, unquoted
 from textual_catsearch.tree import And, Expr, NumRange, Or, Term, neg
 
-__all__ = ["parse", "reserved", "stepped"]
+__all__ = ["open_groups", "parse", "reserved", "stepped"]
 
 
 # --- parsing ------------------------------------------------------------------------------
@@ -265,6 +265,13 @@ def _items(tokens: Sequence[Token]) -> tuple[tuple[Item, ...], tuple[Diagnostic,
         out.extend(Item(Sym.CLOSE, token) for _ in range(taken))
         depth -= taken
     return tuple(out), tuple(stray)
+
+
+def open_groups(source: str) -> int:
+    """How many groups are still open at the end of ``source``, counted the way :func:`parse`
+    counts them — so a ``)`` that would be read as text is not taken for a closer."""
+    items, _ = _items(lex(_normalize_quotes(source)))
+    return sum(1 if i.sym is Sym.OPEN else -1 if i.sym is Sym.CLOSE else 0 for i in items)
 
 
 # --- reading the stream ----------------------------------------------------------------------
