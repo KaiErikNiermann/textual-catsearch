@@ -37,6 +37,7 @@ from textual_catsearch.complete import Suggestion, suggest
 from textual_catsearch.parser import parse
 from textual_catsearch.query import Diagnostic, Fault, Query, notice_of
 from textual_catsearch.schema import Schema, Vocabulary
+from textual_catsearch.text import printable
 from textual_catsearch.transform import pinned, with_term, without
 from textual_catsearch.tree import Term
 from textual_catsearch.widgets.completing import WALK_LIMIT, CompletingInput, completion_hint
@@ -305,9 +306,9 @@ class SearchBar[Row](Widget):
         if picks := self._input.picks:
             hint.update(completion_hint(picks, self._input.index))
         elif here is not None:  # the caret is on it: say what is wrong with this one
-            hint.update(Text(f"? {here.render()}", style=self._notice_style))
-        elif notice := notice_of(shown):
-            hint.update(Text(f"? {notice}", style=self._notice_style))
+            hint.update(Text(f"? {printable(here.render())}", style=self._notice_style))
+        elif notice := notice_of(shown):  # both quote what was typed, so show its controls
+            hint.update(Text(f"? {printable(notice)}", style=self._notice_style))
         else:
             hint.update("")
 

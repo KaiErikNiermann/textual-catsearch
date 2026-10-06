@@ -16,6 +16,8 @@ from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
 
+from textual_catsearch.text import printable
+
 __all__ = ["Cycle"]
 
 
@@ -53,7 +55,8 @@ class Cycle(Widget):
         return self.values[self.index]
 
     def render(self) -> Text:
-        return Text.assemble(("◂", "dim"), f" {self.value} ", ("▸", "dim"))  # a value, not markup
+        # a value, not markup, and its control characters shown rather than sent
+        return Text.assemble(("◂", "dim"), f" {printable(self.value)} ", ("▸", "dim"))
 
     def action_step(self, delta: int) -> None:
         self.index = (self.index + delta) % len(self.values)

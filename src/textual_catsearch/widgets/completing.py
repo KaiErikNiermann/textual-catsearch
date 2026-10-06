@@ -24,6 +24,7 @@ from textual.message import Message
 
 from textual_catsearch.complete import Suggestion, apply, rank_values
 from textual_catsearch.schema import Schema, Vocabulary
+from textual_catsearch.text import printable
 from textual_catsearch.widgets.inputs import TextInput
 
 __all__ = [
@@ -73,12 +74,13 @@ def completion_hint(picks: Sequence[Suggestion], active: int) -> Text:
     # scroll the window with the selection so a long list stays walkable
     first = max(0, min(active - HINT_WIDTH // 2, len(picks) - HINT_WIDTH))
     # Text pieces, never markup: a label is the data's (a JSON key, a directory name), and
-    # `[/x]` in one raised MarkupError and closed the app; `[link=...]` made a live link.
+    # `[/x]` in one raised MarkupError and closed the app; `[link=...]` made a live link. And
+    # printable, since an escape sequence in one went to the terminal as it was.
     hint = Text.assemble(("↹", "dim"), " ")
     for i, p in enumerate(picks[first : first + HINT_WIDTH]):
         if i:
             hint.append("  ")
-        hint.append(p.label, "reverse" if i + first == active else "dim")
+        hint.append(printable(p.label), "reverse" if i + first == active else "dim")
     if len(picks) > 1:
         hint.append("  ").append(f"{active + 1}/{len(picks)}", "dim")
     return hint
