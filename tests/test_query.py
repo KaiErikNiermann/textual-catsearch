@@ -22,6 +22,7 @@ from textual_catsearch import (
     Vocabulary,
     apply,
     lex,
+    pinned,
     rank_values,
     render,
     suggest,
@@ -688,6 +689,15 @@ def test_without_clears_a_tab_and_keeps_everything_else() -> None:
     assert without(parse("(is:upcoming OR tag:x) tag:y"), "is") == "(is:upcoming OR tag:x) tag:y", (
         "a disjunction pins nothing"
     )
+
+
+def test_a_tab_is_found_however_its_value_was_spelled() -> None:
+    """Matching folds accents and width, so the tabs have to: `is:ＵＰＣＯＭＩＮＧ` filters as
+    the tab does, and a tab that stayed dark for it could never be cleared."""
+    q = parse("is:ＵＰＣＯＭＩＮＧ tag:café")
+    assert pinned(q, "is", among=("upcoming",)) == "ＵＰＣＯＭＩＮＧ"
+    assert without(q, "is", among=("upcoming",)) == 'tag:"café"'
+    assert pinned(q, "tag", among=("Cafe",)) == "café"
 
 
 @pytest.mark.parametrize(

@@ -14,6 +14,7 @@ from dataclasses import replace
 
 from textual_catsearch.query import Query
 from textual_catsearch.render import render
+from textual_catsearch.text import fold
 from textual_catsearch.tree import And, Expr, Term
 
 __all__ = ["pinned", "with_term", "without"]
@@ -25,9 +26,13 @@ def _top_level(expr: Expr) -> tuple[Expr, ...]:
 
 
 def _category(among: Collection[str] | None) -> Callable[[str], bool]:
-    """Is a value one of the categories — any value at all when ``among`` is not given?"""
-    folded = None if among is None else {v.casefold() for v in among}
-    return lambda v: folded is None or v.casefold() in folded
+    """Is a value one of the categories — any value at all when ``among`` is not given?
+
+    Compared the way matching compares (:func:`text.fold`), so a pin the query honours is a pin
+    the tabs see: ``category:cafe`` filters to *Café*, and must light and clear its tab too.
+    """
+    folded = None if among is None else {fold(v) for v in among}
+    return lambda v: folded is None or fold(v) in folded
 
 
 def _here(term: Term, field: str) -> bool:
