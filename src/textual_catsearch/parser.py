@@ -366,33 +366,37 @@ def _merged[Row](parts: Sequence[Expr], schema: Schema[Row]) -> tuple[Expr, ...]
       turn it into "not both".
 
     Folding here rather than at match time is what keeps :func:`render` writing the comma form
-    back out, so the query the bar echoes is the query that ran.
+    back out, so the query the bar echoes is the query that ran. The terms of a key are
+    gathered first and widened once: widening at each repeat rebuilt the whole term every time,
+    which made a long run of one key quadratic.
     """
-    at: dict[tuple[str, tuple[str, ...]], tuple[int, Term]] = {}
+    at: dict[tuple[str, tuple[str, ...]], tuple[int, list[Term]]] = {}
     out: list[Expr] = []
     for part in parts:
         if not isinstance(part, Term) or part.negated or part.field == schema.bare:
             out.append(part)
         elif (seen := at.get((part.field, part.via))) is None:
-            at[(part.field, part.via)] = (len(out), part)
+            at[(part.field, part.via)] = (len(out), [part])
             out.append(part)
         else:
-            index, first = seen
-            at[(part.field, part.via)] = (index, grown := _widened(first, part, schema))
-            out[index] = grown
+            seen[1].append(part)
+    for index, terms in at.values():
+        if len(terms) > 1:
+            out[index] = _widened(terms, schema)
     return tuple(out)
 
 
-def _widened[Row](first: Term, extra: Term, schema: Schema[Row]) -> Term:
-    """``first`` with ``extra``'s values as further alternatives, in the order they were typed.
+def _widened[Row](terms: Sequence[Term], schema: Schema[Row]) -> Term:
+    """The first term with the others' values as further alternatives, in the order typed.
 
     Read back through :func:`_typed_term` rather than assembled by hand, so the merged term is
     exactly the term that value list would have produced had it been written as one comma
     list. ``ranges`` is why that matters — it belongs to number fields only, and deriving it
     here would give a text field a numeric window whenever a value happened to read as one.
     """
-    values = tuple(dict.fromkeys((*first.values, *extra.values)))
-    absent = first.absent or extra.absent
+    first = terms[0]
+    values = tuple(dict.fromkeys(v for term in terms for v in term.values))
+    absent = any(term.absent for term in terms)
     spec = schema.field(first.field)
     if spec is None:  # `_merged` only sees fields `_read` recognised
         raise AssertionError(f"merged a term of no field: {first.field!r}")

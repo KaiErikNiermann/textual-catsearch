@@ -6,6 +6,8 @@ run in milliseconds and cover the grammar exhaustively.
 
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
 
 from catalog import SCHEMA, Work, keep
@@ -22,6 +24,7 @@ from textual_catsearch import (
     Vocabulary,
     apply,
     lex,
+    parser,
     pinned,
     rank_values,
     render,
@@ -647,6 +650,24 @@ def test_a_key_written_twice_offers_alternatives() -> None:
     """OR within a key, AND across keys — a row has one kind, so AND would match nothing."""
     assert parse("kind:tv kind:movie").terms == (Term("kind", ("tv", "movie")),)
     assert render(parse("kind:tv kind:movie").expr, SCHEMA) == "kind:tv,movie"
+
+
+def test_a_key_written_many_times_is_merged_in_linear_work(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Each repeat used to rebuild the whole merged term, so n repeats read about n²/2 values.
+
+    Counted rather than timed, so the test cannot flake on a slow machine.
+    """
+    read: list[int] = []
+    typed_term = parser._typed_term  # pyright: ignore[reportPrivateUsage]
+
+    def counting(*args: Any, **kwargs: Any) -> Term:
+        read.append(len(args[1]))
+        return typed_term(*args, **kwargs)
+
+    monkeypatch.setattr(parser, "_typed_term", counting)
+    n = 500
+    assert len(parse(" ".join(f"tag:v{i}" for i in range(n))).terms[0].values) == n
+    assert sum(read) <= 2 * n
 
 
 def test_or_binds_tighter_than_juxtaposition() -> None:
