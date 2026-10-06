@@ -9,7 +9,7 @@ import string
 from dataclasses import dataclass
 from typing import Final
 
-__all__ = ["QUOTE", "WORD", "Guarded", "Token", "active_span", "lex"]
+__all__ = ["QUOTE", "WORD", "Guarded", "Token", "active_span", "lex", "separated"]
 
 QUOTE: Final[str] = '"'
 
@@ -202,6 +202,25 @@ def _scan(source: str, i: int) -> tuple[Guarded, int]:
     if chars:
         runs.append(("".join(chars), quoted))
     return Guarded(tuple(runs)), i
+
+
+def separated(text: str, sep: str) -> tuple[tuple[int, int], ...]:
+    """The ``[start, end)`` spans of ``text`` between its *unquoted* ``sep`` characters.
+
+    :meth:`Guarded.split` for raw text, where the offsets are the point: completion splices
+    one segment of a comma list back into the source. Quoted is decided as :func:`_scan`
+    decides it — an odd number of quotes so far — and a doubled ``""`` adds two, so it never
+    changes the answer.
+    """
+    spans: list[tuple[int, int]] = []
+    start, quoted = 0, False
+    for i, ch in enumerate(text):
+        if ch == QUOTE:
+            quoted = not quoted
+        elif ch == sep and not quoted:
+            spans.append((start, i))
+            start = i + 1
+    return (*spans, (start, len(text)))
 
 
 def active_span(source: str, cursor: int) -> tuple[int, int]:

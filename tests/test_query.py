@@ -450,6 +450,21 @@ def test_completes_only_the_segment_under_the_caret_in_a_comma_list() -> None:
     assert parse(top.insert).terms[0].values == ("Denis", "Alan Ritchson")
 
 
+def test_an_earlier_segment_completes_when_the_caret_is_in_it() -> None:
+    """Going back to fix the first value completed the last one instead."""
+    source = "cast:rit,Denis"
+    top = suggest(source, len("cast:rit"), SCHEMA, _VOCAB)[0]
+    assert apply(source, top) == 'cast:"Alan Ritchson",Denis'
+
+
+def test_a_quoted_comma_does_not_split_the_segment_being_completed() -> None:
+    """`"Smith, Rit` is one name being typed; splitting it gave `cast:"Smith,"Alan Ritchson"`."""
+    vocab = Vocabulary({"cast": (VocabEntry("Smith, Ritchie"),)})
+    source = 'cast:"Smith, Rit'
+    top = suggest(source, len(source), SCHEMA, vocab)[0]
+    assert apply(source, top) == 'cast:"Smith, Ritchie"'
+
+
 def test_negation_and_groups_are_preserved_through_completion() -> None:
     assert _suggest("-genre:hor", 10)[0] == "-genre:horror"
     assert _suggest("(-genre:hor", 11)[0] == "(-genre:horror"
