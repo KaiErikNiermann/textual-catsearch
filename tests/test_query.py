@@ -494,6 +494,12 @@ def test_a_shell_shaped_single_quoted_value_is_understood() -> None:
     assert parse("cast:'Alan Ritchson'").terms[0].values == ("Alan Ritchson",)
 
 
+def test_a_shell_shaped_value_completes_while_it_is_being_typed() -> None:
+    """The parser reads `cast:'Alan Ritchson'`, so `cast:'Ala` should complete towards it."""
+    source = "cast:'Ala"
+    assert apply(source, suggest(source, len(source), SCHEMA, _VOCAB)[0]) == 'cast:"Alan Ritchson"'
+
+
 @pytest.mark.parametrize("source", ["Don't Look Up", "'71", "'71 Don't Look Up"])
 def test_an_apostrophe_outside_a_value_is_left_alone(source: str) -> None:
     """The lexer's reason for refusing `'` as a quote still holds everywhere else."""

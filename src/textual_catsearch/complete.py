@@ -234,7 +234,12 @@ def _field_values[Row](
             start=at.start,
             end=at.end,
         )
-        for entry, detail in rank_values(
-            schema, field, vocab, segment.strip().strip(QUOTE), limit=limit
-        )
+        for entry, detail in rank_values(schema, field, vocab, _needle(segment, lead), limit=limit)
     )
+
+
+def _needle(segment: str, lead: str) -> str:
+    """What a value segment searches for: without its quotes, and without the apostrophe of a
+    shell-shaped ``cast:'Ala`` — the opening of the ``field:'value'`` the parser accepts."""
+    needle = segment.strip().strip(QUOTE)
+    return needle.lstrip("'") if not lead and segment.startswith("'") else needle
