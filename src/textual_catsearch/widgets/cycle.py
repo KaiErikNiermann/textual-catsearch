@@ -16,6 +16,8 @@ from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
 
+from textual_catsearch.text import printable
+
 __all__ = ["Cycle"]
 
 
@@ -43,9 +45,15 @@ class Cycle(Widget):
             return self.cycle
 
     def __init__(self, values: Sequence[str], *, index: int = 0, id: str | None = None) -> None:
+        # Refused here rather than at the first render, where an empty list or a stray index
+        # surfaced as an IndexError from deep inside Textual's paint.
+        if not values:
+            raise ValueError("a Cycle needs at least one value")
+        if not -len(values) <= index < len(values):
+            raise ValueError(f"index {index} is outside the {len(values)} values")
         super().__init__(id=id)
         self.values = tuple(values)
-        self.index = index
+        self.index = index % len(values)  # `-1`, the last, as Python indexes
 
     @property
     def value(self) -> str:
@@ -53,7 +61,8 @@ class Cycle(Widget):
         return self.values[self.index]
 
     def render(self) -> Text:
-        return Text.assemble(("◂", "dim"), f" {self.value} ", ("▸", "dim"))  # a value, not markup
+        # a value, not markup, and its control characters shown rather than sent
+        return Text.assemble(("◂", "dim"), f" {printable(self.value)} ", ("▸", "dim"))
 
     def action_step(self, delta: int) -> None:
         self.index = (self.index + delta) % len(self.values)

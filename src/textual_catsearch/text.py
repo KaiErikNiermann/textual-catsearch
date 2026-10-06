@@ -7,7 +7,7 @@ import unicodedata
 from functools import lru_cache
 from typing import Final
 
-__all__ = ["fold", "word_prefixed"]
+__all__ = ["fold", "printable", "word_prefixed"]
 
 # Invisible by design: joiners, direction overrides, soft hyphens, the zero-width space, and
 # the C0 controls. A name carrying one of these looks identical to one that does not, so
@@ -60,3 +60,23 @@ def word_prefixed(value: str, needle: str) -> bool:
     """
     low = fold(value)
     return low.startswith(needle) or any(w.startswith(needle) for w in _WORDS.split(low) if w)
+
+
+# C0 controls and DEL as their Unicode control pictures (`␛`, `␊`), C1 controls as `�`: shown,
+# rather than either executed or silently dropped.
+_PICTURES: Final[dict[int, str]] = {
+    **{c: chr(0x2400 + c) for c in range(0x20)},
+    0x7F: "\u2421",
+    **dict.fromkeys(range(0x80, 0xA0), "\ufffd"),
+}
+
+
+def printable(text: str) -> str:
+    """``text`` safe to paint on a terminal: its control characters shown, not obeyed.
+
+    Rich's :class:`~rich.text.Text` drops only a few controls and keeps ESC, and Textual writes
+    a segment's text out as it is, so a value carrying ``\\x1b[2J`` — a directory name, a JSON
+    key, a pasted title — reached the terminal as an instruction when completion offered it. A
+    ``\\n`` in one broke the hint strip across lines. For display only: the value itself is left as it is.
+    """
+    return text.translate(_PICTURES)

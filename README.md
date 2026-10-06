@@ -108,7 +108,7 @@ parse("status:500,502 http.status:503 -userId:7", SCHEMA)
 
 - A key is taken as typed, case and all, dots included: data keys are not the schema's lowercase names, so `userId` and `userid` are two keys, and `http.status` (when `http` is no relation) is one key, not a path.
 - Declared names always win: `level:3` is the declared field in any case (`Level:3` too), and `parent.level:3` a declared path, never the data's own `level` key. An app that also wants that key offers an explicit field for it (pm's log search keeps `kv:level=warn`).
-- `make` is asked once per key; its answer, `None` included, is kept for the schema's life.
+- `make` is asked once per key; its answer, `None` included, is kept for the 4096 most recently used keys (`DYNAMIC_KEYS`), so a long-lived bar does not grow without bound.
 - A key `make` declines, or one that cannot be a key (`[A-Za-z0-9_][A-Za-z0-9_.-]*`), reads as text with an `unknown-field` diagnostic, as without `dynamic`.
 - The data's keys complete after the declared names: pass them as `Vocabulary(keys=(VocabEntry("status", uses), ...))`. Values complete through the field `make` returns, as for any field.
 

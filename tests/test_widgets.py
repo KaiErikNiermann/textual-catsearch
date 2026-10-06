@@ -511,6 +511,42 @@ async def test_the_hint_names_the_diagnostic_under_the_caret() -> None:
         assert "nope: not a field" in _hint(app)
 
 
+@pytest.mark.parametrize(("values", "index"), [((), 0), (("a",), 1), (("a", "b"), -3)])
+def test_a_cycle_with_nothing_to_show_is_refused_when_it_is_made(
+    values: tuple[str, ...], index: int
+) -> None:
+    """It used to be accepted and then raise IndexError on its first paint."""
+    with pytest.raises(ValueError):
+        Cycle(values, index=index)
+    assert Cycle(["a", "b"], index=-1).value == "b"
+
+
+@pytest.mark.parametrize("label", ["\x1b[2Jwiped", "two\nlines", "csi\x9b31m"])
+def test_a_label_s_control_characters_are_shown_never_sent(label: str) -> None:
+    """Rich keeps ESC and Textual writes text out as it is, so an escape sequence in the data
+    went to the terminal; a newline split the strip in two."""
+    from textual_catsearch.complete import Suggestion
+    from textual_catsearch.widgets.completing import completion_hint
+    from textual_catsearch.widgets.cycle import Cycle
+
+    for drawn in (
+        completion_hint([Suggestion(label, label, "key", 0, 1)], 0).plain,
+        Cycle([label]).render().plain,
+    ):
+        assert not any(c in drawn for c in "\x1b\n\x9b")
+        assert label[-3:] in drawn
+
+
+async def test_the_hint_shows_the_control_characters_of_what_was_typed() -> None:
+    """A diagnostic quotes the query back, and a pasted query can carry an escape sequence."""
+    app = Browse()
+    async with app.run_test(size=(140, 24)) as pilot:
+        await _settle(pilot, "nope\x1b[2J:1")
+        app.bar.focus()
+        await pilot.pause()
+        assert "nope\u241b[2J: not a field" in _hint(app)
+
+
 # --- a query longer than the bar -------------------------------------------------------------
 def _drawn(app: Browse) -> str:
     return "".join(seg.text for seg in app.bar.input.render_line(0))

@@ -6,6 +6,8 @@ run in milliseconds and cover the grammar exhaustively.
 
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
 
 from catalog import SCHEMA, Work, keep
@@ -22,6 +24,8 @@ from textual_catsearch import (
     Vocabulary,
     apply,
     lex,
+    parser,
+    pinned,
     rank_values,
     render,
     suggest,
@@ -271,6 +275,12 @@ def test_a_row_with_no_number_matches_no_range() -> None:
     assert keep("year:2026", Work()) == []
 
 
+def test_nan_is_in_no_range_not_even_an_open_one() -> None:
+    """Every comparison with NaN is false, except none is made when both ends are open."""
+    nan = Work(season=float("nan"))  # pyright: ignore[reportArgumentType] — data is data
+    assert keep("season:..", nan) == keep("season:>=0", nan) == []
+
+
 def test_negation_inverts_the_term() -> None:
     horror = Work(title="H", genres=("horror",))
     comedy = Work(title="C", genres=("comedy",))
@@ -449,9 +459,39 @@ def test_completes_only_the_segment_under_the_caret_in_a_comma_list() -> None:
     assert parse(top.insert).terms[0].values == ("Denis", "Alan Ritchson")
 
 
+def test_an_earlier_segment_completes_when_the_caret_is_in_it() -> None:
+    """Going back to fix the first value completed the last one instead."""
+    source = "cast:rit,Denis"
+    top = suggest(source, len("cast:rit"), SCHEMA, _VOCAB)[0]
+    assert apply(source, top) == 'cast:"Alan Ritchson",Denis'
+
+
+def test_a_quoted_comma_does_not_split_the_segment_being_completed() -> None:
+    """`"Smith, Rit` is one name being typed; splitting it gave `cast:"Smith,"Alan Ritchson"`."""
+    vocab = Vocabulary({"cast": (VocabEntry("Smith, Ritchie"),)})
+    source = 'cast:"Smith, Rit'
+    top = suggest(source, len(source), SCHEMA, vocab)[0]
+    assert apply(source, top) == 'cast:"Smith, Ritchie"'
+
+
 def test_negation_and_groups_are_preserved_through_completion() -> None:
     assert _suggest("-genre:hor", 10)[0] == "-genre:horror"
     assert _suggest("(-genre:hor", 11)[0] == "(-genre:horror"
+
+
+def test_a_closing_bracket_is_kept_out_of_the_value_being_completed() -> None:
+    """`(kind:mo)` searched for a kind starting `mo)` and found nothing."""
+    source = "(kind:mo) year:2026"
+    top = suggest(source, len("(kind:mo"), SCHEMA, _VOCAB)[0]
+    assert apply(source, top) == "(kind:movie) year:2026"
+    assert _suggest("(tag:x (ca))", 10)[0] == "(ca" + "st:"
+
+
+def test_a_bracket_no_group_opened_is_still_part_of_the_value() -> None:
+    """The parser keeps `title:(2021)` literal, so completion must read it the same way."""
+    vocab = Vocabulary({"cast": (VocabEntry("Hello (2021)"),)})
+    source = "cast:Hello)"
+    assert [s.label for s in suggest(source, len(source), SCHEMA, vocab)] == []
 
 
 def test_an_alias_completes_to_its_canonical_field() -> None:
@@ -461,6 +501,12 @@ def test_an_alias_completes_to_its_canonical_field() -> None:
 # --- single-quoted values -------------------------------------------------------------------
 def test_a_shell_shaped_single_quoted_value_is_understood() -> None:
     assert parse("cast:'Alan Ritchson'").terms[0].values == ("Alan Ritchson",)
+
+
+def test_a_shell_shaped_value_completes_while_it_is_being_typed() -> None:
+    """The parser reads `cast:'Alan Ritchson'`, so `cast:'Ala` should complete towards it."""
+    source = "cast:'Ala"
+    assert apply(source, suggest(source, len(source), SCHEMA, _VOCAB)[0]) == 'cast:"Alan Ritchson"'
 
 
 @pytest.mark.parametrize("source", ["Don't Look Up", "'71", "'71 Don't Look Up"])
@@ -476,6 +522,17 @@ def test_the_normaliser_declines_a_value_whose_pair_is_ambiguous() -> None:
 
 def test_a_double_quoted_value_containing_an_apostrophe_is_untouched() -> None:
     assert parse('cast:"Josh O\'Connor"').terms[0].values == ("Josh O'Connor",)
+
+
+def test_a_shell_shaped_value_inside_double_quotes_is_left_as_written() -> None:
+    """The normaliser runs before lexing, so it has to know a quoted value when it sees one.
+
+    It rewrote the apostrophes inside the quotes and split the title in two.
+    """
+    title = "The author:'Le Guin' and book"
+    assert parse(f'name:"{title}"').terms[0].values == (title,)
+    assert parse(f'name:"x ""y"" {title}"').terms[0].values == (f'x "y" {title}',)
+    assert parse("\"a\" cast:'Le Guin'").terms[1].values == ("Le Guin",)
 
 
 # --- asking somewhere else ----------------------------------------------------------------
@@ -595,6 +652,24 @@ def test_a_key_written_twice_offers_alternatives() -> None:
     assert render(parse("kind:tv kind:movie").expr, SCHEMA) == "kind:tv,movie"
 
 
+def test_a_key_written_many_times_is_merged_in_linear_work(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Each repeat used to rebuild the whole merged term, so n repeats read about n²/2 values.
+
+    Counted rather than timed, so the test cannot flake on a slow machine.
+    """
+    read: list[int] = []
+    typed_term = parser._typed_term  # pyright: ignore[reportPrivateUsage]
+
+    def counting(*args: Any, **kwargs: Any) -> Term:
+        read.append(len(args[1]))
+        return typed_term(*args, **kwargs)
+
+    monkeypatch.setattr(parser, "_typed_term", counting)
+    n = 500
+    assert len(parse(" ".join(f"tag:v{i}" for i in range(n))).terms[0].values) == n
+    assert sum(read) <= 2 * n
+
+
 def test_or_binds_tighter_than_juxtaposition() -> None:
     """`a OR b c` is `(a OR b) and c` — the reading a search bar wants, not logic's."""
     watched_tv = Work(title="Reacher", kind="tv", state="watched")
@@ -677,6 +752,15 @@ def test_without_clears_a_tab_and_keeps_everything_else() -> None:
     assert without(parse("(is:upcoming OR tag:x) tag:y"), "is") == "(is:upcoming OR tag:x) tag:y", (
         "a disjunction pins nothing"
     )
+
+
+def test_a_tab_is_found_however_its_value_was_spelled() -> None:
+    """Matching folds accents and width, so the tabs have to: `is:ＵＰＣＯＭＩＮＧ` filters as
+    the tab does, and a tab that stayed dark for it could never be cleared."""
+    q = parse("is:ＵＰＣＯＭＩＮＧ tag:café")
+    assert pinned(q, "is", among=("upcoming",)) == "ＵＰＣＯＭＩＮＧ"
+    assert without(q, "is", among=("upcoming",)) == 'tag:"café"'
+    assert pinned(q, "tag", among=("Cafe",)) == "café"
 
 
 @pytest.mark.parametrize(

@@ -5,7 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
-from textual_catsearch.lexer import QUOTE, active_span
+from textual_catsearch.lexer import QUOTE, active_span, separated
+from textual_catsearch.parser import open_groups
 from textual_catsearch.render import quote
 from textual_catsearch.schema import Completions, Schema, VocabEntry, Vocabulary, unquoted
 from textual_catsearch.text import fold, word_prefixed
@@ -67,12 +68,14 @@ class _Slot:
     ``prefix`` is whatever opens a group and whatever negates; ``stem`` is the path already
     walked (``parent.``). Both ride back out on the insertion, so completing inside
     ``(kind:tv -parent.ye`` splices into the group and the path rather than past them.
+    ``caret`` is where the cursor sits in the source, which picks the segment of a comma list.
     """
 
     start: int
     end: int
     prefix: str
     stem: str
+    caret: int
 
 
 def suggest[Row](
@@ -93,6 +96,7 @@ def suggest[Row](
     Pure, so it is unit-testable without a terminal and reusable for shell completion.
     """
     start, end = active_span(source, cursor)
+    end -= _closers(source, start, end)
     token = source[start:end]
     body = token.lstrip("(")
     negated = body[:1] in ("-", "!")
@@ -103,9 +107,11 @@ def suggest[Row](
     if walked and any(schema.relation(piece) is None for piece in walked.split(".")):
         # A dotted key that is not a path is a name: one of the data's keys, if the schema
         # takes those, else nothing that completes.
-        at = _Slot(start=start, end=end, prefix=prefix, stem="")
+        at = _Slot(start=start, end=end, prefix=prefix, stem="", caret=cursor)
         return _dotted(schema, head, sep, value, vocab, at, limit)
-    at = _Slot(start=start, end=end, prefix=prefix, stem=head[: len(head) - len(tail)])
+    at = _Slot(
+        start=start, end=end, prefix=prefix, stem=head[: len(head) - len(tail)], caret=cursor
+    )
     if not sep:
         offered = schema.names if fields is None else fields
         declared = _field_names(schema, tail, offered, at, limit)
@@ -114,6 +120,19 @@ def suggest[Row](
     if spec is None:
         return ()
     return _field_values(schema, spec.name, value, vocab, at, limit)
+
+
+def _closers(source: str, start: int, end: int) -> int:
+    """How many of the ``)`` ending the token at ``[start, end)`` close a group.
+
+    Those are grammar, not the value: ``(kind:mo)`` completes ``mo`` and keeps its bracket. A
+    ``)`` with no group open is text — ``title:(2021)`` — and stays in, as the parser keeps it.
+    """
+    token = source[start:end]
+    if token.count(QUOTE) % 2:  # inside an open quote, a bracket is a character
+        return 0
+    body = token.rstrip(")")
+    return min(len(token) - len(body), open_groups(source[:start] + body))
 
 
 def _field_names[Row](
@@ -187,28 +206,40 @@ def _name_suggestion(name: str, relation: bool, at: _Slot) -> Suggestion:
 def _field_values[Row](
     schema: Schema[Row], field: str, value: str, vocab: Vocabulary, at: _Slot, limit: int
 ) -> tuple[Suggestion, ...]:
-    """Value completions for the segment under the caret — the last one, in a comma list.
+    """Value completions for the segment of a comma list the caret is in.
 
     Only that segment is quoted. Quoting the whole accumulated list instead turned
     ``tag:horror,body h`` into ``tag:"horror,body horror"`` — one value with a comma in it,
     which is the opposite of the two the user was building, and unrecoverable without deleting
-    the quotes by hand. What they already typed rides back out exactly as typed.
+    the quotes by hand. What they already typed on either side rides back out exactly as typed.
+
+    The segment is the one under the caret rather than the last one, so going back to fix
+    ``hor`` in ``tag:hor,myst`` completes ``hor``; and only an unquoted comma ends one, so the
+    comma in ``cast:"Smith, Jo`` is part of the name being typed.
     """
     spec = schema.field(field)
     if spec is None:
         return ()
-    lead, _, segment = value.rpartition(",")
-    kept = f"{lead}," if lead else ""
+    # `value` is the tail of the token, so this is the caret's offset into it — clamped, since a
+    # caret back in the field name still completes the value, and the spans cover [0, len].
+    caret = max(0, min(at.caret - (at.end - len(value)), len(value)))
+    lo, hi = next(span for span in separated(value, ",") if span[0] <= caret <= span[1])
+    lead, segment, rest = value[:lo], value[lo:hi], value[hi:]
     extra = unquoted(spec)
     return tuple(
         Suggestion(
-            insert=f"{at.prefix}{at.stem}{field}:{kept}{quote(entry.value, extra)}",
+            insert=f"{at.prefix}{at.stem}{field}:{lead}{quote(entry.value, extra)}{rest}",
             label=entry.value,
             detail=f"{detail} · {entry.uses}" if entry.uses else detail,
             start=at.start,
             end=at.end,
         )
-        for entry, detail in rank_values(
-            schema, field, vocab, segment.strip().strip(QUOTE), limit=limit
-        )
+        for entry, detail in rank_values(schema, field, vocab, _needle(segment, lead), limit=limit)
     )
+
+
+def _needle(segment: str, lead: str) -> str:
+    """What a value segment searches for: without its quotes, and without the apostrophe of a
+    shell-shaped ``cast:'Ala`` — the opening of the ``field:'value'`` the parser accepts."""
+    needle = segment.strip().strip(QUOTE)
+    return needle.lstrip("'") if not lead and segment.startswith("'") else needle

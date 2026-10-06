@@ -31,12 +31,14 @@ from textual_catsearch import (
     Vocabulary,
     fold,
     holds,
+    lex,
     neg,
     quote,
     render,
     suggest,
 )
 from textual_catsearch import parse as _parse
+from textual_catsearch.lexer import separated
 from textual_catsearch.query import Fault
 from textual_catsearch.schema import FlagField, NumberField
 
@@ -244,6 +246,17 @@ def test_completion_is_total_at_every_caret(source: str) -> None:
     """``suggest`` runs on each keystroke too, at whatever offset the caret happens to be."""
     for cursor in range(len(source) + 1):
         assert isinstance(suggest(source, cursor, SCHEMA, Vocabulary()), tuple)
+
+
+@given(st.text(alphabet=st.sampled_from('ab,"é'), max_size=30))
+def test_completion_splits_a_comma_list_where_the_lexer_does(source: str) -> None:
+    """Completion reads offsets off raw text and the parser reads quote-flagged runs: two
+    readers of one rule, so they are checked against each other rather than trusted to agree."""
+    spans = separated(source, ",")
+    assert ",".join(source[lo:hi] for lo, hi in spans) == source
+    (token,) = lex(source) or (None,)
+    if token is not None:
+        assert len(spans) == len(token.body.split(","))
 
 
 # --- parse and render are inverses ---------------------------------------------------------

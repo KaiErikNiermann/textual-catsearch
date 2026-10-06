@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, replace
 
 __all__ = ["And", "Expr", "Not", "NumRange", "Or", "Term", "neg"]
@@ -22,6 +23,10 @@ class NumRange:
     hi_strict: bool = False
 
     def contains(self, n: float) -> bool:
+        """Is ``n`` in the window? Never for NaN, which is no number — though with both ends
+        open (``year:..``) no comparison is left to say so."""
+        if math.isnan(n):
+            return False
         above = self.lo is None or (n > self.lo if self.lo_strict else n >= self.lo)
         below = self.hi is None or (n < self.hi if self.hi_strict else n <= self.hi)
         return above and below
