@@ -31,11 +31,13 @@ from collections import Counter
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass
 from dataclasses import field as dc_field
+from functools import lru_cache
 from typing import Final
 
 from textual_catsearch.text import fold
 
 __all__ = [
+    "DYNAMIC_KEYS",
     "Completions",
     "CustomField",
     "EnumField",
@@ -318,6 +320,10 @@ _NAME: Final[re.Pattern[str]] = re.compile(r"[a-z0-9_][a-z0-9_-]*")
 # A dynamic key is typed as it is written in the data, so it keeps its case and may have dots
 # (`http.status`, a nested key's name): letters, digits, `_`, `.` and `-`, not leading with `-`.
 _KEY: Final[re.Pattern[str]] = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_.\-]*")
+# How many keys' answers from `dynamic` are kept. Every distinct key typed is asked about, the
+# half-typed and the declined ones too, so in a long-lived search bar an unbounded table only
+# ever grows; this many is far more than one screen of data has keys.
+DYNAMIC_KEYS: Final[int] = 4096
 
 
 class Schema[Row]:
@@ -340,7 +346,7 @@ class Schema[Row]:
         dynamic: Callable[[str], Field[Row] | None] | None = None,
     ) -> None:
         self._dynamic = dynamic
-        self._dynamic_fields: dict[str, Field[Row] | None] = {}
+        self._dynamic_fields = lru_cache(maxsize=DYNAMIC_KEYS)(self._made)
         self._fields: dict[str, Field[Row]] = {}
         self._relations: dict[str, Relation[Row]] = {}
         self._aliases: dict[str, str] = {}
@@ -413,19 +419,21 @@ class Schema[Row]:
 
     def dynamic_field(self, key: str) -> Field[Row] | None:
         """The field ``dynamic`` makes for a key no field or alias claims, asked once per key
-        and kept. The key is as typed, case and all (`userId`, `http.status`): data keys are
+        and kept (for the :data:`DYNAMIC_KEYS` most recent keys). The key is as typed, case and all (`userId`, `http.status`): data keys are
         not the schema's lowercase names. None without ``dynamic``, for a key that cannot be
         one, or where ``dynamic`` declines it (the key is then read as text, as any unknown
         field is)."""
         key = key.strip()
         if self._dynamic is None or not _KEY.fullmatch(key) or self.declared(key) is not None:
             return None
-        if key not in self._dynamic_fields:
-            made = self._dynamic(key)
-            if made is not None and made.name != key:
-                raise ValueError(f"dynamic field for {key!r} is named {made.name!r}, not the key")
-            self._dynamic_fields[key] = made
-        return self._dynamic_fields[key]
+        return self._dynamic_fields(key)
+
+    def _made(self, key: str) -> Field[Row] | None:
+        """What ``dynamic`` answers for ``key``, checked to be named after it."""
+        made = None if self._dynamic is None else self._dynamic(key)
+        if made is not None and made.name != key:
+            raise ValueError(f"dynamic field for {key!r} is named {made.name!r}, not the key")
+        return made
 
     def relation(self, name: str) -> Relation[Row] | None:
         """The relation a name or alias refers to, or None."""

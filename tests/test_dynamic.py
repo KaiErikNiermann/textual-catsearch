@@ -21,6 +21,7 @@ from textual_catsearch import (
     suggest,
 )
 from textual_catsearch.query import Fault
+from textual_catsearch.schema import DYNAMIC_KEYS
 
 
 @dataclass(frozen=True)
@@ -114,6 +115,25 @@ def test_a_key_is_asked_of_dynamic_once() -> None:
     parse("status:500 status:200 -status:1", fresh).filter(ROWS)
     parse("status:200", fresh).filter(ROWS)
     assert asked == ["status"]
+
+
+def test_the_keys_kept_are_bounded() -> None:
+    """Every key typed is asked about, so a table kept for the schema's life only ever grew —
+    in a long-lived bar, by every key anyone edited. The oldest are forgotten and asked again."""
+    asked: list[str] = []
+
+    def declining(key: str) -> None:
+        asked.append(key)
+
+    fresh: Schema[Line] = Schema(
+        [TextField("text", lambda r: r.text)], bare="text", dynamic=declining
+    )
+    for i in range(DYNAMIC_KEYS + 1):
+        parse(f"k{i}:x", fresh)
+    parse(f"k{DYNAMIC_KEYS}:x", fresh)  # the newest is still kept
+    assert len(asked) == DYNAMIC_KEYS + 1
+    parse("k0:x", fresh)  # the oldest was let go
+    assert asked[-1] == "k0"
 
 
 def test_a_field_dynamic_makes_must_carry_the_key_as_its_name() -> None:
