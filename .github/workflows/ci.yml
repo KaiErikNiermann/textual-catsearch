@@ -1,0 +1,56 @@
+# Lint and test are separate jobs so a style failure and a broken suite never arrive as the
+# same red mark. The checks mirror scripts/checks.sh, the local pre-push gate.
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - run: pipx install poetry
+      - run: poetry install
+      - name: ruff (lint)
+        run: poetry run ruff check src tests examples
+      - name: ruff (format)
+        run: poetry run ruff format --check src tests examples
+      - name: pyright (strict)
+        run: poetry run pyright
+      - name: radon (nothing above grade C)
+        # Grade C is reported, D and worse fail; see scripts/checks.sh for why C is allowed.
+        run: |
+          poetry run radon cc -n C -s src
+          worse="$(poetry run radon cc -n D -s src)"
+          if [ -n "${worse}" ]; then
+            echo "${worse}"
+            echo "::error::functions above complexity grade C"
+            exit 1
+          fi
+      - name: jscpd (duplication)
+        run: npx --yes jscpd@4 --config .jscpd.json --silent
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor and the ceiling of requires-python.
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pipx install poetry
+      - run: poetry install
+      - run: poetry run pytest
