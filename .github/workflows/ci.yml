@@ -1,5 +1,6 @@
 # Lint and test are separate jobs so a style failure and a broken suite never arrive as the
-# same red mark. The checks mirror scripts/checks.sh, the local pre-push gate.
+# same red mark. The checks mirror scripts/checks.sh, the local pre-push gate; the TypeScript
+# port has its own jobs (js, e2e), and the Python tests hold it to the shared spec.
 name: ci
 
 on:
@@ -51,6 +52,58 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
+      # The conformance and differential tests run the TypeScript port with node, which strips
+      # the types itself: no install, but it must be there, so a missing node fails the job.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
       - run: pipx install poetry
       - run: poetry install
       - run: poetry run pytest
+        env:
+          CATSEARCH_REQUIRE_NODE: "1"
+
+  js:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: js
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: npm install --global pnpm@10
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: tests (spec fixtures, properties, API)
+        run: pnpm test
+        env:
+          FC_RUNS: "2000"
+      - run: pnpm size
+      - run: pnpm build
+      - name: benchmarks (reported, not gated)
+        run: pnpm bench
+
+  e2e:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: js
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: npm install --global pnpm@10
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Chromium, Firefox, WebKit, a Pixel and an iPhone
+        run: pnpm e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: js/.scratch/playwright-report
+          retention-days: 7
