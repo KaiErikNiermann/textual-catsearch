@@ -1,0 +1,76 @@
+/*
+ * Every literal the page uses. Dense desktop profile (13px base, 28px rows), with touch sizes
+ * (44px rows, 16px text in the bar so iOS does not zoom on focus) for coarse pointers.
+ */
+@theme {
+  --font-sans: "Inter", "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "Fira Code", ui-monospace, "SFMono-Regular", monospace;
+  --text-caption: 0.6875rem;
+  --text-small: 0.75rem;
+  --text-body: 0.8125rem;
+  --text-input: 0.9375rem;
+  --text-title: 1.25rem;
+  --text-mono-scale: 0.9em;
+  --duration-none: 0s;
+  --leading-body: 1.5;
+  --leading-title: 1.25;
+  --leading-tight: 1.2;
+  --size-row: 1.75rem;
+  --size-row-touch: 2.75rem;
+  --size-field: 2.25rem;
+  --size-field-touch: 2.75rem;
+  --size-page: 44rem;
+  --size-menu: 20rem;
+  --size-gutter: 1rem;
+
+  /* The page column: its measure, or the viewport less a gutter each side. */
+  --size-page-inline: min(var(--size-page), 100% - 2 * var(--size-gutter));
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --space-3: 0.5rem;
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --radius-chip: 0.25rem;
+  --radius-field: 0.5rem;
+  --radius-option: 0.25rem;
+  --border-hairline: 1px;
+
+  /* Eight and a half rows, so a longer list visibly scrolls. */
+  --size-menu-max: calc(8.5 * var(--size-row));
+  --size-menu-max-touch: calc(8.5 * var(--size-row-touch));
+  --text-input-touch: 1rem;
+  --z-menu: 1;
+  --duration-quick: 120ms;
+}
+
+@layer theme {
+:root {
+  color-scheme: light dark;
+
+  --surface: light-dark(#fff, #1b1c1f);
+  --surface-raised: light-dark(#fff, #232428);
+  --surface-sunken: light-dark(#f4f5f7, #141518);
+  --ink: light-dark(#1d1f23, #e6e7ea);
+  --ink-secondary: light-dark(#5b606b, #a3a7b0);
+  --line: light-dark(#d9dce1, #3a3c42);
+  --accent: light-dark(#3b5bdb, #8ea2ff);
+  --focus-ring: light-dark(#3b5bdb, #8ea2ff);
+  --chip: light-dark(#e7eaf6, #2f3346);
+  --chip-ink: light-dark(#28388a, #c5cffd);
+  --operator-ink: light-dark(#8a4b00, #ffb86b);
+  --hover: light-dark(#eef0f4, #2b2d32);
+  --selected: light-dark(#e2e7fb, #333a5c);
+  --notice: light-dark(#7a4b00, #f2c27a);
+  --notice-surface: light-dark(#fdf3e2, #3a2e1c);
+  --shadow-menu: 0 0.5rem 1.5rem light-dark(#1d1f2329, #00000080);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+}

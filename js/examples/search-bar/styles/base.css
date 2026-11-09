@@ -1,0 +1,25 @@
+@layer base {
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-scale);
+  }
+
+  :focus-visible {
+    outline: var(--border-hairline) solid var(--focus-ring);
+    outline-offset: var(--space-1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: var(--duration-none);
+    }
+  }
+}

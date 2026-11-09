@@ -58,6 +58,8 @@ export default defineConfig([
       "security/detect-object-injection": "off",
       "sonarjs/no-nested-functions": "off",
       "unicorn/no-process-exit": "off",
+      // `page.evaluate` bodies run in the page, where `document` and friends are the globals.
+      "unicorn/isolated-functions": ["error", { overrideGlobals: { document: "readonly", window: "readonly", getComputedStyle: "readonly", ClipboardEvent: "readonly" } }],
       // fast-check arbitraries are built by nesting combinators; that is the library's idiom.
       "unicorn/max-nested-calls": "off",
     },
@@ -79,10 +81,13 @@ export default defineConfig([
       "css/use-baseline": ["error", { available: "newly" }],
       "css/no-important": "error",
       "css/prefer-logical-properties": "error",
-      "css/use-layers": "error",
+      // Each file wraps itself in its layer (so each can be checked alone); imports carry none.
+      "css/use-layers": ["error", { requireImportLayers: false }],
       "css/selector-complexity": ["error", { maxCompounds: 2, maxTypes: 1 }],
       "css/relative-font-units": ["error", { allowUnits: ["rem", "em"] }],
       "css/font-family-fallbacks": "error",
+      // Tokens are defined in tokens.css and used everywhere else: unknown to a per-file check.
+      "css/no-invalid-properties": ["error", { allowUnknownVariables: true }],
     },
   },
 ]);

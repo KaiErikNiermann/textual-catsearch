@@ -1,0 +1,117 @@
+/* The bar, its field-key chips, and the completion dropdown under it. */
+@layer components {
+  .search {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .query {
+    display: block;
+    align-content: center;
+    min-block-size: var(--size-field);
+    padding: var(--space-3) var(--space-4);
+    overflow: auto;
+    border: var(--border-hairline) solid var(--line);
+    border-radius: var(--radius-field);
+    background: var(--surface-sunken);
+    font-size: var(--text-input);
+    line-height: var(--leading-tight);
+    white-space: pre;
+    cursor: text;
+    scrollbar-width: none;
+  }
+
+  .query:focus-visible {
+    border-color: var(--focus-ring);
+    outline: none;
+  }
+
+  .query:empty::before {
+    content: attr(data-placeholder);
+    color: var(--ink-secondary);
+    pointer-events: none;
+  }
+
+  /* A field the schema knows: a code chip, so a filter reads apart from the words searched. */
+  .token-key {
+    padding-inline: var(--space-1);
+    border-radius: var(--radius-chip);
+    background: var(--chip);
+    color: var(--chip-ink);
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-scale);
+  }
+
+  .token-operator {
+    color: var(--operator-ink);
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-scale);
+    font-weight: 600;
+  }
+
+  .suggestions {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2));
+    inset-inline: 0;
+    z-index: var(--z-menu);
+    display: flex;
+    flex-direction: column;
+    max-block-size: var(--size-menu-max);
+    padding: var(--space-2);
+    overflow: auto;
+    border: var(--border-hairline) solid var(--line);
+    border-radius: var(--radius-field);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-menu);
+  }
+
+  .suggestions [role="option"] {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: space-between;
+    min-block-size: var(--size-row);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-option);
+    cursor: pointer;
+    transition: background-color var(--duration-quick);
+  }
+
+  .suggestions [role="option"]:hover {
+    background: var(--hover);
+  }
+
+  .suggestions [aria-selected="true"] {
+    background: var(--selected);
+  }
+
+  .option-label {
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .option-detail {
+    flex-shrink: 0;
+    color: var(--ink-secondary);
+    font-size: var(--text-caption);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (pointer: coarse) {
+    .query {
+      min-block-size: var(--size-field-touch);
+      font-size: var(--text-input-touch);
+    }
+
+    .suggestions {
+      max-block-size: var(--size-menu-max-touch);
+    }
+
+    .suggestions [role="option"] {
+      min-block-size: var(--size-row-touch);
+    }
+  }
+}

@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . && stylelint 'examples/**/*.css'",
+    "lint": "eslint . && stylelint 'examples/**/styles/*.css'",
     "test": "vitest run",
     "bench": "node bench/catsearch.bench.ts",
     "size": "node scripts/size.ts",
