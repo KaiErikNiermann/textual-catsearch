@@ -7,3 +7,11 @@ dist/
 .hypothesis/
 .remember/
 .upstream-issues/
+.scratch/
+LOG.md
+js/node_modules/
+js/dist/
+js/.scratch/
+js/test-results/
+js/playwright-report/
+js/examples/search-bar/dist/

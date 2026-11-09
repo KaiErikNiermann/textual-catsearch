@@ -1,0 +1,56 @@
+{
+  "name": "catsearch",
+  "version": "0.1.0",
+  "description": "Discord-style category search: declare your fields, get a query language, filtering and completion. The TypeScript port of textual-catsearch.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . && stylelint 'examples/**/*.css'",
+    "test": "vitest run",
+    "bench": "node bench/catsearch.bench.ts",
+    "size": "node scripts/size.ts",
+    "example": "vite examples/search-bar",
+    "example:build": "vite build examples/search-bar",
+    "e2e": "playwright test",
+    "oracle": "node test/harness/oracle.ts"
+  },
+  "devDependencies": {
+    "@eslint/css": "^2.0.1",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.14.0",
+    "eslint-plugin-security": "^4.2.1",
+    "eslint-plugin-sonarjs": "^4.2.2",
+    "eslint-plugin-unicorn": "^79.0.0",
+    "fast-check": "^4.10.2",
+    "jiti": "^2.7.0",
+    "stylelint": "^18.0.0",
+    "stylelint-config-standard": "^41.0.0",
+    "stylelint-declaration-strict-value": "^1.12.1",
+    "tailwind-csstree": "^0.4.2",
+    "tailwindcss": "^4.3.5",
+    "tinybench": "^6.2.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  }
+}
