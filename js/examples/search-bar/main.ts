@@ -3,6 +3,7 @@
 import { Schema, enumField, flagField, numberField, textField } from "../../src/index.ts";
 import type { Query } from "../../src/index.ts";
 import { SearchBar } from "./search-bar.ts";
+import { themeToggle } from "./theme.ts";
 import "./styles/index.css";
 
 interface Title {
@@ -93,6 +94,9 @@ function show(query: Query<Title>): void {
     }),
   );
 }
+
+const toggle = element("theme");
+if (toggle instanceof HTMLButtonElement) themeToggle(toggle);
 
 const bar = new SearchBar({
   editor: element("query"),

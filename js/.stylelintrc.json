@@ -31,6 +31,7 @@
       {
         "ignoreValues": [
           "currentColor",
+          "currentcolor",
           "transparent",
           "inherit",
           "initial",

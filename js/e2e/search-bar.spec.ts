@@ -23,6 +23,14 @@ function labels(page: Page): Locator {
   return options(page).locator(".option-label");
 }
 
+function toggle(page: Page): Locator {
+  return page.getByRole("button", { name: /Switch to (light|dark) theme/u });
+}
+
+async function background(page: Page): Promise<string> {
+  return page.locator("body").evaluate((el) => getComputedStyle(el).backgroundColor);
+}
+
 async function typeQuery(page: Page, text: string): Promise<void> {
   await bar(page).click();
   await page.keyboard.type(text);
@@ -103,6 +111,57 @@ test.describe("everywhere", () => {
   });
 });
 
+test.describe("the theme toggle", () => {
+  test("follows the system until a theme is picked", async ({ page }) => {
+    await expect(page.locator("html")).not.toHaveAttribute("data-theme");
+    await expect(toggle(page)).toHaveAccessibleName("Switch to dark theme");
+    const light = await background(page);
+    await page.emulateMedia({ colorScheme: "dark" });
+    await expect(toggle(page)).toHaveAccessibleName("Switch to light theme");
+    await expect.poll(() => background(page)).not.toBe(light);
+  });
+
+  test("switches, flips its own glyph and name, and is remembered", async ({ page }) => {
+    const light = await background(page);
+    await toggle(page).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(toggle(page)).toHaveAccessibleName("Switch to light theme");
+    await expect(toggle(page)).toHaveAttribute("title", "Switch to light theme");
+    await expect.poll(() => background(page)).not.toBe(light);
+    await page.reload();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await toggle(page).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await expect.poll(() => background(page)).toBe(light);
+  });
+
+  test("a pick outranks the system", async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
+    await toggle(page).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await page.reload();
+    await expect(toggle(page)).toHaveAccessibleName("Switch to dark theme");
+  });
+
+  test("a remembered theme applies before the page's scripts load, so nothing flashes", async ({ page }) => {
+    await toggle(page).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    // With the module blocked, only the inline script in <head> can have set it.
+    await page.route("**/assets/*.js", (route) => route.abort());
+    await page.reload();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  });
+
+  test("sits beside the title without touching it, at any width", async ({ page }) => {
+    const title = await page.getByRole("heading", { name: "Search the catalogue" }).boundingBox();
+    const button = await toggle(page).boundingBox();
+    expect(title !== null && button !== null).toBe(true);
+    if (title === null || button === null) return;
+    expect(title.x + title.width).toBeLessThanOrEqual(button.x);
+    expect(button.x + button.width).toBeLessThanOrEqual(page.viewportSize()?.width ?? 0);
+  });
+});
+
 // Desktop projects only (see playwright.config.ts): phones have no Tab key.
 test.describe("with a keyboard", { tag: "@keyboard" }, () => {
   test("Tab takes the highlighted completion, Tab again walks, Shift+Tab walks back", async ({ page }) => {
@@ -177,6 +236,12 @@ test.describe("on a phone", { tag: "@touch" }, () => {
         .getByRole("listbox", { name: "Completions" })
         .evaluate((list) => Math.min(...[...list.querySelectorAll("[role=option]")].map((o) => o.getBoundingClientRect().height)));
     await expect.poll(shortest).toBeGreaterThanOrEqual(44);
+  });
+
+  test("the theme toggle is a full-size touch target", async ({ page }) => {
+    const box = await page.getByRole("button", { name: /Switch to/u }).boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+    expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
   });
 
   test("the bar's text is large enough that focusing it does not zoom the page", async ({ page }) => {
