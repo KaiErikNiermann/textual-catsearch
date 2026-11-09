@@ -136,12 +136,20 @@ suggest("by:le", 5, SCHEMA, vocab)  # completions for the token under the caret
 
 `render` is the inverse of `parse` (`parse(render(e)) == e`, checked by property tests), so queries can be edited as trees and written back out.
 
+## On the web
+
+The same language is available to JavaScript as a dependency-free TypeScript package in [`js/`](js/README.md): the same schemas, parsing, matching, rendering and completion, about 13 kB gzipped, with no Python and no Pyodide. It is held to the same answers as this package by a shared spec ([`spec/`](spec/README.md)): golden fixtures generated from the Python package, and a differential test that asks both implementations every case Hypothesis generates. [`js/examples/search-bar`](js/examples/search-bar) is a Discord-style search bar built on it, for the keyboard and for touch.
+
 ## Development
 
 ```sh
 poetry install
-poetry run pytest
+poetry run pytest           # includes the conformance and differential tests (needs node)
 poetry run pyright
 poetry run ruff check . && poetry run ruff format --check .
 poetry run radon cc -s -n C src   # nothing should print
+
+pnpm -C js install && pnpm -C js lint && pnpm -C js test
 ```
+
+`scripts/checks.sh` runs all of it, as the pre-push hook does. When a change alters what the language answers, regenerate the spec from `tests/` with `poetry run python -m conformance.generate`.
