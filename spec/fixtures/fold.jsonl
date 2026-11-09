@@ -1,0 +1,677 @@
+{"case": {"op": "fold", "text": "\u0130stanbul\u0130\u0639\u0631\u0628\u064a\uff1a"}, "expect": "istanbuli\u0639\u0631\u0628\u064a:"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "\u0130stanbul\u0130\u0639\u0631\u0628\u064a\uff1a"}, "expect": true}
+{"case": {"op": "fold", "text": "\u00df\uff24\uff55\uff4e\uff45\u201c\u1e9e"}, "expect": "ssdune\u201css"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u00df\uff24\uff55\uff4e\uff45\u201c\u1e9e"}, "expect": true}
+{"case": {"op": "fold", "text": "\u001c\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "\u001c\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130stanbul\ud55c\uad6d\uc5b4"}, "expect": "istanbul\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "\u13a0", "op": "word_prefixed", "value": "\u0130stanbul\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2028Caf\u00e9e\u0301"}, "expect": "cafee"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u2028Caf\u00e9e\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\ud55c\uad6d\uc5b4"}, "expect": "\u201c\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "\u201c\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c5"}, "expect": "dz"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "\u01c5"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0663\ud55c\uad6d\uc5b4\u200b\ufb01"}, "expect": "\u0663\ud55c\uad6d\uc5b4fi"}
+{"case": {"needle": "\u201d", "op": "word_prefixed", "value": "\u0663\ud55c\uad6d\uc5b4\u200b\ufb01"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663\u1e9e"}, "expect": "\u0663ss"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\u0663\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u6f22\u5b57e\u0301\u0663"}, "expect": "\u6f22\u5b57e\u0663"}
+{"case": {"needle": "\u043d\u0435\u0442", "op": "word_prefixed", "value": "\u6f22\u5b57e\u0301\u0663"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFE"}, "expect": "cafe"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "CAFE"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0"}, "expect": "\u13a0"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\u13a0"}, "expect": true}
+{"case": {"op": "fold", "text": "\u2014CAFE\u201d"}, "expect": "\u2014cafe\u201d"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u2014CAFE\u201d"}, "expect": true}
+{"case": {"op": "fold", "text": "e\u0301\u0301"}, "expect": "e"}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "e\u0301\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2014e\u0301"}, "expect": "\u2014e"}
+{"case": {"needle": "\ud83d\ude00", "op": "word_prefixed", "value": "\u2014e\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u30f1\u30f4\u30a1\u201d\u001c"}, "expect": "\u30f1\u30a6\u30a1\u30f1\u30a6\u30a1\u201d"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u30f1\u30f4\u30a1\u201d\u001c"}, "expect": true}
+{"case": {"op": "fold", "text": "\u201c"}, "expect": "\u201c"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9\ud83c\uddef\ud83c\uddf5\u0663"}, "expect": "cafe\ud83c\uddef\ud83c\uddf5\u0663"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "Caf\u00e9\ud83c\uddef\ud83c\uddf5\u0663"}, "expect": true}
+{"case": {"op": "fold", "text": "e\u0301\ud800"}, "expect": "e\ud800"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "e\u0301\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03a3\u30f1\u30f4\u30a1\ud800"}, "expect": "\u03c3\u30f1\u30a6\u30a1\ud800"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\u03a3\u30f1\u30f4\u30a1\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201d\uff11\uff12\u2014\uff09"}, "expect": "\u201d12\u2014)"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "\u201d\uff11\uff12\u2014\uff09"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c4x\u0301"}, "expect": "dzx"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u01c4x\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e\u85ac\u5c4b\u30f1\u30f4\u30a1"}, "expect": "ss\u85ac\u5c4b\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "\u1e9e\u85ac\u5c4b\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\ude00\u0639\u0631\u0628\u064a"}, "expect": "\ud83d\ude00\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\ud83d\ude00\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9\u0085\uff08\u0085"}, "expect": "cafe("}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "Caf\u00e9\u0085\uff08\u0085"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\u01c5"}, "expect": "dz"}
+{"case": {"needle": "\ud835\udfd9\ud835\udfda", "op": "word_prefixed", "value": "\u0000\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udfd9\ud835\udfda\uff08\u03a3\ufeff"}, "expect": "12(\u03c3"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\ud835\udfd9\ud835\udfda\uff08\u03a3\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u201d\u13a0"}, "expect": "\u30f1\u30a6\u30a1\u201d\u13a0"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u201d\u13a0"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udfd9\ud835\udfda\uab70\u202ee\u0301\u0301"}, "expect": "12\u13a0e"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\ud835\udfd9\ud835\udfda\uab70\u202ee\u0301\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFE"}, "expect": "cafe"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "CAFE"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9"}, "expect": "cafe"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "Caf\u00e9"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": "duneuni"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud55c\uad6d\uc5b4"}, "expect": "\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "\uff24\uff55\uff4e\uff45", "op": "word_prefixed", "value": "\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0149a\u0000b"}, "expect": "\u02bcnab"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u0149a\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e"}, "expect": "\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud800\uff11\uff12"}, "expect": "\ud80012"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\ud800\uff11\uff12"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u3000\ud83c\uddef\ud83c\uddf5\u0639\u0631\u0628\u064a"}, "expect": "\u30f1\u30a6\u30a1 \ud83c\uddef\ud83c\uddf5\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u3000\ud83c\uddef\ud83c\uddf5\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u0301"}, "expect": "e"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "e\u0301\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e"}, "expect": "ss"}
+{"case": {"needle": "\u0000", "op": "word_prefixed", "value": "\u1e9e"}, "expect": true}
+{"case": {"op": "fold", "text": "\u01c5"}, "expect": "dz"}
+{"case": {"needle": "\u0441\u043a\u043e\u0440\u043e", "op": "word_prefixed", "value": "\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0\ud55c\uad6d\uc5b4\uff1a\u85ac\u5c4b"}, "expect": "\u13a0\ud55c\uad6d\uc5b4:\u85ac\u5c4b"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "\u13a0\ud55c\uad6d\uc5b4\uff1a\u85ac\u5c4b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00c5"}, "expect": "a"}
+{"case": {"needle": "\u201c", "op": "word_prefixed", "value": "\u00c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01x\u0301\u6f22\u5b57"}, "expect": "fix\u6f22\u5b57"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "\ufb01x\u0301\u6f22\u5b57"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a\ud800\ud55c\uad6d\uc5b4\u0149"}, "expect": "\u0639\u0631\u0628\u064a\ud800\ud55c\uad6d\uc5b4\u02bcn"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a\ud800\ud55c\uad6d\uc5b4\u0149"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff1a\u200b"}, "expect": ":"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "\uff1a\u200b"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff11\uff12\ud835\udd18\ud835\udd2b\ud835\udd26\u0149\u01c5"}, "expect": "12uni\u02bcndz"}
+{"case": {"needle": "\u0000", "op": "word_prefixed", "value": "\uff11\uff12\ud835\udd18\ud835\udd2b\ud835\udd26\u0149\u01c5"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45"}, "expect": "dune"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": "uni"}
+{"case": {"needle": "\u0085", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud83c\uddef\ud83c\uddf5\ud800\u03a3"}, "expect": "\ud83c\uddef\ud83c\uddf5\ud800\u03c3"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\ud83c\uddef\ud83c\uddf5\ud800\u03a3"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\u1e9e"}, "expect": "\u043d\u0435\u0442ss"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "\u043d\u0435\u0442\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff11\uff12\u001c\u201c\u00c5"}, "expect": "12\u201ca"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\uff11\uff12\u001c\u201c\u00c5"}, "expect": true}
+{"case": {"op": "fold", "text": "\u00c5\uff1a\ud83d\ude00\u0663"}, "expect": "a:\ud83d\ude00\u0663"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\u00c5\uff1a\ud83d\ude00\u0663"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03c2"}, "expect": "\u03c3"}
+{"case": {"needle": "Stra\u00dfe", "op": "word_prefixed", "value": "\u03c2"}, "expect": false}
+{"case": {"op": "fold", "text": "\u202e"}, "expect": ""}
+{"case": {"needle": "Stra\u00dfe", "op": "word_prefixed", "value": "\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2028"}, "expect": ""}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\u2028"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2014\u0130stanbul"}, "expect": "\u2014istanbul"}
+{"case": {"needle": "\u1e9e", "op": "word_prefixed", "value": "\u2014\u0130stanbul"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0\uff09\u01c5"}, "expect": "\u13a0)dz"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u13a0\uff09\u01c5"}, "expect": true}
+{"case": {"op": "fold", "text": "Caf\u00e9\u201c"}, "expect": "cafe\u201c"}
+{"case": {"needle": "\uff24", "op": "word_prefixed", "value": "Caf\u00e9\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00c5\u30f1\u30f4\u30a1\u043d\u0435\u0442\ud800"}, "expect": "a\u30f1\u30a6\u30a1\u043d\u0435\u0442\ud800"}
+{"case": {"needle": "e\u0301\u0301", "op": "word_prefixed", "value": "\u00c5\u30f1\u30f4\u30a1\u043d\u0435\u0442\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26\u2014a\u0000b"}, "expect": "uni\u2014ab"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26\u2014a\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24Caf\u00e9\u01c5\uff11\uff12"}, "expect": "dcafedz12"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "\uff24Caf\u00e9\u01c5\uff11\uff12"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df"}, "expect": "ss"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01le\u00c5Caf\u00e9\u0639\u0631\u0628\u064a"}, "expect": "fileacafe\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\ud835\udd18\ud835\udd2b\ud835\udd26", "op": "word_prefixed", "value": "\ufb01le\u00c5Caf\u00e9\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u85ac\u5c4b\uff1a\u0149\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": "\u85ac\u5c4b:\u02bcnuni"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\u85ac\u5c4b\uff1a\u0149\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663\ud800\u0130stanbul\u043d\u0435\u0442"}, "expect": "\u0663\ud800istanbul\u043d\u0435\u0442"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u0663\ud800\u0130stanbul\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201d\u201c\u03c2\u6f22\u5b57"}, "expect": "\u201d\u201c\u03c3\u6f22\u5b57"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\u201d\u201c\u03c2\u6f22\u5b57"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u0301\u0663\uab70\u30f1\u30f4\u30a1"}, "expect": "e\u0663\u13a0\u30f1\u30a6\u30a1"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "e\u0301\u0301\u0663\uab70\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\u00df"}, "expect": "\u043d\u0435\u0442ss"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "\u043d\u0435\u0442\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201d\u043d\u0435\u0442\u0000\u043d\u0435\u0442"}, "expect": "\u201d\u043d\u0435\u0442\u043d\u0435\u0442"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u201d\u043d\u0435\u0442\u0000\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c4"}, "expect": "dz"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "\u01c4"}, "expect": true}
+{"case": {"op": "fold", "text": "e\u0301\u0301"}, "expect": "e"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "e\u0301\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\uff08"}, "expect": "\u201c("}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\u201c\uff08"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud55c\uad6d\uc5b4\u1e9e"}, "expect": "\ud55c\uad6d\uc5b4ss"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "\ud55c\uad6d\uc5b4\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e"}, "expect": "\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\uff24\uff55\uff4e\uff45\ud83c\uddef\ud83c\uddf5\uff1a"}, "expect": "edune\ud83c\uddef\ud83c\uddf5:"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "e\u0301\uff24\uff55\uff4e\uff45\ud83c\uddef\ud83c\uddf5\uff1a"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83c\uddef\ud83c\uddf5\ud83d\ude00\uff08"}, "expect": "\ud83c\uddef\ud83c\uddf5\ud83d\ude00("}
+{"case": {"needle": "\u0441\u043a\u043e\u0440\u043e", "op": "word_prefixed", "value": "\ud83c\uddef\ud83c\uddf5\ud83d\ude00\uff08"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a"}, "expect": "\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u0000", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0663\u201d\u3000"}, "expect": "\u0663\u201d "}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "\u0663\u201d\u3000"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9\u00c5\u03c2\uab70"}, "expect": "cafea\u03c3\u13a0"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "Caf\u00e9\u00c5\u03c2\uab70"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2028x\u0301\u0000"}, "expect": "x"}
+{"case": {"needle": "\uff24", "op": "word_prefixed", "value": "\u2028x\u0301\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\ud83d\ude00"}, "expect": "\u043d\u0435\u0442\ud83d\udc68\ud83d\udc69\ud83d\udc67\ud83d\ude00"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\u043d\u0435\u0442\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u202e\uff24\uff55\uff4e\uff45\u3000"}, "expect": "dune "}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u202e\uff24\uff55\uff4e\uff45\u3000"}, "expect": false}
+{"case": {"op": "fold", "text": "\u202e"}, "expect": ""}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a"}, "expect": "\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\ude00\ud835\udfd9\ud835\udfda"}, "expect": "\ud83d\ude0012"}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "\ud83d\ude00\ud835\udfd9\ud835\udfda"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df\u0663\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "ss\u0663\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "\u00df\u0663\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e"}, "expect": "ss"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u6f22\u5b57\u201c"}, "expect": "\u6f22\u5b57\u201c"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "\u6f22\u5b57\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c"}, "expect": "\u201c"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\u0130\ud55c\uad6d\uc5b4"}, "expect": "\u201ci\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "\u201c\u0130\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e\u202ee\u0301e\u0301"}, "expect": "ssee"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "\u1e9e\u202ee\u0301e\u0301"}, "expect": true}
+{"case": {"op": "fold", "text": "\u1e9e"}, "expect": "ss"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01\u0639\u0631\u0628\u064a\u201c\u202e"}, "expect": "fi\u0639\u0631\u0628\u064a\u201c"}
+{"case": {"needle": "Stra\u00dfe", "op": "word_prefixed", "value": "\ufb01\u0639\u0631\u0628\u064a\u201c\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26\uab70"}, "expect": "uni\u13a0"}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26\uab70"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\uab70\u30f1\u30f4\u30a1\u85ac\u5c4b"}, "expect": "e\u13a0\u30f1\u30a6\u30a1\u85ac\u5c4b"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "e\u0301\uab70\u30f1\u30f4\u30a1\u85ac\u5c4b"}, "expect": true}
+{"case": {"op": "fold", "text": "e\u0301\u0301"}, "expect": "e"}
+{"case": {"needle": "Stra\u00dfe", "op": "word_prefixed", "value": "e\u0301\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u6f22\u5b57\uff24"}, "expect": "\u6f22\u5b57d"}
+{"case": {"needle": "\u043d\u0435\u0442", "op": "word_prefixed", "value": "\u6f22\u5b57\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df"}, "expect": "ss"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03a3\ufeff\uff24\uff55\uff4e\uff45"}, "expect": "\u03c3dune"}
+{"case": {"needle": "\ud835\udfd9\ud835\udfda", "op": "word_prefixed", "value": "\u03a3\ufeff\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01\u30f1\u30f4\u30a1"}, "expect": "fi\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u3000", "op": "word_prefixed", "value": "\ufb01\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff1a\ud835\udfd9\ud835\udfda"}, "expect": ":12"}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "\uff1a\ud835\udfd9\ud835\udfda"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01e\u0301\u0301"}, "expect": "fie"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\ufb01e\u0301\u0301"}, "expect": true}
+{"case": {"op": "fold", "text": "\u85ac\u5c4b"}, "expect": "\u85ac\u5c4b"}
+{"case": {"needle": "\u01c4", "op": "word_prefixed", "value": "\u85ac\u5c4b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0085"}, "expect": ""}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\u0085"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83c\uddef\ud83c\uddf5\ufeff"}, "expect": "\ud83c\uddef\ud83c\uddf5"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "\ud83c\uddef\ud83c\uddf5\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\u00c5\u0639\u0631\u0628\u064a"}, "expect": "a\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\u0000\u00c5\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0\ud83d\ude00"}, "expect": "\u13a0\ud83d\ude00"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "\u13a0\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03c2\uff24"}, "expect": "\u03c3d"}
+{"case": {"needle": "\u3000", "op": "word_prefixed", "value": "\u03c2\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud55c\uad6d\uc5b4\ud800"}, "expect": "\ud55c\uad6d\uc5b4\ud800"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\ud55c\uad6d\uc5b4\ud800"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff11\uff12\u00df"}, "expect": "12ss"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\uff11\uff12\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0085\ufeff\u01c5\u201d"}, "expect": "dz\u201d"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\u0085\ufeff\u01c5\u201d"}, "expect": true}
+{"case": {"op": "fold", "text": "\uab70\u00c5e\u0301\u0301\u2028"}, "expect": "\u13a0ae"}
+{"case": {"needle": "\u13a0", "op": "word_prefixed", "value": "\uab70\u00c5e\u0301\u0301\u2028"}, "expect": true}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\u202e"}, "expect": "\u043d\u0435\u0442"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u043d\u0435\u0442\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c4\u201d\u0639\u0631\u0628\u064a"}, "expect": "dz\u201d\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u0085", "op": "word_prefixed", "value": "\u01c4\u201d\u0639\u0631\u0628\u064a"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff1a\ud800"}, "expect": ":\ud800"}
+{"case": {"needle": "\uff24\uff55\uff4e\uff45", "op": "word_prefixed", "value": "\uff1a\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\ud835\udfd9\ud835\udfda"}, "expect": "d12"}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "\uff24\ud835\udfd9\ud835\udfda"}, "expect": false}
+{"case": {"op": "fold", "text": "\u85ac\u5c4be\u0301\u30f1\u30f4\u30a1\u0085"}, "expect": "\u85ac\u5c4be\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u85ac\u5c4be\u0301\u30f1\u30f4\u30a1\u0085"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000b"}, "expect": "ab"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "a\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c"}, "expect": "\u201c"}
+{"case": {"needle": "\u043d\u0435\u0442", "op": "word_prefixed", "value": "\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u202e\ud835\udd18\ud835\udd2b\ud835\udd26e\u0301\ud83d\ude00"}, "expect": "unie\ud83d\ude00"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\u202e\ud835\udd18\ud835\udd2b\ud835\udd26e\u0301\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u3000\u001c\uff24\u0085"}, "expect": " d"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "\u3000\u001c\uff24\u0085"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff11\uff12"}, "expect": "12"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\uff11\uff12"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\u2028"}, "expect": ")"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\uff09\u2028"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c4\u1e9e\uff24\uff55\uff4e\uff45\uff24"}, "expect": "dzssduned"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u01c4\u1e9e\uff24\uff55\uff4e\uff45\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u0441\u043a\u043e\u0440\u043e"}, "expect": "e\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "e\u0301\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\u001c\uff11\uff12\uff1a"}, "expect": "12:"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "\u001c\uff11\uff12\uff1a"}, "expect": true}
+{"case": {"op": "fold", "text": "\ufeff"}, "expect": ""}
+{"case": {"needle": "\uff1a", "op": "word_prefixed", "value": "\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01le\u0130\uff24"}, "expect": "fileid"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\ufb01le\u0130\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "\u6f22\u5b57\ud835\udd18\ud835\udd2b\ud835\udd26\u00c5\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "\u6f22\u5b57unia\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\u6f22\u5b57\ud835\udd18\ud835\udd2b\ud835\udd26\u00c5\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFE\u202e\u6f22\u5b57"}, "expect": "cafe\u6f22\u5b57"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "CAFE\u202e\u6f22\u5b57"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130\ud83d\ude00\ufeff\ud800"}, "expect": "i\ud83d\ude00\ud800"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u0130\ud83d\ude00\ufeff\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c5"}, "expect": "dz"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u200b"}, "expect": "e"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "e\u0301\u200b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0"}, "expect": "\u13a0"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\u13a0"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03c2\u6f22\u5b57\ud55c\uad6d\uc5b4\u1e9e"}, "expect": "\u03c3\u6f22\u5b57\ud55c\uad6d\uc5b4ss"}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "\u03c2\u6f22\u5b57\ud55c\uad6d\uc5b4\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e\u0639\u0631\u0628\u064a"}, "expect": "\u0441\u043a\u043e\u0440\u043e\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\uab70\u201d"}, "expect": "\u13a0\u201d"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "\uab70\u201d"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u0301\uff24\uff24\uff55\uff4e\uff45"}, "expect": "eddune"}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "e\u0301\u0301\uff24\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83c\uddef\ud83c\uddf5\u6f22\u5b57\u13a0\u0149"}, "expect": "\ud83c\uddef\ud83c\uddf5\u6f22\u5b57\u13a0\u02bcn"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\ud83c\uddef\ud83c\uddf5\u6f22\u5b57\u13a0\u0149"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00c5\ud83c\uddef\ud83c\uddf5\u01c5"}, "expect": "a\ud83c\uddef\ud83c\uddf5dz"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\u00c5\ud83c\uddef\ud83c\uddf5\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\uff24"}, "expect": "dune\ud83d\udc68\ud83d\udc69\ud83d\udc67d"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe\u01c5e\u0301"}, "expect": "strassedze"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "Stra\u00dfe\u01c5e\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a\uff24\uff55\uff4e\uff45"}, "expect": "\u0639\u0631\u0628\u064adune"}
+{"case": {"needle": "\u00df", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "\u3000\u0130stanbule\u0301\u0301\u03c2"}, "expect": " istanbule\u03c3"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u3000\u0130stanbule\u0301\u0301\u03c2"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a"}, "expect": "\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff1a\u0441\u043a\u043e\u0440\u043e\u0085\u00c5"}, "expect": ":\u0441\u043a\u043e\u0440\u043ea"}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "\uff1a\u0441\u043a\u043e\u0440\u043e\u0085\u00c5"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000b\u30f1\u30f4\u30a1"}, "expect": "ab\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "a\u0000b\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\u001c\u201c\ud83c\uddef\ud83c\uddf5\ud83d\ude00"}, "expect": "\u201c\ud83c\uddef\ud83c\uddf5\ud83d\ude00"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "\u001c\u201c\ud83c\uddef\ud83c\uddf5\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\ud55c\uad6d\uc5b4\u0130\u85ac\u5c4b"}, "expect": "\u30f1\u30a6\u30a1\ud55c\uad6d\uc5b4i\u85ac\u5c4b"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\ud55c\uad6d\uc5b4\u0130\u85ac\u5c4b"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01le\ud83d\ude00CAFE\u0441\u043a\u043e\u0440\u043e"}, "expect": "file\ud83d\ude00cafe\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\uff24\uff55\uff4e\uff45", "op": "word_prefixed", "value": "\ufb01le\ud83d\ude00CAFE\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01\u01c5\u0130\u0441\u043a\u043e\u0440\u043e"}, "expect": "fidzi\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\ufb01\u01c5\u0130\u0441\u043a\u043e\u0440\u043e"}, "expect": true}
+{"case": {"op": "fold", "text": "CAFE\uff1a\u30f1\u30f4\u30a1"}, "expect": "cafe:\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "CAFE\uff1a\u30f1\u30f4\u30a1"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud83c\uddef\ud83c\uddf5"}, "expect": "\ud83c\uddef\ud83c\uddf5"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\ud83c\uddef\ud83c\uddf5"}, "expect": true}
+{"case": {"op": "fold", "text": "\u200b"}, "expect": ""}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u200b"}, "expect": true}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442a\u0000b"}, "expect": "\u043d\u0435\u0442ab"}
+{"case": {"needle": "\u01c4", "op": "word_prefixed", "value": "\u043d\u0435\u0442a\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u85ac\u5c4b\ud800\ud83d\ude00"}, "expect": "\u85ac\u5c4b\ud800\ud83d\ude00"}
+{"case": {"needle": "\u0000", "op": "word_prefixed", "value": "\u85ac\u5c4b\ud800\ud83d\ude00"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0000"}, "expect": ""}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\u043d\u0435\u0442", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\u3000\u0149\u0441\u043a\u043e\u0440\u043e"}, "expect": " \u02bcn\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u3000\u0149\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\ude00x\u0301"}, "expect": "\ud83d\ude00x"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\ud83d\ude00x\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e"}, "expect": "ss"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u1e9e"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0441\u043a\u043e\u0440\u043e\u0000"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\u3000", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0441\u043a\u043e\u0440\u043e\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e\uff09\uff09"}, "expect": "ss))"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "\u1e9e\uff09\uff09"}, "expect": false}
+{"case": {"op": "fold", "text": "x\u0301\ud835\udfd9\ud835\udfda\u30f1\u30f4\u30a1"}, "expect": "x12\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "x\u0301\ud835\udfd9\ud835\udfda\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26\uff24\ud83d\ude00"}, "expect": "unid\ud83d\ude00"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26\uff24\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201d\u001c"}, "expect": "\u201d"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\u201d\u001c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130stanbulx\u0301"}, "expect": "istanbulx"}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "\u0130stanbulx\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130\u00c5\u0639\u0631\u0628\u064a"}, "expect": "ia\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "\u0130\u00c5\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df"}, "expect": "ss"}
+{"case": {"needle": "\u85ac\u5c4b", "op": "word_prefixed", "value": "\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663\u0130Stra\u00dfe"}, "expect": "\u0663istrasse"}
+{"case": {"needle": "\ud83d\ude00", "op": "word_prefixed", "value": "\u0663\u0130Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\uab70\u200b\u30f1\u30f4\u30a1"}, "expect": "\u201c\u13a0\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\u201c\uab70\u200b\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\uab70\u3000\uab70\u0085"}, "expect": "\u13a0 \u13a0"}
+{"case": {"needle": "\u6f22\u5b57", "op": "word_prefixed", "value": "\uab70\u3000\uab70\u0085"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130\u043d\u0435\u0442\u0130CAFE"}, "expect": "i\u043d\u0435\u0442icafe"}
+{"case": {"needle": "\u201d", "op": "word_prefixed", "value": "\u0130\u043d\u0435\u0442\u0130CAFE"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\u3000\uff09\u1e9e"}, "expect": " )ss"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\u0000\u3000\uff09\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\ud55c\uad6d\uc5b4"}, "expect": "dune\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663"}, "expect": "\u0663"}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u0663"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\u0149"}, "expect": "dune\u02bcn"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\u0149"}, "expect": false}
+{"case": {"op": "fold", "text": "x\u0301\ufb01le\u0130\ufb01"}, "expect": "xfileifi"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "x\u0301\ufb01le\u0130\ufb01"}, "expect": true}
+{"case": {"op": "fold", "text": "\u03c2\u202e"}, "expect": "\u03c3"}
+{"case": {"needle": "\u0085", "op": "word_prefixed", "value": "\u03c2\u202e"}, "expect": true}
+{"case": {"op": "fold", "text": "\u200b\u03c2"}, "expect": "\u03c3"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\u200b\u03c2"}, "expect": false}
+{"case": {"op": "fold", "text": "\u1e9e"}, "expect": "ss"}
+{"case": {"needle": "\u0130stanbul", "op": "word_prefixed", "value": "\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\u043d\u0435\u0442"}, "expect": ")\u043d\u0435\u0442"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\uff09\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0\u03c2\u043d\u0435\u0442\u0000"}, "expect": "\u13a0\u03c3\u043d\u0435\u0442"}
+{"case": {"needle": "\u201c", "op": "word_prefixed", "value": "\u13a0\u03c2\u043d\u0435\u0442\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufb01le"}, "expect": "file"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\ufb01le"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2028\ud800\ud83d\ude00"}, "expect": "\ud800\ud83d\ude00"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "\u2028\ud800\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u01c5\ufeff\u0130stanbul"}, "expect": "\u30f1\u30a6\u30a1dzistanbul"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u01c5\ufeff\u0130stanbul"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff08\uab70\u0441\u043a\u043e\u0440\u043e\ud83c\uddef\ud83c\uddf5"}, "expect": "(\u13a0\u0441\u043a\u043e\u0440\u043e\ud83c\uddef\ud83c\uddf5"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\uff08\uab70\u0441\u043a\u043e\u0440\u043e\ud83c\uddef\ud83c\uddf5"}, "expect": true}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442"}, "expect": "\u043d\u0435\u0442"}
+{"case": {"needle": "\uff1a", "op": "word_prefixed", "value": "\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0085\ud835\udfd9\ud835\udfdaCaf\u00e9\u00df"}, "expect": "12cafess"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\u0085\ud835\udfd9\ud835\udfdaCaf\u00e9\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\uff1a", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\u0130stanbul\u01c5"}, "expect": ")istanbuldz"}
+{"case": {"needle": "e\u0301\u0301", "op": "word_prefixed", "value": "\uff09\u0130stanbul\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064a"}, "expect": "\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u85ac\u5c4b", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\u2028\u202e"}, "expect": "\u201c"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\u201c\u2028\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130stanbul\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": "istanbuluni"}
+{"case": {"needle": "\u85ac\u5c4b", "op": "word_prefixed", "value": "\u0130stanbul\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\uff09\u0085\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "))\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "\uff09\uff09\u0085\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2028\ud55c\uad6d\uc5b4"}, "expect": "\ud55c\uad6d\uc5b4"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "\u2028\ud55c\uad6d\uc5b4"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe\ufb01le\uff24\uff55\uff4e\uff45\uff08"}, "expect": "strassefiledune("}
+{"case": {"needle": "\uff09", "op": "word_prefixed", "value": "Stra\u00dfe\ufb01le\uff24\uff55\uff4e\uff45\uff08"}, "expect": false}
+{"case": {"op": "fold", "text": "\u3000\uff11\uff12\uab70\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": " 12\u13a0\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\ud835\udd18\ud835\udd2b\ud835\udd26", "op": "word_prefixed", "value": "\u3000\uff11\uff12\uab70\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0149"}, "expect": "\u02bcn"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\u0149"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df\ud835\udfd9\ud835\udfda\u03c2\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "ss12\u03c3\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "\u00df\ud835\udfd9\ud835\udfda\u03c2\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u200b\uab70\u1e9e"}, "expect": "\u13a0ss"}
+{"case": {"needle": "Stra\u00dfe", "op": "word_prefixed", "value": "\u200b\uab70\u1e9e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\u1e9e\ufeff\u0149"}, "expect": "ss\u02bcn"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "\u0000\u1e9e\ufeff\u0149"}, "expect": true}
+{"case": {"op": "fold", "text": "\ufeff\u00c5\u6f22\u5b57"}, "expect": "a\u6f22\u5b57"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\ufeff\u00c5\u6f22\u5b57"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\ude00Stra\u00dfe\ufeff"}, "expect": "\ud83d\ude00strasse"}
+{"case": {"needle": "\u6f22\u5b57", "op": "word_prefixed", "value": "\ud83d\ude00Stra\u00dfe\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e\u200b"}, "expect": "\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\u1e9e", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e\u200b"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\u0085\u85ac\u5c4b\u01c5"}, "expect": "\u043d\u0435\u0442\u85ac\u5c4bdz"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\u043d\u0435\u0442\u0085\u85ac\u5c4b\u01c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442\u3000\u0639\u0631\u0628\u064a\ud83c\uddef\ud83c\uddf5"}, "expect": "\u043d\u0435\u0442 \u0639\u0631\u0628\u064a\ud83c\uddef\ud83c\uddf5"}
+{"case": {"needle": "\u13a0", "op": "word_prefixed", "value": "\u043d\u0435\u0442\u3000\u0639\u0631\u0628\u064a\ud83c\uddef\ud83c\uddf5"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff08"}, "expect": "("}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\uff08"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFEa\u0000b\ud83d\ude00"}, "expect": "cafeab\ud83d\ude00"}
+{"case": {"needle": "\u0130stanbul", "op": "word_prefixed", "value": "CAFEa\u0000b\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301\u0301\ud55c\uad6d\uc5b4\ufb01"}, "expect": "e\ud55c\uad6d\uc5b4fi"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "e\u0301\u0301\ud55c\uad6d\uc5b4\ufb01"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": "duni"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "\uff24\ud835\udd18\ud835\udd2b\ud835\udd26\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\ude00\u03a3Caf\u00e9\ud83d\ude00"}, "expect": "\ud83d\ude00\u03c3cafe\ud83d\ude00"}
+{"case": {"needle": "\u0085", "op": "word_prefixed", "value": "\ud83d\ude00\u03a3Caf\u00e9\ud83d\ude00"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0000x\u0301"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67x"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0000x\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\uff24\ufb01"}, "expect": "dunedfi"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\uff24\ufb01"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24CAFEa\u0000b\uff24\uff55\uff4e\uff45"}, "expect": "dcafeabdune"}
+{"case": {"needle": "e\u0301\u0301", "op": "word_prefixed", "value": "\uff24CAFEa\u0000b\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\ud835\udfd9\ud835\udfdaCaf\u00e9\u6f22\u5b57"}, "expect": "12cafe\u6f22\u5b57"}
+{"case": {"needle": "\uff24", "op": "word_prefixed", "value": "\u0000\ud835\udfd9\ud835\udfdaCaf\u00e9\u6f22\u5b57"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000b"}, "expect": "ab"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "a\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "x\u0301"}, "expect": "x"}
+{"case": {"needle": "\u3000", "op": "word_prefixed", "value": "x\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000b\u13a0"}, "expect": "ab\u13a0"}
+{"case": {"needle": "\u201c", "op": "word_prefixed", "value": "a\u0000b\u13a0"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9"}, "expect": "cafe"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "Caf\u00e9"}, "expect": true}
+{"case": {"op": "fold", "text": "\ufb01le\u200b\u0130"}, "expect": "filei"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\ufb01le\u200b\u0130"}, "expect": false}
+{"case": {"op": "fold", "text": "\uab70"}, "expect": "\u13a0"}
+{"case": {"needle": "\u0149", "op": "word_prefixed", "value": "\uab70"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud835\udfd9\ud835\udfda\u03c2\ufeff\uff1a"}, "expect": "12\u03c3:"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "\ud835\udfd9\ud835\udfda\u03c2\ufeff\uff1a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0000\u202e\uff08\u0639\u0631\u0628\u064a"}, "expect": "(\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\u0000\u202e\uff08\u0639\u0631\u0628\u064a"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": "uni"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff09"}, "expect": ")"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\uff09"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u85ac\u5c4b", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c5a\u0000b\ud800\u00df"}, "expect": "dzab\ud800ss"}
+{"case": {"needle": "\u0663", "op": "word_prefixed", "value": "\u01c5a\u0000b\ud800\u00df"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03c2e\u0301\u0301"}, "expect": "\u03c3e"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "\u03c2e\u0301\u0301"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud800"}, "expect": "\ud800"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201d\u2028\u03c2"}, "expect": "\u201d\u03c3"}
+{"case": {"needle": "\u201d", "op": "word_prefixed", "value": "\u201d\u2028\u03c2"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e\u0085\u0639\u0631\u0628\u064a"}, "expect": "\u0441\u043a\u043e\u0440\u043e\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "e\u0301\u0301", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e\u0085\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u0000\u0085"}, "expect": "\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u0000\u0085"}, "expect": true}
+{"case": {"op": "fold", "text": "e\u0301\u0301\uff1a"}, "expect": "e:"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "e\u0301\u0301\uff1a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201c\u0085\uff24"}, "expect": "\u201cd"}
+{"case": {"needle": "\uff1a", "op": "word_prefixed", "value": "\u201c\u0085\uff24"}, "expect": false}
+{"case": {"op": "fold", "text": "\u200bCaf\u00e9\u2014\u0639\u0631\u0628\u064a"}, "expect": "cafe\u2014\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u201c", "op": "word_prefixed", "value": "\u200bCaf\u00e9\u2014\u0639\u0631\u0628\u064a"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442"}, "expect": "\u043d\u0435\u0442"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFE\u03a3\u6f22\u5b57e\u0301"}, "expect": "cafe\u03c3\u6f22\u5b57e"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "CAFE\u03a3\u6f22\u5b57e\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u03c2\u03a3\ud83c\uddef\ud83c\uddf5\u30f1\u30f4\u30a1"}, "expect": "\u03c3\u03c3\ud83c\uddef\ud83c\uddf5\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\u03c2\u03a3\ud83c\uddef\ud83c\uddf5\u30f1\u30f4\u30a1"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud55c\uad6d\uc5b4\u01c4"}, "expect": "\ud55c\uad6d\uc5b4dz"}
+{"case": {"needle": "\u0130stanbul", "op": "word_prefixed", "value": "\ud55c\uad6d\uc5b4\u01c4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130\u0000"}, "expect": "i"}
+{"case": {"needle": "\u03a3", "op": "word_prefixed", "value": "\u0130\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c4"}, "expect": "dz"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "\u01c4"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0639\u0631\u0628\u064ax\u0301\u2014\ufeff"}, "expect": "\u0639\u0631\u0628\u064ax\u2014"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "\u0639\u0631\u0628\u064ax\u0301\u2014\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff08\u200b"}, "expect": "("}
+{"case": {"needle": "\u201d", "op": "word_prefixed", "value": "\uff08\u200b"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud55c\uad6d\uc5b4\u0663\uff09\u13a0"}, "expect": "\ud55c\uad6d\uc5b4\u0663)\u13a0"}
+{"case": {"needle": "\u2028", "op": "word_prefixed", "value": "\ud55c\uad6d\uc5b4\u0663\uff09\u13a0"}, "expect": true}
+{"case": {"op": "fold", "text": "Caf\u00e9\uff09"}, "expect": "cafe)"}
+{"case": {"needle": "\ufb01le", "op": "word_prefixed", "value": "Caf\u00e9\uff09"}, "expect": false}
+{"case": {"op": "fold", "text": "\u001c\ud800\u03c2\u2028"}, "expect": "\ud800\u03c3"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\u001c\ud800\u03c2\u2028"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff08a\u0000b\u0441\u043a\u043e\u0440\u043e"}, "expect": "(ab\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\ud83c\uddef\ud83c\uddf5", "op": "word_prefixed", "value": "\uff08a\u0000b\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "x\u0301"}, "expect": "x"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "x\u0301"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2014\u0000\uff09Stra\u00dfe"}, "expect": "\u2014)strasse"}
+{"case": {"needle": "\u00c5", "op": "word_prefixed", "value": "\u2014\u0000\uff09Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\u2028", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": true}
+{"case": {"op": "fold", "text": "\u6f22\u5b57\ud83c\uddef\ud83c\uddf5\uff24\u00c5"}, "expect": "\u6f22\u5b57\ud83c\uddef\ud83c\uddf5da"}
+{"case": {"needle": "\uff08", "op": "word_prefixed", "value": "\u6f22\u5b57\ud83c\uddef\ud83c\uddf5\uff24\u00c5"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe"}, "expect": "strasse"}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000b\u01c5Caf\u00e9"}, "expect": "abdzcafe"}
+{"case": {"needle": "Caf\u00e9", "op": "word_prefixed", "value": "a\u0000b\u01c5Caf\u00e9"}, "expect": false}
+{"case": {"op": "fold", "text": "a\u0000bStra\u00dfe\u2014"}, "expect": "abstrasse\u2014"}
+{"case": {"needle": "\u85ac\u5c4b", "op": "word_prefixed", "value": "a\u0000bStra\u00dfe\u2014"}, "expect": false}
+{"case": {"op": "fold", "text": "\u01c5\u201da\u0000b"}, "expect": "dz\u201dab"}
+{"case": {"needle": "\u3000", "op": "word_prefixed", "value": "\u01c5\u201da\u0000b"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\ud835\udfd9\ud835\udfda\ud835\udd18\ud835\udd2b\ud835\udd26\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": ")12uni\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\uff09\ud835\udfd9\ud835\udfda\ud835\udd18\ud835\udd2b\ud835\udd26\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663"}, "expect": "\u0663"}
+{"case": {"needle": "\u001c", "op": "word_prefixed", "value": "\u0663"}, "expect": true}
+{"case": {"op": "fold", "text": "\u3000\ud835\udfd9\ud835\udfda\uab70"}, "expect": " 12\u13a0"}
+{"case": {"needle": "\u0441\u043a\u043e\u0440\u043e", "op": "word_prefixed", "value": "\u3000\ud835\udfd9\ud835\udfda\uab70"}, "expect": false}
+{"case": {"op": "fold", "text": "\u00df\ud83d\ude00"}, "expect": "ss\ud83d\ude00"}
+{"case": {"needle": "x\u0301", "op": "word_prefixed", "value": "\u00df\ud83d\ude00"}, "expect": false}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u0130stanbul", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\uff55\uff4e\uff45\ufb01le"}, "expect": "dunefile"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\uff24\uff55\uff4e\uff45\ufb01le"}, "expect": true}
+{"case": {"op": "fold", "text": "\u2014CAFE"}, "expect": "\u2014cafe"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "\u2014CAFE"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0130stanbul\uff24"}, "expect": "istanbuld"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u0130stanbul\uff24"}, "expect": true}
+{"case": {"op": "fold", "text": "\uab70\ufeff"}, "expect": "\u13a0"}
+{"case": {"needle": "\ud55c\uad6d\uc5b4", "op": "word_prefixed", "value": "\uab70\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0085"}, "expect": ""}
+{"case": {"needle": "\ud800", "op": "word_prefixed", "value": "\u0085"}, "expect": false}
+{"case": {"op": "fold", "text": "\ufeff\u03c2\u201c"}, "expect": "\u03c3\u201c"}
+{"case": {"needle": "\u043d\u0435\u0442", "op": "word_prefixed", "value": "\ufeff\u03c2\u201c"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0663\u00c5"}, "expect": "\u0663a"}
+{"case": {"needle": "\ud835\udd18\ud835\udd2b\ud835\udd26", "op": "word_prefixed", "value": "\u0663\u00c5"}, "expect": false}
+{"case": {"op": "fold", "text": "e\u0301Stra\u00dfe\u1e9e\u2028"}, "expect": "estrassess"}
+{"case": {"needle": "\u201d", "op": "word_prefixed", "value": "e\u0301Stra\u00dfe\u1e9e\u2028"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff1a"}, "expect": ":"}
+{"case": {"needle": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", "op": "word_prefixed", "value": "\uff1a"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9e\u0301\u0301\u01c4\u201d"}, "expect": "cafeedz\u201d"}
+{"case": {"needle": "\uff24\uff55\uff4e\uff45", "op": "word_prefixed", "value": "Caf\u00e9e\u0301\u0301\u01c4\u201d"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff24\u6f22\u5b57\u0000"}, "expect": "d\u6f22\u5b57"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "\uff24\u6f22\u5b57\u0000"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFEStra\u00dfe\u2014"}, "expect": "cafestrasse\u2014"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "CAFEStra\u00dfe\u2014"}, "expect": true}
+{"case": {"op": "fold", "text": "\u00c5CAFE\u00c5\u00c5"}, "expect": "acafeaa"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "\u00c5CAFE\u00c5\u00c5"}, "expect": false}
+{"case": {"op": "fold", "text": "\u200b\u00c5\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": "auni"}
+{"case": {"needle": "\u201c", "op": "word_prefixed", "value": "\u200b\u00c5\ud835\udd18\ud835\udd2b\ud835\udd26"}, "expect": false}
+{"case": {"op": "fold", "text": "\u200b"}, "expect": ""}
+{"case": {"needle": "\uff11\uff12", "op": "word_prefixed", "value": "\u200b"}, "expect": false}
+{"case": {"op": "fold", "text": "CAFE"}, "expect": "cafe"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "CAFE"}, "expect": false}
+{"case": {"op": "fold", "text": "\u200b\u0441\u043a\u043e\u0440\u043e"}, "expect": "\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\ufeff", "op": "word_prefixed", "value": "\u200b\u0441\u043a\u043e\u0440\u043e"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e"}, "expect": "\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u043d\u0435\u0442"}, "expect": "\u043d\u0435\u0442"}
+{"case": {"needle": "a\u0000b", "op": "word_prefixed", "value": "\u043d\u0435\u0442"}, "expect": false}
+{"case": {"op": "fold", "text": "\u85ac\u5c4b\u01c4\u6f22\u5b57"}, "expect": "\u85ac\u5c4bdz\u6f22\u5b57"}
+{"case": {"needle": "\u200b", "op": "word_prefixed", "value": "\u85ac\u5c4b\u01c4\u6f22\u5b57"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0000\u03a3\ufb01"}, "expect": "\ud83d\udc68\ud83d\udc69\ud83d\udc67\u03c3fi"}
+{"case": {"needle": "\ud83d\ude00", "op": "word_prefixed", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u0000\u03a3\ufb01"}, "expect": false}
+{"case": {"op": "fold", "text": "\u201cx\u0301\u00c5"}, "expect": "\u201cxa"}
+{"case": {"needle": "\u202e", "op": "word_prefixed", "value": "\u201cx\u0301\u00c5"}, "expect": true}
+{"case": {"op": "fold", "text": "\uff24\u043d\u0435\u0442\u0130\uff1a"}, "expect": "d\u043d\u0435\u0442i:"}
+{"case": {"needle": "\u2028", "op": "word_prefixed", "value": "\uff24\u043d\u0435\u0442\u0130\uff1a"}, "expect": true}
+{"case": {"op": "fold", "text": "\u0130stanbul\u0639\u0631\u0628\u064a\uff11\uff12\ud83c\uddef\ud83c\uddf5"}, "expect": "istanbul\u0639\u0631\u0628\u064a12\ud83c\uddef\ud83c\uddf5"}
+{"case": {"needle": "\u0130", "op": "word_prefixed", "value": "\u0130stanbul\u0639\u0631\u0628\u064a\uff11\uff12\ud83c\uddef\ud83c\uddf5"}, "expect": true}
+{"case": {"op": "fold", "text": "\ud835\udd18\ud835\udd2b\ud835\udd26\u043d\u0435\u0442\u001c\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": "uni\u043d\u0435\u0442\ud83d\udc68\ud83d\udc69\ud83d\udc67"}
+{"case": {"needle": "\u13a0", "op": "word_prefixed", "value": "\ud835\udd18\ud835\udd2b\ud835\udd26\u043d\u0435\u0442\u001c\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": false}
+{"case": {"op": "fold", "text": "\u30f1\u30f4\u30a1\u202e"}, "expect": "\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\u2014", "op": "word_prefixed", "value": "\u30f1\u30f4\u30a1\u202e"}, "expect": false}
+{"case": {"op": "fold", "text": "\u2014\u0441\u043a\u043e\u0440\u043e"}, "expect": "\u2014\u0441\u043a\u043e\u0440\u043e"}
+{"case": {"needle": "e\u0301", "op": "word_prefixed", "value": "\u2014\u0441\u043a\u043e\u0440\u043e"}, "expect": false}
+{"case": {"op": "fold", "text": "Stra\u00dfe\uff24\uff55\uff4e\uff45"}, "expect": "strassedune"}
+{"case": {"needle": "\u01c5", "op": "word_prefixed", "value": "Stra\u00dfe\uff24\uff55\uff4e\uff45"}, "expect": false}
+{"case": {"op": "fold", "text": "Caf\u00e9\u30f1\u30f4\u30a1"}, "expect": "cafe\u30f1\u30a6\u30a1"}
+{"case": {"needle": "\ufb01", "op": "word_prefixed", "value": "Caf\u00e9\u30f1\u30f4\u30a1"}, "expect": false}
+{"case": {"op": "fold", "text": "\u13a0"}, "expect": "\u13a0"}
+{"case": {"needle": "\uab70", "op": "word_prefixed", "value": "\u13a0"}, "expect": true}
+{"case": {"op": "fold", "text": "Caf\u00e9\ud83d\ude00\u13a0\ud800"}, "expect": "cafe\ud83d\ude00\u13a0\ud800"}
+{"case": {"needle": "\u0639\u0631\u0628\u064a", "op": "word_prefixed", "value": "Caf\u00e9\ud83d\ude00\u13a0\ud800"}, "expect": false}
+{"case": {"op": "fold", "text": "\u202ee\u0301Stra\u00dfe"}, "expect": "estrasse"}
+{"case": {"needle": "CAFE", "op": "word_prefixed", "value": "\u202ee\u0301Stra\u00dfe"}, "expect": false}
+{"case": {"op": "fold", "text": "\u0441\u043a\u043e\u0440\u043e\uab70\u0639\u0631\u0628\u064a\ufeff"}, "expect": "\u0441\u043a\u043e\u0440\u043e\u13a0\u0639\u0631\u0628\u064a"}
+{"case": {"needle": "\u30f1\u30f4\u30a1", "op": "word_prefixed", "value": "\u0441\u043a\u043e\u0440\u043e\uab70\u0639\u0631\u0628\u064a\ufeff"}, "expect": false}
+{"case": {"op": "fold", "text": "\uff09\u00c5\ud83d\ude00"}, "expect": ")a\ud83d\ude00"}
+{"case": {"needle": "\u03c2", "op": "word_prefixed", "value": "\uff09\u00c5\ud83d\ude00"}, "expect": false}
+{"case": {"end": 4096, "op": "fold_block", "start": 0, "unassigned": [[888, 889], [896, 899], [907, 907], [909, 909], [930, 930], [1328, 1328], [1367, 1368], [1419, 1420], [1424, 1424], [1480, 1487], [1515, 1518], [1525, 1535], [1806, 1806], [1867, 1868], [1970, 1983], [2043, 2044], [2094, 2095], [2111, 2111], [2140, 2141], [2143, 2143], [2155, 2159], [2191, 2191], [2194, 2198], [2436, 2436], [2445, 2446], [2449, 2450], [2473, 2473], [2481, 2481], [2483, 2485], [2490, 2491], [2501, 2502], [2505, 2506], [2511, 2518], [2520, 2523], [2526, 2526], [2532, 2533], [2559, 2560], [2564, 2564], [2571, 2574], [2577, 2578], [2601, 2601], [2609, 2609], [2612, 2612], [2615, 2615], [2618, 2619], [2621, 2621], [2627, 2630], [2633, 2634], [2638, 2640], [2642, 2648], [2653, 2653], [2655, 2661], [2679, 2688], [2692, 2692], [2702, 2702], [2706, 2706], [2729, 2729], [2737, 2737], [2740, 2740], [2746, 2747], [2758, 2758], [2762, 2762], [2766, 2767], [2769, 2783], [2788, 2789], [2802, 2808], [2816, 2816], [2820, 2820], [2829, 2830], [2833, 2834], [2857, 2857], [2865, 2865], [2868, 2868], [2874, 2875], [2885, 2886], [2889, 2890], [2894, 2900], [2904, 2907], [2910, 2910], [2916, 2917], [2936, 2945], [2948, 2948], [2955, 2957], [2961, 2961], [2966, 2968], [2971, 2971], [2973, 2973], [2976, 2978], [2981, 2983], [2987, 2989], [3002, 3005], [3011, 3013], [3017, 3017], [3022, 3023], [3025, 3030], [3032, 3045], [3067, 3071], [3085, 3085], [3089, 3089], [3113, 3113], [3130, 3131], [3141, 3141], [3145, 3145], [3150, 3156], [3159, 3159], [3163, 3164], [3166, 3167], [3172, 3173], [3184, 3190], [3213, 3213], [3217, 3217], [3241, 3241], [3252, 3252], [3258, 3259], [3269, 3269], [3273, 3273], [3278, 3284], [3287, 3292], [3295, 3295], [3300, 3301], [3312, 3312], [3316, 3327], [3341, 3341], [3345, 3345], [3397, 3397], [3401, 3401], [3408, 3411], [3428, 3429], [3456, 3456], [3460, 3460], [3479, 3481], [3506, 3506], [3516, 3516], [3518, 3519], [3527, 3529], [3531, 3534], [3541, 3541], [3543, 3543], [3552, 3557], [3568, 3569], [3573, 3584], [3643, 3646], [3676, 3712], [3715, 3715], [3717, 3717], [3723, 3723], [3748, 3748], [3750, 3750], [3774, 3775], [3781, 3781], [3783, 3783], [3791, 3791], [3802, 3803], [3808, 3839], [3912, 3912], [3949, 3952], [3992, 3992], [4029, 4029], [4045, 4045], [4059, 4095]]}, "expect": "a9703f59bb463fb011eee553b6064d049a065833e20955ef7a795411f7866494"}
+{"case": {"end": 8192, "op": "fold_block", "start": 4096, "unassigned": [[4294, 4294], [4296, 4300], [4302, 4303], [4681, 4681], [4686, 4687], [4695, 4695], [4697, 4697], [4702, 4703], [4745, 4745], [4750, 4751], [4785, 4785], [4790, 4791], [4799, 4799], [4801, 4801], [4806, 4807], [4823, 4823], [4881, 4881], [4886, 4887], [4955, 4956], [4989, 4991], [5018, 5023], [5110, 5111], [5118, 5119], [5789, 5791], [5881, 5887], [5910, 5918], [5943, 5951], [5972, 5983], [5997, 5997], [6001, 6001], [6004, 6015], [6110, 6111], [6122, 6127], [6138, 6143], [6170, 6175], [6265, 6271], [6315, 6319], [6390, 6399], [6431, 6431], [6444, 6447], [6460, 6463], [6465, 6467], [6510, 6511], [6517, 6527], [6572, 6575], [6602, 6607], [6619, 6621], [6684, 6685], [6751, 6751], [6781, 6782], [6794, 6799], [6810, 6815], [6830, 6831], [6863, 6911], [6989, 6989], [7156, 7163], [7224, 7226], [7242, 7244], [7307, 7311], [7355, 7356], [7368, 7375], [7419, 7423], [7958, 7959], [7966, 7967], [8006, 8007], [8014, 8015], [8024, 8024], [8026, 8026], [8028, 8028], [8030, 8030], [8062, 8063], [8117, 8117], [8133, 8133], [8148, 8149], [8156, 8156], [8176, 8177], [8181, 8181], [8191, 8191]]}, "expect": "3d767b1a16e575dd1d37262262bc5b580f08012ad8ead3519068e8c24c4c36b7"}
+{"case": {"end": 12288, "op": "fold_block", "start": 8192, "unassigned": [[8293, 8293], [8306, 8307], [8335, 8335], [8349, 8351], [8385, 8399], [8433, 8447], [8588, 8591], [9258, 9279], [9291, 9311], [11124, 11125], [11158, 11158], [11508, 11512], [11558, 11558], [11560, 11564], [11566, 11567], [11624, 11630], [11633, 11646], [11671, 11679], [11687, 11687], [11695, 11695], [11703, 11703], [11711, 11711], [11719, 11719], [11727, 11727], [11735, 11735], [11743, 11743], [11870, 11903], [11930, 11930], [12020, 12031], [12246, 12271]]}, "expect": "eb610a03275bf8684de3f722f58f32ad1a2c51ce45b66f105123522094193ea6"}
+{"case": {"end": 16384, "op": "fold_block", "start": 12288, "unassigned": [[12352, 12352], [12439, 12440], [12544, 12548], [12592, 12592], [12687, 12687], [12774, 12782], [12831, 12831]]}, "expect": "5fdf8324ceb31c8817364416c40da462f2fb6acaf154723185108ebbc2013f8d"}
+{"case": {"end": 20480, "op": "fold_block", "start": 16384, "unassigned": []}, "expect": "c9cf5ca9b072e6e094f0932368ef1806a8776da1e5f68cb40412a0e1fa9afa99"}
+{"case": {"end": 24576, "op": "fold_block", "start": 20480, "unassigned": []}, "expect": "fba1a394f4d06374244849987dedcf48b8ef5466932a88597193c70ed8ec84ce"}
+{"case": {"end": 28672, "op": "fold_block", "start": 24576, "unassigned": []}, "expect": "d8d2c161495d5f92667062103f82fa0323aac438e340cbe0eaa9c9838db5027b"}
+{"case": {"end": 32768, "op": "fold_block", "start": 28672, "unassigned": []}, "expect": "906a24d3ad804fb94dd345718723956fab60fb554af6a2319b9fdb68c7ff96b8"}
+{"case": {"end": 36864, "op": "fold_block", "start": 32768, "unassigned": []}, "expect": "33c6859532d40b00c596bfd7adc93bea3de58e0b4e6eafa07b5f6369a2f63683"}
+{"case": {"end": 40960, "op": "fold_block", "start": 36864, "unassigned": []}, "expect": "9ec89314c5a9ab7b54c3b3a5a1aa8c541b5c1ac5f4a9d353be1e44e184b3a6ca"}
+{"case": {"end": 45056, "op": "fold_block", "start": 40960, "unassigned": [[42125, 42127], [42183, 42191], [42540, 42559], [42744, 42751], [42958, 42959], [42962, 42962], [42964, 42964], [42973, 42993], [43053, 43055], [43066, 43071], [43128, 43135], [43206, 43213], [43226, 43231], [43348, 43358], [43389, 43391], [43470, 43470], [43482, 43485], [43519, 43519], [43575, 43583], [43598, 43599], [43610, 43611], [43715, 43738], [43767, 43776], [43783, 43784], [43791, 43792], [43799, 43807], [43815, 43815], [43823, 43823], [43884, 43887], [44014, 44015], [44026, 44031]]}, "expect": "1c8780b2a6c34d20d1d4393846f7ec943197d5d3e659c5f434badf33b1b6be00"}
+{"case": {"end": 49152, "op": "fold_block", "start": 45056, "unassigned": []}, "expect": "6e90518c7357d1cf2458373d66d591b015b806ef64dc851174d0c8ee2e56f1e2"}
+{"case": {"end": 53248, "op": "fold_block", "start": 49152, "unassigned": []}, "expect": "d4469678902416223aebe4f7dd26a41876bbfa3486790c986fa9a7f56f9cfd56"}
+{"case": {"end": 57344, "op": "fold_block", "start": 53248, "unassigned": [[55204, 55215], [55239, 55242], [55292, 55295]]}, "expect": "4b09f9bf55dcb5385c0abe0afa0d14dd8d40cb821abdab4f564deba2ea20001e"}
+{"case": {"end": 61440, "op": "fold_block", "start": 57344, "unassigned": []}, "expect": "8438c653496e2b98d224ef15f391374e6a8b3697ef0ae270910641c8d693b3fe"}
+{"case": {"end": 65536, "op": "fold_block", "start": 61440, "unassigned": [[64110, 64111], [64218, 64255], [64263, 64274], [64280, 64284], [64311, 64311], [64317, 64317], [64319, 64319], [64322, 64322], [64325, 64325], [64451, 64466], [64912, 64913], [64968, 64974], [64976, 65007], [65050, 65055], [65107, 65107], [65127, 65127], [65132, 65135], [65141, 65141], [65277, 65278], [65280, 65280], [65471, 65473], [65480, 65481], [65488, 65489], [65496, 65497], [65501, 65503], [65511, 65511], [65519, 65528], [65534, 65535]]}, "expect": "55106c76834ad1c48c208133bf60e0fbbee0d73d4151ebe8bca8f02bc2dab582"}
+{"case": {"end": 69632, "op": "fold_block", "start": 65536, "unassigned": [[65548, 65548], [65575, 65575], [65595, 65595], [65598, 65598], [65614, 65615], [65630, 65663], [65787, 65791], [65795, 65798], [65844, 65846], [65935, 65935], [65949, 65951], [65953, 65999], [66046, 66175], [66205, 66207], [66257, 66271], [66300, 66303], [66340, 66348], [66379, 66383], [66427, 66431], [66462, 66462], [66500, 66503], [66518, 66559], [66718, 66719], [66730, 66735], [66772, 66775], [66812, 66815], [66856, 66863], [66916, 66926], [66939, 66939], [66955, 66955], [66963, 66963], [66966, 66966], [66978, 66978], [66994, 66994], [67002, 67002], [67005, 67007], [67060, 67071], [67383, 67391], [67414, 67423], [67432, 67455], [67462, 67462], [67505, 67505], [67515, 67583], [67590, 67591], [67593, 67593], [67638, 67638], [67641, 67643], [67645, 67646], [67670, 67670], [67743, 67750], [67760, 67807], [67827, 67827], [67830, 67834], [67868, 67870], [67898, 67902], [67904, 67967], [68024, 68027], [68048, 68049], [68100, 68100], [68103, 68107], [68116, 68116], [68120, 68120], [68150, 68151], [68155, 68158], [68169, 68175], [68185, 68191], [68256, 68287], [68327, 68330], [68343, 68351], [68406, 68408], [68438, 68439], [68467, 68471], [68498, 68504], [68509, 68520], [68528, 68607], [68681, 68735], [68787, 68799], [68851, 68857], [68904, 68911], [68922, 68927], [68966, 68968], [68998, 69005], [69008, 69215], [69247, 69247], [69290, 69290], [69294, 69295], [69298, 69313], [69317, 69371], [69416, 69423], [69466, 69487], [69514, 69551], [69580, 69599], [69623, 69631]]}, "expect": "e9885d0ae2d2ee54ae7cd5ca4df5dcb9ac06369cbaed7e94a7bd38bbe905ed3a"}
+{"case": {"end": 73728, "op": "fold_block", "start": 69632, "unassigned": [[69710, 69713], [69750, 69758], [69827, 69836], [69838, 69839], [69865, 69871], [69882, 69887], [69941, 69941], [69960, 69967], [70007, 70015], [70112, 70112], [70133, 70143], [70162, 70162], [70210, 70271], [70279, 70279], [70281, 70281], [70286, 70286], [70302, 70302], [70314, 70319], [70379, 70383], [70394, 70399], [70404, 70404], [70413, 70414], [70417, 70418], [70441, 70441], [70449, 70449], [70452, 70452], [70458, 70458], [70469, 70470], [70473, 70474], [70478, 70479], [70481, 70486], [70488, 70492], [70500, 70501], [70509, 70511], [70517, 70527], [70538, 70538], [70540, 70541], [70543, 70543], [70582, 70582], [70593, 70593], [70595, 70596], [70598, 70598], [70603, 70603], [70614, 70614], [70617, 70624], [70627, 70655], [70748, 70748], [70754, 70783], [70856, 70863], [70874, 71039], [71094, 71095], [71134, 71167], [71237, 71247], [71258, 71263], [71277, 71295], [71354, 71359], [71370, 71375], [71396, 71423], [71451, 71452], [71468, 71471], [71495, 71679], [71740, 71839], [71923, 71934], [71943, 71944], [71946, 71947], [71956, 71956], [71959, 71959], [71990, 71990], [71993, 71994], [72007, 72015], [72026, 72095], [72104, 72105], [72152, 72153], [72165, 72191], [72264, 72271], [72355, 72367], [72441, 72447], [72458, 72639], [72674, 72687], [72698, 72703], [72713, 72713], [72759, 72759], [72774, 72783], [72813, 72815], [72848, 72849], [72872, 72872], [72887, 72959], [72967, 72967], [72970, 72970], [73015, 73017], [73019, 73019], [73022, 73022], [73032, 73039], [73050, 73055], [73062, 73062], [73065, 73065], [73103, 73103], [73106, 73106], [73113, 73119], [73130, 73439], [73465, 73471], [73489, 73489], [73531, 73533], [73563, 73647], [73649, 73663], [73714, 73726]]}, "expect": "37cc8a737dc4463720e7d869227e6fcf9413a3bc585d7cc42c9d7fe851346778"}
+{"case": {"end": 77824, "op": "fold_block", "start": 73728, "unassigned": [[74650, 74751], [74863, 74863], [74869, 74879], [75076, 77711], [77811, 77823]]}, "expect": "9d2cbe0e46d4698be51f16d7241f146e9c9435ebdb36c287699f721a50d5fdc1"}
+{"case": {"end": 81920, "op": "fold_block", "start": 77824, "unassigned": [[78934, 78943]]}, "expect": "58bd4f7321d2e9f9d278034bcdc456fd04ff123b56a18b50593e36b52fd04fe9"}
+{"case": {"end": 86016, "op": "fold_block", "start": 81920, "unassigned": [[82939, 82943], [83527, 86015]]}, "expect": "e8a12cf70e4f53193f21e1892f4b846c3ee216d1f96faac9a0f0d35a9f5ccc11"}
+{"case": {"end": 90112, "op": "fold_block", "start": 86016, "unassigned": [[86016, 90111]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 94208, "op": "fold_block", "start": 90112, "unassigned": [[90112, 90367], [90426, 92159], [92729, 92735], [92767, 92767], [92778, 92781], [92863, 92863], [92874, 92879], [92910, 92911], [92918, 92927], [92998, 93007], [93018, 93018], [93026, 93026], [93048, 93052], [93072, 93503], [93562, 93759], [93851, 93951], [94027, 94030], [94088, 94094], [94112, 94175], [94181, 94191], [94194, 94207]]}, "expect": "c38c220701f5d400ddc86a6b9c6f384d1f1977f20c56e08f5faf66919ae810f2"}
+{"case": {"end": 98304, "op": "fold_block", "start": 94208, "unassigned": []}, "expect": "0c731a03661dad41133b59e0c74866ef554c4bc1453f6325d2cba0ecf840b311"}
+{"case": {"end": 102400, "op": "fold_block", "start": 98304, "unassigned": [[100344, 100351], [101590, 101630], [101641, 102399]]}, "expect": "7998bc0600649d51ea0d563bf969c6d24348b8e63a0bd130d5f3b364fad735a4"}
+{"case": {"end": 106496, "op": "fold_block", "start": 102400, "unassigned": [[102400, 106495]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 110592, "op": "fold_block", "start": 106496, "unassigned": [[106496, 110575], [110580, 110580], [110588, 110588], [110591, 110591]]}, "expect": "6c8499740cc167e4d9b7bfb9801accab89b27fc60e21cac3077c0b9ee04f97b1"}
+{"case": {"end": 114688, "op": "fold_block", "start": 110592, "unassigned": [[110883, 110897], [110899, 110927], [110931, 110932], [110934, 110947], [110952, 110959], [111356, 113663], [113771, 113775], [113789, 113791], [113801, 113807], [113818, 113819], [113828, 114687]]}, "expect": "1e9a38cc3d1d781ee18a2ad4df85f5a62c2c8d5204699d96102cb61a35ff70ef"}
+{"case": {"end": 118784, "op": "fold_block", "start": 114688, "unassigned": [[114688, 117759], [118010, 118015], [118452, 118527], [118574, 118575], [118599, 118607], [118724, 118783]]}, "expect": "1dc5e26f84c1c89bead4804dde21fa25ee66fecb9d163b83bfed2f625ec3c552"}
+{"case": {"end": 122880, "op": "fold_block", "start": 118784, "unassigned": [[119030, 119039], [119079, 119080], [119275, 119295], [119366, 119487], [119508, 119519], [119540, 119551], [119639, 119647], [119673, 119807], [119893, 119893], [119965, 119965], [119968, 119969], [119971, 119972], [119975, 119976], [119981, 119981], [119994, 119994], [119996, 119996], [120004, 120004], [120070, 120070], [120075, 120076], [120085, 120085], [120093, 120093], [120122, 120122], [120127, 120127], [120133, 120133], [120135, 120137], [120145, 120145], [120486, 120487], [120780, 120781], [121484, 121498], [121504, 121504], [121520, 122623], [122655, 122660], [122667, 122879]]}, "expect": "72f0a1de5cd6d48843d401be1b0dcb2f408f97f15545e1900e0c42ee16afd7da"}
+{"case": {"end": 126976, "op": "fold_block", "start": 122880, "unassigned": [[122887, 122887], [122905, 122906], [122914, 122914], [122917, 122917], [122923, 122927], [122990, 123022], [123024, 123135], [123181, 123183], [123198, 123199], [123210, 123213], [123216, 123535], [123567, 123583], [123642, 123646], [123648, 124111], [124154, 124367], [124411, 124414], [124416, 124895], [124903, 124903], [124908, 124908], [124911, 124911], [124927, 124927], [125125, 125126], [125143, 125183], [125260, 125263], [125274, 125277], [125280, 126064], [126133, 126208], [126270, 126463], [126468, 126468], [126496, 126496], [126499, 126499], [126501, 126502], [126504, 126504], [126515, 126515], [126520, 126520], [126522, 126522], [126524, 126529], [126531, 126534], [126536, 126536], [126538, 126538], [126540, 126540], [126544, 126544], [126547, 126547], [126549, 126550], [126552, 126552], [126554, 126554], [126556, 126556], [126558, 126558], [126560, 126560], [126563, 126563], [126565, 126566], [126571, 126571], [126579, 126579], [126584, 126584], [126589, 126589], [126591, 126591], [126602, 126602], [126620, 126624], [126628, 126628], [126634, 126634], [126652, 126703], [126706, 126975]]}, "expect": "59d45fbd3c7d9c2d93641b40eebcd2b21e2c33181c8e63abf4e81eb3b57d742f"}
+{"case": {"end": 131072, "op": "fold_block", "start": 126976, "unassigned": [[127020, 127023], [127124, 127135], [127151, 127152], [127168, 127168], [127184, 127184], [127222, 127231], [127406, 127461], [127491, 127503], [127548, 127551], [127561, 127567], [127570, 127583], [127590, 127743], [128728, 128731], [128749, 128751], [128765, 128767], [128887, 128890], [128986, 128991], [129004, 129007], [129009, 129023], [129036, 129039], [129096, 129103], [129114, 129119], [129160, 129167], [129198, 129199], [129212, 129215], [129218, 129279], [129620, 129631], [129646, 129647], [129661, 129663], [129674, 129678], [129735, 129741], [129757, 129758], [129770, 129775], [129785, 129791], [129939, 129939], [130042, 131071]]}, "expect": "c08e5af3ac0e3499cf18ea2aa585fc360e10c2c99247e1aad064d09404d5386b"}
+{"case": {"end": 135168, "op": "fold_block", "start": 131072, "unassigned": []}, "expect": "e77ec8d0db7d10f30cc58b2226fa1545f1519c1998b940e9d6c02e4e96a3866c"}
+{"case": {"end": 139264, "op": "fold_block", "start": 135168, "unassigned": []}, "expect": "b4d25261ac82cc6f47fcf505b8cfbab3faa2c86d12ee148d1dc086bf883645db"}
+{"case": {"end": 143360, "op": "fold_block", "start": 139264, "unassigned": []}, "expect": "18bfa20f8c0fd6c5ff215c323650b15ba63dbbe4fa1a6cc221c390b844dd3fbb"}
+{"case": {"end": 147456, "op": "fold_block", "start": 143360, "unassigned": []}, "expect": "f5bfe3c91fe4a6f33156f15067951d64e249fe19288f91c40b6a088b76c683dd"}
+{"case": {"end": 151552, "op": "fold_block", "start": 147456, "unassigned": []}, "expect": "d3db328afb95f9c684056e21d7b6bed9c010e859f9e21483461c9e0e3f2960e9"}
+{"case": {"end": 155648, "op": "fold_block", "start": 151552, "unassigned": []}, "expect": "eda8c709cf989e7958be928a823346620a54759dde3c464bd8ec0457e5d825e7"}
+{"case": {"end": 159744, "op": "fold_block", "start": 155648, "unassigned": []}, "expect": "62ecd3e62b2739631407b75b6fc93dccc4f91da5a644c8a7a76c57f2373138e3"}
+{"case": {"end": 163840, "op": "fold_block", "start": 159744, "unassigned": []}, "expect": "4a6c343489d306e763fd40d90a9b2aceb45bdd22354179cdc4fde1946337de91"}
+{"case": {"end": 167936, "op": "fold_block", "start": 163840, "unassigned": []}, "expect": "aea688803597b42ae7382f503f2c75abae2cc34bfebfa51b81fe5f9c4cec2e86"}
+{"case": {"end": 172032, "op": "fold_block", "start": 167936, "unassigned": []}, "expect": "e6fc762b30e43a21dd9a800a4f5e41572dc50c332751054057765ca4a876cbea"}
+{"case": {"end": 176128, "op": "fold_block", "start": 172032, "unassigned": [[173792, 173823]]}, "expect": "b929b57e44e4235a6616c33ee2637d68d86935f5bfcafe30ab66d4721a1e332b"}
+{"case": {"end": 180224, "op": "fold_block", "start": 176128, "unassigned": [[177978, 177983], [178206, 178207]]}, "expect": "6463d7f663863a386e89cbb03da2e61315be12b40f1db5176499641e6c1ff9de"}
+{"case": {"end": 184320, "op": "fold_block", "start": 180224, "unassigned": [[183970, 183983]]}, "expect": "cbb80af3b947bfa1b89a91f41cdef0ae97d3b1974116943c05e812d1d0017ac4"}
+{"case": {"end": 188416, "op": "fold_block", "start": 184320, "unassigned": []}, "expect": "2e1c0998a2528c4b817d6ead502768d2d34a354f50ea2d94dd2d780525096419"}
+{"case": {"end": 192512, "op": "fold_block", "start": 188416, "unassigned": [[191457, 191471], [192094, 192511]]}, "expect": "d3fdb768069b66db68c7a0b47bf8bd45b5c6480ad86793fdd1f37f6df35a40a3"}
+{"case": {"end": 196608, "op": "fold_block", "start": 192512, "unassigned": [[192512, 194559], [195102, 196607]]}, "expect": "c6f15d4fd961ea9cb373b9d4bdaafaa89a3de1bf8651ce19f745f6b8e9bbb332"}
+{"case": {"end": 200704, "op": "fold_block", "start": 196608, "unassigned": []}, "expect": "b53a139fc1b0fdfd5e8d49bd17bd9801a4bfcfae80082f17479121b94208910c"}
+{"case": {"end": 204800, "op": "fold_block", "start": 200704, "unassigned": [[201547, 201551]]}, "expect": "0d8151c411a7b3163e74fcd4a08e257b4e67254e9fde4ec16eb60fcaf5cb3e67"}
+{"case": {"end": 208896, "op": "fold_block", "start": 204800, "unassigned": [[205744, 208895]]}, "expect": "23a681fcb56e84a715a31e1edcc0e1286eae48fe40c5c0c6c3cbe7f153d7b085"}
+{"case": {"end": 212992, "op": "fold_block", "start": 208896, "unassigned": [[208896, 212991]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 217088, "op": "fold_block", "start": 212992, "unassigned": [[212992, 217087]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 221184, "op": "fold_block", "start": 217088, "unassigned": [[217088, 221183]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 225280, "op": "fold_block", "start": 221184, "unassigned": [[221184, 225279]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 229376, "op": "fold_block", "start": 225280, "unassigned": [[225280, 229375]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 233472, "op": "fold_block", "start": 229376, "unassigned": [[229376, 233471]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 237568, "op": "fold_block", "start": 233472, "unassigned": [[233472, 237567]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 241664, "op": "fold_block", "start": 237568, "unassigned": [[237568, 241663]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 245760, "op": "fold_block", "start": 241664, "unassigned": [[241664, 245759]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 249856, "op": "fold_block", "start": 245760, "unassigned": [[245760, 249855]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 253952, "op": "fold_block", "start": 249856, "unassigned": [[249856, 253951]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 258048, "op": "fold_block", "start": 253952, "unassigned": [[253952, 258047]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 262144, "op": "fold_block", "start": 258048, "unassigned": [[258048, 262143]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 327680, "op": "fold_block", "start": 262144, "unassigned": [[262144, 327679]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 393216, "op": "fold_block", "start": 327680, "unassigned": [[327680, 393215]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 458752, "op": "fold_block", "start": 393216, "unassigned": [[393216, 458751]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 524288, "op": "fold_block", "start": 458752, "unassigned": [[458752, 524287]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 589824, "op": "fold_block", "start": 524288, "unassigned": [[524288, 589823]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 655360, "op": "fold_block", "start": 589824, "unassigned": [[589824, 655359]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 720896, "op": "fold_block", "start": 655360, "unassigned": [[655360, 720895]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 786432, "op": "fold_block", "start": 720896, "unassigned": [[720896, 786431]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 851968, "op": "fold_block", "start": 786432, "unassigned": [[786432, 851967]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 917504, "op": "fold_block", "start": 851968, "unassigned": [[851968, 917503]]}, "expect": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"case": {"end": 983040, "op": "fold_block", "start": 917504, "unassigned": [[917504, 917504], [917506, 917535], [917632, 917759], [918000, 983039]]}, "expect": "b549b705f3ff8f2630f482a8f9c05578dc9fe79b4202e398bf702ecb1f9888f4"}
+{"case": {"end": 1048576, "op": "fold_block", "start": 983040, "unassigned": [[1048574, 1048575]]}, "expect": "3e851a7cac6bde5e61beacbafbdd2a9277b7ef48b83c43eea56bd8dfd941c59f"}
+{"case": {"end": 1114112, "op": "fold_block", "start": 1048576, "unassigned": [[1114110, 1114111]]}, "expect": "6e52d0e95b494d595fd601c150662db6f30b255bd45a6b6c65b83f0c3ee9f191"}

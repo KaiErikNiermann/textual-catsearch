@@ -1,0 +1,922 @@
+{"case": {"op": "lex", "source": ""}, "expect": []}
+{"case": {"op": "lex", "source": " "}, "expect": []}
+{"case": {"op": "lex", "source": "reacher kind:tv cast:\"Alan Ritchson\" year:2026"}, "expect": [{"end": 7, "runs": [["reacher", false]], "start": 0}, {"end": 15, "runs": [["kind:tv", false]], "start": 8}, {"end": 36, "runs": [["cast:", false], ["Alan Ritchson", true]], "start": 16}, {"end": 46, "runs": [["year:2026", false]], "start": 37}]}
+{"case": {"op": "lex", "source": "\"the odyssey\" -tag:comedy is:upcoming"}, "expect": [{"end": 13, "runs": [["the odyssey", true]], "start": 0}, {"end": 25, "runs": [["-tag:comedy", false]], "start": 14}, {"end": 37, "runs": [["is:upcoming", false]], "start": 26}]}
+{"case": {"op": "lex", "source": "(kind:tv OR kind:movie) -(tag:horror year:<2000)"}, "expect": [{"end": 8, "runs": [["(kind:tv", false]], "start": 0}, {"end": 11, "runs": [["OR", false]], "start": 9}, {"end": 23, "runs": [["kind:movie)", false]], "start": 12}, {"end": 36, "runs": [["-(tag:horror", false]], "start": 24}, {"end": 48, "runs": [["year:<2000)", false]], "start": 37}]}
+{"case": {"op": "lex", "source": "kind:tv OR kind:movie -is:watched"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 21, "runs": [["kind:movie", false]], "start": 11}, {"end": 33, "runs": [["-is:watched", false]], "start": 22}]}
+{"case": {"op": "lex", "source": "a OR ()"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 7, "runs": [["()", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "(-(()))"}, "expect": [{"end": 7, "runs": [["(-(()))", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "((((((((((((((((((((((((((((((((((a))))))))))))))))))))))))))))))))))"}, "expect": [{"end": 69, "runs": [["((((((((((((((((((((((((((((((((((a))))))))))))))))))))))))))))))))))", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-((a b) OR c)"}, "expect": [{"end": 4, "runs": [["-((a", false]], "start": 0}, {"end": 7, "runs": [["b)", false]], "start": 5}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 13, "runs": [["c)", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "OR"}, "expect": [{"end": 2, "runs": [["OR", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a OR"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "| a"}, "expect": [{"end": 1, "runs": [["|", false]], "start": 0}, {"end": 3, "runs": [["a", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "\"OR\""}, "expect": [{"end": 4, "runs": [["OR", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:(2021)"}, "expect": [{"end": 12, "runs": [["title:(2021)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(kind:mo)"}, "expect": [{"end": 9, "runs": [["(kind:mo)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:none"}, "expect": [{"end": 8, "runs": [["tag:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:\"none\""}, "expect": [{"end": 10, "runs": [["tag:", false], ["none", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:NONE,horror"}, "expect": [{"end": 15, "runs": [["tag:NONE,horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-tag:none"}, "expect": [{"end": 9, "runs": [["-tag:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:none"}, "expect": [{"end": 7, "runs": [["is:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "on:netflix@us"}, "expect": [{"end": 13, "runs": [["on:netflix@us", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "on:@de"}, "expect": [{"end": 6, "runs": [["on:@de", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "platform:none"}, "expect": [{"end": 13, "runs": [["platform:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.year:<2022"}, "expect": [{"end": 20, "runs": [["sequel-of.year:<2022", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-to.name:dune"}, "expect": [{"end": 19, "runs": [["sequel-to.name:dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "prequel-of.sequel-of.kind:movie"}, "expect": [{"end": 31, "runs": [["prequel-of.sequel-of.kind:movie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nope.year:2020"}, "expect": [{"end": 14, "runs": [["nope.year:2020", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of:x"}, "expect": [{"end": 11, "runs": [["sequel-of:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "author:'Ursula Le Guin'"}, "expect": [{"end": 14, "runs": [["author:'Ursula", false]], "start": 0}, {"end": 17, "runs": [["Le", false]], "start": 15}, {"end": 23, "runs": [["Guin'", false]], "start": 18}]}
+{"case": {"op": "lex", "source": "title:\"The author:'Le Guin' and book\""}, "expect": [{"end": 37, "runs": [["title:", false], ["The author:'Le Guin' and book", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "Don't Look Up"}, "expect": [{"end": 5, "runs": [["Don't", false]], "start": 0}, {"end": 10, "runs": [["Look", false]], "start": 6}, {"end": 13, "runs": [["Up", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "'71"}, "expect": [{"end": 3, "runs": [["'71", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:\"The \"\"Burbs\""}, "expect": [{"end": 18, "runs": [["name:", false], ["The \"Burbs", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"unclosed"}, "expect": [{"end": 9, "runs": [["unclosed", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Smith, Jo"}, "expect": [{"end": 15, "runs": [["cast:", false], ["Smith, Jo", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:O.Connor"}, "expect": [{"end": 13, "runs": [["cast:O.Connor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"O.Connor\""}, "expect": [{"end": 15, "runs": [["cast:", false], ["O.Connor", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:a,,b,"}, "expect": [{"end": 10, "runs": [["cast:a,,b,", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:"}, "expect": [{"end": 5, "runs": [["kind:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind: tv"}, "expect": [{"end": 5, "runs": [["kind:", false]], "start": 0}, {"end": 8, "runs": [["tv", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "year:soon"}, "expect": [{"end": 9, "runs": [["year:soon", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:2020..2026"}, "expect": [{"end": 15, "runs": [["year:2020..2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:..2026"}, "expect": [{"end": 11, "runs": [["year:..2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:2020.."}, "expect": [{"end": 11, "runs": [["year:2020..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:.."}, "expect": [{"end": 7, "runs": [["year:..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:>=2026"}, "expect": [{"end": 11, "runs": [["year:>=2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:<=2026"}, "expect": [{"end": 11, "runs": [["year:<=2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:>2020"}, "expect": [{"end": 10, "runs": [["year:>2020", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:<2030"}, "expect": [{"end": 10, "runs": [["year:<2030", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:>"}, "expect": [{"end": 6, "runs": [["year:>", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:1_000"}, "expect": [{"end": 10, "runs": [["year:1_000", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:_1"}, "expect": [{"end": 7, "runs": [["year:_1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:1__0"}, "expect": [{"end": 9, "runs": [["year:1__0", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:+2021"}, "expect": [{"end": 10, "runs": [["year:+2021", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:-5"}, "expect": [{"end": 7, "runs": [["year:-5", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\u0662\u0660\u0662\u0661"}, "expect": [{"end": 9, "runs": [["year:\u0662\u0660\u0662\u0661", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\uff12\uff10\uff12\uff11"}, "expect": [{"end": 9, "runs": [["year:\uff12\uff10\uff12\uff11", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\ud835\udfda\ud835\udfd8\ud835\udfda\ud835\udfd9"}, "expect": [{"end": 9, "runs": [["year:\ud835\udfda\ud835\udfd8\ud835\udfda\ud835\udfd9", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:9007199254740993"}, "expect": [{"end": 21, "runs": [["year:9007199254740993", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:>9007199254740993"}, "expect": [{"end": 22, "runs": [["year:>9007199254740993", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": [{"end": 405, "runs": [["year:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": [{"end": 4306, "runs": [["year:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "season:none,3"}, "expect": [{"end": 13, "runs": [["season:none,3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:film"}, "expect": [{"end": 9, "runs": [["kind:film", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:SERIES"}, "expect": [{"end": 11, "runs": [["kind:SERIES", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Kind:TV"}, "expect": [{"end": 7, "runs": [["Kind:TV", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ACTOR:zendaya"}, "expect": [{"end": 13, "runs": [["ACTOR:zendaya", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:unknownflag"}, "expect": [{"end": 14, "runs": [["is:unknownflag", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:early-access"}, "expect": [{"end": 15, "runs": [["is:early-access", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-30-"}, "expect": [{"end": 4, "runs": [["-30-", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "!a"}, "expect": [{"end": 2, "runs": [["!a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "!kind:tv"}, "expect": [{"end": 8, "runs": [["!kind:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-"}, "expect": [{"end": 1, "runs": [["-", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "--a"}, "expect": [{"end": 3, "runs": [["--a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a,b"}, "expect": [{"end": 3, "runs": [["a,b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:a,b"}, "expect": [{"end": 8, "runs": [["name:a,b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:kind:tv"}, "expect": [{"end": 12, "runs": [["name:kind:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Andor: Season 2"}, "expect": [{"end": 6, "runs": [["Andor:", false]], "start": 0}, {"end": 13, "runs": [["Season", false]], "start": 7}, {"end": 15, "runs": [["2", false]], "start": 14}]}
+{"case": {"op": "lex", "source": ":x"}, "expect": [{"end": 2, "runs": [[":x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "x:"}, "expect": [{"end": 2, "runs": [["x:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "::"}, "expect": [{"end": 2, "runs": [["::", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a)"}, "expect": [{"end": 2, "runs": [["a)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(a"}, "expect": [{"end": 2, "runs": [["(a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "((a"}, "expect": [{"end": 3, "runs": [["((a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a))"}, "expect": [{"end": 3, "runs": [["a))", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(a))"}, "expect": [{"end": 4, "runs": [["(a))", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ")"}, "expect": [{"end": 1, "runs": [[")", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Mr. Robot"}, "expect": [{"end": 3, "runs": [["Mr.", false]], "start": 0}, {"end": 9, "runs": [["Robot", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "Wall-E"}, "expect": [{"end": 6, "runs": [["Wall-E", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "#Alive"}, "expect": [{"end": 6, "runs": [["#Alive", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cafe"}, "expect": [{"end": 4, "runs": [["cafe", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\uff24\uff35\uff2e\uff25"}, "expect": [{"end": 4, "runs": [["\uff24\uff35\uff2e\uff25", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "STRASSE"}, "expect": [{"end": 7, "runs": [["STRASSE", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\tkind:tv\n"}, "expect": [{"end": 8, "runs": [["kind:tv", false]], "start": 1}]}
+{"case": {"op": "lex", "source": "a\u3000b"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 3, "runs": [["b", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "a\u00a0b"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 3, "runs": [["b", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "a\ufeffb"}, "expect": [{"end": 3, "runs": [["a\ufeffb", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a\u001cb"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 3, "runs": [["b", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "took:>5m"}, "expect": [{"end": 8, "runs": [["took:>5m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:>=5m"}, "expect": [{"end": 9, "runs": [["took:>=5m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:<1m"}, "expect": [{"end": 8, "runs": [["took:<1m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:1m..1h"}, "expect": [{"end": 11, "runs": [["took:1m..1h", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:2h"}, "expect": [{"end": 7, "runs": [["took:2h", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:5m..1m"}, "expect": [{"end": 11, "runs": [["took:5m..1m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": [{"end": 405, "runs": [["took:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:1.5h"}, "expect": [{"end": 9, "runs": [["took:1.5h", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:\u0665m"}, "expect": [{"end": 7, "runs": [["took:\u0665m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status:500"}, "expect": [{"end": 10, "runs": [["status:500", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status:500,200"}, "expect": [{"end": 14, "runs": [["status:500,200", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "userId:7"}, "expect": [{"end": 8, "runs": [["userId:7", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "http.status:503"}, "expect": [{"end": 15, "runs": [["http.status:503", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Level:3"}, "expect": [{"end": 7, "runs": [["Level:3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "level:3"}, "expect": [{"end": 7, "runs": [["level:3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "parent.level:1"}, "expect": [{"end": 14, "runs": [["parent.level:1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "parent.status:100"}, "expect": [{"end": 17, "runs": [["parent.status:100", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nope:x"}, "expect": [{"end": 6, "runs": [["nope:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "re:(a"}, "expect": [{"end": 5, "runs": [["re:(a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "re:\"(a)\""}, "expect": [{"end": 8, "runs": [["re:", false], ["(a)", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "re:a|b"}, "expect": [{"end": 6, "runs": [["re:a|b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kv:status=500 kv:path=/api/users"}, "expect": [{"end": 13, "runs": [["kv:status=500", false]], "start": 0}, {"end": 32, "runs": [["kv:path=/api/users", false]], "start": 14}]}
+{"case": {"op": "lex", "source": "kv:status=500,path=/health"}, "expect": [{"end": 26, "runs": [["kv:status=500,path=/health", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Gr\u00f6\u00dfe:gro\u00df"}, "expect": [{"end": 10, "runs": [["Gr\u00f6\u00dfe:gro\u00df", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "text:\u00fcn\u00efcode"}, "expect": [{"end": 12, "runs": [["text:\u00fcn\u00efcode", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "field"}, "expect": [{"end": 5, "runs": [["field", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "reacher cast:\"Alan Ritchson\" year:2026"}, "expect": [{"end": 7, "runs": [["reacher", false]], "start": 0}, {"end": 28, "runs": [["cast:", false], ["Alan Ritchson", true]], "start": 8}, {"end": 38, "runs": [["year:2026", false]], "start": 29}]}
+{"case": {"op": "lex", "source": "fault"}, "expect": [{"end": 5, "runs": [["fault", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv cast:rit year:2026"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 16, "runs": [["cast:rit", false]], "start": 8}, {"end": 26, "runs": [["year:2026", false]], "start": 17}]}
+{"case": {"op": "lex", "source": "ca year:2026"}, "expect": [{"end": 2, "runs": [["ca", false]], "start": 0}, {"end": 12, "runs": [["year:2026", false]], "start": 3}]}
+{"case": {"op": "lex", "source": "cast:Denis,rit"}, "expect": [{"end": 14, "runs": [["cast:Denis,rit", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:rit,Denis"}, "expect": [{"end": 14, "runs": [["cast:rit,Denis", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Smith, Rit"}, "expect": [{"end": 16, "runs": [["cast:", false], ["Smith, Rit", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "(kind:mo) year:2026"}, "expect": [{"end": 9, "runs": [["(kind:mo)", false]], "start": 0}, {"end": 19, "runs": [["year:2026", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "cast:Hello)"}, "expect": [{"end": 11, "runs": [["cast:Hello)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:'Ala"}, "expect": [{"end": 9, "runs": [["cast:'Ala", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "source"}, "expect": [{"end": 6, "runs": [["source", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "The author:'Le Guin' and book"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}, {"end": 14, "runs": [["author:'Le", false]], "start": 4}, {"end": 20, "runs": [["Guin'", false]], "start": 15}, {"end": 24, "runs": [["and", false]], "start": 21}, {"end": 29, "runs": [["book", false]], "start": 25}]}
+{"case": {"op": "lex", "source": "a disjunction pins nothing"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 13, "runs": [["disjunction", false]], "start": 2}, {"end": 18, "runs": [["pins", false]], "start": 14}, {"end": 26, "runs": [["nothing", false]], "start": 19}]}
+{"case": {"op": "lex", "source": "a odd:abc,oddx -o:\"ab cde\""}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 14, "runs": [["odd:abc,oddx", false]], "start": 2}, {"end": 26, "runs": [["-o:", false], ["ab cde", true]], "start": 15}]}
+{"case": {"op": "lex", "source": "the value, not the key"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 10, "runs": [["value,", false]], "start": 4}, {"end": 14, "runs": [["not", false]], "start": 11}, {"end": 18, "runs": [["the", false]], "start": 15}, {"end": 22, "runs": [["key", false]], "start": 19}]}
+{"case": {"op": "lex", "source": "9999"}, "expect": [{"end": 4, "runs": [["9999", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "zzzznothing"}, "expect": [{"end": 11, "runs": [["zzzznothing", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "expected"}, "expect": [{"end": 8, "runs": [["expected", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "the odyssey kind:movie"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 11, "runs": [["odyssey", false]], "start": 4}, {"end": 22, "runs": [["kind:movie", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "the odyssey"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 11, "runs": [["odyssey", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "cast"}, "expect": [{"end": 4, "runs": [["cast", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "platform"}, "expect": [{"end": 8, "runs": [["platform", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind"}, "expect": [{"end": 4, "runs": [["kind", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "lo"}, "expect": [{"end": 2, "runs": [["lo", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "hi"}, "expect": [{"end": 2, "runs": [["hi", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Andor:"}, "expect": [{"end": 6, "runs": [["Andor:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "{"}, "expect": [{"end": 1, "runs": [["{", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "held"}, "expect": [{"end": 4, "runs": [["held", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Se7en"}, "expect": [{"end": 5, "runs": [["Se7en", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Person: Someone"}, "expect": [{"end": 7, "runs": [["Person:", false]], "start": 0}, {"end": 15, "runs": [["Someone", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "\"\""}, "expect": [{"end": 2, "runs": [], "start": 0}]}
+{"case": {"op": "lex", "source": "\""}, "expect": [{"end": 1, "runs": [], "start": 0}]}
+{"case": {"op": "lex", "source": ":::"}, "expect": [{"end": 3, "runs": [[":::", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:abc"}, "expect": [{"end": 8, "runs": [["year:abc", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "  :  "}, "expect": [{"end": 3, "runs": [[":", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "a:b:c"}, "expect": [{"end": 5, "runs": [["a:b:c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag"}, "expect": [{"end": 3, "runs": [["tag", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre"}, "expect": [{"end": 5, "runs": [["genre", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "theme"}, "expect": [{"end": 5, "runs": [["theme", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "person"}, "expect": [{"end": 6, "runs": [["person", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "director"}, "expect": [{"end": 8, "runs": [["director", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:"}, "expect": [{"end": 5, "runs": [["cast:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:rit"}, "expect": [{"end": 8, "runs": [["cast:rit", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Alan Ritchson\""}, "expect": [{"end": 20, "runs": [["cast:", false], ["Alan Ritchson", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "Alan Ritchson"}, "expect": [{"end": 4, "runs": [["Alan", false]], "start": 0}, {"end": 13, "runs": [["Ritchson", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "kind:movie"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "state:watching"}, "expect": [{"end": 14, "runs": [["state:watching", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:"}, "expect": [{"end": 5, "runs": [["name:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv cast:\"Alan Ritchson\" year:2026"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 28, "runs": [["cast:", false], ["Alan Ritchson", true]], "start": 8}, {"end": 38, "runs": [["year:2026", false]], "start": 29}]}
+{"case": {"op": "lex", "source": "cast: year:2026"}, "expect": [{"end": 5, "runs": [["cast:", false]], "start": 0}, {"end": 15, "runs": [["year:2026", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "cast:Denis,\"Alan Ritchson\""}, "expect": [{"end": 26, "runs": [["cast:Denis,", false], ["Alan Ritchson", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Alan Ritchson\",Denis"}, "expect": [{"end": 26, "runs": [["cast:", false], ["Alan Ritchson", true], [",Denis", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Smith, Ritchie\""}, "expect": [{"end": 21, "runs": [["cast:", false], ["Smith, Ritchie", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-genre:horror"}, "expect": [{"end": 13, "runs": [["-genre:horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(-genre:horror"}, "expect": [{"end": 14, "runs": [["(-genre:horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(kind:movie) year:2026"}, "expect": [{"end": 12, "runs": [["(kind:movie)", false]], "start": 0}, {"end": 22, "runs": [["year:2026", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "platform:Netflix"}, "expect": [{"end": 16, "runs": [["platform:Netflix", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "'71 Don't Look Up"}, "expect": [{"end": 3, "runs": [["'71", false]], "start": 0}, {"end": 9, "runs": [["Don't", false]], "start": 4}, {"end": 14, "runs": [["Look", false]], "start": 10}, {"end": 17, "runs": [["Up", false]], "start": 15}]}
+{"case": {"op": "lex", "source": "'Don't Look Up'"}, "expect": [{"end": 6, "runs": [["'Don't", false]], "start": 0}, {"end": 11, "runs": [["Look", false]], "start": 7}, {"end": 15, "runs": [["Up'", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "sequel-of.year:<2020"}, "expect": [{"end": 20, "runs": [["sequel-of.year:<2020", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.sequel-of.name:dune"}, "expect": [{"end": 29, "runs": [["sequel-of.sequel-of.name:dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-prequel-of.kind:tv"}, "expect": [{"end": 19, "runs": [["-prequel-of.kind:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name"}, "expect": [{"end": 4, "runs": [["name", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv sequel-of.kind:movie"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 28, "runs": [["sequel-of.kind:movie", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "seq"}, "expect": [{"end": 3, "runs": [["seq", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-sequel-of.genre:hor"}, "expect": [{"end": 20, "runs": [["-sequel-of.genre:hor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-sequel-of.genre:horror"}, "expect": [{"end": 23, "runs": [["-sequel-of.genre:horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv,movie"}, "expect": [{"end": 13, "runs": [["kind:tv,movie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "_typed_term"}, "expect": [{"end": 11, "runs": [["_typed_term", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv OR (kind:movie -state:watched)"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 22, "runs": [["(kind:movie", false]], "start": 11}, {"end": 38, "runs": [["-state:watched)", false]], "start": 23}]}
+{"case": {"op": "lex", "source": "-(kind:tv year:2026)"}, "expect": [{"end": 9, "runs": [["-(kind:tv", false]], "start": 0}, {"end": 20, "runs": [["year:2026)", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "pointed"}, "expect": [{"end": 7, "runs": [["pointed", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u00b7 +1"}, "expect": [{"end": 1, "runs": [["\u00b7", false]], "start": 0}, {"end": 4, "runs": [["+1", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "is:upcoming,airing tag:drama -kind:tv"}, "expect": [{"end": 18, "runs": [["is:upcoming,airing", false]], "start": 0}, {"end": 28, "runs": [["tag:drama", false]], "start": 19}, {"end": 37, "runs": [["-kind:tv", false]], "start": 29}]}
+{"case": {"op": "lex", "source": "is:airing tag:drama -kind:tv"}, "expect": [{"end": 9, "runs": [["is:airing", false]], "start": 0}, {"end": 19, "runs": [["tag:drama", false]], "start": 10}, {"end": 28, "runs": [["-kind:tv", false]], "start": 20}]}
+{"case": {"op": "lex", "source": "(is:upcoming OR tag:x) tag:y"}, "expect": [{"end": 12, "runs": [["(is:upcoming", false]], "start": 0}, {"end": 15, "runs": [["OR", false]], "start": 13}, {"end": 22, "runs": [["tag:x)", false]], "start": 16}, {"end": 28, "runs": [["tag:y", false]], "start": 23}]}
+{"case": {"op": "lex", "source": "is:\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27 tag:caf\u00e9"}, "expect": [{"end": 11, "runs": [["is:\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27", false]], "start": 0}, {"end": 20, "runs": [["tag:caf\u00e9", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27"}, "expect": [{"end": 8, "runs": [["\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:\"caf\u00e9\""}, "expect": [{"end": 10, "runs": [["tag:", false], ["caf\u00e9", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "caf\u00e9"}, "expect": [{"end": 4, "runs": [["caf\u00e9", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:\u043f\u0440\u043e\u0435\u043a\u0442"}, "expect": [{"end": 12, "runs": [["title:\u043f\u0440\u043e\u0435\u043a\u0442", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:\u00dcn\u00efcode"}, "expect": [{"end": 13, "runs": [["title:\u00dcn\u00efcode", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:\u5099\u4efd"}, "expect": [{"end": 8, "runs": [["title:\u5099\u4efd", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:caf\u00e9"}, "expect": [{"end": 10, "runs": [["title:caf\u00e9", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:\ud83d\ude80"}, "expect": [{"end": 7, "runs": [["title:\ud83d\ude80", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:a\u2014b"}, "expect": [{"end": 9, "runs": [["title:a\u2014b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:\uff24\uff35\uff2e\uff25"}, "expect": [{"end": 10, "runs": [["title:\uff24\uff35\uff2e\uff25", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "needs an odd number of characters"}, "expect": [{"end": 5, "runs": [["needs", false]], "start": 0}, {"end": 8, "runs": [["an", false]], "start": 6}, {"end": 12, "runs": [["odd", false]], "start": 9}, {"end": 19, "runs": [["number", false]], "start": 13}, {"end": 22, "runs": [["of", false]], "start": 20}, {"end": 33, "runs": [["characters", false]], "start": 23}]}
+{"case": {"op": "lex", "source": "text"}, "expect": [{"end": 4, "runs": [["text", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "oddx: needs an odd number of characters"}, "expect": [{"end": 5, "runs": [["oddx:", false]], "start": 0}, {"end": 11, "runs": [["needs", false]], "start": 6}, {"end": 14, "runs": [["an", false]], "start": 12}, {"end": 18, "runs": [["odd", false]], "start": 15}, {"end": 25, "runs": [["number", false]], "start": 19}, {"end": 28, "runs": [["of", false]], "start": 26}, {"end": 39, "runs": [["characters", false]], "start": 29}]}
+{"case": {"op": "lex", "source": "odd:ab"}, "expect": [{"end": 6, "runs": [["odd:ab", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ab"}, "expect": [{"end": 2, "runs": [["ab", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "b"}, "expect": [{"end": 1, "runs": [["b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "reacher kind:tv"}, "expect": [{"end": 7, "runs": [["reacher", false]], "start": 0}, {"end": 15, "runs": [["kind:tv", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "\"some tv show\""}, "expect": [{"end": 14, "runs": [["some tv show", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "actors:\"name 1, name 2\""}, "expect": [{"end": 23, "runs": [["actors:", false], ["name 1, name 2", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-tag:comedy"}, "expect": [{"end": 11, "runs": [["-tag:comedy", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "   spaced   out   "}, "expect": [{"end": 9, "runs": [["spaced", false]], "start": 3}, {"end": 15, "runs": [["out", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "Don't"}, "expect": [{"end": 5, "runs": [["Don't", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Look"}, "expect": [{"end": 4, "runs": [["Look", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Up"}, "expect": [{"end": 2, "runs": [["Up", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "The"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Hitchhiker's"}, "expect": [{"end": 12, "runs": [["Hitchhiker's", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Guide"}, "expect": [{"end": 5, "runs": [["Guide", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:Alan Rit"}, "expect": [{"end": 9, "runs": [["cast:Alan", false]], "start": 0}, {"end": 13, "runs": [["Rit", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "The \"Burbs"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}, {"end": 10, "runs": [["Burbs", true]], "start": 4}]}
+{"case": {"op": "lex", "source": "Ritchson"}, "expect": [{"end": 8, "runs": [["Ritchson", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Sten"}, "expect": [{"end": 4, "runs": [["Sten", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Alan Ritchson, Maria Sten"}, "expect": [{"end": 4, "runs": [["Alan", false]], "start": 0}, {"end": 14, "runs": [["Ritchson,", false]], "start": 5}, {"end": 20, "runs": [["Maria", false]], "start": 15}, {"end": 25, "runs": [["Sten", false]], "start": 21}]}
+{"case": {"op": "lex", "source": "year:2026"}, "expect": [{"end": 9, "runs": [["year:2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:<=2030"}, "expect": [{"end": 11, "runs": [["year:<=2030", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:>2026"}, "expect": [{"end": 10, "runs": [["year:>2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Andor"}, "expect": [{"end": 5, "runs": [["Andor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "."}, "expect": [{"end": 1, "runs": [[".", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:a|b"}, "expect": [{"end": 7, "runs": [["tag:a|b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "|"}, "expect": [{"end": 1, "runs": [["|", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:one-of[tv,film]"}, "expect": [{"end": 20, "runs": [["kind:one-of[tv,film]", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "[]"}, "expect": [{"end": 2, "runs": [["[]", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre:sci-fi*"}, "expect": [{"end": 13, "runs": [["genre:sci-fi*", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "*"}, "expect": [{"end": 1, "runs": [["*", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "person:A24+Neon"}, "expect": [{"end": 15, "runs": [["person:A24+Neon", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "+"}, "expect": [{"end": 1, "runs": [["+", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "A"}, "expect": [{"end": 1, "runs": [["A", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "B"}, "expect": [{"end": 1, "runs": [["B", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "The Odyssey"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}, {"end": 11, "runs": [["Odyssey", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "odyssey"}, "expect": [{"end": 7, "runs": [["odyssey", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "the ody"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 7, "runs": [["ody", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "Dune: Part Two"}, "expect": [{"end": 5, "runs": [["Dune:", false]], "start": 0}, {"end": 10, "runs": [["Part", false]], "start": 6}, {"end": 14, "runs": [["Two", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "dune two"}, "expect": [{"end": 4, "runs": [["dune", false]], "start": 0}, {"end": 8, "runs": [["two", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "dune three"}, "expect": [{"end": 4, "runs": [["dune", false]], "start": 0}, {"end": 10, "runs": [["three", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Caf\u00e9 Society"}, "expect": [{"end": 4, "runs": [["Caf\u00e9", false]], "start": 0}, {"end": 12, "runs": [["Society", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Dune"}, "expect": [{"end": 4, "runs": [["Dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Tenet"}, "expect": [{"end": 5, "runs": [["Tenet", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "director:nolan"}, "expect": [{"end": 14, "runs": [["director:nolan", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:nolan"}, "expect": [{"end": 10, "runs": [["cast:nolan", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "person:nolan"}, "expect": [{"end": 12, "runs": [["person:nolan", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:sci-fi"}, "expect": [{"end": 10, "runs": [["tag:sci-fi", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:body"}, "expect": [{"end": 8, "runs": [["tag:body", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre:sci-fi"}, "expect": [{"end": 12, "runs": [["genre:sci-fi", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre:body"}, "expect": [{"end": 10, "runs": [["genre:body", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "theme:\"body horror\""}, "expect": [{"end": 19, "runs": [["theme:", false], ["body horror", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:2027"}, "expect": [{"end": 9, "runs": [["year:2027", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:2025"}, "expect": [{"end": 9, "runs": [["year:2025", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "season:.."}, "expect": [{"end": 9, "runs": [["season:..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "season:>=0"}, "expect": [{"end": 10, "runs": [["season:>=0", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "H"}, "expect": [{"end": 1, "runs": [["H", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "C"}, "expect": [{"end": 1, "runs": [["C", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "available"}, "expect": [{"end": 9, "runs": [["available", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "U"}, "expect": [{"end": 1, "runs": [["U", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "upcoming"}, "expect": [{"end": 8, "runs": [["upcoming", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:available"}, "expect": [{"end": 12, "runs": [["is:available", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:blocked"}, "expect": [{"end": 10, "runs": [["is:blocked", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:tba"}, "expect": [{"end": 6, "runs": [["is:tba", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:AVAILABLE"}, "expect": [{"end": 12, "runs": [["is:AVAILABLE", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:nonsense"}, "expect": [{"end": 11, "runs": [["is:nonsense", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "watched"}, "expect": [{"end": 7, "runs": [["watched", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "state:watched"}, "expect": [{"end": 13, "runs": [["state:watched", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "state:watch"}, "expect": [{"end": 11, "runs": [["state:watch", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "movie"}, "expect": [{"end": 5, "runs": [["movie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv-show"}, "expect": [{"end": 12, "runs": [["kind:tv-show", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:movie year:2026"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}, {"end": 20, "runs": [["year:2026", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "on:none"}, "expect": [{"end": 7, "runs": [["on:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ca"}, "expect": [{"end": 2, "runs": [["ca", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "director:"}, "expect": [{"end": 9, "runs": [["director:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Denis Villeneuve"}, "expect": [{"end": 5, "runs": [["Denis", false]], "start": 0}, {"end": 16, "runs": [["Villeneuve", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "Timothee Chalamet"}, "expect": [{"end": 8, "runs": [["Timothee", false]], "start": 0}, {"end": 17, "runs": [["Chalamet", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "person:"}, "expect": [{"end": 7, "runs": [["person:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:"}, "expect": [{"end": 5, "runs": [["year:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:mov"}, "expect": [{"end": 8, "runs": [["kind:mov", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:a"}, "expect": [{"end": 4, "runs": [["is:a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "aging"}, "expect": [{"end": 5, "runs": [["aging", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "early-access"}, "expect": [{"end": 12, "runs": [["early-access", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "na"}, "expect": [{"end": 2, "runs": [["na", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "zzz"}, "expect": [{"end": 3, "runs": [["zzz", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "actor"}, "expect": [{"end": 5, "runs": [["actor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Denis"}, "expect": [{"end": 5, "runs": [["Denis", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(ca"}, "expect": [{"end": 3, "runs": [["(ca", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "st:"}, "expect": [{"end": 3, "runs": [["st:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Josh O'Connor"}, "expect": [{"end": 4, "runs": [["Josh", false]], "start": 0}, {"end": 13, "runs": [["O'Connor", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Le Guin"}, "expect": [{"end": 2, "runs": [["Le", false]], "start": 0}, {"end": 7, "runs": [["Guin", false]], "start": 3}]}
+{"case": {"op": "lex", "source": "Part Two"}, "expect": [{"end": 4, "runs": [["Part", false]], "start": 0}, {"end": 8, "runs": [["Two", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Part Three"}, "expect": [{"end": 4, "runs": [["Part", false]], "start": 0}, {"end": 10, "runs": [["Three", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "sequel-of.year:2021"}, "expect": [{"end": 19, "runs": [["sequel-of.year:2021", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.name:dune"}, "expect": [{"end": 19, "runs": [["sequel-of.name:dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.year:<2000"}, "expect": [{"end": 20, "runs": [["sequel-of.year:<2000", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.sequel-of.year:2021"}, "expect": [{"end": 29, "runs": [["sequel-of.sequel-of.year:2021", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.sequel-of.sequel-of.year:2021"}, "expect": [{"end": 39, "runs": [["sequel-of.sequel-of.sequel-of.year:2021", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.year:none"}, "expect": [{"end": 19, "runs": [["sequel-of.year:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "X"}, "expect": [{"end": 1, "runs": [["X", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.year:"}, "expect": [{"end": 15, "runs": [["sequel-of.year:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Mr.Rob"}, "expect": [{"end": 6, "runs": [["Mr.Rob", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Weapons"}, "expect": [{"end": 7, "runs": [["Weapons", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Meagen"}, "expect": [{"end": 6, "runs": [["Meagen", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Nothing"}, "expect": [{"end": 7, "runs": [["Nothing", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Barbie"}, "expect": [{"end": 6, "runs": [["Barbie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:none,horror"}, "expect": [{"end": 15, "runs": [["tag:none,horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:none tag:horror"}, "expect": [{"end": 8, "runs": [["tag:none", false]], "start": 0}, {"end": 19, "runs": [["tag:horror", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "kind:tv OR kind:movie"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 21, "runs": [["kind:movie", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "Reacher"}, "expect": [{"end": 7, "runs": [["Reacher", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv | kind:game"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 9, "runs": [["|", false]], "start": 8}, {"end": 19, "runs": [["kind:game", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "Hollow Knight"}, "expect": [{"end": 6, "runs": [["Hollow", false]], "start": 0}, {"end": 13, "runs": [["Knight", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "tv"}, "expect": [{"end": 2, "runs": [["tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv OR kind:movie -state:watched"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 21, "runs": [["kind:movie", false]], "start": 11}, {"end": 36, "runs": [["-state:watched", false]], "start": 22}]}
+{"case": {"op": "lex", "source": "(2021)"}, "expect": [{"end": 6, "runs": [["(2021)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Fallout (TV)"}, "expect": [{"end": 7, "runs": [["Fallout", false]], "start": 0}, {"end": 12, "runs": [["(TV)", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "a OR b"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 6, "runs": [["b", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "(kind:tv"}, "expect": [{"end": 8, "runs": [["(kind:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "("}, "expect": [{"end": 1, "runs": [["(", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv)"}, "expect": [{"end": 8, "runs": [["kind:tv)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv OR"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 10, "runs": [["OR", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "(year:soon"}, "expect": [{"end": 10, "runs": [["(year:soon", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"unclosed"}, "expect": [{"end": 14, "runs": [["cast:", false], ["unclosed", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "nonsense:x"}, "expect": [{"end": 10, "runs": [["nonsense:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nonsense"}, "expect": [{"end": 8, "runs": [["nonsense", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv nonsense:x"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 18, "runs": [["nonsense:x", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "title:a:b"}, "expect": [{"end": 9, "runs": [["title:a:b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ":"}, "expect": [{"end": 1, "runs": [[":", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-title:O.Connor"}, "expect": [{"end": 15, "runs": [["-title:O.Connor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv year:soon"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 17, "runs": [["year:soon", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "a:1 b:2 c:3"}, "expect": [{"end": 3, "runs": [["a:1", false]], "start": 0}, {"end": 7, "runs": [["b:2", false]], "start": 4}, {"end": 11, "runs": [["c:3", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "is"}, "expect": [{"end": 2, "runs": [["is", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "odd"}, "expect": [{"end": 3, "runs": [["odd", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "oddx"}, "expect": [{"end": 4, "runs": [["oddx", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ab cde"}, "expect": [{"end": 2, "runs": [["ab", false]], "start": 0}, {"end": 6, "runs": [["cde", false]], "start": 3}]}
+{"case": {"op": "lex", "source": "xaby"}, "expect": [{"end": 4, "runs": [["xaby", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year"}, "expect": [{"end": 4, "runs": [["year", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "season"}, "expect": [{"end": 6, "runs": [["season", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "horror"}, "expect": [{"end": 6, "runs": [["horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "reacher"}, "expect": [{"end": 7, "runs": [["reacher", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:Alan Ritchson"}, "expect": [{"end": 9, "runs": [["cast:Alan", false]], "start": 0}, {"end": 18, "runs": [["Ritchson", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "some tv show"}, "expect": [{"end": 4, "runs": [["some", false]], "start": 0}, {"end": 7, "runs": [["tv", false]], "start": 5}, {"end": 12, "runs": [["show", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "actors:name 1, name 2"}, "expect": [{"end": 11, "runs": [["actors:name", false]], "start": 0}, {"end": 14, "runs": [["1,", false]], "start": 12}, {"end": 19, "runs": [["name", false]], "start": 15}, {"end": 21, "runs": [["2", false]], "start": 20}]}
+{"case": {"op": "lex", "source": "spaced"}, "expect": [{"end": 6, "runs": [["spaced", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "out"}, "expect": [{"end": 3, "runs": [["out", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"kind:tv\""}, "expect": [{"end": 9, "runs": [["kind:tv", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:x"}, "expect": [{"end": 6, "runs": [["cast:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Josh O.Connor"}, "expect": [{"end": 4, "runs": [["Josh", false]], "start": 0}, {"end": 13, "runs": [["O.Connor", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Odyssey"}, "expect": [{"end": 7, "runs": [["Odyssey", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Christopher Nolan"}, "expect": [{"end": 11, "runs": [["Christopher", false]], "start": 0}, {"end": 17, "runs": [["Nolan", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "John David Washington"}, "expect": [{"end": 4, "runs": [["John", false]], "start": 0}, {"end": 10, "runs": [["David", false]], "start": 5}, {"end": 21, "runs": [["Washington", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "Sci-Fi"}, "expect": [{"end": 6, "runs": [["Sci-Fi", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "body horror"}, "expect": [{"end": 4, "runs": [["body", false]], "start": 0}, {"end": 11, "runs": [["horror", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "nan"}, "expect": [{"end": 3, "runs": [["nan", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "comedy"}, "expect": [{"end": 6, "runs": [["comedy", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "region"}, "expect": [{"end": 6, "runs": [["region", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "on:netflix"}, "expect": [{"end": 10, "runs": [["on:netflix", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "on:@ca"}, "expect": [{"end": 6, "runs": [["on:@ca", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Netflix"}, "expect": [{"end": 7, "runs": [["Netflix", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:itch"}, "expect": [{"end": 9, "runs": [["cast:itch", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "value"}, "expect": [{"end": 5, "runs": [["value", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-genre:hor"}, "expect": [{"end": 10, "runs": [["-genre:hor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(-genre:hor"}, "expect": [{"end": 11, "runs": [["(-genre:hor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(kind:mo"}, "expect": [{"end": 8, "runs": [["(kind:mo", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(tag:x (ca))"}, "expect": [{"end": 6, "runs": [["(tag:x", false]], "start": 0}, {"end": 12, "runs": [["(ca))", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "on:net"}, "expect": [{"end": 6, "runs": [["on:net", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:'Don't Look Up'"}, "expect": [{"end": 11, "runs": [["name:'Don't", false]], "start": 0}, {"end": 16, "runs": [["Look", false]], "start": 12}, {"end": 20, "runs": [["Up'", false]], "start": 17}]}
+{"case": {"op": "lex", "source": "x \"y\" "}, "expect": [{"end": 1, "runs": [["x", false]], "start": 0}, {"end": 5, "runs": [["y", true]], "start": 2}]}
+{"case": {"op": "lex", "source": "sequel-of"}, "expect": [{"end": 9, "runs": [["sequel-of", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of."}, "expect": [{"end": 10, "runs": [["sequel-of.", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "relation"}, "expect": [{"end": 8, "runs": [["relation", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "none"}, "expect": [{"end": 4, "runs": [["none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "game"}, "expect": [{"end": 4, "runs": [["game", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv kind:movie"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 18, "runs": [["kind:movie", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "is:upcoming"}, "expect": [{"end": 11, "runs": [["is:upcoming", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "odd:abc o:x"}, "expect": [{"end": 7, "runs": [["odd:abc", false]], "start": 0}, {"end": 11, "runs": [["o:x", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "has"}, "expect": [{"end": 3, "runs": [["has", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "The Hitchhiker's Guide"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}, {"end": 16, "runs": [["Hitchhiker's", false]], "start": 4}, {"end": 22, "runs": [["Guide", false]], "start": 17}]}
+{"case": {"op": "lex", "source": "cast:\"Alan Rit"}, "expect": [{"end": 14, "runs": [["cast:", false], ["Alan Rit", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!tag:comedy"}, "expect": [{"end": 11, "runs": [["!tag:comedy", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "on:netflix@jp"}, "expect": [{"end": 13, "runs": [["on:netflix@jp", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-on:netflix@us"}, "expect": [{"end": 14, "runs": [["-on:netflix@us", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Rit"}, "expect": [{"end": 3, "runs": [["Rit", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Smith, Ritchie"}, "expect": [{"end": 6, "runs": [["Smith,", false]], "start": 0}, {"end": 14, "runs": [["Ritchie", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "Hello (2021)"}, "expect": [{"end": 5, "runs": [["Hello", false]], "start": 0}, {"end": 12, "runs": [["(2021)", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "sequel-of.ye"}, "expect": [{"end": 12, "runs": [["sequel-of.ye", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "released"}, "expect": [{"end": 8, "runs": [["released", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Cafe"}, "expect": [{"end": 4, "runs": [["Cafe", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "o"}, "expect": [{"end": 1, "runs": [["o", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "zz"}, "expect": [{"end": 2, "runs": [["zz", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "US"}, "expect": [{"end": 2, "runs": [["US", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"The \"\"Burbs\""}, "expect": [{"end": 13, "runs": [["The \"Burbs", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:Ritchson,Sten"}, "expect": [{"end": 18, "runs": [["cast:Ritchson,Sten", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"Alan Ritchson, Maria Sten\""}, "expect": [{"end": 32, "runs": [["cast:", false], ["Alan Ritchson, Maria Sten", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "actors:x"}, "expect": [{"end": 8, "runs": [["actors:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "KIND:tv"}, "expect": [{"end": 7, "runs": [["KIND:tv", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:>=2026"}, "expect": [{"end": 10, "runs": [["tag:>=2026", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "CA"}, "expect": [{"end": 2, "runs": [["CA", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:'Alan Ritchson'"}, "expect": [{"end": 10, "runs": [["cast:'Alan", false]], "start": 0}, {"end": 20, "runs": [["Ritchson'", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "cast:\"Josh O'Connor\""}, "expect": [{"end": 20, "runs": [["cast:", false], ["Josh O'Connor", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"a\" cast:'Le Guin'"}, "expect": [{"end": 3, "runs": [["a", true]], "start": 0}, {"end": 12, "runs": [["cast:'Le", false]], "start": 4}, {"end": 18, "runs": [["Guin'", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "a.b:c"}, "expect": [{"end": 5, "runs": [["a.b:c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.nonsense:c"}, "expect": [{"end": 20, "runs": [["sequel-of.nonsense:c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nonsense.year:2021"}, "expect": [{"end": 18, "runs": [["nonsense.year:2021", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of:dune"}, "expect": [{"end": 14, "runs": [["sequel-of:dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"Fallout (TV)\""}, "expect": [{"end": 14, "runs": [["Fallout (TV)", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "has:a has:b"}, "expect": [{"end": 5, "runs": [["has:a", false]], "start": 0}, {"end": 11, "runs": [["has:b", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "has:a,b"}, "expect": [{"end": 7, "runs": [["has:a,b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-has:a,b"}, "expect": [{"end": 8, "runs": [["-has:a,b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "has:a"}, "expect": [{"end": 5, "runs": [["has:a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:\""}, "expect": [{"end": 6, "runs": [["name:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "name:\"x \"\"y\"\" "}, "expect": [{"end": 14, "runs": [["name:", false], ["x \"y\" ", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "Y"}, "expect": [{"end": 1, "runs": [["Y", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:v"}, "expect": [{"end": 5, "runs": [["tag:v", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u043d\u0435\u0442"}, "expect": [{"end": 3, "runs": [["\u043d\u0435\u0442", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0441\u043a\u043e\u0440\u043e"}, "expect": [{"end": 5, "runs": [["\u0441\u043a\u043e\u0440\u043e", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0627\u0644\u0631\u0633\u0627\u0644\u0629"}, "expect": [{"end": 7, "runs": [["\u0627\u0644\u0631\u0633\u0627\u0644\u0629", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0639\u0631\u0628\u064a"}, "expect": [{"end": 4, "runs": [["\u0639\u0631\u0628\u064a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u6f22\u5b57"}, "expect": [{"end": 2, "runs": [["\u6f22\u5b57", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u85ac\u5c4b"}, "expect": [{"end": 2, "runs": [["\u85ac\u5c4b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u30f1\u30f4\u30a1"}, "expect": [{"end": 3, "runs": [["\u30f1\u30f4\u30a1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud55c\uad6d\uc5b4"}, "expect": [{"end": 3, "runs": [["\ud55c\uad6d\uc5b4", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83c\uddef\ud83c\uddf5"}, "expect": [{"end": 2, "runs": [["\ud83c\uddef\ud83c\uddf5", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": [{"end": 5, "runs": [["\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83d\ude00"}, "expect": [{"end": 1, "runs": [["\ud83d\ude00", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "x\u0301"}, "expect": [{"end": 2, "runs": [["x\u0301", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "e\u0301\u0301"}, "expect": [{"end": 3, "runs": [["e\u0301\u0301", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0000"}, "expect": [{"end": 1, "runs": [["\u0000", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a\u0000b"}, "expect": [{"end": 3, "runs": [["a\u0000b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u2014"}, "expect": [{"end": 1, "runs": [["\u2014", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u2013"}, "expect": [{"end": 1, "runs": [["\u2013", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\uff1a"}, "expect": [{"end": 1, "runs": [["\uff1a", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\uff08"}, "expect": [{"end": 1, "runs": [["\uff08", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\uff09"}, "expect": [{"end": 1, "runs": [["\uff09", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u201c"}, "expect": [{"end": 1, "runs": [["\u201c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u201d"}, "expect": [{"end": 1, "runs": [["\u201d", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u202e"}, "expect": [{"end": 1, "runs": [["\u202e", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u200b"}, "expect": [{"end": 1, "runs": [["\u200b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u3000"}, "expect": []}
+{"case": {"op": "lex", "source": "\uff24"}, "expect": [{"end": 1, "runs": [["\uff24", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u00df"}, "expect": [{"end": 1, "runs": [["\u00df", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0130"}, "expect": [{"end": 1, "runs": [["\u0130", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "'\""}, "expect": [{"end": 2, "runs": [["'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nope:"}, "expect": [{"end": 5, "runs": [["nope:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": " OR "}, "expect": [{"end": 3, "runs": [["OR", false]], "start": 1}]}
+{"case": {"op": "lex", "source": ","}, "expect": [{"end": 1, "runs": [[",", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ">"}, "expect": [{"end": 1, "runs": [[">", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "depth"}, "expect": [{"end": 5, "runs": [["depth", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:none,horror -tag:none"}, "expect": [{"end": 15, "runs": [["tag:none,horror", false]], "start": 0}, {"end": 25, "runs": [["-tag:none", false]], "start": 16}]}
+{"case": {"op": "lex", "source": "a OR () b"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 7, "runs": [["()", false]], "start": 5}, {"end": 9, "runs": [["b", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "-(-(kind:tv))"}, "expect": [{"end": 13, "runs": [["-(-(kind:tv))", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ")))((("}, "expect": [{"end": 6, "runs": [[")))(((", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:'Alan Ritchson' Don't"}, "expect": [{"end": 10, "runs": [["cast:'Alan", false]], "start": 0}, {"end": 20, "runs": [["Ritchson'", false]], "start": 11}, {"end": 26, "runs": [["Don't", false]], "start": 21}]}
+{"case": {"op": "lex", "source": "on:netflix@us year:>=2020 is:early-access"}, "expect": [{"end": 13, "runs": [["on:netflix@us", false]], "start": 0}, {"end": 25, "runs": [["year:>=2020", false]], "start": 14}, {"end": 41, "runs": [["is:early-access", false]], "start": 26}]}
+{"case": {"op": "lex", "source": "seed"}, "expect": [{"end": 4, "runs": [["seed", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\",:-!@"}, "expect": [{"end": 6, "runs": [[",:-!@", true]], "start": 0}]}
+{"case": {"op": "lex", "source": ".."}, "expect": [{"end": 2, "runs": [["..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "bare"}, "expect": [{"end": 4, "runs": [["bare", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "flag"}, "expect": [{"end": 4, "runs": [["flag", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "path"}, "expect": [{"end": 4, "runs": [["path", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "absent"}, "expect": [{"end": 6, "runs": [["absent", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Stra\u00dfe"}, "expect": [{"end": 6, "runs": [["Stra\u00dfe", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0130stanbul"}, "expect": [{"end": 8, "runs": [["\u0130stanbul", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ufb01lm noir"}, "expect": [{"end": 3, "runs": [["\ufb01lm", false]], "start": 0}, {"end": 8, "runs": [["noir", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "\u0440\u043f\u0433"}, "expect": [{"end": 3, "runs": [["\u0440\u043f\u0433", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u30f1\u30f4\u30a1\u30f3\u30b2\u30ea\u30f2\u30f3\u65b0\u5287\u5834\u7248"}, "expect": [{"end": 12, "runs": [["\u30f1\u30f4\u30a1\u30f3\u30b2\u30ea\u30f2\u30f3\u65b0\u5287\u5834\u7248", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u85ac\u5c4b\u306e\u3072\u3068\u308a\u3054\u3068"}, "expect": [{"end": 8, "runs": [["\u85ac\u5c4b\u306e\u3072\u3068\u308a\u3054\u3068", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u05e2\u05dc\u05de\u05d4"}, "expect": [{"end": 4, "runs": [["\u05e2\u05dc\u05de\u05d4", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Ai\u200bka"}, "expect": [{"end": 5, "runs": [["Ai\u200bka", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u202eevil\u202c"}, "expect": [{"end": 6, "runs": [["\u202eevil\u202c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83c\uddef\ud83c\uddf5 emoji \ud83d\ude00"}, "expect": [{"end": 2, "runs": [["\ud83c\uddef\ud83c\uddf5", false]], "start": 0}, {"end": 8, "runs": [["emoji", false]], "start": 3}, {"end": 10, "runs": [["\ud83d\ude00", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "\u3000leading ideographic space"}, "expect": [{"end": 8, "runs": [["leading", false]], "start": 1}, {"end": 20, "runs": [["ideographic", false]], "start": 9}, {"end": 26, "runs": [["space", false]], "start": 21}]}
+{"case": {"op": "lex", "source": "\u01c5ezva"}, "expect": [{"end": 5, "runs": [["\u01c5ezva", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u216f\u216d\u216f\u216c\u2169\u2169"}, "expect": [{"end": 6, "runs": [["\u216f\u216d\u216f\u216c\u2169\u2169", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:"}, "expect": [{"end": 3, "runs": [["is:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u043d\u0435\u0442:1"}, "expect": [{"end": 5, "runs": [["\u043d\u0435\u0442:1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv \u0646\u0639\u0645:x"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 13, "runs": [["\u0646\u0639\u0645:x", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "\u0646\u0639\u0645"}, "expect": [{"end": 3, "runs": [["\u0646\u0639\u0645", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(year:\u0441\u043a\u043e\u0440\u043e"}, "expect": [{"end": 11, "runs": [["(year:\u0441\u043a\u043e\u0440\u043e", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\u0441\u043a\u043e\u0440\u043e"}, "expect": [{"end": 10, "runs": [["year:\u0441\u043a\u043e\u0440\u043e", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\u6f22\u5b57"}, "expect": [{"end": 7, "runs": [["year:\u6f22\u5b57", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83c\uddef\ud83c\uddf5:x"}, "expect": [{"end": 4, "runs": [["\ud83c\uddef\ud83c\uddf5:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x kind:tv"}, "expect": [{"end": 7, "runs": [["\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x", false]], "start": 0}, {"end": 15, "runs": [["kind:tv", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "e\u0301\u0301:x"}, "expect": [{"end": 5, "runs": [["e\u0301\u0301:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a\u0000b:x"}, "expect": [{"end": 5, "runs": [["a\u0000b:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:tv \u2014 year:\u2014"}, "expect": [{"end": 7, "runs": [["kind:tv", false]], "start": 0}, {"end": 9, "runs": [["\u2014", false]], "start": 8}, {"end": 16, "runs": [["year:\u2014", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "year:\u2014"}, "expect": [{"end": 6, "runs": [["year:\u2014", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u202eevil:x"}, "expect": [{"end": 7, "runs": [["\u202eevil:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u202eevil"}, "expect": [{"end": 5, "runs": [["\u202eevil", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\",:\t\n\r"}, "expect": [{"end": 6, "runs": [[",:\t\n\r", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "<"}, "expect": [{"end": 1, "runs": [["<", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ">="}, "expect": [{"end": 2, "runs": [[">=", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "<="}, "expect": [{"end": 2, "runs": [["<=", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "!"}, "expect": [{"end": 1, "runs": [["!", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "numeric"}, "expect": [{"end": 7, "runs": [["numeric", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ab,\"\u00e9"}, "expect": [{"end": 5, "runs": [["ab,", false], ["\u00e9", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "Killing Eve"}, "expect": [{"end": 7, "runs": [["Killing", false]], "start": 0}, {"end": 11, "runs": [["Eve", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "Honey"}, "expect": [{"end": 5, "runs": [["Honey", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "NFC"}, "expect": [{"end": 3, "runs": [["NFC", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "NFD"}, "expect": [{"end": 3, "runs": [["NFD", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "NFKC"}, "expect": [{"end": 4, "runs": [["NFKC", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "NFKD"}, "expect": [{"end": 4, "runs": [["NFKD", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ab:()\"' -|.,<>=\u00e9\t"}, "expect": [{"end": 17, "runs": [["ab:()", false], ["' -|.,<>=\u00e9\t", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "utf-8"}, "expect": [{"end": 5, "runs": [["utf-8", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "'"}, "expect": [{"end": 1, "runs": [["'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "   "}, "expect": []}
+{"case": {"op": "lex", "source": "drama"}, "expect": [{"end": 5, "runs": [["drama", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "s"}, "expect": [{"end": 1, "runs": [["s", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "m"}, "expect": [{"end": 1, "runs": [["m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "h"}, "expect": [{"end": 1, "runs": [["h", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "strict: 300.5 counts, 300 does not"}, "expect": [{"end": 7, "runs": [["strict:", false]], "start": 0}, {"end": 13, "runs": [["300.5", false]], "start": 8}, {"end": 21, "runs": [["counts,", false]], "start": 14}, {"end": 25, "runs": [["300", false]], "start": 22}, {"end": 30, "runs": [["does", false]], "start": 26}, {"end": 34, "runs": [["not", false]], "start": 31}]}
+{"case": {"op": "lex", "source": "the whole minute, not its first instant"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 9, "runs": [["whole", false]], "start": 4}, {"end": 17, "runs": [["minute,", false]], "start": 10}, {"end": 21, "runs": [["not", false]], "start": 18}, {"end": 25, "runs": [["its", false]], "start": 22}, {"end": 31, "runs": [["first", false]], "start": 26}, {"end": 39, "runs": [["instant", false]], "start": 32}]}
+{"case": {"op": "lex", "source": "a point stays a point"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 7, "runs": [["point", false]], "start": 2}, {"end": 13, "runs": [["stays", false]], "start": 8}, {"end": 15, "runs": [["a", false]], "start": 14}, {"end": 21, "runs": [["point", false]], "start": 16}]}
+{"case": {"op": "lex", "source": "after the minute: from its end"}, "expect": [{"end": 5, "runs": [["after", false]], "start": 0}, {"end": 9, "runs": [["the", false]], "start": 6}, {"end": 17, "runs": [["minute:", false]], "start": 10}, {"end": 22, "runs": [["from", false]], "start": 18}, {"end": 26, "runs": [["its", false]], "start": 23}, {"end": 30, "runs": [["end", false]], "start": 27}]}
+{"case": {"op": "lex", "source": "before any of it"}, "expect": [{"end": 6, "runs": [["before", false]], "start": 0}, {"end": 10, "runs": [["any", false]], "start": 7}, {"end": 13, "runs": [["of", false]], "start": 11}, {"end": 16, "runs": [["it", false]], "start": 14}]}
+{"case": {"op": "lex", "source": "up to and including all of it"}, "expect": [{"end": 2, "runs": [["up", false]], "start": 0}, {"end": 5, "runs": [["to", false]], "start": 3}, {"end": 9, "runs": [["and", false]], "start": 6}, {"end": 19, "runs": [["including", false]], "start": 10}, {"end": 23, "runs": [["all", false]], "start": 20}, {"end": 26, "runs": [["of", false]], "start": 24}, {"end": 29, "runs": [["it", false]], "start": 27}]}
+{"case": {"op": "lex", "source": "a span start, a point end (inclusive)"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 6, "runs": [["span", false]], "start": 2}, {"end": 13, "runs": [["start,", false]], "start": 7}, {"end": 15, "runs": [["a", false]], "start": 14}, {"end": 21, "runs": [["point", false]], "start": 16}, {"end": 25, "runs": [["end", false]], "start": 22}, {"end": 37, "runs": [["(inclusive)", false]], "start": 26}]}
+{"case": {"op": "lex", "source": "import sys, textual_catsearch as c; assert 'textual' not in sys.modules, 'textual imported'; c.SearchBar; assert 'textual' in sys.modules"}, "expect": [{"end": 6, "runs": [["import", false]], "start": 0}, {"end": 11, "runs": [["sys,", false]], "start": 7}, {"end": 29, "runs": [["textual_catsearch", false]], "start": 12}, {"end": 32, "runs": [["as", false]], "start": 30}, {"end": 35, "runs": [["c;", false]], "start": 33}, {"end": 42, "runs": [["assert", false]], "start": 36}, {"end": 52, "runs": [["'textual'", false]], "start": 43}, {"end": 56, "runs": [["not", false]], "start": 53}, {"end": 59, "runs": [["in", false]], "start": 57}, {"end": 72, "runs": [["sys.modules,", false]], "start": 60}, {"end": 81, "runs": [["'textual", false]], "start": 73}, {"end": 92, "runs": [["imported';", false]], "start": 82}, {"end": 105, "runs": [["c.SearchBar;", false]], "start": 93}, {"end": 112, "runs": [["assert", false]], "start": 106}, {"end": 122, "runs": [["'textual'", false]], "start": 113}, {"end": 125, "runs": [["in", false]], "start": 123}, {"end": 137, "runs": [["sys.modules", false]], "start": 126}]}
+{"case": {"op": "lex", "source": "quick"}, "expect": [{"end": 5, "runs": [["quick", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "edge"}, "expect": [{"end": 4, "runs": [["edge", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "exact"}, "expect": [{"end": 5, "runs": [["exact", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "long"}, "expect": [{"end": 4, "runs": [["long", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took:soon"}, "expect": [{"end": 9, "runs": [["took:soon", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "before"}, "expect": [{"end": 6, "runs": [["before", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "start"}, "expect": [{"end": 5, "runs": [["start", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "inside"}, "expect": [{"end": 6, "runs": [["inside", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "next"}, "expect": [{"end": 4, "runs": [["next", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "took"}, "expect": [{"end": 4, "runs": [["took", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "x"}, "expect": [{"end": 1, "runs": [["x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(\\d{2}):(\\d{2})"}, "expect": [{"end": 15, "runs": [["(\\d{2}):(\\d{2})", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(\\d{2}):(\\d{2}):(\\d{2})"}, "expect": [{"end": 23, "runs": [["(\\d{2}):(\\d{2}):(\\d{2})", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at"}, "expect": [{"end": 2, "runs": [["at", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:14:30"}, "expect": [{"end": 8, "runs": [["at:14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:14:30:00"}, "expect": [{"end": 11, "runs": [["at:14:30:00", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:>14:30"}, "expect": [{"end": 9, "runs": [["at:>14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:>=14:30"}, "expect": [{"end": 10, "runs": [["at:>=14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:<14:30"}, "expect": [{"end": 9, "runs": [["at:<14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:<=14:30"}, "expect": [{"end": 10, "runs": [["at:<=14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:14:29..14:30"}, "expect": [{"end": 15, "runs": [["at:14:29..14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:..14:30"}, "expect": [{"end": 10, "runs": [["at:..14:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:14:30.."}, "expect": [{"end": 10, "runs": [["at:14:30..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:14:30..14:30:30"}, "expect": [{"end": 18, "runs": [["at:14:30..14:30:30", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "e"}, "expect": [{"end": 1, "runs": [["e", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-c"}, "expect": [{"end": 2, "runs": [["-c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(\\d+(?:\\.\\d+)?)([smh]?)"}, "expect": [{"end": 23, "runs": [["(\\d+(?:\\.\\d+)?)([smh]?)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "02d"}, "expect": [{"end": 3, "runs": [["02d", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:x"}, "expect": [{"end": 4, "runs": [["at:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:<"}, "expect": [{"end": 6, "runs": [["year:<", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "at:"}, "expect": [{"end": 3, "runs": [["at:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a comma list of alternatives, as any field"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 7, "runs": [["comma", false]], "start": 2}, {"end": 12, "runs": [["list", false]], "start": 8}, {"end": 15, "runs": [["of", false]], "start": 13}, {"end": 29, "runs": [["alternatives,", false]], "start": 16}, {"end": 32, "runs": [["as", false]], "start": 30}, {"end": 36, "runs": [["any", false]], "start": 33}, {"end": 42, "runs": [["field", false]], "start": 37}]}
+{"case": {"op": "lex", "source": "a dotted key that is no path is asked whole"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 8, "runs": [["dotted", false]], "start": 2}, {"end": 12, "runs": [["key", false]], "start": 9}, {"end": 17, "runs": [["that", false]], "start": 13}, {"end": 20, "runs": [["is", false]], "start": 18}, {"end": 23, "runs": [["no", false]], "start": 21}, {"end": 28, "runs": [["path", false]], "start": 24}, {"end": 31, "runs": [["is", false]], "start": 29}, {"end": 37, "runs": [["asked", false]], "start": 32}, {"end": 43, "runs": [["whole", false]], "start": 38}]}
+{"case": {"op": "lex", "source": "the declared level, not the data's key"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 12, "runs": [["declared", false]], "start": 4}, {"end": 19, "runs": [["level,", false]], "start": 13}, {"end": 23, "runs": [["not", false]], "start": 20}, {"end": 27, "runs": [["the", false]], "start": 24}, {"end": 34, "runs": [["data's", false]], "start": 28}, {"end": 38, "runs": [["key", false]], "start": 35}]}
+{"case": {"op": "lex", "source": "a declared path"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 10, "runs": [["declared", false]], "start": 2}, {"end": 15, "runs": [["path", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "declared names are read in any case"}, "expect": [{"end": 8, "runs": [["declared", false]], "start": 0}, {"end": 14, "runs": [["names", false]], "start": 9}, {"end": 18, "runs": [["are", false]], "start": 15}, {"end": 23, "runs": [["read", false]], "start": 19}, {"end": 26, "runs": [["in", false]], "start": 24}, {"end": 30, "runs": [["any", false]], "start": 27}, {"end": 35, "runs": [["case", false]], "start": 31}]}
+{"case": {"op": "lex", "source": "the declared field, not the data's key again"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 12, "runs": [["declared", false]], "start": 4}, {"end": 19, "runs": [["field,", false]], "start": 13}, {"end": 23, "runs": [["not", false]], "start": 20}, {"end": 27, "runs": [["the", false]], "start": 24}, {"end": 34, "runs": [["data's", false]], "start": 28}, {"end": 38, "runs": [["key", false]], "start": 35}, {"end": 44, "runs": [["again", false]], "start": 39}]}
+{"case": {"op": "lex", "source": "a dotted key completes whole"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 8, "runs": [["dotted", false]], "start": 2}, {"end": 12, "runs": [["key", false]], "start": 9}, {"end": 22, "runs": [["completes", false]], "start": 13}, {"end": 28, "runs": [["whole", false]], "start": 23}]}
+{"case": {"op": "lex", "source": "c"}, "expect": [{"end": 1, "runs": [["c", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "userId:7 http.status:503"}, "expect": [{"end": 8, "runs": [["userId:7", false]], "start": 0}, {"end": 24, "runs": [["http.status:503", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "k0:x"}, "expect": [{"end": 4, "runs": [["k0:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "k0"}, "expect": [{"end": 2, "runs": [["k0", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a key"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 5, "runs": [["key", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "nope"}, "expect": [{"end": 4, "runs": [["nope", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "level"}, "expect": [{"end": 5, "runs": [["level", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status"}, "expect": [{"end": 6, "runs": [["status", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "userId"}, "expect": [{"end": 6, "runs": [["userId", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "http.status"}, "expect": [{"end": 11, "runs": [["http.status", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "500"}, "expect": [{"end": 3, "runs": [["500", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "7"}, "expect": [{"end": 1, "runs": [["7", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "503"}, "expect": [{"end": 3, "runs": [["503", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "200"}, "expect": [{"end": 3, "runs": [["200", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "9"}, "expect": [{"end": 1, "runs": [["9", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-status:500"}, "expect": [{"end": 11, "runs": [["-status:500", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status:none"}, "expect": [{"end": 11, "runs": [["status:none", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "parent.level:3"}, "expect": [{"end": 14, "runs": [["parent.level:3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Level"}, "expect": [{"end": 5, "runs": [["Level", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "k"}, "expect": [{"end": 1, "runs": [["k", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Status:1"}, "expect": [{"end": 8, "runs": [["Status:1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "le"}, "expect": [{"end": 2, "runs": [["le", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "level:"}, "expect": [{"end": 6, "runs": [["level:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "st"}, "expect": [{"end": 2, "runs": [["st", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status:"}, "expect": [{"end": 7, "runs": [["status:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "u"}, "expect": [{"end": 1, "runs": [["u", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "userId:"}, "expect": [{"end": 7, "runs": [["userId:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "http.s"}, "expect": [{"end": 6, "runs": [["http.s", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "http.status:"}, "expect": [{"end": 12, "runs": [["http.status:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-st"}, "expect": [{"end": 3, "runs": [["-st", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-status:"}, "expect": [{"end": 8, "runs": [["-status:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "parent"}, "expect": [{"end": 6, "runs": [["parent", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "status:500 status:200 -status:1"}, "expect": [{"end": 10, "runs": [["status:500", false]], "start": 0}, {"end": 21, "runs": [["status:200", false]], "start": 11}, {"end": 31, "runs": [["-status:1", false]], "start": 22}]}
+{"case": {"op": "lex", "source": "status:200"}, "expect": [{"end": 10, "runs": [["status:200", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "not the key"}, "expect": [{"end": 3, "runs": [["not", false]], "start": 0}, {"end": 7, "runs": [["the", false]], "start": 4}, {"end": 11, "runs": [["key", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "<>"}, "expect": [{"end": 2, "runs": [["<>", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "<>="}, "expect": [{"end": 3, "runs": [["<>=", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title"}, "expect": [{"end": 5, "runs": [["title", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Title"}, "expect": [{"end": 5, "runs": [["Title", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a.b"}, "expect": [{"end": 3, "runs": [["a.b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a:b"}, "expect": [{"end": 3, "runs": [["a:b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-neg"}, "expect": [{"end": 4, "runs": [["-neg", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "with space"}, "expect": [{"end": 4, "runs": [["with", false]], "start": 0}, {"end": 10, "runs": [["space", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Actor"}, "expect": [{"end": 5, "runs": [["Actor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-to"}, "expect": [{"end": 9, "runs": [["sequel-to", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:watched x"}, "expect": [{"end": 10, "runs": [["is:watched", false]], "start": 0}, {"end": 12, "runs": [["x", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "is:upcoming tag:horror"}, "expect": [{"end": 11, "runs": [["is:upcoming", false]], "start": 0}, {"end": 22, "runs": [["tag:horror", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "is:watched,blocked"}, "expect": [{"end": 18, "runs": [["is:watched,blocked", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:watched is:blocked"}, "expect": [{"end": 10, "runs": [["is:watched", false]], "start": 0}, {"end": 21, "runs": [["is:blocked", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "blocked"}, "expect": [{"end": 7, "runs": [["blocked", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Disk full"}, "expect": [{"end": 4, "runs": [["Disk", false]], "start": 0}, {"end": 9, "runs": [["full", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "disk ok"}, "expect": [{"end": 4, "runs": [["disk", false]], "start": 0}, {"end": 7, "runs": [["ok", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "ACTORS"}, "expect": [{"end": 6, "runs": [["ACTORS", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Banks"}, "expect": [{"end": 5, "runs": [["Banks", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:available x"}, "expect": [{"end": 12, "runs": [["is:available", false]], "start": 0}, {"end": 14, "runs": [["x", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "is:blocked is:available"}, "expect": [{"end": 10, "runs": [["is:blocked", false]], "start": 0}, {"end": 23, "runs": [["is:available", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "claimed twice"}, "expect": [{"end": 7, "runs": [["claimed", false]], "start": 0}, {"end": 13, "runs": [["twice", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "shadows"}, "expect": [{"end": 7, "runs": [["shadows", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "alias claimed twice"}, "expect": [{"end": 5, "runs": [["alias", false]], "start": 0}, {"end": 13, "runs": [["claimed", false]], "start": 6}, {"end": 19, "runs": [["twice", false]], "start": 14}]}
+{"case": {"op": "lex", "source": "must match"}, "expect": [{"end": 4, "runs": [["must", false]], "start": 0}, {"end": 10, "runs": [["match", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "bare field"}, "expect": [{"end": 4, "runs": [["bare", false]], "start": 0}, {"end": 10, "runs": [["field", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "Horror"}, "expect": [{"end": 6, "runs": [["Horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Comedy"}, "expect": [{"end": 6, "runs": [["Comedy", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Ann"}, "expect": [{"end": 3, "runs": [["Ann", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "y"}, "expect": [{"end": 1, "runs": [["y", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "z"}, "expect": [{"end": 1, "runs": [["z", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "author"}, "expect": [{"end": 6, "runs": [["author", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Neuromancer"}, "expect": [{"end": 11, "runs": [["Neuromancer", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:horror"}, "expect": [{"end": 10, "runs": [["tag:horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:blocked is:upcoming x"}, "expect": [{"end": 10, "runs": [["is:blocked", false]], "start": 0}, {"end": 22, "runs": [["is:upcoming", false]], "start": 11}, {"end": 24, "runs": [["x", false]], "start": 23}]}
+{"case": {"op": "lex", "source": "is:upcoming OR is:available"}, "expect": [{"end": 11, "runs": [["is:upcoming", false]], "start": 0}, {"end": 14, "runs": [["OR", false]], "start": 12}, {"end": 27, "runs": [["is:available", false]], "start": 15}]}
+{"case": {"op": "lex", "source": "-is:upcoming"}, "expect": [{"end": 12, "runs": [["-is:upcoming", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "sequel-of.is:upcoming"}, "expect": [{"end": 21, "runs": [["sequel-of.is:upcoming", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:x"}, "expect": [{"end": 7, "runs": [["title:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:long"}, "expect": [{"end": 7, "runs": [["is:long", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tba"}, "expect": [{"end": 3, "runs": [["tba", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "disk"}, "expect": [{"end": 4, "runs": [["disk", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Disk"}, "expect": [{"end": 4, "runs": [["Disk", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-Disk"}, "expect": [{"end": 5, "runs": [["-Disk", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "t"}, "expect": [{"end": 1, "runs": [["t", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "the rows all have a director"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 8, "runs": [["rows", false]], "start": 4}, {"end": 12, "runs": [["all", false]], "start": 9}, {"end": 17, "runs": [["have", false]], "start": 13}, {"end": 19, "runs": [["a", false]], "start": 18}, {"end": 28, "runs": [["director", false]], "start": 20}]}
+{"case": {"op": "lex", "source": "label"}, "expect": [{"end": 5, "runs": [["label", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "words"}, "expect": [{"end": 5, "runs": [["words", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "apple"}, "expect": [{"end": 5, "runs": [["apple", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "apricot"}, "expect": [{"end": 7, "runs": [["apricot", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "banana"}, "expect": [{"end": 6, "runs": [["banana", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "marked"}, "expect": [{"end": 6, "runs": [["marked", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "every ( is unclosed until its ) is typed"}, "expect": [{"end": 5, "runs": [["every", false]], "start": 0}, {"end": 7, "runs": [["(", false]], "start": 6}, {"end": 10, "runs": [["is", false]], "start": 8}, {"end": 19, "runs": [["unclosed", false]], "start": 11}, {"end": 25, "runs": [["until", false]], "start": 20}, {"end": 29, "runs": [["its", false]], "start": 26}, {"end": 31, "runs": [[")", false]], "start": 30}, {"end": 34, "runs": [["is", false]], "start": 32}, {"end": 40, "runs": [["typed", false]], "start": 35}]}
+{"case": {"op": "lex", "source": "left open, it is marked"}, "expect": [{"end": 4, "runs": [["left", false]], "start": 0}, {"end": 10, "runs": [["open,", false]], "start": 5}, {"end": 13, "runs": [["it", false]], "start": 11}, {"end": 16, "runs": [["is", false]], "start": 14}, {"end": 23, "runs": [["marked", false]], "start": 17}]}
+{"case": {"op": "lex", "source": "values"}, "expect": [{"end": 6, "runs": [["values", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "index"}, "expect": [{"end": 5, "runs": [["index", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u001b[2Jwiped"}, "expect": [{"end": 9, "runs": [["\u001b[2Jwiped", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "two\nlines"}, "expect": [{"end": 3, "runs": [["two", false]], "start": 0}, {"end": 9, "runs": [["lines", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "csi\u009b31m"}, "expect": [{"end": 7, "runs": [["csi\u009b31m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "the end, as typed"}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 8, "runs": [["end,", false]], "start": 4}, {"end": 11, "runs": [["as", false]], "start": 9}, {"end": 17, "runs": [["typed", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "zz[/x]"}, "expect": [{"end": 6, "runs": [["zz[/x]", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "[@click=app.quit]k"}, "expect": [{"end": 18, "runs": [["[@click=app.quit]k", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "[link=https://e.x]l[/]"}, "expect": [{"end": 22, "runs": [["[link=https://e.x]l[/]", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "[b"}, "expect": [{"end": 2, "runs": [["[b", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Sinners"}, "expect": [{"end": 7, "runs": [["Sinners", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Dune: Part Three"}, "expect": [{"end": 5, "runs": [["Dune:", false]], "start": 0}, {"end": 10, "runs": [["Part", false]], "start": 6}, {"end": 16, "runs": [["Three", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "The Long Walk"}, "expect": [{"end": 3, "runs": [["The", false]], "start": 0}, {"end": 8, "runs": [["Long", false]], "start": 4}, {"end": 13, "runs": [["Walk", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "1"}, "expect": [{"end": 1, "runs": [["1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "bucket('available')"}, "expect": [{"end": 19, "runs": [["bucket('available')", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "3"}, "expect": [{"end": 1, "runs": [["3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "bucket('watched')"}, "expect": [{"end": 17, "runs": [["bucket('watched')", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tab"}, "expect": [{"end": 3, "runs": [["tab", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "focus_next"}, "expect": [{"end": 10, "runs": [["focus_next", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "shift+tab"}, "expect": [{"end": 9, "runs": [["shift+tab", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "focus_previous"}, "expect": [{"end": 14, "runs": [["focus_previous", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "SearchBar[Work]"}, "expect": [{"end": 15, "runs": [["SearchBar[Work]", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:u"}, "expect": [{"end": 4, "runs": [["is:u", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:aging"}, "expect": [{"end": 8, "runs": [["is:aging", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:aging kind:movie"}, "expect": [{"end": 8, "runs": [["is:aging", false]], "start": 0}, {"end": 19, "runs": [["kind:movie", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "is:upcoming "}, "expect": [{"end": 11, "runs": [["is:upcoming", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:movie genre:"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}, {"end": 17, "runs": [["genre:", false]], "start": 11}]}
+{"case": {"op": "lex", "source": " gen"}, "expect": [{"end": 4, "runs": [["gen", false]], "start": 1}]}
+{"case": {"op": "lex", "source": "genre:"}, "expect": [{"end": 6, "runs": [["genre:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre:horror"}, "expect": [{"end": 12, "runs": [["genre:horror", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:watched genre:horror "}, "expect": [{"end": 10, "runs": [["is:watched", false]], "start": 0}, {"end": 23, "runs": [["genre:horror", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "is:available genre:horror "}, "expect": [{"end": 12, "runs": [["is:available", false]], "start": 0}, {"end": 25, "runs": [["genre:horror", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "not a number"}, "expect": [{"end": 3, "runs": [["not", false]], "start": 0}, {"end": 5, "runs": [["a", false]], "start": 4}, {"end": 12, "runs": [["number", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "dir sin"}, "expect": [{"end": 3, "runs": [["dir", false]], "start": 0}, {"end": 7, "runs": [["sin", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "nope:1 kind:movie"}, "expect": [{"end": 6, "runs": [["nope:1", false]], "start": 0}, {"end": 17, "runs": [["kind:movie", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "kind:movie year:soon"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}, {"end": 20, "runs": [["year:soon", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "(kind:movie"}, "expect": [{"end": 11, "runs": [["(kind:movie", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:movie)"}, "expect": [{"end": 11, "runs": [["kind:movie)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "title:O.Connor"}, "expect": [{"end": 14, "runs": [["title:O.Connor", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:movie year:>|"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}, {"end": 18, "runs": [["year:>|", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "year:>|"}, "expect": [{"end": 7, "runs": [["year:>|", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0646\u0639\u0645:x"}, "expect": [{"end": 5, "runs": [["\u0646\u0639\u0645:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u6f22\u5b57:1 kind:movie"}, "expect": [{"end": 4, "runs": [["\u6f22\u5b57:1", false]], "start": 0}, {"end": 15, "runs": [["kind:movie", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "\uff24\uff35\uff2e\uff25:x"}, "expect": [{"end": 6, "runs": [["\uff24\uff35\uff2e\uff25:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x"}, "expect": [{"end": 7, "runs": [["\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:\u2014 kind:movie"}, "expect": [{"end": 6, "runs": [["year:\u2014", false]], "start": 0}, {"end": 17, "runs": [["kind:movie", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "title:caf\u00e9 title:\u043f\u0440\u043e\u0435\u043a\u0442"}, "expect": [{"end": 10, "runs": [["title:caf\u00e9", false]], "start": 0}, {"end": 23, "runs": [["title:\u043f\u0440\u043e\u0435\u043a\u0442", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "nope: not a field"}, "expect": [{"end": 5, "runs": [["nope:", false]], "start": 0}, {"end": 9, "runs": [["not", false]], "start": 6}, {"end": 11, "runs": [["a", false]], "start": 10}, {"end": 17, "runs": [["field", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "nope\u241b[2J: not a field"}, "expect": [{"end": 9, "runs": [["nope\u241b[2J:", false]], "start": 0}, {"end": 13, "runs": [["not", false]], "start": 10}, {"end": 15, "runs": [["a", false]], "start": 14}, {"end": 21, "runs": [["field", false]], "start": 16}]}
+{"case": {"op": "lex", "source": "\u200d"}, "expect": [{"end": 1, "runs": [["\u200d", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "the caret's word "}, "expect": [{"end": 3, "runs": [["the", false]], "start": 0}, {"end": 11, "runs": [["caret's", false]], "start": 4}, {"end": 16, "runs": [["word", false]], "start": 12}]}
+{"case": {"op": "lex", "source": " is on screen"}, "expect": [{"end": 3, "runs": [["is", false]], "start": 1}, {"end": 6, "runs": [["on", false]], "start": 4}, {"end": 13, "runs": [["screen", false]], "start": 7}]}
+{"case": {"op": "lex", "source": "key"}, "expect": [{"end": 3, "runs": [["key", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "ok"}, "expect": [{"end": 2, "runs": [["ok", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "Dir Sinners"}, "expect": [{"end": 3, "runs": [["Dir", false]], "start": 0}, {"end": 11, "runs": [["Sinners", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "Dir Weapons"}, "expect": [{"end": 3, "runs": [["Dir", false]], "start": 0}, {"end": 11, "runs": [["Weapons", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "Dir Dune"}, "expect": [{"end": 3, "runs": [["Dir", false]], "start": 0}, {"end": 8, "runs": [["Dune", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "Dir Walk"}, "expect": [{"end": 3, "runs": [["Dir", false]], "start": 0}, {"end": 8, "runs": [["Walk", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "#bar"}, "expect": [{"end": 4, "runs": [["#bar", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "genre:horror -is:watched"}, "expect": [{"end": 12, "runs": [["genre:horror", false]], "start": 0}, {"end": 24, "runs": [["-is:watched", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "1/3"}, "expect": [{"end": 3, "runs": [["1/3", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "is:u "}, "expect": [{"end": 4, "runs": [["is:u", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:movie genre:horror"}, "expect": [{"end": 10, "runs": [["kind:movie", false]], "start": 0}, {"end": 23, "runs": [["genre:horror", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "ctrl+backspace"}, "expect": [{"end": 14, "runs": [["ctrl+backspace", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "enter"}, "expect": [{"end": 5, "runs": [["enter", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "space"}, "expect": [{"end": 5, "runs": [["space", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "re:"}, "expect": [{"end": 3, "runs": [["re:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "gen"}, "expect": [{"end": 3, "runs": [["gen", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "year:soon "}, "expect": [{"end": 9, "runs": [["year:soon", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "p"}, "expect": [{"end": 1, "runs": [["p", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "right"}, "expect": [{"end": 5, "runs": [["right", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "left"}, "expect": [{"end": 4, "runs": [["left", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "#rows"}, "expect": [{"end": 5, "runs": [["#rows", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "a\u0000b:x nope:1"}, "expect": [{"end": 5, "runs": [["a\u0000b:x", false]], "start": 0}, {"end": 12, "runs": [["nope:1", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "year:soon nope:1"}, "expect": [{"end": 9, "runs": [["year:soon", false]], "start": 0}, {"end": 16, "runs": [["nope:1", false]], "start": 10}]}
+{"case": {"op": "lex", "source": "not a field"}, "expect": [{"end": 3, "runs": [["not", false]], "start": 0}, {"end": 5, "runs": [["a", false]], "start": 4}, {"end": 11, "runs": [["field", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "nope\u001b[2J:1"}, "expect": [{"end": 10, "runs": [["nope\u001b[2J:1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "home"}, "expect": [{"end": 4, "runs": [["home", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "end"}, "expect": [{"end": 3, "runs": [["end", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "w"}, "expect": [{"end": 1, "runs": [["w", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u6f22"}, "expect": [{"end": 1, "runs": [["\u6f22", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "e\u0301"}, "expect": [{"end": 2, "runs": [["e\u0301", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "bar"}, "expect": [{"end": 3, "runs": [["bar", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "rows"}, "expect": [{"end": 4, "runs": [["rows", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ".catsearch--hint"}, "expect": [{"end": 16, "runs": [[".catsearch--hint", false]], "start": 0}]}
+{"case": {"op": "lex", "source": " kind:movie"}, "expect": [{"end": 11, "runs": [["kind:movie", false]], "start": 1}]}
+{"case": {"op": "lex", "source": "fruit"}, "expect": [{"end": 5, "runs": [["fruit", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "nope:1 "}, "expect": [{"end": 6, "runs": [["nope:1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u001b\n\u009b"}, "expect": [{"end": 1, "runs": [["\u001b", false]], "start": 0}, {"end": 3, "runs": [["\u009b", false]], "start": 2}]}
+{"case": {"op": "lex", "source": "link"}, "expect": [{"end": 4, "runs": [["link", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "NAME:\"us\"  -genre:\"557 OR a"}, "expect": [{"end": 9, "runs": [["NAME:", false], ["us", true]], "start": 0}, {"end": 27, "runs": [["-genre:", false], ["557 OR a", true]], "start": 11}]}
+{"case": {"op": "lex", "source": "name:'1540..2953' !actor:dune"}, "expect": [{"end": 17, "runs": [["name:'1540..2953'", false]], "start": 0}, {"end": 29, "runs": [["!actor:dune", false]], "start": 18}]}
+{"case": {"op": "lex", "source": "\"odyssey=us\""}, "expect": [{"end": 12, "runs": [["odyssey=us", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!cast:'1457',\"x"}, "expect": [{"end": 15, "runs": [["!cast:'1457',", false], ["x", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!genre:\uff11\uff12,>2421,steam\t-sequel-of.theme:78s,\"\u00c5,2929..729"}, "expect": [{"end": 21, "runs": [["!genre:\uff11\uff12,>2421,steam", false]], "start": 0}, {"end": 55, "runs": [["-sequel-of.theme:78s,", false], ["\u00c5,2929..729", true]], "start": 22}]}
+{"case": {"op": "lex", "source": "on:'Chalamet-' \u001c"}, "expect": [{"end": 14, "runs": [["on:'Chalamet-'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "cast:\"1844..362,NONE OR !on:63m,'horror',\"desert"}, "expect": [{"end": 48, "runs": [["cast:", false], ["1844..362,NONE OR !on:63m,'horror',", true], ["desert", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "51m !'\u30f1\u30f4\u30a1body horror' 2067"}, "expect": [{"end": 3, "runs": [["51m", false]], "start": 0}, {"end": 13, "runs": [["!'\u30f1\u30f4\u30a1body", false]], "start": 4}, {"end": 21, "runs": [["horror'", false]], "start": 14}, {"end": 26, "runs": [["2067", false]], "start": 22}]}
+{"case": {"op": "lex", "source": "is:'80m'  -sequel-of.cast:\"144..1766\",\"Part\" OR (!cafe  kind:403..1921  theme:\"Two) genre:\u30f1\u30f4\u30a1,<1476 -prequel-of.on:Part(Two  !Chalamet"}, "expect": [{"end": 8, "runs": [["is:'80m'", false]], "start": 0}, {"end": 44, "runs": [["-sequel-of.cast:", false], ["144..1766", true], [",", false], ["Part", true]], "start": 10}, {"end": 47, "runs": [["OR", false]], "start": 45}, {"end": 54, "runs": [["(!cafe", false]], "start": 48}, {"end": 70, "runs": [["kind:403..1921", false]], "start": 56}, {"end": 134, "runs": [["theme:", false], ["Two) genre:\u30f1\u30f4\u30a1,<1476 -prequel-of.on:Part(Two  !Chalamet", true]], "start": 72}]}
+{"case": {"op": "lex", "source": "-(!62"}, "expect": [{"end": 5, "runs": [["-(!62", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"1795..1722 !'Dune'"}, "expect": [{"end": 19, "runs": [["1795..1722 !'Dune'", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "2635  -actor:a(x  !theme:'\uff24' OR (!<1916 !person:Chalametus,\"x\")"}, "expect": [{"end": 4, "runs": [["2635", false]], "start": 0}, {"end": 16, "runs": [["-actor:a(x", false]], "start": 6}, {"end": 28, "runs": [["!theme:'\uff24'", false]], "start": 18}, {"end": 31, "runs": [["OR", false]], "start": 29}, {"end": 39, "runs": [["(!<1916", false]], "start": 32}, {"end": 63, "runs": [["!person:Chalametus,", false], ["x", true], [")", false]], "start": 40}]}
+{"case": {"op": "lex", "source": "-genre:2169 tag:\"<=2327\",'37x' -title:\"1845..1226,\"1104\",'659..2622' OR cast:\"\u001c\" name:\"2114\",'dune',\"1921..2911\" !on:\"NONEChalamet,\"x"}, "expect": [{"end": 11, "runs": [["-genre:2169", false]], "start": 0}, {"end": 30, "runs": [["tag:", false], ["<=2327", true], [",'37x'", false]], "start": 12}, {"end": 78, "runs": [["-title:", false], ["1845..1226,", true], ["1104", false], [",'659..2622' OR cast:", true]], "start": 31}, {"end": 133, "runs": [[" name:", true], ["2114", false], [",'dune',", true], ["1921..2911", false], [" !on:", true], ["NONEChalamet,", false], ["x", true]], "start": 79}]}
+{"case": {"op": "lex", "source": "-title:none#level,\"557,cafe X:'2346..756','7x',\"cafe '\ud55c\uad6d\uc5b4'"}, "expect": [{"end": 52, "runs": [["-title:none#level,", false], ["557,cafe X:'2346..756','7x',", true], ["cafe", false]], "start": 0}, {"end": 58, "runs": [["'\ud55c\uad6d\uc5b4'", false]], "start": 53}]}
+{"case": {"op": "lex", "source": "\uff11\uff12 (a OR '/api' !\">=1125) !tag:735..253"}, "expect": [{"end": 2, "runs": [["\uff11\uff12", false]], "start": 0}, {"end": 5, "runs": [["(a", false]], "start": 3}, {"end": 8, "runs": [["OR", false]], "start": 6}, {"end": 15, "runs": [["'/api'", false]], "start": 9}, {"end": 39, "runs": [["!", false], [">=1125) !tag:735..253", true]], "start": 16}]}
+{"case": {"op": "lex", "source": "Stra\u00dfe  \"DE\"  x:188"}, "expect": [{"end": 6, "runs": [["Stra\u00dfe", false]], "start": 0}, {"end": 12, "runs": [["DE", true]], "start": 8}, {"end": 19, "runs": [["x:188", false]], "start": 14}]}
+{"case": {"op": "lex", "source": "-reacher500\t-prequel-of."}, "expect": [{"end": 11, "runs": [["-reacher500", false]], "start": 0}, {"end": 24, "runs": [["-prequel-of.", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "\"Dune"}, "expect": [{"end": 5, "runs": [["Dune", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(-prequel-of.actor:DE)"}, "expect": [{"end": 23, "runs": [["-(-prequel-of.actor:DE)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "actors:/api"}, "expect": [{"end": 11, "runs": [["actors:/api", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-nope:'1247' !caf\u00e9"}, "expect": [{"end": 12, "runs": [["-nope:'1247'", false]], "start": 0}, {"end": 18, "runs": [["!caf\u00e9", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "\"\ufb01 GENRE:\"85s\",\"odyssey,969..1077"}, "expect": [{"end": 33, "runs": [["\ufb01 GENRE:", true], ["85s", false], [",", true], ["odyssey,969..1077", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "prequel-of.is:zena\u0000bdaya"}, "expect": [{"end": 24, "runs": [["prequel-of.is:zena\u0000bdaya", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-\"\ufb01\" OR a Dune \"\u0000\""}, "expect": [{"end": 4, "runs": [["-", false], ["\ufb01", true]], "start": 0}, {"end": 7, "runs": [["OR", false]], "start": 5}, {"end": 9, "runs": [["a", false]], "start": 8}, {"end": 14, "runs": [["Dune", false]], "start": 10}, {"end": 18, "runs": [["\u0000", true]], "start": 15}]}
+{"case": {"op": "lex", "source": "-() '<796'"}, "expect": [{"end": 3, "runs": [["-()", false]], "start": 0}, {"end": 10, "runs": [["'<796'", false]], "start": 4}]}
+{"case": {"op": "lex", "source": "2714..970\t(year:>2278,dune,\"the\" OR prequel-of.season:x\u0301,'x',\"1097..1884\" -() -(-season:\"cafe))\tPLATFORM:765..1992"}, "expect": [{"end": 9, "runs": [["2714..970", false]], "start": 0}, {"end": 32, "runs": [["(year:>2278,dune,", false], ["the", true]], "start": 10}, {"end": 35, "runs": [["OR", false]], "start": 33}, {"end": 73, "runs": [["prequel-of.season:x\u0301,'x',", false], ["1097..1884", true]], "start": 36}, {"end": 77, "runs": [["-()", false]], "start": 74}, {"end": 114, "runs": [["-(-season:", false], ["cafe))\tPLATFORM:765..1992", true]], "start": 78}]}
+{"case": {"op": "lex", "source": "!theme:\"reacher_Two,OR,x  a OR \"65m\"  season:'81h'"}, "expect": [{"end": 50, "runs": [["!theme:", false], ["reacher_Two,OR,x  a OR ", true], ["65m", false], ["  season:'81h'", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"<=1142\""}, "expect": [{"end": 8, "runs": [["<=1142", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "\u0085'a'\tTITLE:17h,<1065"}, "expect": [{"end": 4, "runs": [["'a'", false]], "start": 1}, {"end": 20, "runs": [["TITLE:17h,<1065", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "-Dune nope:>=1300 (name:2065..1805\t!cast:\"\u0441\u043a\u043e\u0440\u043e\",\"1068..763\",89..1952)  -(-sequel-of.tag:body horror)  -prequel-of.state:'1356..1372' OR a"}, "expect": [{"end": 5, "runs": [["-Dune", false]], "start": 0}, {"end": 17, "runs": [["nope:>=1300", false]], "start": 6}, {"end": 34, "runs": [["(name:2065..1805", false]], "start": 18}, {"end": 70, "runs": [["!cast:", false], ["\u0441\u043a\u043e\u0440\u043e", true], [",", false], ["1068..763", true], [",89..1952)", false]], "start": 35}, {"end": 93, "runs": [["-(-sequel-of.tag:body", false]], "start": 72}, {"end": 101, "runs": [["horror)", false]], "start": 94}, {"end": 133, "runs": [["-prequel-of.state:'1356..1372'", false]], "start": 103}, {"end": 136, "runs": [["OR", false]], "start": 134}, {"end": 138, "runs": [["a", false]], "start": 137}]}
+{"case": {"op": "lex", "source": "-((!state:'e\u0301\u0301' !\u0149) actor:651..1744 \"\ud835\udd18\ud835\udd2b\ud835\udd26)"}, "expect": [{"end": 15, "runs": [["-((!state:'e\u0301\u0301'", false]], "start": 0}, {"end": 19, "runs": [["!\u0149)", false]], "start": 16}, {"end": 35, "runs": [["actor:651..1744", false]], "start": 20}, {"end": 41, "runs": [["\ud835\udd18\ud835\udd2b\ud835\udd26)", true]], "start": 36}]}
+{"case": {"op": "lex", "source": "(platform:\"none)  season:26"}, "expect": [{"end": 27, "runs": [["(platform:", false], ["none)  season:26", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "kind:>=1510  prequel-of.cast:\">=2970  on:\"netflixnone\",\"horror"}, "expect": [{"end": 11, "runs": [["kind:>=1510", false]], "start": 0}, {"end": 62, "runs": [["prequel-of.cast:", false], [">=2970  on:", true], ["netflixnone", false], [",", true], ["horror", false]], "start": 13}]}
+{"case": {"op": "lex", "source": "-()"}, "expect": [{"end": 3, "runs": [["-()", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(actor:Sci-Fi  !\"Sci-Fi=\u0411\u0440\u0430\u0442 OR a  is:\"horror\",\"2974) -PREQUEL-OF.IS:x,>=291 x:500"}, "expect": [{"end": 13, "runs": [["(actor:Sci-Fi", false]], "start": 0}, {"end": 53, "runs": [["!", false], ["Sci-Fi=\u0411\u0440\u0430\u0442 OR a  is:", true], ["horror", false], [",", true], ["2974)", false]], "start": 15}, {"end": 76, "runs": [["-PREQUEL-OF.IS:x,>=291", false]], "start": 54}, {"end": 82, "runs": [["x:500", false]], "start": 77}]}
+{"case": {"op": "lex", "source": "!season:x"}, "expect": [{"end": 9, "runs": [["!season:x", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "!\"Two\" person:2917,\"<1882\",\"steam -(is:\"50h\t!sequel-of.actor:desert,'d"}, "expect": [{"end": 6, "runs": [["!", false], ["Two", true]], "start": 0}, {"end": 43, "runs": [["person:2917,", false], ["<1882", true], [",", false], ["steam -(is:", true], ["50h", false]], "start": 7}, {"end": 70, "runs": [["!sequel-of.actor:desert,'d", false]], "start": 44}]}
+{"case": {"op": "lex", "source": "!theme:\"\ud83d\ude00,\"311..777,/api_none  -season:us  ()"}, "expect": [{"end": 29, "runs": [["!theme:", false], ["\ud83d\ude00,", true], ["311..777,/api_none", false]], "start": 0}, {"end": 41, "runs": [["-season:us", false]], "start": 31}, {"end": 45, "runs": [["()", false]], "start": 43}]}
+{"case": {"op": "lex", "source": "-(-is:\"\u00df\"\ttitle:\"\u201c\"\t->2291 OR state:'Sci-Fireacher'  nope:xhorror,\"1120\" OR actors:544..2150) a OR (!theme:58m -cast:dune,\"1220..128,le"}, "expect": [{"end": 9, "runs": [["-(-is:", false], ["\u00df", true]], "start": 0}, {"end": 19, "runs": [["title:", false], ["\u201c", true]], "start": 10}, {"end": 26, "runs": [["->2291", false]], "start": 20}, {"end": 29, "runs": [["OR", false]], "start": 27}, {"end": 51, "runs": [["state:'Sci-Fireacher'", false]], "start": 30}, {"end": 72, "runs": [["nope:xhorror,", false], ["1120", true]], "start": 53}, {"end": 75, "runs": [["OR", false]], "start": 73}, {"end": 93, "runs": [["actors:544..2150)", false]], "start": 76}, {"end": 95, "runs": [["a", false]], "start": 94}, {"end": 98, "runs": [["OR", false]], "start": 96}, {"end": 110, "runs": [["(!theme:58m", false]], "start": 99}, {"end": 135, "runs": [["-cast:dune,", false], ["1220..128,le", true]], "start": 111}]}
+{"case": {"op": "lex", "source": "prequel-o\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67f.person:18s \">=2425"}, "expect": [{"end": 26, "runs": [["prequel-o\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67f.person:18s", false]], "start": 0}, {"end": 34, "runs": [[">=2425", true]], "start": 27}]}
+{"case": {"op": "lex", "source": "season:\"11\",\"44x\" -actors:\">=1274 (is:\"none\"zendaya,'Stra\u00dfe'\t-(is:a)\tis:odyssey !actor:\"1868..1105 OR us)"}, "expect": [{"end": 17, "runs": [["season:", false], ["11", true], [",", false], ["44x", true]], "start": 0}, {"end": 98, "runs": [["-actors:", false], [">=1274 (is:", true], ["none", false], ["zendaya,'Stra\u00dfe'\t-(is:a)\tis:odyssey !actor:", true], ["1868..1105", false]], "start": 18}, {"end": 101, "runs": [["OR", false]], "start": 99}, {"end": 105, "runs": [["us)", false]], "start": 102}]}
+{"case": {"op": "lex", "source": "(prequel-of.state:\"/api,\u0411\u0440\u0430\u0442'netflix,x:Stra\u00dfe !year:'330',body horrorb)"}, "expect": [{"end": 71, "runs": [["(prequel-of.state:", false], ["/api,\u0411\u0440\u0430\u0442'netflix,x:Stra\u00dfe !year:'330',body horrorb)", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-OR\t\"51m\""}, "expect": [{"end": 3, "runs": [["-OR", false]], "start": 0}, {"end": 9, "runs": [["51m", true]], "start": 4}]}
+{"case": {"op": "lex", "source": "title:\u201c  kind:\u0411\u0440\u0430\u0442,\"dune  is:>1563"}, "expect": [{"end": 7, "runs": [["title:\u201c", false]], "start": 0}, {"end": 34, "runs": [["kind:\u0411\u0440\u0430\u0442,", false], ["dune  is:>1563", true]], "start": 9}]}
+{"case": {"op": "lex", "source": "-((-prequel-of.actors:caf\u00e9)\t-Stra\u00dfe\t-()) -() -(sequel-of.is:'horror')"}, "expect": [{"end": 27, "runs": [["-((-prequel-of.actors:caf\u00e9)", false]], "start": 0}, {"end": 35, "runs": [["-Stra\u00dfe", false]], "start": 28}, {"end": 40, "runs": [["-())", false]], "start": 36}, {"end": 44, "runs": [["-()", false]], "start": 41}, {"end": 69, "runs": [["-(sequel-of.is:'horror')", false]], "start": 45}]}
+{"case": {"op": "lex", "source": "x:\"2933..611\",5s,\"\u00c5  '60'  x:\"2123..2231\""}, "expect": [{"end": 41, "runs": [["x:", false], ["2933..611", true], [",5s,", false], ["\u00c5  '60'  x:", true], ["2123..2231", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "zendaya"}, "expect": [{"end": 7, "runs": [["zendaya", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(-\"2213..1531 !sequel-of.genre:'x'"}, "expect": [{"end": 34, "runs": [["(-", false], ["2213..1531 !sequel-of.genre:'x'", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-\u2014X:\"1828\",'b-dune',\"<652\" a OR -nope:\"2422\",'Chalamet',OR\tSEQUEL-OF.PLATFORM:'\u03c2',\"Chalamet,OR\t!is:Dune,\"\u1e9e\",'Stra\u00dfe' genre:Two,>=811,\"<2111\" OR -(!'caf\u00e9') !cast:x"}, "expect": [{"end": 26, "runs": [["-\u2014X:", false], ["1828", true], [",'b-dune',", false], ["<652", true]], "start": 0}, {"end": 28, "runs": [["a", false]], "start": 27}, {"end": 31, "runs": [["OR", false]], "start": 29}, {"end": 58, "runs": [["-nope:", false], ["2422", true], [",'Chalamet',OR", false]], "start": 32}, {"end": 162, "runs": [["SEQUEL-OF.PLATFORM:'\u03c2',", false], ["Chalamet,OR\t!is:Dune,", true], ["\u1e9e", false], [",'Stra\u00dfe' genre:Two,>=811,", true], ["<2111", false], [" OR -(!'caf\u00e9') !cast:x", true]], "start": 59}]}
+{"case": {"op": "lex", "source": "OR_\u043d\u0435\u0442OR"}, "expect": [{"end": 8, "runs": [["OR_\u043d\u0435\u0442OR", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "prequel-of.on:'34x'  ()"}, "expect": [{"end": 19, "runs": [["prequel-of.on:'34x'", false]], "start": 0}, {"end": 23, "runs": [["()", false]], "start": 21}]}
+{"case": {"op": "lex", "source": "-\"<=1384\" -((director:'500',\"943..2127,'level(\u0411\u0440\u0430\u0442')) PERSON:422..5\ud55c\uad6d\uc5b445"}, "expect": [{"end": 9, "runs": [["-", false], ["<=1384", true]], "start": 0}, {"end": 72, "runs": [["-((director:'500',", false], ["943..2127,'level(\u0411\u0440\u0430\u0442')) PERSON:422..5\ud55c\uad6d\uc5b445", true]], "start": 10}]}
+{"case": {"op": "lex", "source": "person:\"Chalamet"}, "expect": [{"end": 16, "runs": [["person:", false], ["Chalamet", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "state:68 !\">=2003"}, "expect": [{"end": 8, "runs": [["state:68", false]], "start": 0}, {"end": 17, "runs": [["!", false], [">=2003", true]], "start": 9}]}
+{"case": {"op": "lex", "source": "a OR -\"level  us"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 16, "runs": [["-", false], ["level  us", true]], "start": 5}]}
+{"case": {"op": "lex", "source": "!TI\u0085TLE:1142\ta OR -actor:'1208',\"108..1733,\">1589"}, "expect": [{"end": 3, "runs": [["!TI", false]], "start": 0}, {"end": 12, "runs": [["TLE:1142", false]], "start": 4}, {"end": 14, "runs": [["a", false]], "start": 13}, {"end": 17, "runs": [["OR", false]], "start": 15}, {"end": 49, "runs": [["-actor:'1208',", false], ["108..1733,", true], [">1589", false]], "start": 18}]}
+{"case": {"op": "lex", "source": "PREQUEL-OF.NOPE:'the',19m\t-cast:'1281..498',\"\ud83d\ude00\"\t!sequel-of.actors:>155,\"\u85ac\u5c4b\""}, "expect": [{"end": 25, "runs": [["PREQUEL-OF.NOPE:'the',19m", false]], "start": 0}, {"end": 47, "runs": [["-cast:'1281..498',", false], ["\ud83d\ude00", true]], "start": 26}, {"end": 75, "runs": [["!sequel-of.actors:>155,", false], ["\u85ac\u5c4b", true]], "start": 48}]}
+{"case": {"op": "lex", "source": "!director:'79x' title:x\u0301  is:2578 OR !is:\"\u0149\" tag:the,>1094 !2792 OR Chalamet\t\"us\"\t/api@us"}, "expect": [{"end": 15, "runs": [["!director:'79x'", false]], "start": 0}, {"end": 24, "runs": [["title:x\u0301", false]], "start": 16}, {"end": 33, "runs": [["is:2578", false]], "start": 26}, {"end": 36, "runs": [["OR", false]], "start": 34}, {"end": 44, "runs": [["!is:", false], ["\u0149", true]], "start": 37}, {"end": 58, "runs": [["tag:the,>1094", false]], "start": 45}, {"end": 64, "runs": [["!2792", false]], "start": 59}, {"end": 67, "runs": [["OR", false]], "start": 65}, {"end": 76, "runs": [["Chalamet", false]], "start": 68}, {"end": 81, "runs": [["us", true]], "start": 77}, {"end": 89, "runs": [["/api@us", false]], "start": 82}]}
+{"case": {"op": "lex", "source": "a OR \"zendaya\"  on:>=1223"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 14, "runs": [["zendaya", true]], "start": 5}, {"end": 25, "runs": [["on:>=1223", false]], "start": 16}]}
+{"case": {"op": "lex", "source": "-actors:<2181,odyssey  (tag:\"3\uff244x\",'\ud83d\ude00',37h  !actors:1x  !prequel-of.tag:\"zendayacafe)"}, "expect": [{"end": 21, "runs": [["-actors:<2181,odyssey", false]], "start": 0}, {"end": 42, "runs": [["(tag:", false], ["3\uff244x", true], [",'\ud83d\ude00',37h", false]], "start": 23}, {"end": 54, "runs": [["!actors:1x", false]], "start": 44}, {"end": 85, "runs": [["!prequel-of.tag:", false], ["zendayacafe)", true]], "start": 56}]}
+{"case": {"op": "lex", "source": "season:'1s'"}, "expect": [{"end": 11, "runs": [["season:'1s'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(29m !\u85ac\u5c4b) -(ON:DE \"\u001c) sequel-of.x:\">=2905\""}, "expect": [{"end": 5, "runs": [["-(29m", false]], "start": 0}, {"end": 10, "runs": [["!\u85ac\u5c4b)", false]], "start": 6}, {"end": 18, "runs": [["-(ON:DE", false]], "start": 11}, {"end": 43, "runs": [["\u001c) sequel-of.x:", true], [">=2905", false]], "start": 19}]}
+{"case": {"op": "lex", "source": "\"\u85ac\u5c4b  >=2195  name:\"890..2395 OR -platform:zendaya\t!\"<=2024\t-state:\"43h\"\tACTOR:1490..2063,/api OR prequel-of.state:'500'  sequel-of.season:'<=71'"}, "expect": [{"end": 28, "runs": [["\u85ac\u5c4b  >=2195  name:", true], ["890..2395", false]], "start": 0}, {"end": 31, "runs": [["OR", false]], "start": 29}, {"end": 49, "runs": [["-platform:zendaya", false]], "start": 32}, {"end": 144, "runs": [["!", false], ["<=2024\t-state:", true], ["43h", false], ["\tACTOR:1490..2063,/api OR prequel-of.state:'500'  sequel-of.season:'<=71'", true]], "start": 50}]}
+{"case": {"op": "lex", "source": "-prequel-of.name:2545,>91,\"59m\" OR a"}, "expect": [{"end": 31, "runs": [["-prequel-of.name:2545,>91,", false], ["59m", true]], "start": 0}, {"end": 34, "runs": [["OR", false]], "start": 32}, {"end": 36, "runs": [["a", false]], "start": 35}]}
+{"case": {"op": "lex", "source": "-\"\u200b"}, "expect": [{"end": 3, "runs": [["-", false], ["\u200b", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "(nope:'>=2510' -()) (a OR a  year:\"dune\"  a OR -IS:\"\u00c5\" !\"<2393) -actors:\"362..1448\",24h"}, "expect": [{"end": 14, "runs": [["(nope:'>=2510'", false]], "start": 0}, {"end": 19, "runs": [["-())", false]], "start": 15}, {"end": 22, "runs": [["(a", false]], "start": 20}, {"end": 25, "runs": [["OR", false]], "start": 23}, {"end": 27, "runs": [["a", false]], "start": 26}, {"end": 40, "runs": [["year:", false], ["dune", true]], "start": 29}, {"end": 43, "runs": [["a", false]], "start": 42}, {"end": 46, "runs": [["OR", false]], "start": 44}, {"end": 54, "runs": [["-IS:", false], ["\u00c5", true]], "start": 47}, {"end": 87, "runs": [["!", false], ["<2393) -actors:", true], ["362..1448", false], [",24h", true]], "start": 55}]}
+{"case": {"op": "lex", "source": "nope:\"\uff1a cast:steam,'858',\u03c2z"}, "expect": [{"end": 27, "runs": [["nope:", false], ["\uff1a cast:steam,'858',\u03c2z", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(sequel\u0441\u043a\u043e\u0440\u043e-of.title:\">610\"  ()  \"<1250)"}, "expect": [{"end": 29, "runs": [["-(sequel\u0441\u043a\u043e\u0440\u043e-of.title:", false], [">610", true]], "start": 0}, {"end": 33, "runs": [["()", false]], "start": 31}, {"end": 42, "runs": [["<1250)", true]], "start": 35}]}
+{"case": {"op": "lex", "source": "!theme:\"4..684\",\"75h\"\tGENRE:'the',\"x\u0301\""}, "expect": [{"end": 21, "runs": [["!theme:", false], ["4..684", true], [",", false], ["75h", true]], "start": 0}, {"end": 38, "runs": [["GENRE:'the',", false], ["x\u0301", true]], "start": 22}]}
+{"case": {"op": "lex", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67  \"<152"}, "expect": [{"end": 5, "runs": [["\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", false]], "start": 0}, {"end": 12, "runs": [["<152", true]], "start": 7}]}
+{"case": {"op": "lex", "source": "a OR \"us  -'\u0411\u0440\u0430\u0442!Two'  a OR a"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 29, "runs": [["us  -'\u0411\u0440\u0430\u0442!Two'  a OR a", true]], "start": 5}]}
+{"case": {"op": "lex", "source": "-tia\u0000btle:\u00df\t85"}, "expect": [{"end": 11, "runs": [["-tia\u0000btle:\u00df", false]], "start": 0}, {"end": 14, "runs": [["85", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "person:876"}, "expect": [{"end": 10, "runs": [["person:876", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(prequel-of.actor:NONE\t(sequel-of.season:\ud835\udfd9\ud835\udfda  -genre:901..356,Chalamet  !actors:\"33m\",2921,\"odyssey)\t!reacher) !\"\u0411\u0440\u0430\u0442 OR prequel-of.name:\"NONE,23"}, "expect": [{"end": 23, "runs": [["-(prequel-of.actor:NONE", false]], "start": 0}, {"end": 44, "runs": [["(sequel-of.season:\ud835\udfd9\ud835\udfda", false]], "start": 24}, {"end": 70, "runs": [["-genre:901..356,Chalamet", false]], "start": 46}, {"end": 117, "runs": [["!actors:", false], ["33m", true], [",2921,", false], ["odyssey)\t!reacher) !", true], ["\u0411\u0440\u0430\u0442", false]], "start": 72}, {"end": 120, "runs": [["OR", false]], "start": 118}, {"end": 145, "runs": [["prequel-of.name:", false], ["NONE,23", true]], "start": 121}]}
+{"case": {"op": "lex", "source": "2338"}, "expect": [{"end": 4, "runs": [["2338", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"2713\"\tcast:x\u0301\ta OR a"}, "expect": [{"end": 6, "runs": [["2713", true]], "start": 0}, {"end": 14, "runs": [["cast:x\u0301", false]], "start": 7}, {"end": 16, "runs": [["a", false]], "start": 15}, {"end": 19, "runs": [["OR", false]], "start": 17}, {"end": 21, "runs": [["a", false]], "start": 20}]}
+{"case": {"op": "lex", "source": "!actor:\"2036..2864\""}, "expect": [{"end": 19, "runs": [["!actor:", false], ["2036..2864", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(sequel-of.director:Stra\u00dfe prequel-of.is:71,\"/api\" kind:\"500,'b)Stra\u00dfe')\t-kind:\"\ufb01\",\"2161..830,\"\u13a0\"\t-x:'2422..863'"}, "expect": [{"end": 27, "runs": [["-(sequel-of.director:Stra\u00dfe", false]], "start": 0}, {"end": 51, "runs": [["prequel-of.is:71,", false], ["/api", true]], "start": 28}, {"end": 98, "runs": [["kind:", false], ["500,'b)Stra\u00dfe')\t-kind:", true], ["\ufb01", false], [",", true], ["2161..830,", false], ["\u13a0", true]], "start": 52}, {"end": 113, "runs": [["-x:'2422..863'", false]], "start": 99}]}
+{"case": {"op": "lex", "source": "state:\"\uff09NONE"}, "expect": [{"end": 12, "runs": [["state:", false], ["\uff09NONE", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-sequel-of.actors:>1650 !sequel-of.cast:\"<654"}, "expect": [{"end": 23, "runs": [["-sequel-of.actors:>1650", false]], "start": 0}, {"end": 45, "runs": [["!sequel-of.cast:", false], ["<654", true]], "start": 24}]}
+{"case": {"op": "lex", "source": "-() -kind:dune,\"\ufb01\" -() OR !1834"}, "expect": [{"end": 3, "runs": [["-()", false]], "start": 0}, {"end": 18, "runs": [["-kind:dune,", false], ["\ufb01", true]], "start": 4}, {"end": 22, "runs": [["-()", false]], "start": 19}, {"end": 25, "runs": [["OR", false]], "start": 23}, {"end": 31, "runs": [["!1834", false]], "start": 26}]}
+{"case": {"op": "lex", "source": "-(-nope:>=58:8,steam,\"\u00c5)  state:\"zendaya'the,>1949,\"1288..64\"\tx:1306 OR 'a\u0000b'\tsequel-of.director:\"500\"\t!sequel-of.theme:OR=Part,dune  (\"<646\tprequel-of.theme:\"\ud800,\"80x,"}, "expect": [{"end": 61, "runs": [["-(-nope:>=58:8,steam,", false], ["\u00c5)  state:", true], ["zendaya'the,>1949,", false], ["1288..64", true]], "start": 0}, {"end": 68, "runs": [["x:1306", false]], "start": 62}, {"end": 71, "runs": [["OR", false]], "start": 69}, {"end": 77, "runs": [["'a\u0000b'", false]], "start": 72}, {"end": 102, "runs": [["sequel-of.director:", false], ["500", true]], "start": 78}, {"end": 132, "runs": [["!sequel-of.theme:OR=Part,dune", false]], "start": 103}, {"end": 166, "runs": [["(", false], ["<646\tprequel-of.theme:", true], ["\ud800,", false], ["80x,", true]], "start": 134}]}
+{"case": {"op": "lex", "source": "-tag:Part  sequel-of.tag:\"Dune-/api\"  a OR (-prequel-of.kind:\u13a0) is:level,\"2230"}, "expect": [{"end": 9, "runs": [["-tag:Part", false]], "start": 0}, {"end": 36, "runs": [["sequel-of.tag:", false], ["Dune-/api", true]], "start": 11}, {"end": 39, "runs": [["a", false]], "start": 38}, {"end": 42, "runs": [["OR", false]], "start": 40}, {"end": 63, "runs": [["(-prequel-of.kind:\u13a0)", false]], "start": 43}, {"end": 78, "runs": [["is:level,", false], ["2230", true]], "start": 64}]}
+{"case": {"op": "lex", "source": "-prequel-of.genre:\"body horror\",'<2130',\"1780 -director:\"or\",'\u043d\u0435\uff11\uff12\u0442','levelb' !season:\"442,1006 actor:>1311,\"\u0411\u0440\u0430\u0442\" OR a OR -state:\"none:OR\"\tNOPE:<=2041,\"e\u0301\u0301\"  -theme:'Chalamet'  -1835 OR a"}, "expect": [{"end": 95, "runs": [["-prequel-of.genre:", false], ["body horror", true], [",'<2130',", false], ["1780 -director:", true], ["or", false], [",'\u043d\u0435\uff11\uff12\u0442','levelb' !season:", true], ["442,1006", false]], "start": 0}, {"end": 114, "runs": [["actor:>1311,", false], ["\u0411\u0440\u0430\u0442", true]], "start": 96}, {"end": 117, "runs": [["OR", false]], "start": 115}, {"end": 119, "runs": [["a", false]], "start": 118}, {"end": 122, "runs": [["OR", false]], "start": 120}, {"end": 139, "runs": [["-state:", false], ["none:OR", true]], "start": 123}, {"end": 157, "runs": [["NOPE:<=2041,", false], ["e\u0301\u0301", true]], "start": 140}, {"end": 176, "runs": [["-theme:'Chalamet'", false]], "start": 159}, {"end": 183, "runs": [["-1835", false]], "start": 178}, {"end": 186, "runs": [["OR", false]], "start": 184}, {"end": 188, "runs": [["a", false]], "start": 187}]}
+{"case": {"op": "lex", "source": "sequel-of.sea\"son:steam"}, "expect": [{"end": 23, "runs": [["sequel-of.sea", false], ["son:steam", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!sequel-of.genre:x\u0301,>2191"}, "expect": [{"end": 25, "runs": [["!sequel-of.genre:x\u0301,>2191", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"h\u2028orror'zendaya -prequel-of.season:75x,caf\u00e9 prequel-of.title:Dune@500"}, "expect": [{"end": 70, "runs": [["h\u2028orror'zendaya -prequel-of.season:75x,caf\u00e9 prequel-of.title:Dune@500", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(!acto\u0085r:\"\u0130\",\"1391,28 -(\"1996  \"\u03c2  -'/api')) -b,netflix"}, "expect": [{"end": 7, "runs": [["-(!acto", false]], "start": 0}, {"end": 30, "runs": [["r:", false], ["\u0130", true], [",", false], ["1391,28 -(", true], ["1996", false]], "start": 8}, {"end": 56, "runs": [["\u03c2  -'/api')) -b,netflix", true]], "start": 32}]}
+{"case": {"op": "lex", "source": "prequel-of.cast:\"<=703\"  !name:\"\ufb01\",\"1411\",'\u0441\u043a\u043e\u0440\u043e'"}, "expect": [{"end": 23, "runs": [["prequel-of.cast:", false], ["<=703", true]], "start": 0}, {"end": 49, "runs": [["!name:", false], ["\ufb01", true], [",", false], ["1411", true], [",'\u0441\u043a\u043e\u0440\u043e'", false]], "start": 25}]}
+{"case": {"op": "lex", "source": "-director:'<=1175'  cast:\ufeff,Sci-Fi_odyssey  CAST\uff1a:/api_body horror\t-genre:odyssey,netflix,a\u0000b\t!500(steam OR !title:\u043d\u0435\u0442,\"772..90\",1122..943"}, "expect": [{"end": 18, "runs": [["-director:'<=1175'", false]], "start": 0}, {"end": 41, "runs": [["cast:\ufeff,Sci-Fi_odyssey", false]], "start": 20}, {"end": 58, "runs": [["CAST\uff1a:/api_body", false]], "start": 43}, {"end": 65, "runs": [["horror", false]], "start": 59}, {"end": 92, "runs": [["-genre:odyssey,netflix,a\u0000b", false]], "start": 66}, {"end": 103, "runs": [["!500(steam", false]], "start": 93}, {"end": 106, "runs": [["OR", false]], "start": 104}, {"end": 137, "runs": [["!title:\u043d\u0435\u0442,", false], ["772..90", true], [",1122..943", false]], "start": 107}]}
+{"case": {"op": "lex", "source": "!35x (-cast:\"level\"  !\"/api\"  -(-is:500Stra\u00dfe))"}, "expect": [{"end": 4, "runs": [["!35x", false]], "start": 0}, {"end": 19, "runs": [["(-cast:", false], ["level", true]], "start": 5}, {"end": 28, "runs": [["!", false], ["/api", true]], "start": 21}, {"end": 47, "runs": [["-(-is:500Stra\u00dfe))", false]], "start": 30}]}
+{"case": {"op": "lex", "source": "nope:none-desert  (prequel-of.season:'none')"}, "expect": [{"end": 16, "runs": [["nope:none-desert", false]], "start": 0}, {"end": 44, "runs": [["(prequel-of.season:'none')", false]], "start": 18}]}
+{"case": {"op": "lex", "source": "-director:'5"}, "expect": [{"end": 12, "runs": [["-director:'5", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "SEQUEL-OF.GENRE:>959,'>=856' \"<=294 person:\"14\u201d37\""}, "expect": [{"end": 28, "runs": [["SEQUEL-OF.GENRE:>959,'>=856'", false]], "start": 0}, {"end": 50, "runs": [["<=294 person:", true], ["14\u201d37", false]], "start": 29}]}
+{"case": {"op": "lex", "source": "-((!caf\u00e9))  prequel-of.nope:<1329,\u03c2"}, "expect": [{"end": 10, "runs": [["-((!caf\u00e9))", false]], "start": 0}, {"end": 35, "runs": [["prequel-of.nope:<1329,\u03c2", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "a OR 731 prequel-of.year:2809..219,Chalamet,5h ()\t-(PREQUEL-OF.STATE:\"cafe!Two\",\"level\" state:\"85m -prequel-of.kind:\"500\"x,'\u03c2' OR !cast:a,\"437  season:\"2273\")"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 8, "runs": [["731", false]], "start": 5}, {"end": 46, "runs": [["prequel-of.year:2809..219,Chalamet,5h", false]], "start": 9}, {"end": 49, "runs": [["()", false]], "start": 47}, {"end": 87, "runs": [["-(PREQUEL-OF.STATE:", false], ["cafe!Two", true], [",", false], ["level", true]], "start": 50}, {"end": 142, "runs": [["state:", false], ["85m -prequel-of.kind:", true], ["500", false], ["x,'\u03c2' OR !cast:a,", true], ["437", false]], "start": 88}, {"end": 158, "runs": [["season:", false], ["2273", true], [")", false]], "start": 144}]}
+{"case": {"op": "lex", "source": "a OR a -kind:\"2090\",\"26x"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 6, "runs": [["a", false]], "start": 5}, {"end": 24, "runs": [["-kind:", false], ["2090", true], [",", false], ["26x", true]], "start": 7}]}
+{"case": {"op": "lex", "source": "a OR -name:'1590..2073' Sci-Fi <=1008 season:odyssey-DE,\"79m OR season:'NONE' tag:\"odyssey,\"2261..489\" year:\"odyssey\""}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 23, "runs": [["-name:'1590..2073'", false]], "start": 5}, {"end": 30, "runs": [["Sci-Fi", false]], "start": 24}, {"end": 37, "runs": [["<=1008", false]], "start": 31}, {"end": 102, "runs": [["season:odyssey-DE,", false], ["79m OR season:'NONE' tag:", true], ["odyssey,", false], ["2261..489", true]], "start": 38}, {"end": 117, "runs": [["year:", false], ["odyssey", true]], "start": 103}]}
+{"case": {"op": "lex", "source": "('\u03a3648') \"steamhorror\""}, "expect": [{"end": 8, "runs": [["('\u03a3648')", false]], "start": 0}, {"end": 22, "runs": [["steamhorror", true]], "start": 9}]}
+{"case": {"op": "lex", "source": "sequel-of.yea\ud83c\uddef\ud83c\uddf5r:steam#none,\"202"}, "expect": [{"end": 32, "runs": [["sequel-of.yea\ud83c\uddef\ud83c\uddf5r:steam#none,", false], ["202", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!person:\"\u1e9e,<2344 on:OR@Chalamet,'\u0411\u0440\u0430\u0442level' OR \"netflix'body horror\"  -(\uff08 prequel-of.director:NONE|netflix -x:2845) sequel-of.nope:628..1692,\"the,>=743 -actors:\"desert:500\",odyssey,x)NONE"}, "expect": [{"end": 60, "runs": [["!person:", false], ["\u1e9e,<2344 on:OR@Chalamet,'\u0411\u0440\u0430\u0442level' OR ", true], ["netflix'body", false]], "start": 0}, {"end": 151, "runs": [["horror", false], ["  -(\uff08 prequel-of.director:NONE|netflix -x:2845) sequel-of.nope:628..1692,", true], ["the,>=743", false]], "start": 61}, {"end": 187, "runs": [["-actors:", false], ["desert:500", true], [",odyssey,x)NONE", false]], "start": 152}]}
+{"case": {"op": "lex", "source": "GENRE:\"the theme:2423..2543 !X:\"2846..882\""}, "expect": [{"end": 42, "runs": [["GENRE:", false], ["the theme:2423..2543 !X:", true], ["2846..882", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(-is:\ufb01\t\u0411\u0440\u0430\u0442 OR a >=452 prequel-of.title:\"\uff1a\",<1404) !kind:<=180 -(season:\"a\" (-on:653..1636,4m,\"NONE\"))"}, "expect": [{"end": 7, "runs": [["-(-is:\ufb01", false]], "start": 0}, {"end": 12, "runs": [["\u0411\u0440\u0430\u0442", false]], "start": 8}, {"end": 15, "runs": [["OR", false]], "start": 13}, {"end": 17, "runs": [["a", false]], "start": 16}, {"end": 23, "runs": [[">=452", false]], "start": 18}, {"end": 51, "runs": [["prequel-of.title:", false], ["\uff1a", true], [",<1404)", false]], "start": 24}, {"end": 63, "runs": [["!kind:<=180", false]], "start": 52}, {"end": 76, "runs": [["-(season:", false], ["a", true]], "start": 64}, {"end": 103, "runs": [["(-on:653..1636,4m,", false], ["NONE", true], ["))", false]], "start": 77}]}
+{"case": {"op": "lex", "source": "-()\t\"us\""}, "expect": [{"end": 3, "runs": [["-()", false]], "start": 0}, {"end": 8, "runs": [["us", true]], "start": 4}]}
+{"case": {"op": "lex", "source": "!sequel-of.genre:\"\u85ac\u5c4b\",\"1009..2750,'>1876' !director:levelcafe,\"<=2472\",89 !netflix"}, "expect": [{"end": 82, "runs": [["!sequel-of.genre:", false], ["\u85ac\u5c4b", true], [",", false], ["1009..2750,'>1876' !director:levelcafe,", true], ["<=2472", false], [",89 !netflix", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!PERSON:2696,'\u13a0',1587 \"a-:us a OR (\"2212\"\tplatform:\u0663,\"14s\",>=1284)"}, "expect": [{"end": 21, "runs": [["!PERSON:2696,'\u13a0',1587", false]], "start": 0}, {"end": 66, "runs": [["a-:us a OR (", true], ["2212", false], ["\tplatform:\u0663,", true], ["14s", false], [",>=1284)", true]], "start": 22}]}
+{"case": {"op": "lex", "source": "/api -()\ttheme:r"}, "expect": [{"end": 4, "runs": [["/api", false]], "start": 0}, {"end": 8, "runs": [["-()", false]], "start": 5}, {"end": 16, "runs": [["theme:r", false]], "start": 9}]}
+{"case": {"op": "lex", "source": "-sequel-of.is:\"81s,'>=2467',netflix  the-netflix kind:\"88s OR !tag:\"666..2986\"\t\"2965\" OR season:\"215..1900  -(state:or  !'a'  sequel-of.director:\u0000,1435..2368)  -nope:\"Dune"}, "expect": [{"end": 58, "runs": [["-sequel-of.is:", false], ["81s,'>=2467',netflix  the-netflix kind:", true], ["88s", false]], "start": 0}, {"end": 61, "runs": [["OR", false]], "start": 59}, {"end": 78, "runs": [["!tag:", false], ["666..2986", true]], "start": 62}, {"end": 85, "runs": [["2965", true]], "start": 79}, {"end": 88, "runs": [["OR", false]], "start": 86}, {"end": 171, "runs": [["season:", false], ["215..1900  -(state:or  !'a'  sequel-of.director:\u0000,1435..2368)  -nope:", true], ["Dune", false]], "start": 89}]}
+{"case": {"op": "lex", "source": "tag:'\ud835\udd18\ud835\udd2b\ud835\udd26'\t(-title:\"body horror\",\"1667..2133)\t!person:422..856 OR -(-'Two|dune') -(x:\">761\",2003 -()) prequel-of.tag:258"}, "expect": [{"end": 9, "runs": [["tag:'\ud835\udd18\ud835\udd2b\ud835\udd26'", false]], "start": 0}, {"end": 119, "runs": [["(-title:", false], ["body horror", true], [",", false], ["1667..2133)\t!person:422..856 OR -(-'Two|dune') -(x:", true], [">761", false], [",2003 -()) prequel-of.tag:258", true]], "start": 10}]}
+{"case": {"op": "lex", "source": "on:559..338"}, "expect": [{"end": 11, "runs": [["on:559..338", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "!'1856..2729' SEASON:\u01c5 !2845 kind:the OR cast:\"21..1495\",2m,\"DEOR\" -prequel-of.tag:\"the,'>=386'"}, "expect": [{"end": 13, "runs": [["!'1856..2729'", false]], "start": 0}, {"end": 22, "runs": [["SEASON:\u01c5", false]], "start": 14}, {"end": 28, "runs": [["!2845", false]], "start": 23}, {"end": 37, "runs": [["kind:the", false]], "start": 29}, {"end": 40, "runs": [["OR", false]], "start": 38}, {"end": 66, "runs": [["cast:", false], ["21..1495", true], [",2m,", false], ["DEOR", true]], "start": 41}, {"end": 95, "runs": [["-prequel-of.tag:", false], ["the,'>=386'", true]], "start": 67}]}
+{"case": {"op": "lex", "source": "(platform:\"2841..430  -cast:Stra\u00dfe OR !sequel-of.x:'<=407' -(SEASON:'none(odyssey' kind:\"\u043d\u0435\u0442) person:>2\u201d96) 1764 OR person:\ud55c\uad6d\uc5b4,horror,zendaya !\"25x\"\t!<1517\tseason:\"2810\" OR -prequel-of.platform:\"<=1789 ->=2308"}, "expect": [{"end": 93, "runs": [["(platform:", false], ["2841..430  -cast:Stra\u00dfe OR !sequel-of.x:'<=407' -(SEASON:'none(odyssey' kind:", true], ["\u043d\u0435\u0442)", false]], "start": 0}, {"end": 107, "runs": [["person:>2\u201d96)", false]], "start": 94}, {"end": 112, "runs": [["1764", false]], "start": 108}, {"end": 115, "runs": [["OR", false]], "start": 113}, {"end": 141, "runs": [["person:\ud55c\uad6d\uc5b4,horror,zendaya", false]], "start": 116}, {"end": 148, "runs": [["!", false], ["25x", true]], "start": 142}, {"end": 155, "runs": [["!<1517", false]], "start": 149}, {"end": 169, "runs": [["season:", false], ["2810", true]], "start": 156}, {"end": 172, "runs": [["OR", false]], "start": 170}, {"end": 209, "runs": [["-prequel-of.platform:", false], ["<=1789 ->=2308", true]], "start": 173}]}
+{"case": {"op": "lex", "source": "-TAG:<2336"}, "expect": [{"end": 10, "runs": [["-TAG:<2336", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-'1057..712' -\u03c2prequel-of.genre:none zendaya"}, "expect": [{"end": 12, "runs": [["-'1057..712'", false]], "start": 0}, {"end": 36, "runs": [["-\u03c2prequel-of.genre:none", false]], "start": 13}, {"end": 44, "runs": [["zendaya", false]], "start": 37}]}
+{"case": {"op": "lex", "source": "'500'\t!x:'\u200b"}, "expect": [{"end": 5, "runs": [["'500'", false]], "start": 0}, {"end": 11, "runs": [["!x:'\u200b", false]], "start": 6}]}
+{"case": {"op": "lex", "source": "a OR -\"Stra\u00dfe\" -304 \"level\" -season:\"\u3000\",'733..2381','1452..1017' OR name:dune 1002 -\">=1423\""}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 14, "runs": [["-", false], ["Stra\u00dfe", true]], "start": 5}, {"end": 19, "runs": [["-304", false]], "start": 15}, {"end": 27, "runs": [["level", true]], "start": 20}, {"end": 64, "runs": [["-season:", false], ["\u3000", true], [",'733..2381','1452..1017'", false]], "start": 28}, {"end": 67, "runs": [["OR", false]], "start": 65}, {"end": 77, "runs": [["name:dune", false]], "start": 68}, {"end": 82, "runs": [["1002", false]], "start": 78}, {"end": 92, "runs": [["-", false], [">=1423", true]], "start": 83}]}
+{"case": {"op": "lex", "source": "sequel-of.kind:\u6f22\u5b57 -'Stra\u00dfe!x'"}, "expect": [{"end": 17, "runs": [["sequel-of.kind:\u6f22\u5b57", false]], "start": 0}, {"end": 29, "runs": [["-'Stra\u00dfe!x'", false]], "start": 18}]}
+{"case": {"op": "lex", "source": "!is:"}, "expect": [{"end": 4, "runs": [["!is:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "(cast:\"1366\",reacher  'OR'  -director:\"\u001c,/api) >=2308 OR -()  prequel-of.nope:'\ud83c\uddef\ud83c\uddf5'  -season:Two,<2990 cast:2397..1391,\"1781..367\""}, "expect": [{"end": 20, "runs": [["(cast:", false], ["1366", true], [",reacher", false]], "start": 0}, {"end": 26, "runs": [["'OR'", false]], "start": 22}, {"end": 129, "runs": [["-director:", false], ["\u001c,/api) >=2308 OR -()  prequel-of.nope:'\ud83c\uddef\ud83c\uddf5'  -season:Two,<2990 cast:2397..1391,", true], ["1781..367", false]], "start": 28}]}
+{"case": {"op": "lex", "source": "(se\u1e9equel-of.nope:'2348..2886',\u0663,1374)"}, "expect": [{"end": 37, "runs": [["(se\u1e9equel-of.nope:'2348..2886',\u0663,1374)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-'"}, "expect": [{"end": 2, "runs": [["-'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-on:Two#Dune"}, "expect": [{"end": 12, "runs": [["-on:Two#Dune", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "'2992' /api () Chalamet OR a OR a sequel-of.actor:'steam' !<=654 sequel-of.actor:<=1020"}, "expect": [{"end": 6, "runs": [["'2992'", false]], "start": 0}, {"end": 11, "runs": [["/api", false]], "start": 7}, {"end": 14, "runs": [["()", false]], "start": 12}, {"end": 23, "runs": [["Chalamet", false]], "start": 15}, {"end": 26, "runs": [["OR", false]], "start": 24}, {"end": 28, "runs": [["a", false]], "start": 27}, {"end": 31, "runs": [["OR", false]], "start": 29}, {"end": 33, "runs": [["a", false]], "start": 32}, {"end": 57, "runs": [["sequel-of.actor:'steam'", false]], "start": 34}, {"end": 64, "runs": [["!<=654", false]], "start": 58}, {"end": 87, "runs": [["sequel-of.actor:<=1020", false]], "start": 65}]}
+{"case": {"op": "lex", "source": "a OR !director"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 14, "runs": [["!director", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "a OR -person:caf\u00e9"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 17, "runs": [["-person:caf\u00e9", false]], "start": 5}]}
+{"case": {"op": "lex", "source": "(year:\"84 theme:\u01c5,\"\u200b\")  ((!sequel-of.person:\"\u201d,zendaya is:2321e\u0301\u0301..885,\"us,us|none) title:\"43x,NONE,'Dune' !\"2519)  -year:\"level,'zendaya'"}, "expect": [{"end": 54, "runs": [["(year:", false], ["84 theme:\u01c5,", true], ["\u200b", false], [")  ((!sequel-of.person:", true], ["\u201d,zendaya", false]], "start": 0}, {"end": 106, "runs": [["is:2321e\u0301\u0301..885,", false], ["us,us|none) title:", true], ["43x,NONE,'Dune'", false]], "start": 55}, {"end": 138, "runs": [["!", false], ["2519)  -year:", true], ["level,'zendaya'", false]], "start": 107}]}
+{"case": {"op": "lex", "source": "-actors:\"DE  a OR !prequel-of.actor:\"NONE\"  -(season:497 !x:\"desert)"}, "expect": [{"end": 68, "runs": [["-actors:", false], ["DE  a OR !prequel-of.actor:", true], ["NONE", false], ["  -(season:497 !x:", true], ["desert)", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(-(!NAME:2435..1449\tkind:\"2817..771\",caf\u00e9,'none')  sequel-of.actors:'Dune',\"a,\"500(Two  odyssey)\tactor:'OR',\"or\""}, "expect": [{"end": 20, "runs": [["-(-(!NAME:2435..1449", false]], "start": 0}, {"end": 50, "runs": [["kind:", false], ["2817..771", true], [",caf\u00e9,'none')", false]], "start": 21}, {"end": 87, "runs": [["sequel-of.actors:'Dune',", false], ["a,", true], ["500(Two", false]], "start": 52}, {"end": 97, "runs": [["odyssey)", false]], "start": 89}, {"end": 113, "runs": [["actor:'OR',", false], ["or", true]], "start": 98}]}
+{"case": {"op": "lex", "source": "title:2421 sequel-of.cast:15m,80s,\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67 !prequel-of.nope:>1509,\"odyssey_steam"}, "expect": [{"end": 10, "runs": [["title:2421", false]], "start": 0}, {"end": 39, "runs": [["sequel-of.cast:15m,80s,\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67", false]], "start": 11}, {"end": 77, "runs": [["!prequel-of.nope:>1509,", false], ["odyssey_steam", true]], "start": 40}]}
+{"case": {"op": "lex", "source": "sequel-of.director:\"<=2651,2896,1568 -(season:\"cafe\" -(!theme:\"us\",odyssey -88s)) season:Dune"}, "expect": [{"end": 93, "runs": [["sequel-of.director:", false], ["<=2651,2896,1568 -(season:", true], ["cafe", false], [" -(!theme:", true], ["us", false], [",odyssey -88s)) season:Dune", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "x:steam,the,7s"}, "expect": [{"end": 14, "runs": [["x:steam,the,7s", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "prequel-of.theme:\"\ufb01  (year:\"1728\"  PERSON:>11 OR name:reacher,'2832'  -\"450\"  !17)"}, "expect": [{"end": 82, "runs": [["prequel-of.theme:", false], ["\ufb01  (year:", true], ["1728", false], ["  PERSON:>11 OR name:reacher,'2832'  -", true], ["450", false], ["  !17)", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!on:a,none,2195..1081 tag:'1490..669',\"359..2690,caf\u00e9 -\">=1646\""}, "expect": [{"end": 21, "runs": [["!on:a,none,2195..1081", false]], "start": 0}, {"end": 63, "runs": [["tag:'1490..669',", false], ["359..2690,caf\u00e9 -", true], [">=1646", false]], "start": 22}]}
+{"case": {"op": "lex", "source": "-is:"}, "expect": [{"end": 4, "runs": [["-is:", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "352.."}, "expect": [{"end": 5, "runs": [["352..", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-\"500\" -\"level( OR >=657"}, "expect": [{"end": 6, "runs": [["-", false], ["500", true]], "start": 0}, {"end": 24, "runs": [["-", false], ["level( OR >=657", true]], "start": 7}]}
+{"case": {"op": "lex", "source": "2291..1410  cast:\"horror\"  title:2092..2173"}, "expect": [{"end": 10, "runs": [["2291..1410", false]], "start": 0}, {"end": 25, "runs": [["cast:", false], ["horror", true]], "start": 12}, {"end": 43, "runs": [["title:2092..2173", false]], "start": 27}]}
+{"case": {"op": "lex", "source": "a OR Stra\u00dfe prequel-of.kind:\"1050\",\"netflix -director:'>=1051' OR 500 -(state:\"125,\"a,zendaya)Part -actor:body horror 'level!cafe')"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 11, "runs": [["Stra\u00dfe", false]], "start": 5}, {"end": 131, "runs": [["prequel-of.kind:", false], ["1050", true], [",", false], ["netflix -director:'>=1051' OR 500 -(state:", true], ["125,", false], ["a,zendaya)Part -actor:body horror 'level!cafe')", true]], "start": 12}]}
+{"case": {"op": "lex", "source": "-(-()  horror#b) \""}, "expect": [{"end": 5, "runs": [["-(-()", false]], "start": 0}, {"end": 16, "runs": [["horror#b)", false]], "start": 7}, {"end": 18, "runs": [], "start": 17}]}
+{"case": {"op": "lex", "source": "-kind:Two  <=1583"}, "expect": [{"end": 9, "runs": [["-kind:Two", false]], "start": 0}, {"end": 17, "runs": [["<=1583", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "sequel-of.genre:Part"}, "expect": [{"end": 20, "runs": [["sequel-of.genre:Part", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "-tag:1063,\"or:level\",40m OR !\"2183..879\" sequel-of.theme:\">1548\" -<=791 !genre:1179 KIND:\">=1713 OR sequel-of.state:1883..698  !name:'<=866'  (-(-prequel-of.actors:64s cast:\"dune@caf\u00e9\" prequel-of.tag:2066))"}, "expect": [{"end": 24, "runs": [["-tag:1063,", false], ["or:level", true], [",40m", false]], "start": 0}, {"end": 27, "runs": [["OR", false]], "start": 25}, {"end": 40, "runs": [["!", false], ["2183..879", true]], "start": 28}, {"end": 64, "runs": [["sequel-of.theme:", false], [">1548", true]], "start": 41}, {"end": 71, "runs": [["-<=791", false]], "start": 65}, {"end": 83, "runs": [["!genre:1179", false]], "start": 72}, {"end": 206, "runs": [["KIND:", false], [">=1713 OR sequel-of.state:1883..698  !name:'<=866'  (-(-prequel-of.actors:64s cast:", true], ["dune@caf\u00e9", false], [" prequel-of.tag:2066))", true]], "start": 84}]}
+{"case": {"op": "lex", "source": "cast:\"netflix  86s  -48s OR on:\"OR OR -1716\tx:'odyssey'\tsequel-of.actors:\"level\tcafe\t!\"b"}, "expect": [{"end": 34, "runs": [["cast:", false], ["netflix  86s  -48s OR on:", true], ["OR", false]], "start": 0}, {"end": 37, "runs": [["OR", false]], "start": 35}, {"end": 43, "runs": [["-1716", false]], "start": 38}, {"end": 55, "runs": [["x:'odyssey'", false]], "start": 44}, {"end": 88, "runs": [["sequel-of.actors:", false], ["level\tcafe\t!", true], ["b", false]], "start": 56}]}
+{"case": {"op": "lex", "source": "\"2698\" !'2636' kind:'x',x-OR"}, "expect": [{"end": 6, "runs": [["2698", true]], "start": 0}, {"end": 14, "runs": [["!'2636'", false]], "start": 7}, {"end": 28, "runs": [["kind:'x',x-OR", false]], "start": 15}]}
+{"case": {"op": "lex", "source": "Two  "}, "expect": [{"end": 3, "runs": [["Two", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"body horror  a OR genre:'dunedune',x"}, "expect": [{"end": 37, "runs": [["body horror  a OR genre:'dunedune',x", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "!x:\"500.Two,'/api'\t-name:\"63m\""}, "expect": [{"end": 30, "runs": [["!x:", false], ["500.Two,'/api'\t-name:", true], ["63m", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:12s -<13\ud80080"}, "expect": [{"end": 7, "runs": [["tag:12s", false]], "start": 0}, {"end": 15, "runs": [["-<13\ud80080", false]], "start": 8}]}
+{"case": {"op": "lex", "source": "(tag:\uab70,cafe\tdirector:2513,\"OR,'level'\tDIRECTOR:705..68,'netflix')\tsequel-of.actor:\"steam,reacher,\"Dune"}, "expect": [{"end": 11, "runs": [["(tag:\uab70,cafe", false]], "start": 0}, {"end": 102, "runs": [["director:2513,", false], ["OR,'level'\tDIRECTOR:705..68,'netflix')\tsequel-of.actor:", true], ["steam,reacher,", false], ["Dune", true]], "start": 12}]}
+{"case": {"op": "lex", "source": "\">=1417\""}, "expect": [{"end": 8, "runs": [[">=1417", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(-sequel-of.actor:229\uff098,\"caf\u00e9\",\"2525 actor:\">1694)\t()"}, "expect": [{"end": 51, "runs": [["-(-sequel-of.actor:229\uff098,", false], ["caf\u00e9", true], [",", false], ["2525 actor:", true], [">1694)", false]], "start": 0}, {"end": 54, "runs": [["()", false]], "start": 52}]}
+{"case": {"op": "lex", "source": "-(!title:or\t-\"cafe\"\tPREQUEL-OF.ON:\"1108 OR a\t!\"\ud800 OR nope:\"/api\",'NONE',500@Stra\u00dfe \"reacher !\"Chalamet\")"}, "expect": [{"end": 11, "runs": [["-(!title:or", false]], "start": 0}, {"end": 19, "runs": [["-", false], ["cafe", true]], "start": 12}, {"end": 48, "runs": [["PREQUEL-OF.ON:", false], ["1108 OR a\t!", true], ["\ud800", false]], "start": 20}, {"end": 51, "runs": [["OR", false]], "start": 49}, {"end": 81, "runs": [["nope:", false], ["/api", true], [",'NONE',500@Stra\u00dfe", false]], "start": 52}, {"end": 103, "runs": [["reacher !", true], ["Chalamet", false], [")", true]], "start": 82}]}
+{"case": {"op": "lex", "source": "preq,uel-of.state:'body horror'"}, "expect": [{"end": 23, "runs": [["preq,uel-of.state:'body", false]], "start": 0}, {"end": 31, "runs": [["horror'", false]], "start": 24}]}
+{"case": {"op": "lex", "source": "a OR name:\"c\u201daf\u00e9  !actor:\"4h\"  !actors:b"}, "expect": [{"end": 1, "runs": [["a", false]], "start": 0}, {"end": 4, "runs": [["OR", false]], "start": 2}, {"end": 40, "runs": [["name:", false], ["c\u201daf\u00e9  !actor:", true], ["4h", false], ["  !actors:b", true]], "start": 5}]}
+{"case": {"op": "lex", "source": "!on:14s,54s\t\u85ac\u5c4b"}, "expect": [{"end": 11, "runs": [["!on:14s,54s", false]], "start": 0}, {"end": 14, "runs": [["\u85ac\u5c4b", false]], "start": 12}]}
+{"case": {"op": "lex", "source": "'26m'\ta OR cast:<=2128,\"1767\"\t'>808'  prequel-of.person:'zendaya'  !person:\ud835\udd18\ud835\udd2b\ud835\udd26 OR -director:\"500\",\"x,1013 kind:\"\u85ac\u5c4b)cafe\",\"the,\"\u00c5 OR a"}, "expect": [{"end": 5, "runs": [["'26m'", false]], "start": 0}, {"end": 7, "runs": [["a", false]], "start": 6}, {"end": 10, "runs": [["OR", false]], "start": 8}, {"end": 29, "runs": [["cast:<=2128,", false], ["1767", true]], "start": 11}, {"end": 36, "runs": [["'>808'", false]], "start": 30}, {"end": 65, "runs": [["prequel-of.person:'zendaya'", false]], "start": 38}, {"end": 78, "runs": [["!person:\ud835\udd18\ud835\udd2b\ud835\udd26", false]], "start": 67}, {"end": 81, "runs": [["OR", false]], "start": 79}, {"end": 133, "runs": [["-director:", false], ["500", true], [",", false], ["x,1013 kind:", true], ["\u85ac\u5c4b)cafe", false], [",", true], ["the,", false], ["\u00c5 OR a", true]], "start": 82}]}
+{"case": {"op": "lex", "source": "\"\u3000steam"}, "expect": [{"end": 7, "runs": [["\u3000steam", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "-(-(-'a\u0000b' -sequel-of.is:\"2613,horror,Part !'>=593')\t-\">=144\tgenre:\u85ac\u5c4b !theme:487,x,\u0000 OR -cast:us,Sci-Fi)  !sequel-of.state:'2771'  ON:\""}, "expect": [{"end": 10, "runs": [["-(-(-'a\u0000b'", false]], "start": 0}, {"end": 60, "runs": [["-sequel-of.is:", false], ["2613,horror,Part !'>=593')\t-", true], [">=144", false]], "start": 11}, {"end": 69, "runs": [["genre:\u85ac\u5c4b", false]], "start": 61}, {"end": 84, "runs": [["!theme:487,x,\u0000", false]], "start": 70}, {"end": 87, "runs": [["OR", false]], "start": 85}, {"end": 104, "runs": [["-cast:us,Sci-Fi)", false]], "start": 88}, {"end": 129, "runs": [["!sequel-of.state:'2771'", false]], "start": 106}, {"end": 135, "runs": [["ON:", false]], "start": 131}]}
+{"case": {"op": "lex", "source": "('b' 71..1729 title:867..1923,'177..2802',1954) OR -title:'x' -level actors:\"a(/api (-actor:NONE,netflix,\"a\u0000b prequel-of.platform:\"2735) OR a OR CAST:>278"}, "expect": [{"end": 4, "runs": [["('b'", false]], "start": 0}, {"end": 13, "runs": [["71..1729", false]], "start": 5}, {"end": 47, "runs": [["title:867..1923,'177..2802',1954)", false]], "start": 14}, {"end": 50, "runs": [["OR", false]], "start": 48}, {"end": 61, "runs": [["-title:'x'", false]], "start": 51}, {"end": 68, "runs": [["-level", false]], "start": 62}, {"end": 109, "runs": [["actors:", false], ["a(/api (-actor:NONE,netflix,", true], ["a\u0000b", false]], "start": 69}, {"end": 154, "runs": [["prequel-of.platform:", false], ["2735) OR a OR CAST:>278", true]], "start": 110}]}
+{"case": {"op": "lex", "source": "actor:>494,1166..2067 !x:\"levelsteam,\"1011..1501\",'the'"}, "expect": [{"end": 21, "runs": [["actor:>494,1166..2067", false]], "start": 0}, {"end": 55, "runs": [["!x:", false], ["levelsteam,", true], ["1011..1501", false], [",'the'", true]], "start": 22}]}
+{"case": {"op": "lex", "source": "PLATFORM:10m  (PREQUEL-OF.ON:1841  \"/api\" OR -2447  a OR -83)  \">2120\""}, "expect": [{"end": 12, "runs": [["PLATFORM:10m", false]], "start": 0}, {"end": 33, "runs": [["(PREQUEL-OF.ON:1841", false]], "start": 14}, {"end": 41, "runs": [["/api", true]], "start": 35}, {"end": 44, "runs": [["OR", false]], "start": 42}, {"end": 50, "runs": [["-2447", false]], "start": 45}, {"end": 53, "runs": [["a", false]], "start": 52}, {"end": 56, "runs": [["OR", false]], "start": 54}, {"end": 61, "runs": [["-83)", false]], "start": 57}, {"end": 70, "runs": [[">2120", true]], "start": 63}]}
+{"case": {"op": "lex", "source": "on:\"reacher\tname:\"27\u201d00..501\""}, "expect": [{"end": 29, "runs": [["on:", false], ["reacher\tname:", true], ["27\u201d00..501", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "\"the_none\ud800\" OR a"}, "expect": [{"end": 11, "runs": [["the_none\ud800", true]], "start": 0}, {"end": 14, "runs": [["OR", false]], "start": 12}, {"end": 16, "runs": [["a", false]], "start": 15}]}
+{"case": {"op": "lex", "source": "theme:the  theme:2102..2177  -(>=1708 \"<1084\" 1099)"}, "expect": [{"end": 9, "runs": [["theme:the", false]], "start": 0}, {"end": 27, "runs": [["theme:2102..2177", false]], "start": 11}, {"end": 37, "runs": [["-(>=1708", false]], "start": 29}, {"end": 45, "runs": [["<1084", true]], "start": 38}, {"end": 51, "runs": [["1099)", false]], "start": 46}]}
+{"case": {"op": "lex", "source": "NOPE:\"58h\" x director:'>2879' OR \"cafe\t2m OR a"}, "expect": [{"end": 10, "runs": [["NOPE:", false], ["58h", true]], "start": 0}, {"end": 12, "runs": [["x", false]], "start": 11}, {"end": 29, "runs": [["director:'>2879'", false]], "start": 13}, {"end": 32, "runs": [["OR", false]], "start": 30}, {"end": 46, "runs": [["cafe\t2m OR a", true]], "start": 33}]}
+{"case": {"op": "lex", "source": "theme:x,'us','1538'"}, "expect": [{"end": 19, "runs": [["theme:x,'us','1538'", false]], "start": 0}]}
+{"case": {"op": "lex", "source": ">1"}, "expect": [{"end": 2, "runs": [[">1", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "platfor\u201cm:body horror"}, "expect": [{"end": 14, "runs": [["platfor\u201cm:body", false]], "start": 0}, {"end": 21, "runs": [["horror", false]], "start": 15}]}
+{"case": {"op": "lex", "source": "\"\uff09  prequel-of.on:odyssey,'62h',\"OR  ()"}, "expect": [{"end": 35, "runs": [["\uff09  prequel-of.on:odyssey,'62h',", true], ["OR", false]], "start": 0}, {"end": 39, "runs": [["()", false]], "start": 37}]}
+{"case": {"op": "lex", "source": "\"2450\""}, "expect": [{"end": 6, "runs": [["2450", true]], "start": 0}]}
+{"case": {"op": "lex", "source": "2964..2724 -(prequel-of.is:908..2604 prequel-of.year:\u3000,\"\ud83d\ude00\",\"2246\") -(a OR !kind:\"4h  title:63m  -level  86m)"}, "expect": [{"end": 10, "runs": [["2964..2724", false]], "start": 0}, {"end": 36, "runs": [["-(prequel-of.is:908..2604", false]], "start": 11}, {"end": 53, "runs": [["prequel-of.year:", false]], "start": 37}, {"end": 66, "runs": [[",", false], ["\ud83d\ude00", true], [",", false], ["2246", true], [")", false]], "start": 54}, {"end": 70, "runs": [["-(a", false]], "start": 67}, {"end": 73, "runs": [["OR", false]], "start": 71}, {"end": 108, "runs": [["!kind:", false], ["4h  title:63m  -level  86m)", true]], "start": 74}]}

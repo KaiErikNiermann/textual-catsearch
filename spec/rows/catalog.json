@@ -1,0 +1,14 @@
+[
+  {"title": "Reacher: Season 3", "kind": "tv", "years": [2025], "season": 3, "genres": ["action", "crime"], "cast": ["Alan Ritchson", "Maria Sten"], "state": "watching", "bucket": "available", "platforms": [["Prime Video", ["US", "DE"]]]},
+  {"title": "Dune", "aliases": ["Dune: Part One"], "kind": "movie", "years": [2021], "genres": ["Sci-Fi"], "themes": ["desert", "prophecy"], "cast": ["Timothée Chalamet", "Zendaya"], "director": ["Denis Villeneuve"], "state": "watched", "bucket": "watched", "freshness": "aging", "platforms": [["Max", ["US"]], ["Netflix", ["DE", "CA"]]]},
+  {"title": "Dune: Part Two", "kind": "movie", "years": [2024], "genres": ["Sci-Fi"], "themes": ["desert"], "cast": ["Timothée Chalamet", "Zendaya", "Austin Butler"], "director": ["Denis Villeneuve"], "state": "want", "bucket": "available", "sequel_of": [{"title": "Dune", "kind": "movie", "years": [2021], "genres": ["Sci-Fi"]}]},
+  {"title": "Café Society", "kind": "movie", "years": [2016], "genres": ["comedy", "romance"], "cast": ["Jesse Eisenberg", "Kristen Stewart"], "state": "dropped", "bucket": "shelved", "freshness": "stale"},
+  {"title": "Andor: Season 2", "kind": "tv", "years": [2025], "season": 2, "genres": ["Sci-Fi", "drama"], "themes": ["rebellion"], "cast": ["Diego Luna"], "state": "want", "bucket": "upcoming", "blockers": ["region"], "platforms": [["Disney+", ["US", "DE", "JP"]]]},
+  {"title": "The Odyssey", "aliases": ["Odyssey"], "kind": "movie", "years": [2026], "genres": ["epic"], "director": ["Christopher Nolan"], "cast": ["Matt Damon", "Tom Holland"], "bucket": "upcoming", "early_access": true},
+  {"title": "Severance", "kind": "tv", "years": [2022, 2025], "season": 2, "genres": ["thriller", "Sci-Fi"], "themes": ["body horror", "work"], "cast": ["Adam Scott", "Britt Lower"], "state": "watching", "platforms": [["Apple TV+", ["US", "DE"]]]},
+  {"title": "Hades II", "kind": "game", "genres": ["roguelike"], "themes": ["mythology"], "state": "want", "bucket": "available", "early_access": true, "platforms": [["Steam", []]]},
+  {"title": "Untitled Project", "kind": "game", "state": "want", "bucket": "upcoming", "freshness": "stale"},
+  {"title": "薬屋のひとりごと", "aliases": ["The Apothecary Diaries"], "kind": "tv", "years": [2023], "season": 1, "genres": ["mystery", "drama"], "cast": ["悠木碧"], "platforms": [["Crunchyroll", ["JP", "US"]]]},
+  {"title": "Брат", "aliases": ["Brother"], "kind": "movie", "years": [1997], "genres": ["crime"], "cast": ["Сергей Бодров"], "state": "watched", "bucket": "watched"},
+  {"title": "Straße der Sehnsucht", "kind": "movie", "years": [1958], "genres": ["drama"], "state": "want", "bucket": "shelved", "freshness": "aging"}
+]

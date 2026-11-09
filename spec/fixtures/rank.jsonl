@@ -1,0 +1,234 @@
+{"case": {"field": "name", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["movie", 6, "kind"], ["tv", 4, "kind"], ["game", 2, "kind"]]}
+{"case": {"field": "kind", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["movie", 6, "kind"], ["game", 2, "kind"]]}
+{"case": {"field": "kind", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "kind", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["game", 2, "kind"]]}
+{"case": {"field": "year", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "year", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "season", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "tag", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["Sci-Fi", 4, "tag"], ["drama", 3, "tag"], ["crime", 2, "tag"], ["desert", 2, "tag"], ["action", 1, "tag"], ["body horror", 1, "tag"], ["comedy", 1, "tag"], ["epic", 1, "tag"]]}
+{"case": {"field": "tag", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["drama", 3, "tag"], ["desert", 2, "tag"]]}
+{"case": {"field": "tag", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "tag", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": [["Sci-Fi", 4, "tag"]]}
+{"case": {"field": "tag", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "tag", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["epic", 1, "tag"]]}
+{"case": {"field": "tag", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": [["body horror", 1, "tag"]]}
+{"case": {"field": "tag", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "tag", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["action", 1, "tag"]]}
+{"case": {"field": "genre", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["Sci-Fi", 4, "genre"], ["drama", 3, "genre"], ["crime", 2, "genre"], ["action", 1, "genre"], ["comedy", 1, "genre"], ["epic", 1, "genre"], ["mystery", 1, "genre"], ["roguelike", 1, "genre"]]}
+{"case": {"field": "genre", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["drama", 3, "genre"]]}
+{"case": {"field": "genre", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "genre", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": [["Sci-Fi", 4, "genre"]]}
+{"case": {"field": "genre", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "genre", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["epic", 1, "genre"]]}
+{"case": {"field": "genre", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "genre", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "genre", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["action", 1, "genre"]]}
+{"case": {"field": "theme", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["desert", 2, "theme"], ["body horror", 1, "theme"], ["mythology", 1, "theme"], ["prophecy", 1, "theme"], ["rebellion", 1, "theme"], ["work", 1, "theme"]]}
+{"case": {"field": "theme", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["desert", 2, "theme"]]}
+{"case": {"field": "theme", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "theme", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "theme", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "theme", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["desert", 2, "theme"], ["prophecy", 1, "theme"], ["rebellion", 1, "theme"]]}
+{"case": {"field": "theme", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": [["body horror", 1, "theme"]]}
+{"case": {"field": "theme", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "theme", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "cast", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["Timoth\u00e9e Chalamet", 2, "cast"], ["Zendaya", 2, "cast"], ["Adam Scott", 1, "cast"], ["Alan Ritchson", 1, "cast"], ["Austin Butler", 1, "cast"], ["Britt Lower", 1, "cast"], ["Diego Luna", 1, "cast"], ["Jesse Eisenberg", 1, "cast"]]}
+{"case": {"field": "cast", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["Diego Luna", 1, "cast"], ["Matt Damon", 1, "cast"]]}
+{"case": {"field": "cast", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "cast", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "cast", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "cast", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["Jesse Eisenberg", 1, "cast"]]}
+{"case": {"field": "cast", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": [["Tom Holland", 1, "cast"]]}
+{"case": {"field": "cast", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "cast", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["Adam Scott", 1, "cast"], ["Alan Ritchson", 1, "cast"], ["Austin Butler", 1, "cast"]]}
+{"case": {"field": "director", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["Denis Villeneuve", 2, "director"], ["Christopher Nolan", 1, "director"]]}
+{"case": {"field": "director", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["Denis Villeneuve", 2, "director"]]}
+{"case": {"field": "director", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "director", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "director", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "director", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["Denis Villeneuve", 2, "director"], ["Christopher Nolan", 1, "director"]]}
+{"case": {"field": "director", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "director", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "director", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["Christopher Nolan", 1, "director"]]}
+{"case": {"field": "person", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["Denis Villeneuve", 2, "person"], ["Timoth\u00e9e Chalamet", 2, "person"], ["Zendaya", 2, "person"], ["Adam Scott", 1, "person"], ["Alan Ritchson", 1, "person"], ["Austin Butler", 1, "person"], ["Britt Lower", 1, "person"], ["Christopher Nolan", 1, "person"]]}
+{"case": {"field": "person", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["Denis Villeneuve", 2, "person"], ["Diego Luna", 1, "person"], ["Matt Damon", 1, "person"]]}
+{"case": {"field": "person", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "person", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "person", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "person", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["Jesse Eisenberg", 1, "person"]]}
+{"case": {"field": "person", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": [["Tom Holland", 1, "person"]]}
+{"case": {"field": "person", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "person", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["Adam Scott", 1, "person"], ["Alan Ritchson", 1, "person"], ["Austin Butler", 1, "person"]]}
+{"case": {"field": "state", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["want", 7, "state"], ["watched", 2, "state"], ["watching", 2, "state"], ["dropped", 1, "state"]]}
+{"case": {"field": "state", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["dropped", 1, "state"]]}
+{"case": {"field": "state", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "state", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "state", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "state", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["watched", 2, "state"], ["dropped", 1, "state"]]}
+{"case": {"field": "state", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "state", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "state", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["want", 7, "state"], ["watched", 2, "state"], ["watching", 2, "state"]]}
+{"case": {"field": "is", "needle": "", "op": "rank", "schema": "catalog"}, "expect": [["aging", 0, "flag"], ["available", 0, "flag"], ["blocked", 0, "flag"], ["dated", 0, "flag"], ["early-access", 0, "flag"], ["fresh", 0, "flag"], ["shelved", 0, "flag"], ["stale", 0, "flag"]]}
+{"case": {"field": "is", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": [["dated", 0, "flag"]]}
+{"case": {"field": "is", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "is", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "is", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "is", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": [["early-access", 0, "flag"]]}
+{"case": {"field": "is", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "is", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "is", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": [["aging", 0, "flag"], ["available", 0, "flag"], ["early-access", 0, "flag"]]}
+{"case": {"field": "platform", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "platform", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "status", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "d", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "Dun", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "sci", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "zz", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "\u00e9", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "ho", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "5", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "nope", "needle": "a", "op": "rank", "schema": "catalog"}, "expect": []}
+{"case": {"field": "name", "needle": "", "op": "rank", "schema": "units"}, "expect": [["edge", 1, "name"], ["exact", 1, "name"], ["instant", 1, "name"], ["long", 1, "name"], ["quick", 1, "name"]]}
+{"case": {"field": "name", "needle": "d", "op": "rank", "schema": "units"}, "expect": [["edge", 1, "name"]]}
+{"case": {"field": "name", "needle": "Dun", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "name", "needle": "sci", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "name", "needle": "zz", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "name", "needle": "\u00e9", "op": "rank", "schema": "units"}, "expect": [["edge", 1, "name"], ["exact", 1, "name"]]}
+{"case": {"field": "name", "needle": "ho", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "name", "needle": "5", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "name", "needle": "a", "op": "rank", "schema": "units"}, "expect": [["exact", 1, "name"], ["instant", 1, "name"]]}
+{"case": {"field": "took", "needle": "", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "d", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "Dun", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "sci", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "zz", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "\u00e9", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "ho", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "5", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "took", "needle": "a", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "d", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "Dun", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "sci", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "zz", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "\u00e9", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "ho", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "5", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "year", "needle": "a", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "d", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "Dun", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "sci", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "zz", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "\u00e9", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "ho", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "5", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "status", "needle": "a", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "d", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "Dun", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "sci", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "zz", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "\u00e9", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "ho", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "5", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "nope", "needle": "a", "op": "rank", "schema": "units"}, "expect": []}
+{"case": {"field": "text", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": [["GET /api/users failed", 1, "text"], ["GET /health ok", 1, "text"], ["idle", 1, "text"], ["\u00dcn\u00efcode l\u00efne (bracketed)", 1, "text"]]}
+{"case": {"field": "text", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": [["GET /api/users failed", 1, "text"], ["idle", 1, "text"], ["\u00dcn\u00efcode l\u00efne (bracketed)", 1, "text"]]}
+{"case": {"field": "text", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "text", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "text", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "text", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": [["GET /api/users failed", 1, "text"], ["GET /health ok", 1, "text"], ["idle", 1, "text"], ["\u00dcn\u00efcode l\u00efne (bracketed)", 1, "text"]]}
+{"case": {"field": "text", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "text", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "text", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": [["GET /api/users failed", 1, "text"]]}
+{"case": {"field": "level", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "level", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "re", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "kv", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "status", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "d", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "Dun", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "sci", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "zz", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "\u00e9", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "ho", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "5", "op": "rank", "schema": "dynamic"}, "expect": []}
+{"case": {"field": "nope", "needle": "a", "op": "rank", "schema": "dynamic"}, "expect": []}

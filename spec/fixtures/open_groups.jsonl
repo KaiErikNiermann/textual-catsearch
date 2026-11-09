@@ -1,0 +1,922 @@
+{"case": {"op": "open_groups", "source": ""}, "expect": 0}
+{"case": {"op": "open_groups", "source": " "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "reacher kind:tv cast:\"Alan Ritchson\" year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"the odyssey\" -tag:comedy is:upcoming"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(kind:tv OR kind:movie) -(tag:horror year:<2000)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv OR kind:movie -is:watched"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR ()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(-(()))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "((((((((((((((((((((((((((((((((((a))))))))))))))))))))))))))))))))))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-((a b) OR c)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "OR"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "| a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"OR\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:(2021)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(kind:mo)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:\"none\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:NONE,horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-tag:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:netflix@us"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:@de"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "platform:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:<2022"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-to.name:dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "prequel-of.sequel-of.kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope.year:2020"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "author:'Ursula Le Guin'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\"The author:'Le Guin' and book\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Don't Look Up"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'71"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:\"The \"\"Burbs\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"unclosed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Smith, Jo"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:O.Connor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"O.Connor\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:a,,b,"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind: tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:soon"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:2020..2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:..2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:2020.."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:.."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>=2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:<=2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>2020"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:<2030"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:1_000"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:_1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:1__0"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:+2021"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:-5"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\u0662\u0660\u0662\u0661"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\uff12\uff10\uff12\uff11"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\ud835\udfda\ud835\udfd8\ud835\udfda\ud835\udfd9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:9007199254740993"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>9007199254740993"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "season:none,3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:film"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:SERIES"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Kind:TV"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ACTOR:zendaya"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:unknownflag"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:early-access"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-30-"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "--a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a,b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:a,b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Andor: Season 2"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ":x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "::"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(a"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "((a"}, "expect": 2}
+{"case": {"op": "open_groups", "source": "a))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(a))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ")"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Mr. Robot"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Wall-E"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "#Alive"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cafe"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff24\uff35\uff2e\uff25"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "STRASSE"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\tkind:tv\n"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u3000b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u00a0b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\ufeffb"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u001cb"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:>5m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:>=5m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:<1m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:1m..1h"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:2h"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:5m..1m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:1.5h"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:\u0665m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:500"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:500,200"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "userId:7"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "http.status:503"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Level:3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "level:3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "parent.level:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "parent.status:100"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "re:(a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "re:\"(a)\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "re:a|b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kv:status=500 kv:path=/api/users"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kv:status=500,path=/health"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Gr\u00f6\u00dfe:gro\u00df"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "text:\u00fcn\u00efcode"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "reacher cast:\"Alan Ritchson\" year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "fault"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv cast:rit year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ca year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Denis,rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:rit,Denis"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Smith, Rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(kind:mo) year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Hello)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:'Ala"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "source"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The author:'Le Guin' and book"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a disjunction pins nothing"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a odd:abc,oddx -o:\"ab cde\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the value, not the key"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "9999"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "zzzznothing"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "expected"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the odyssey kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the odyssey"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "platform"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "lo"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "hi"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Andor:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "{"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "held"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Se7en"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Person: Someone"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": ":::"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:abc"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "  :  "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a:b:c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "theme"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "person"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "director"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Alan Ritchson\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Alan Ritchson"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "state:watching"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv cast:\"Alan Ritchson\" year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast: year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Denis,\"Alan Ritchson\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Alan Ritchson\",Denis"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Smith, Ritchie\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-genre:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(-genre:horror"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "(kind:movie) year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "platform:Netflix"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'71 Don't Look Up"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'Don't Look Up'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:<2020"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.sequel-of.name:dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-prequel-of.kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv sequel-of.kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "seq"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-sequel-of.genre:hor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-sequel-of.genre:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv,movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "_typed_term"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv OR (kind:movie -state:watched)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(kind:tv year:2026)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "pointed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u00b7 +1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:upcoming,airing tag:drama -kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:airing tag:drama -kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(is:upcoming OR tag:x) tag:y"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27 tag:caf\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff35\uff30\uff23\uff2f\uff2d\uff29\uff2e\uff27"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:\"caf\u00e9\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "caf\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\u043f\u0440\u043e\u0435\u043a\u0442"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\u00dcn\u00efcode"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\u5099\u4efd"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:caf\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\ud83d\ude80"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:a\u2014b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\uff24\uff35\uff2e\uff25"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "needs an odd number of characters"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "text"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "oddx: needs an odd number of characters"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "odd:ab"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ab"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "reacher kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"some tv show\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actors:\"name 1, name 2\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-tag:comedy"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "   spaced   out   "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Don't"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Look"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Up"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Hitchhiker's"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Guide"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Alan Rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The \"Burbs"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Ritchson"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Sten"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Alan Ritchson, Maria Sten"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:<=2030"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Andor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:a|b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "|"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:one-of[tv,film]"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "[]"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:sci-fi*"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "*"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "person:A24+Neon"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "+"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "A"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "B"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The Odyssey"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "odyssey"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the ody"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dune: Part Two"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "dune two"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "dune three"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Caf\u00e9 Society"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Tenet"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "director:nolan"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:nolan"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "person:nolan"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:sci-fi"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:body"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:sci-fi"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:body"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "theme:\"body horror\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:2027"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:2025"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "season:.."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "season:>=0"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "H"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "C"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "available"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "U"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "upcoming"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:available"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:blocked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:tba"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:AVAILABLE"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:nonsense"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "watched"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "state:watched"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "state:watch"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv-show"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie year:2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ca"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "director:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Denis Villeneuve"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Timothee Chalamet"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "person:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:mov"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "aging"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "early-access"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "na"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "zzz"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Denis"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(ca"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "st:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Josh O'Connor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Le Guin"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Part Two"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Part Three"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:2021"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.name:dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:<2000"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.sequel-of.year:2021"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.sequel-of.sequel-of.year:2021"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "X"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.year:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Mr.Rob"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Weapons"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Meagen"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Nothing"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Barbie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:none,horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:none tag:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv OR kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Reacher"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv | kind:game"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Hollow Knight"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv OR kind:movie -state:watched"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(2021)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Fallout (TV)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(kind:tv"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "("}, "expect": 1}
+{"case": {"op": "open_groups", "source": "kind:tv)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv OR"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(year:soon"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "cast:\"unclosed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nonsense:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nonsense"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv nonsense:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:a:b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ":"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-title:O.Connor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv year:soon"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a:1 b:2 c:3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "odd"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "oddx"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ab cde"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "xaby"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "season"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "reacher"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Alan Ritchson"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "some tv show"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actors:name 1, name 2"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "spaced"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "out"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"kind:tv\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Josh O.Connor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Odyssey"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Christopher Nolan"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "John David Washington"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Sci-Fi"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "body horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nan"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "comedy"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "region"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:netflix"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:@ca"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Netflix"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:itch"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "value"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-genre:hor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(-genre:hor"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "(kind:mo"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "(tag:x (ca))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:net"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:'Don't Look Up'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x \"y\" "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "relation"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "game"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:upcoming"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "odd:abc o:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "has"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The Hitchhiker's Guide"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Alan Rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!tag:comedy"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:netflix@jp"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-on:netflix@us"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Rit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Smith, Ritchie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Hello (2021)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.ye"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "released"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Cafe"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "o"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "zz"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "US"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"The \"\"Burbs\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:Ritchson,Sten"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Alan Ritchson, Maria Sten\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actors:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "KIND:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:>=2026"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "CA"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:'Alan Ritchson'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"Josh O'Connor\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"a\" cast:'Le Guin'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a.b:c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.nonsense:c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nonsense.year:2021"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of:dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"Fallout (TV)\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "has:a has:b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "has:a,b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-has:a,b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "has:a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:\"x \"\"y\"\" "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Y"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:v"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u043d\u0435\u0442"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0441\u043a\u043e\u0440\u043e"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0627\u0644\u0631\u0633\u0627\u0644\u0629"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0639\u0631\u0628\u064a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u6f22\u5b57"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u85ac\u5c4b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u30f1\u30f4\u30a1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud55c\uad6d\uc5b4"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83c\uddef\ud83c\uddf5"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83d\ude00"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x\u0301"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "e\u0301\u0301"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0000"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u0000b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u2014"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u2013"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff1a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff08"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff09"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u201c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u201d"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u202e"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u200b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u3000"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff24"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u00df"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0130"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": " OR "}, "expect": 0}
+{"case": {"op": "open_groups", "source": ","}, "expect": 0}
+{"case": {"op": "open_groups", "source": ">"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "depth"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:none,horror -tag:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR () b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-(kind:tv))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ")))((("}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:'Alan Ritchson' Don't"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:netflix@us year:>=2020 is:early-access"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "seed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\",:-!@"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ".."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "bare"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "flag"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "path"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "absent"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Stra\u00dfe"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0130stanbul"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ufb01lm noir"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0440\u043f\u0433"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u30f1\u30f4\u30a1\u30f3\u30b2\u30ea\u30f2\u30f3\u65b0\u5287\u5834\u7248"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u85ac\u5c4b\u306e\u3072\u3068\u308a\u3054\u3068"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u05e2\u05dc\u05de\u05d4"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Ai\u200bka"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u202eevil\u202c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83c\uddef\ud83c\uddf5 emoji \ud83d\ude00"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u3000leading ideographic space"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u01c5ezva"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u216f\u216d\u216f\u216c\u2169\u2169"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u043d\u0435\u0442:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv \u0646\u0639\u0645:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0646\u0639\u0645"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(year:\u0441\u043a\u043e\u0440\u043e"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "year:\u0441\u043a\u043e\u0440\u043e"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\u6f22\u5b57"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83c\uddef\ud83c\uddf5:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x kind:tv"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "e\u0301\u0301:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u0000b:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:tv \u2014 year:\u2014"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\u2014"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u202eevil:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u202eevil"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\",:\t\n\r"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "<"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ">="}, "expect": 0}
+{"case": {"op": "open_groups", "source": "<="}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "numeric"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ab,\"\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Killing Eve"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Honey"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NFC"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NFD"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NFKC"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NFKD"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ab:()\"' -|.,<>=\u00e9\t"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "utf-8"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "   "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "drama"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "s"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "h"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "strict: 300.5 counts, 300 does not"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the whole minute, not its first instant"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a point stays a point"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "after the minute: from its end"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "before any of it"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "up to and including all of it"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a span start, a point end (inclusive)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "import sys, textual_catsearch as c; assert 'textual' not in sys.modules, 'textual imported'; c.SearchBar; assert 'textual' in sys.modules"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "quick"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "edge"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "exact"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "long"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took:soon"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "before"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "start"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "inside"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "next"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "took"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(\\d{2}):(\\d{2})"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(\\d{2}):(\\d{2}):(\\d{2})"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:14:30:00"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:>14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:>=14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:<14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:<=14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:14:29..14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:..14:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:14:30.."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:14:30..14:30:30"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "e"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(\\d+(?:\\.\\d+)?)([smh]?)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "02d"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:<"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "at:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a comma list of alternatives, as any field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a dotted key that is no path is asked whole"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the declared level, not the data's key"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a declared path"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "declared names are read in any case"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the declared field, not the data's key again"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a dotted key completes whole"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "userId:7 http.status:503"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "k0:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "k0"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a key"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "level"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "userId"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "http.status"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "500"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "7"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "503"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "200"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-status:500"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:none"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "parent.level:3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Level"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "k"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Status:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "le"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "level:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "st"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "u"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "userId:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "http.s"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "http.status:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-st"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-status:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "parent"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:500 status:200 -status:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "status:200"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "not the key"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "<>"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "<>="}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Title"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a.b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a:b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-neg"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "with space"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Actor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-to"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:watched x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:upcoming tag:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:watched,blocked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:watched is:blocked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "blocked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Disk full"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "disk ok"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ACTORS"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Banks"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:available x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:blocked is:available"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "claimed twice"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "shadows"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "alias claimed twice"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "must match"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "bare field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Comedy"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Ann"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "y"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "z"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "author"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Neuromancer"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:blocked is:upcoming x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:upcoming OR is:available"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-is:upcoming"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.is:upcoming"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:long"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tba"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "disk"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Disk"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-Disk"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "t"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the rows all have a director"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "label"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "words"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "apple"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "apricot"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "banana"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "marked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "every ( is unclosed until its ) is typed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "left open, it is marked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "values"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "index"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u001b[2Jwiped"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "two\nlines"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "csi\u009b31m"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the end, as typed"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "zz[/x]"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "[@click=app.quit]k"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "[link=https://e.x]l[/]"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "[b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Sinners"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dune: Part Three"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "The Long Walk"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "bucket('available')"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "bucket('watched')"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tab"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "focus_next"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "shift+tab"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "focus_previous"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "SearchBar[Work]"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:u"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:aging"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:aging kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:upcoming "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie genre:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": " gen"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:watched genre:horror "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:available genre:horror "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "not a number"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "dir sin"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope:1 kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie year:soon"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(kind:movie"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "kind:movie)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:O.Connor"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie year:>|"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:>|"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0646\u0639\u0645:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u6f22\u5b57:1 kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff24\uff35\uff2e\uff25:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:\u2014 kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:caf\u00e9 title:\u043f\u0440\u043e\u0435\u043a\u0442"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope: not a field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope\u241b[2J: not a field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u200d"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "the caret's word "}, "expect": 0}
+{"case": {"op": "open_groups", "source": " is on screen"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "key"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ok"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dir Sinners"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dir Weapons"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dir Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Dir Walk"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "#bar"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "genre:horror -is:watched"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "1/3"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:u "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "kind:movie genre:horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "ctrl+backspace"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "enter"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "space"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "re:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "gen"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:soon "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "p"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "right"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "left"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "#rows"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a\u0000b:x nope:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "year:soon nope:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "not a field"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope\u001b[2J:1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "home"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "end"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "w"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u6f22"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "e\u0301"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "bar"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "rows"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ".catsearch--hint"}, "expect": 0}
+{"case": {"op": "open_groups", "source": " kind:movie"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "fruit"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope:1 "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u001b\n\u009b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "link"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NAME:\"us\"  -genre:\"557 OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "name:'1540..2953' !actor:dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"odyssey=us\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!cast:'1457',\"x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!genre:\uff11\uff12,>2421,steam\t-sequel-of.theme:78s,\"\u00c5,2929..729"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:'Chalamet-' \u001c"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"1844..362,NONE OR !on:63m,'horror',\"desert"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "51m !'\u30f1\u30f4\u30a1body horror' 2067"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "is:'80m'  -sequel-of.cast:\"144..1766\",\"Part\" OR (!cafe  kind:403..1921  theme:\"Two) genre:\u30f1\u30f4\u30a1,<1476 -prequel-of.on:Part(Two  !Chalamet"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "-(!62"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "\"1795..1722 !'Dune'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "2635  -actor:a(x  !theme:'\uff24' OR (!<1916 !person:Chalametus,\"x\")"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-genre:2169 tag:\"<=2327\",'37x' -title:\"1845..1226,\"1104\",'659..2622' OR cast:\"\u001c\" name:\"2114\",'dune',\"1921..2911\" !on:\"NONEChalamet,\"x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-title:none#level,\"557,cafe X:'2346..756','7x',\"cafe '\ud55c\uad6d\uc5b4'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\uff11\uff12 (a OR '/api' !\">=1125) !tag:735..253"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "Stra\u00dfe  \"DE\"  x:188"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-reacher500\t-prequel-of."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-prequel-of.actor:DE)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actors:/api"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-nope:'1247' !caf\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"\ufb01 GENRE:\"85s\",\"odyssey,969..1077"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "prequel-of.is:zena\u0000bdaya"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-\"\ufb01\" OR a Dune \"\u0000\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-() '<796'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "2714..970\t(year:>2278,dune,\"the\" OR prequel-of.season:x\u0301,'x',\"1097..1884\" -() -(-season:\"cafe))\tPLATFORM:765..1992"}, "expect": 2}
+{"case": {"op": "open_groups", "source": "!theme:\"reacher_Two,OR,x  a OR \"65m\"  season:'81h'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"<=1142\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\u0085'a'\tTITLE:17h,<1065"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-Dune nope:>=1300 (name:2065..1805\t!cast:\"\u0441\u043a\u043e\u0440\u043e\",\"1068..763\",89..1952)  -(-sequel-of.tag:body horror)  -prequel-of.state:'1356..1372' OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-((!state:'e\u0301\u0301' !\u0149) actor:651..1744 \"\ud835\udd18\ud835\udd2b\ud835\udd26)"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "(platform:\"none)  season:26"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "kind:>=1510  prequel-of.cast:\">=2970  on:\"netflixnone\",\"horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(actor:Sci-Fi  !\"Sci-Fi=\u0411\u0440\u0430\u0442 OR a  is:\"horror\",\"2974) -PREQUEL-OF.IS:x,>=291 x:500"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!season:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!\"Two\" person:2917,\"<1882\",\"steam -(is:\"50h\t!sequel-of.actor:desert,'d"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!theme:\"\ud83d\ude00,\"311..777,/api_none  -season:us  ()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-is:\"\u00df\"\ttitle:\"\u201c\"\t->2291 OR state:'Sci-Fireacher'  nope:xhorror,\"1120\" OR actors:544..2150) a OR (!theme:58m -cast:dune,\"1220..128,le"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "prequel-o\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67f.person:18s \">=2425"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "season:\"11\",\"44x\" -actors:\">=1274 (is:\"none\"zendaya,'Stra\u00dfe'\t-(is:a)\tis:odyssey !actor:\"1868..1105 OR us)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(prequel-of.state:\"/api,\u0411\u0440\u0430\u0442'netflix,x:Stra\u00dfe !year:'330',body horrorb)"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "-OR\t\"51m\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:\u201c  kind:\u0411\u0440\u0430\u0442,\"dune  is:>1563"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-((-prequel-of.actors:caf\u00e9)\t-Stra\u00dfe\t-()) -() -(sequel-of.is:'horror')"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x:\"2933..611\",5s,\"\u00c5  '60'  x:\"2123..2231\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "zendaya"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(-\"2213..1531 !sequel-of.genre:'x'"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "-\u2014X:\"1828\",'b-dune',\"<652\" a OR -nope:\"2422\",'Chalamet',OR\tSEQUEL-OF.PLATFORM:'\u03c2',\"Chalamet,OR\t!is:Dune,\"\u1e9e\",'Stra\u00dfe' genre:Two,>=811,\"<2111\" OR -(!'caf\u00e9') !cast:x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "OR_\u043d\u0435\u0442OR"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "prequel-of.on:'34x'  ()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-\"<=1384\" -((director:'500',\"943..2127,'level(\u0411\u0440\u0430\u0442')) PERSON:422..5\ud55c\uad6d\uc5b445"}, "expect": 2}
+{"case": {"op": "open_groups", "source": "person:\"Chalamet"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "state:68 !\">=2003"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR -\"level  us"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!TI\u0085TLE:1142\ta OR -actor:'1208',\"108..1733,\">1589"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "PREQUEL-OF.NOPE:'the',19m\t-cast:'1281..498',\"\ud83d\ude00\"\t!sequel-of.actors:>155,\"\u85ac\u5c4b\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!director:'79x' title:x\u0301  is:2578 OR !is:\"\u0149\" tag:the,>1094 !2792 OR Chalamet\t\"us\"\t/api@us"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR \"zendaya\"  on:>=1223"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-actors:<2181,odyssey  (tag:\"3\uff244x\",'\ud83d\ude00',37h  !actors:1x  !prequel-of.tag:\"zendayacafe)"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "season:'1s'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(29m !\u85ac\u5c4b) -(ON:DE \"\u001c) sequel-of.x:\">=2905\""}, "expect": 1}
+{"case": {"op": "open_groups", "source": "\"\u85ac\u5c4b  >=2195  name:\"890..2395 OR -platform:zendaya\t!\"<=2024\t-state:\"43h\"\tACTOR:1490..2063,/api OR prequel-of.state:'500'  sequel-of.season:'<=71'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-prequel-of.name:2545,>91,\"59m\" OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-\"\u200b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(nope:'>=2510' -()) (a OR a  year:\"dune\"  a OR -IS:\"\u00c5\" !\"<2393) -actors:\"362..1448\",24h"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "nope:\"\uff1a cast:steam,'858',\u03c2z"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(sequel\u0441\u043a\u043e\u0440\u043e-of.title:\">610\"  ()  \"<1250)"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "!theme:\"4..684\",\"75h\"\tGENRE:'the',\"x\u0301\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67  \"<152"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR \"us  -'\u0411\u0440\u0430\u0442!Two'  a OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-tia\u0000btle:\u00df\t85"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "person:876"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(prequel-of.actor:NONE\t(sequel-of.season:\ud835\udfd9\ud835\udfda  -genre:901..356,Chalamet  !actors:\"33m\",2921,\"odyssey)\t!reacher) !\"\u0411\u0440\u0430\u0442 OR prequel-of.name:\"NONE,23"}, "expect": 2}
+{"case": {"op": "open_groups", "source": "2338"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"2713\"\tcast:x\u0301\ta OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!actor:\"2036..2864\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(sequel-of.director:Stra\u00dfe prequel-of.is:71,\"/api\" kind:\"500,'b)Stra\u00dfe')\t-kind:\"\ufb01\",\"2161..830,\"\u13a0\"\t-x:'2422..863'"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "state:\"\uff09NONE"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-sequel-of.actors:>1650 !sequel-of.cast:\"<654"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-() -kind:dune,\"\ufb01\" -() OR !1834"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-nope:>=58:8,steam,\"\u00c5)  state:\"zendaya'the,>1949,\"1288..64\"\tx:1306 OR 'a\u0000b'\tsequel-of.director:\"500\"\t!sequel-of.theme:OR=Part,dune  (\"<646\tprequel-of.theme:\"\ud800,\"80x,"}, "expect": 2}
+{"case": {"op": "open_groups", "source": "-tag:Part  sequel-of.tag:\"Dune-/api\"  a OR (-prequel-of.kind:\u13a0) is:level,\"2230"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-prequel-of.genre:\"body horror\",'<2130',\"1780 -director:\"or\",'\u043d\u0435\uff11\uff12\u0442','levelb' !season:\"442,1006 actor:>1311,\"\u0411\u0440\u0430\u0442\" OR a OR -state:\"none:OR\"\tNOPE:<=2041,\"e\u0301\u0301\"  -theme:'Chalamet'  -1835 OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.sea\"son:steam"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!sequel-of.genre:x\u0301,>2191"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"h\u2028orror'zendaya -prequel-of.season:75x,caf\u00e9 prequel-of.title:Dune@500"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(!acto\u0085r:\"\u0130\",\"1391,28 -(\"1996  \"\u03c2  -'/api')) -b,netflix"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "prequel-of.cast:\"<=703\"  !name:\"\ufb01\",\"1411\",'\u0441\u043a\u043e\u0440\u043e'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-director:'<=1175'  cast:\ufeff,Sci-Fi_odyssey  CAST\uff1a:/api_body horror\t-genre:odyssey,netflix,a\u0000b\t!500(steam OR !title:\u043d\u0435\u0442,\"772..90\",1122..943"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!35x (-cast:\"level\"  !\"/api\"  -(-is:500Stra\u00dfe))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "nope:none-desert  (prequel-of.season:'none')"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-director:'5"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "SEQUEL-OF.GENRE:>959,'>=856' \"<=294 person:\"14\u201d37\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-((!caf\u00e9))  prequel-of.nope:<1329,\u03c2"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR 731 prequel-of.year:2809..219,Chalamet,5h ()\t-(PREQUEL-OF.STATE:\"cafe!Two\",\"level\" state:\"85m -prequel-of.kind:\"500\"x,'\u03c2' OR !cast:a,\"437  season:\"2273\")"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR a -kind:\"2090\",\"26x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR -name:'1590..2073' Sci-Fi <=1008 season:odyssey-DE,\"79m OR season:'NONE' tag:\"odyssey,\"2261..489\" year:\"odyssey\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "('\u03a3648') \"steamhorror\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.yea\ud83c\uddef\ud83c\uddf5r:steam#none,\"202"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!person:\"\u1e9e,<2344 on:OR@Chalamet,'\u0411\u0440\u0430\u0442level' OR \"netflix'body horror\"  -(\uff08 prequel-of.director:NONE|netflix -x:2845) sequel-of.nope:628..1692,\"the,>=743 -actors:\"desert:500\",odyssey,x)NONE"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "GENRE:\"the theme:2423..2543 !X:\"2846..882\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-is:\ufb01\t\u0411\u0440\u0430\u0442 OR a >=452 prequel-of.title:\"\uff1a\",<1404) !kind:<=180 -(season:\"a\" (-on:653..1636,4m,\"NONE\"))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-()\t\"us\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!sequel-of.genre:\"\u85ac\u5c4b\",\"1009..2750,'>1876' !director:levelcafe,\"<=2472\",89 !netflix"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!PERSON:2696,'\u13a0',1587 \"a-:us a OR (\"2212\"\tplatform:\u0663,\"14s\",>=1284)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "/api -()\ttheme:r"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-sequel-of.is:\"81s,'>=2467',netflix  the-netflix kind:\"88s OR !tag:\"666..2986\"\t\"2965\" OR season:\"215..1900  -(state:or  !'a'  sequel-of.director:\u0000,1435..2368)  -nope:\"Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:'\ud835\udd18\ud835\udd2b\ud835\udd26'\t(-title:\"body horror\",\"1667..2133)\t!person:422..856 OR -(-'Two|dune') -(x:\">761\",2003 -()) prequel-of.tag:258"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "on:559..338"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!'1856..2729' SEASON:\u01c5 !2845 kind:the OR cast:\"21..1495\",2m,\"DEOR\" -prequel-of.tag:\"the,'>=386'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(platform:\"2841..430  -cast:Stra\u00dfe OR !sequel-of.x:'<=407' -(SEASON:'none(odyssey' kind:\"\u043d\u0435\u0442) person:>2\u201d96) 1764 OR person:\ud55c\uad6d\uc5b4,horror,zendaya !\"25x\"\t!<1517\tseason:\"2810\" OR -prequel-of.platform:\"<=1789 ->=2308"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-TAG:<2336"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-'1057..712' -\u03c2prequel-of.genre:none zendaya"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'500'\t!x:'\u200b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR -\"Stra\u00dfe\" -304 \"level\" -season:\"\u3000\",'733..2381','1452..1017' OR name:dune 1002 -\">=1423\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.kind:\u6f22\u5b57 -'Stra\u00dfe!x'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!is:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(cast:\"1366\",reacher  'OR'  -director:\"\u001c,/api) >=2308 OR -()  prequel-of.nope:'\ud83c\uddef\ud83c\uddf5'  -season:Two,<2990 cast:2397..1391,\"1781..367\""}, "expect": 1}
+{"case": {"op": "open_groups", "source": "(se\u1e9equel-of.nope:'2348..2886',\u0663,1374)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-on:Two#Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'2992' /api () Chalamet OR a OR a sequel-of.actor:'steam' !<=654 sequel-of.actor:<=1020"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR !director"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR -person:caf\u00e9"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(year:\"84 theme:\u01c5,\"\u200b\")  ((!sequel-of.person:\"\u201d,zendaya is:2321e\u0301\u0301..885,\"us,us|none) title:\"43x,NONE,'Dune' !\"2519)  -year:\"level,'zendaya'"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "-actors:\"DE  a OR !prequel-of.actor:\"NONE\"  -(season:497 !x:\"desert)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-(!NAME:2435..1449\tkind:\"2817..771\",caf\u00e9,'none')  sequel-of.actors:'Dune',\"a,\"500(Two  odyssey)\tactor:'OR',\"or\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "title:2421 sequel-of.cast:15m,80s,\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67 !prequel-of.nope:>1509,\"odyssey_steam"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.director:\"<=2651,2896,1568 -(season:\"cafe\" -(!theme:\"us\",odyssey -88s)) season:Dune"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "x:steam,the,7s"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "prequel-of.theme:\"\ufb01  (year:\"1728\"  PERSON:>11 OR name:reacher,'2832'  -\"450\"  !17)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!on:a,none,2195..1081 tag:'1490..669',\"359..2690,caf\u00e9 -\">=1646\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-is:"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "352.."}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-\"500\" -\"level( OR >=657"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "2291..1410  cast:\"horror\"  title:2092..2173"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR Stra\u00dfe prequel-of.kind:\"1050\",\"netflix -director:'>=1051' OR 500 -(state:\"125,\"a,zendaya)Part -actor:body horror 'level!cafe')"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-()  horror#b) \""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-kind:Two  <=1583"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "sequel-of.genre:Part"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-tag:1063,\"or:level\",40m OR !\"2183..879\" sequel-of.theme:\">1548\" -<=791 !genre:1179 KIND:\">=1713 OR sequel-of.state:1883..698  !name:'<=866'  (-(-prequel-of.actors:64s cast:\"dune@caf\u00e9\" prequel-of.tag:2066))"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "cast:\"netflix  86s  -48s OR on:\"OR OR -1716\tx:'odyssey'\tsequel-of.actors:\"level\tcafe\t!\"b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"2698\" !'2636' kind:'x',x-OR"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "Two  "}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"body horror  a OR genre:'dunedune',x"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!x:\"500.Two,'/api'\t-name:\"63m\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:12s -<13\ud80080"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "(tag:\uab70,cafe\tdirector:2513,\"OR,'level'\tDIRECTOR:705..68,'netflix')\tsequel-of.actor:\"steam,reacher,\"Dune"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "\">=1417\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-sequel-of.actor:229\uff098,\"caf\u00e9\",\"2525 actor:\">1694)\t()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(!title:or\t-\"cafe\"\tPREQUEL-OF.ON:\"1108 OR a\t!\"\ud800 OR nope:\"/api\",'NONE',500@Stra\u00dfe \"reacher !\"Chalamet\")"}, "expect": 1}
+{"case": {"op": "open_groups", "source": "preq,uel-of.state:'body horror'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "a OR name:\"c\u201daf\u00e9  !actor:\"4h\"  !actors:b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "!on:14s,54s\t\u85ac\u5c4b"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "'26m'\ta OR cast:<=2128,\"1767\"\t'>808'  prequel-of.person:'zendaya'  !person:\ud835\udd18\ud835\udd2b\ud835\udd26 OR -director:\"500\",\"x,1013 kind:\"\u85ac\u5c4b)cafe\",\"the,\"\u00c5 OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"\u3000steam"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "-(-(-'a\u0000b' -sequel-of.is:\"2613,horror,Part !'>=593')\t-\">=144\tgenre:\u85ac\u5c4b !theme:487,x,\u0000 OR -cast:us,Sci-Fi)  !sequel-of.state:'2771'  ON:\""}, "expect": 1}
+{"case": {"op": "open_groups", "source": "('b' 71..1729 title:867..1923,'177..2802',1954) OR -title:'x' -level actors:\"a(/api (-actor:NONE,netflix,\"a\u0000b prequel-of.platform:\"2735) OR a OR CAST:>278"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "actor:>494,1166..2067 !x:\"levelsteam,\"1011..1501\",'the'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "PLATFORM:10m  (PREQUEL-OF.ON:1841  \"/api\" OR -2447  a OR -83)  \">2120\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "on:\"reacher\tname:\"27\u201d00..501\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"the_none\ud800\" OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "theme:the  theme:2102..2177  -(>=1708 \"<1084\" 1099)"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "NOPE:\"58h\" x director:'>2879' OR \"cafe\t2m OR a"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "theme:x,'us','1538'"}, "expect": 0}
+{"case": {"op": "open_groups", "source": ">1"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "platfor\u201cm:body horror"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"\uff09  prequel-of.on:odyssey,'62h',\"OR  ()"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "\"2450\""}, "expect": 0}
+{"case": {"op": "open_groups", "source": "2964..2724 -(prequel-of.is:908..2604 prequel-of.year:\u3000,\"\ud83d\ude00\",\"2246\") -(a OR !kind:\"4h  title:63m  -level  86m)"}, "expect": 1}

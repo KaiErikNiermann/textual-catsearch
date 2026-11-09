@@ -1,0 +1,6 @@
+[
+  {"text": "GET /api/users failed", "fields": {"status": "500", "userId": "7", "http.status": "503", "path": "/api/users"}, "level": 5},
+  {"text": "GET /health ok", "fields": {"status": "200", "level": "9", "path": "/health"}, "level": 3, "parent": {"text": "request started", "fields": {"status": "100"}, "level": 1}},
+  {"text": "idle", "fields": {}, "level": 0},
+  {"text": "Ünïcode lïne (bracketed)", "fields": {"status": "404", "Größe": "groß"}, "level": 2}
+]

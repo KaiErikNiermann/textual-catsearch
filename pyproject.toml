@@ -52,8 +52,9 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "S", "SIM", "RUF", "PTH"]
 ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
-# Lookalike characters (fullwidth Latin, a no-break space) are the point of these tests.
-"tests/*" = ["S101", "RUF001", "RUF002", "RUF003"]
+# Lookalike characters (fullwidth Latin, a no-break space) are the point of these tests, and a
+# seeded `random.Random` is what makes a generated corpus reproducible (S311).
+"tests/*" = ["S101", "S311", "RUF001", "RUF002", "RUF003"]
 
 [tool.ruff.lint.flake8-bugbear]
 # Frozen dataclasses, so a shared default instance is safe.
