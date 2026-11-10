@@ -61,6 +61,7 @@
   --focus-ring: light-dark(#3b5bdb, #8ea2ff);
   --chip: light-dark(#e7eaf6, #2f3346);
   --chip-ink: light-dark(#28388a, #c5cffd);
+  --term-line: light-dark(#c9d0ee, #474d6b);
   --operator-ink: light-dark(#8a4b00, #ffb86b);
   --hover: light-dark(#eef0f4, #2b2d32);
   --selected: light-dark(#e2e7fb, #333a5c);

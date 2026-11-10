@@ -1,6 +1,6 @@
 /**
- * A Discord-style search bar over `catsearch`: field keys drawn as code chips while you type,
- * a dropdown of completions that narrows as you type, and the result count and parser notices
+ * A Discord-style search bar over `catsearch`: field keys drawn as code chips while you type, a
+ * key and its value drawn as one chip once the value is complete (`kind:movie`), a dropdown of completions that narrows as you type, and the result count and parser notices
  * under it.
  *
  * One dropdown serves both kinds of input. With a keyboard, Tab takes the highlighted
@@ -47,33 +47,65 @@ function leading(text: string): number {
   return i;
 }
 
-type Piece = readonly [text: string, kind: "plain" | "key" | "operator"];
+/**
+ * One run of the text to draw. A `term` is a key with a value attached (`kind:movie`), drawn as one
+ * chip as Discord draws `from: user`; `key` is the length of its key part (`kind:`).
+ */
+type Piece =
+  | { readonly text: string; readonly kind: "plain" | "key" | "operator" }
+  | { readonly text: string; readonly kind: "term"; readonly key: number };
+
+/** Trailing `)`s that close groups: the lexer keeps them on the token, but they are not value. */
+function closers(value: string): number {
+  let n = 0;
+  while (n < value.length && value.charAt(value.length - 1 - n) === ")") n++;
+  return n;
+}
 
 /**
- * The text cut into pieces to draw: a recognised `field:` (or `relation.field:`) key is a
- * `key`, `OR` is an `operator`, everything else is plain. A key the schema does not know is
- * left plain, which is how the parser reads it too: as text.
+ * The text cut into pieces to draw. A recognised `field:` (or `relation.field:`) key is a `key`,
+ * `OR` is an `operator`, everything else is plain. A key the schema does not know is left plain,
+ * which is how the parser reads it too: as text.
+ *
+ * A key whose value is attached becomes a `term`: the value is not empty, the parser found
+ * nothing wrong with the clause, and the clause is not being typed. `editing` is the caret while
+ * the person types (a clause the caret is in or at the end of is still open), or `null` when no
+ * clause is open: after a completion is taken, or once the bar loses focus.
  */
-export function pieces<Row>(text: string, schema: Schema<Row>): Piece[] {
+export function pieces<Row>(text: string, schema: Schema<Row>, editing: number | null = null): Piece[] {
+  const faults = parse(text, schema).diagnostics;
   const out: Piece[] = [];
   let at = 0;
+  const plain = (to: number): void => {
+    if (to > at) out.push({ text: text.slice(at, to), kind: "plain" });
+    at = to;
+  };
   for (const token of lex(text)) {
     const raw = text.slice(token.start, token.end);
-    out.push([text.slice(at, token.start), "plain"]);
-    at = token.start;
+    plain(token.start);
     if (raw === "OR" || raw === "|") {
-      out.push([raw, "operator"]);
+      out.push({ text: raw, kind: "operator" });
       at = token.end;
       continue;
     }
     const lead = leading(raw);
     const end = keyEnd(raw);
     if (end <= lead || !isKey(raw.slice(lead, end), schema)) continue;
-    out.push([raw.slice(0, lead), "plain"], [raw.slice(lead, end), "key"]);
-    at = token.start + end;
+    plain(token.start + lead);
+    const valueEnd = token.end - closers(raw.slice(end));
+    const open = editing !== null && token.start <= editing && editing <= token.end;
+    const faulty = faults.some((d) => d.start < token.end && token.start < d.end);
+    const key = end - lead;
+    if (!(open || faulty) && valueEnd > token.start + end) {
+      out.push({ text: text.slice(at, valueEnd), kind: "term", key });
+      at = valueEnd;
+    } else {
+      out.push({ text: text.slice(at, at + key), kind: "key" });
+      at += key;
+    }
   }
-  out.push([text.slice(at), "plain"]);
-  return out.filter(([piece]) => piece.length > 0);
+  plain(text.length);
+  return out;
 }
 
 /** Does the schema read `key` (`kind:`, `sequel-of.year:`) as a field, not as text? */
@@ -120,8 +152,10 @@ export class SearchBar<Row> {
     this.#editor.addEventListener("focus", () => {
       this.#refresh(false);
     });
+    // Leaving the bar accepts what is shown: the clause last typed attaches too.
     this.#editor.addEventListener("blur", () => {
       this.#close();
+      if (!this.#composing) this.#draw(this.text, this.text.length);
     });
     // Mouse and touch alike: `pointerdown` with the default prevented keeps focus (and the
     // phone keyboard) in the editor, where `click` would blur it first.
@@ -262,7 +296,7 @@ export class SearchBar<Row> {
   }
 
   #refresh(redraw: boolean): void {
-    if (redraw) this.#draw(this.text, this.#caret());
+    if (redraw) this.#draw(this.text, this.#caret(), true);
     this.#announce();
     this.#suggest();
   }
@@ -320,13 +354,24 @@ export class SearchBar<Row> {
     else this.#editor.removeAttribute("aria-activedescendant");
   }
 
-  /** Redraw the text as pieces (keys as chips) and put the caret back at `caret`. */
-  #draw(text: string, caret: number): void {
-    const nodes = pieces(text, this.#schema).map(([piece, kind]) => {
-      if (kind === "plain") return document.createTextNode(piece);
+  /**
+   * Redraw the text as pieces (keys and attached terms as chips) and put the caret back at
+   * `caret`. `typing` says the caret is where someone is typing, so the clause there stays open.
+   */
+  #draw(text: string, caret: number, typing = false): void {
+    const nodes = pieces(text, this.#schema, typing ? caret : null).map((piece) => {
+      if (piece.kind === "plain") return document.createTextNode(piece.text);
       const span = document.createElement("span");
-      span.className = kind === "key" ? "token-key" : "token-operator";
-      span.textContent = piece;
+      if (piece.kind === "term") {
+        const key = document.createElement("span");
+        key.className = "token-key";
+        key.textContent = piece.text.slice(0, piece.key);
+        span.className = "token-term";
+        span.append(key, piece.text.slice(piece.key));
+        return span;
+      }
+      span.className = piece.kind === "key" ? "token-key" : "token-operator";
+      span.textContent = piece.text;
       return span;
     });
     this.#editor.replaceChildren(...nodes);

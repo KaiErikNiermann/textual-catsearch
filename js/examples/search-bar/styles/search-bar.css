@@ -42,6 +42,23 @@
     font-size: var(--text-mono-scale);
   }
 
+  /* A key with its value attached, as Discord draws `from: user`: one chip around both, the key
+     in the chip's mono ink and the value in body ink, so the value reads as the chip's content. */
+  .token-term {
+    padding-block: var(--space-1);
+    padding-inline: var(--space-2);
+    border: var(--border-hairline) solid var(--term-line);
+    border-radius: var(--radius-chip);
+    background: var(--chip);
+    color: var(--ink);
+  }
+
+  /* The term's chip is the key's background; the key keeps only its mono ink. */
+  .token-term > .token-key {
+    padding-inline: 0;
+    background: transparent;
+  }
+
   .token-operator {
     color: var(--operator-ink);
     font-family: var(--font-mono);

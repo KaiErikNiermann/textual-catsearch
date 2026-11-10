@@ -1,8 +1,8 @@
 /**
- * The example search bar does what its page says: field keys drawn as code chips, a dropdown
- * that narrows as you type, Tab to take and walk on a keyboard, a tap to take on a phone, and
- * results that follow the query. Every assertion is web-first (it retries), so nothing waits on
- * a timer.
+ * The example search bar does what its page says: field keys drawn as code chips, a key and its
+ * completed value drawn as one chip, a dropdown that narrows as you type, Tab to take and walk on
+ * a keyboard, a tap to take on a phone, and results that follow the query. Every assertion is
+ * web-first (it retries), so nothing waits on a timer.
  */
 
 import { expect, test } from "@playwright/test";
@@ -48,7 +48,10 @@ test.describe("everywhere", () => {
     const chips = bar(page).locator(".token-key");
     await expect(chips).toHaveText(["kind:"]);
     await expect(chips.first()).toHaveCSS("font-family", /mono/iu);
-    const chipBackground = await chips.first().evaluate((el) => getComputedStyle(el).backgroundColor);
+    // The key's value is complete, so key and value share one chip with its own background.
+    const terms = bar(page).locator(".token-term");
+    await expect(terms).toHaveText(["kind:movie"]);
+    const chipBackground = await terms.first().evaluate((el) => getComputedStyle(el).backgroundColor);
     const barBackground = await bar(page).evaluate((el) => getComputedStyle(el).backgroundColor);
     expect(chipBackground).not.toBe(barBackground);
     await expect(page.locator("#notice")).toHaveText("nope: not a field — searched as text");
@@ -58,6 +61,40 @@ test.describe("everywhere", () => {
     await typeQuery(page, "(kind:tv OR -genre:drama)");
     await expect(bar(page).locator(".token-key")).toHaveText(["kind:", "genre:"]);
     await expect(bar(page).locator(".token-operator")).toHaveText(["OR"]);
+  });
+
+  test("attaches a value to its key once the clause is done, as one chip", async ({ page }) => {
+    await typeQuery(page, "kind:mov");
+    // Still being typed: the key is a chip, the value plain text after it.
+    await expect(bar(page).locator(".token-key")).toHaveText(["kind:"]);
+    await expect(bar(page).locator(".token-term")).toHaveCount(0);
+    await page.keyboard.type("ie ");
+    await expect(bar(page).locator(".token-term")).toHaveText(["kind:movie"]);
+    await expect(bar(page).locator(".token-term .token-key")).toHaveText(["kind:"]);
+    // The caret stays after the space, so typing goes on outside the chip.
+    await page.keyboard.type("dune");
+    await expect(bar(page)).toHaveText("kind:movie dune");
+    await expect(bar(page).locator(".token-term")).toHaveText(["kind:movie"]);
+  });
+
+  test("keeps a value the parser rejects apart from its key", async ({ page }) => {
+    await typeQuery(page, "year:abc ");
+    await expect(bar(page).locator(".token-key")).toHaveText(["year:"]);
+    await expect(bar(page).locator(".token-term")).toHaveCount(0);
+  });
+
+  test("attaches values inside groups, leaving the brackets and OR outside", async ({ page }) => {
+    await typeQuery(page, "(kind:tv OR kind:game) ");
+    await expect(bar(page).locator(".token-term")).toHaveText(["kind:tv", "kind:game"]);
+    await expect(bar(page).locator(".token-operator")).toHaveText(["OR"]);
+    await expect(bar(page)).toHaveText("(kind:tv OR kind:game) ");
+  });
+
+  test("leaving the bar attaches the clause last typed", async ({ page }) => {
+    await typeQuery(page, "genre:drama");
+    await expect(bar(page).locator(".token-term")).toHaveCount(0);
+    await page.locator(".title").click();
+    await expect(bar(page).locator(".token-term")).toHaveText(["genre:drama"]);
   });
 
   test("narrows the dropdown as you type", async ({ page }) => {
@@ -169,6 +206,8 @@ test.describe("with a keyboard", { tag: "@keyboard" }, () => {
     await expect(labels(page)).toHaveText(["movie", "tv", "game"]);
     await page.keyboard.press("Tab");
     await expect(bar(page)).toHaveText("kind:movie");
+    // A taken value is complete: it attaches at once, with no space typed.
+    await expect(bar(page).locator(".token-term")).toHaveText(["kind:movie"]);
     await page.keyboard.press("Tab");
     await expect(bar(page)).toHaveText("kind:tv");
     await expect(options(page).nth(1)).toHaveAttribute("aria-selected", "true");
@@ -223,6 +262,7 @@ test.describe("on a phone", { tag: "@touch" }, () => {
     await expect(labels(page).first()).toHaveText("drama");
     await options(page).filter({ hasText: "sci-fi" }).tap();
     await expect(bar(page)).toHaveText("genre:sci-fi");
+    await expect(bar(page).locator(".token-term")).toHaveText(["genre:sci-fi"]);
     await expect(page.locator("#count")).toHaveText(`9 of ${TOTAL}`);
   });
 
