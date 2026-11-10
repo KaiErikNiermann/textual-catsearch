@@ -38,6 +38,13 @@ dev = [
 # proc-mngr depends on this package by path. uv rebuilds a path dependency only when
 # a cache key changes, and by default the only key is pyproject.toml, so without the
 # source files here a `uv tool install` reuses a stale wheel after any code change.
+docs = [
+    "sphinx (>=9.2.0,<10.0.0)",
+    "furo (>=2025.12.19,<2026.0.0)",
+    "myst-parser (>=5.1.0,<6.0.0)",
+    "sphinx-copybutton (>=0.5.2,<0.6.0)",
+    "sphinx-design (>=0.7.0,<0.8.0)"
+]
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { file = "src/**/*.py" }]
 
