@@ -2,6 +2,8 @@
 
 Discord-style category search for [Textual](https://textual.textualize.io/) apps. You declare the fields your rows have; you get a query language over them, filtering, and a search bar that completes field names and values as you type.
 
+**Docs and live demo:** <https://kaierikniermann.github.io/textual-catsearch/>
+
 ```
 author:"le guin" year:1960..1980 -is:read
 (format:ebook OR format:hardcover) genre:sci-fi
