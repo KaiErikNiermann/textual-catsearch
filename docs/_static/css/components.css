@@ -1,0 +1,170 @@
+/*
+ * The docs' own components: the brand's meta row, the search box's shortcut hint, the command
+ * palette's theme binding, and the frame the web example is embedded in. Unlayered (see
+ * tokens.css): Furo's `a { color }` is unlayered and would beat a layered link colour.
+ */
+
+/* ── Sidebar brand: release badge, source link ───────────────── */
+
+.sidebar-brand-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cs-space-3);
+  align-items: center;
+  padding-inline: var(--sidebar-item-spacing-horizontal);
+  padding-block: var(--cs-space-3) var(--cs-space-4);
+}
+
+.sidebar-brand-version {
+  padding-inline: var(--cs-space-2);
+  padding-block: 0;
+  border: var(--cs-hairline) solid var(--cs-brand-edge);
+  border-radius: var(--cs-radius-small);
+  background: var(--cs-brand-tint);
+  color: var(--color-brand-primary);
+  font-family: var(--font-stack--monospace);
+  font-size: var(--cs-text-badge);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--cs-leading-badge);
+  text-decoration: none;
+  transition-property: background, border-color;
+  transition-duration: var(--cs-duration);
+}
+
+.sidebar-brand-version:hover,
+.sidebar-brand-version:focus-visible {
+  border-color: var(--cs-brand-edge-strong);
+  background: var(--cs-brand-tint-strong);
+}
+
+.sidebar-brand-dot {
+  inline-size: var(--cs-dot);
+  block-size: var(--cs-dot);
+  border-radius: var(--cs-round);
+  background: var(--cs-ink-muted);
+  opacity: var(--cs-dot-opacity);
+}
+
+.sidebar-brand-link,
+.sidebar-brand-text-link {
+  display: inline-flex;
+  color: var(--cs-ink-muted);
+  font-size: var(--cs-text-label);
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: var(--cs-duration);
+}
+
+.sidebar-brand-link:hover,
+.sidebar-brand-link:focus-visible,
+.sidebar-brand-text-link:hover,
+.sidebar-brand-text-link:focus-visible {
+  color: var(--color-brand-primary);
+}
+
+.sidebar-brand-icon {
+  inline-size: var(--cs-icon);
+  block-size: var(--cs-icon);
+}
+
+/* ── Search box shortcut hint (Ctrl+K) ───────────────────────── */
+
+/* Furo's search container is already the positioned ancestor, and its input sits above, so the
+   badge is inert and the whole box stays one click target that opens the palette. */
+.cs-search-hint {
+  position: absolute;
+  inset-inline-end: var(--sidebar-search-input-spacing-horizontal);
+  inset-block: 0;
+  display: flex;
+  gap: var(--cs-space-1);
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Sphinx fills the box with the query on the results page; the badge steps aside for it. */
+.sidebar-search:not(:placeholder-shown) ~ .cs-search-hint,
+.sidebar-search:focus ~ .cs-search-hint {
+  display: none;
+}
+
+.cs-kbd-plus {
+  color: var(--cs-ink-muted);
+  font-size: var(--cs-text-kbd);
+  opacity: var(--cs-plus-opacity);
+}
+
+.cs-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--cs-kbd-min);
+  padding-inline: var(--cs-space-2);
+  padding-block: 0;
+  border: var(--cs-hairline) solid var(--cs-line);
+  border-radius: var(--cs-radius-small);
+  background: var(--color-background-primary);
+  box-shadow: var(--cs-shadow-key);
+  color: var(--cs-ink-muted);
+  font-family: var(--font-stack--monospace);
+  font-size: var(--cs-text-kbd);
+  font-weight: 600;
+  line-height: var(--cs-leading-badge);
+}
+
+/* ── Command palette (ninja-keys) ────────────────────────────── */
+
+/* Every input is a Furo colour or a token, so the palette follows the theme toggle. */
+ninja-keys {
+  /* Inherited into the shadow DOM, which Furo's scrollbar rules cannot reach. */
+  scrollbar-color: var(--color-foreground-border) transparent;
+  scrollbar-width: thin;
+
+  --ninja-width: var(--cs-palette-width);
+  --ninja-top: var(--cs-palette-top);
+  --ninja-z-index: var(--cs-palette-z);
+  --ninja-actions-height: var(--cs-palette-actions);
+  --ninja-font-family: var(--font-stack);
+  --ninja-font-size: var(--cs-palette-font-size);
+  --ninja-icon-size: var(--cs-palette-icon);
+  --ninja-key-border-radius: var(--cs-radius-small);
+  --ninja-text-color: var(--color-foreground-primary);
+  --ninja-secondary-text-color: var(--color-foreground-secondary);
+  --ninja-group-text-color: var(--color-foreground-muted);
+  --ninja-placeholder-color: var(--color-foreground-muted);
+  --ninja-icon-color: var(--color-foreground-muted);
+  --ninja-accent-color: var(--color-brand-primary);
+  --ninja-modal-background: var(--color-background-primary);
+  --ninja-secondary-background-color: var(--color-background-secondary);
+  --ninja-footer-background: var(--color-background-secondary);
+  --ninja-separate-border: var(--cs-hairline) solid var(--cs-line);
+  --ninja-selected-background: var(--cs-brand-tint);
+  --ninja-selected-text-color: var(--color-brand-content);
+  --ninja-overflow-background: var(--cs-scrim);
+  --ninja-backdrop-filter: var(--cs-palette-blur);
+  --ninja-modal-shadow: var(--cs-shadow-modal);
+}
+
+/* ── The embedded web example ────────────────────────────────── */
+
+/* One surface with the page: a hairline frame, the example's own background inside. The script
+   (demo-embed.js) grows the frame to the example's height, so it never scrolls on its own. */
+.cs-demo {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--cs-demo-min-block);
+  border: var(--cs-hairline) solid var(--cs-heading-rule);
+  border-radius: var(--cs-radius);
+  background: var(--color-background-primary);
+}
+
+.cs-demo-fallback {
+  color: var(--cs-ink-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-brand-link,
+  .sidebar-brand-text-link,
+  .sidebar-brand-version {
+    transition-duration: var(--cs-duration-none);
+  }
+}

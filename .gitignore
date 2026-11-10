@@ -15,3 +15,5 @@ js/.scratch/
 js/test-results/
 js/playwright-report/
 js/examples/search-bar/dist/
+docs/_build/
+.playwright-mcp/

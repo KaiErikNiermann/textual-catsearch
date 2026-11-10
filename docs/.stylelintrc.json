@@ -1,0 +1,12 @@
+{
+  "extends": ["../js/.stylelintrc.json"],
+  "rules": {
+    "custom-property-pattern": [
+      "^_?[a-z][a-z0-9]*(--?[a-z0-9]+)*$",
+      { "message": "Custom properties are kebab-case; Furo's `--` modifier (--color-admonition-title--note) is allowed" }
+    ]
+  },
+  "overrides": [
+    { "files": ["**/tokens.css"], "rules": { "scale-unlimited/declaration-strict-value": null } }
+  ]
+}

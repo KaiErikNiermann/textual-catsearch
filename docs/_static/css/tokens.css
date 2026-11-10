@@ -1,0 +1,96 @@
+/*
+ * Every literal the docs' own CSS uses. Furo's tokens (fonts, brand colour) are set in conf.py's
+ * html_theme_options, which Furo writes into its light and dark blocks; these build on them, so
+ * they follow Furo's theme toggle with no theme blocks of their own.
+ *
+ * Why there are no cascade layers in the docs CSS: Furo's stylesheet is unlayered, and an
+ * unlayered rule beats every layered one whatever its specificity, so a layered override of a
+ * Furo element (or of Furo's `a { color }`) would silently lose. Order is still declared, by the
+ * file order in conf.py's html_css_files; specificity stays at most two compounds.
+ */
+body {
+  /* Spacing and shape. */
+  --cs-space-1: 0.125rem;
+  --cs-space-2: 0.25rem;
+  --cs-space-3: 0.5rem;
+  --cs-space-4: 0.75rem;
+  --cs-space-5: 1rem;
+  --cs-space-6: 1.25rem;
+  --cs-space-7: 2rem;
+  --cs-space-8: 2.5rem;
+  --cs-radius-small: 4px;
+  --cs-radius: 8px;
+  --cs-hairline: 1px;
+  --cs-dot: 3px;
+  --cs-round: 50%;
+  --cs-icon: 1rem;
+
+  /* Type: the long-reading profile's line heights, Furo's sizes. */
+  --cs-leading-body: 1.7;
+  --cs-leading-code: 1.55;
+  --cs-leading-table: 1.5;
+  --cs-leading-tight: 1.15;
+  --cs-leading-badge: 1.6;
+  --cs-text-code: 0.88em;
+  --cs-text-inline-code: 0.9em;
+  --cs-text-label: 0.8em;
+  --cs-text-badge: 0.7rem;
+  --cs-text-kbd: 0.66rem;
+  --cs-tracking-label: 0.05em;
+  --cs-tracking-brand: -0.01em;
+
+  /* Lines and surfaces, from Furo's own colours. */
+  --cs-line: var(--color-background-border);
+  --cs-heading-rule: var(--color-sidebar-background-border);
+  --cs-ink-muted: var(--color-foreground-secondary);
+  --cs-brand-tint: color-mix(in srgb, var(--color-brand-primary) 12%, transparent);
+  --cs-brand-tint-strong: color-mix(in srgb, var(--color-brand-primary) 22%, transparent);
+  --cs-brand-edge: color-mix(in srgb, var(--color-brand-primary) 32%, transparent);
+  --cs-brand-edge-strong: color-mix(in srgb, var(--color-brand-primary) 55%, transparent);
+  --cs-shadow-key: 0 1px 0 var(--color-background-border);
+  --cs-shadow-modal: 0 16px 70px color-mix(in srgb, var(--color-foreground-primary) 28%, transparent);
+  --cs-scrim: color-mix(in srgb, var(--color-background-primary) 65%, transparent);
+  --cs-label-opacity: 0.7;
+  --cs-dot-opacity: 0.4;
+  --cs-plus-opacity: 0.55;
+  --cs-duration: 120ms;
+  --cs-duration-none: 0s;
+
+  /* Callouts: a flat tint of the kind's colour (Furo's per-kind colour), a hairline of it all round. */
+  --cs-callout-tint: 8%;
+  --cs-callout-edge: 30%;
+
+  /* Furo's admonition titles get no band of their own; the whole callout is tinted instead.
+     These are Furo's names; its `--` marks a modifier, which the docs' stylelint override allows. */
+  --color-admonition-title-background: transparent;
+  --color-admonition-title-background--note: transparent;
+  --color-admonition-title-background--tip: transparent;
+  --color-admonition-title-background--hint: transparent;
+  --color-admonition-title-background--important: transparent;
+  --color-admonition-title-background--warning: transparent;
+  --color-admonition-title-background--attention: transparent;
+  --color-admonition-title-background--caution: transparent;
+  --color-admonition-title-background--danger: transparent;
+  --color-admonition-title-background--error: transparent;
+  --color-admonition-title-background--seealso: transparent;
+  --color-admonition-title-background--admonition-todo: transparent;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+
+  /* The search box's shortcut hint. */
+  --cs-search-hint-slot: 4rem;
+  --cs-search-pad-end: calc(var(--sidebar-search-input-spacing-horizontal) + var(--cs-search-hint-slot));
+  --cs-kbd-min: 1.15em;
+
+  /* The embedded example: a frame that grows to its content, never below one screenful. */
+  --cs-demo-min-block: 36rem;
+
+  /* ninja-keys' inputs, bound to the above, so the palette follows the theme toggle. */
+  --cs-palette-width: min(40rem, 92vw);
+  --cs-palette-top: 12vh;
+  --cs-palette-actions: 22rem;
+  --cs-palette-font-size: 0.95rem;
+  --cs-palette-icon: 1.1em;
+  --cs-palette-z: 60;
+  --cs-palette-blur: blur(2px);
+}

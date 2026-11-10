@@ -1,0 +1,187 @@
+/*
+ * Adjustments to Furo's own elements. Unlayered, like Furo itself (see tokens.css), and loaded
+ * after it, so a rule here wins at equal specificity by source order alone.
+ */
+
+/* ── Reading ─────────────────────────────────────────────────── */
+
+.content p {
+  line-height: var(--cs-leading-body);
+}
+
+.content h2 {
+  margin-block-start: var(--cs-space-8);
+  padding-block-end: var(--cs-space-2);
+  border-block-end: var(--cs-hairline) solid var(--cs-heading-rule);
+}
+
+.content h3 {
+  margin-block-start: var(--cs-space-7);
+}
+
+/* ── Code ────────────────────────────────────────────────────── */
+
+.highlight pre {
+  padding-block: var(--cs-space-5);
+  padding-inline: var(--cs-space-6);
+  border: var(--cs-hairline) solid var(--cs-heading-rule);
+  border-radius: var(--cs-radius);
+  font-size: var(--cs-text-code);
+  line-height: var(--cs-leading-code);
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+.content code.literal {
+  padding-block: var(--cs-space-1);
+  padding-inline: var(--cs-space-2);
+  border-radius: var(--cs-radius-small);
+  font-size: var(--cs-text-inline-code);
+}
+
+/* ── Tables: one rounded surface, small-caps headers ─────────── */
+
+table.docutils {
+  inline-size: 100%;
+  border: var(--cs-hairline) solid var(--cs-heading-rule);
+  border-radius: var(--cs-radius);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+table.docutils th,
+table.docutils td {
+  padding-block: var(--cs-space-3);
+  padding-inline: var(--cs-space-5);
+  border: none;
+  text-align: start;
+  vertical-align: top;
+}
+
+/* Cells are scanned, not read: the body's reading line height would make each row a block. */
+table.docutils p {
+  line-height: var(--cs-leading-table);
+}
+
+table.docutils th {
+  font-size: var(--cs-text-label);
+  font-weight: 600;
+  letter-spacing: var(--cs-tracking-label);
+  text-transform: uppercase;
+}
+
+/* Each body row draws the rule above it, so the header gets its separator and the last row
+   none, with nothing to undo. */
+table.docutils td {
+  border-block-start: var(--cs-hairline) solid var(--cs-heading-rule);
+}
+
+/* ── Callouts: a flat tint and a hairline all round, no edge bar ── */
+
+.admonition {
+  --_accent: var(--color-admonition-title);
+  --_tint: color-mix(in srgb, var(--_accent) var(--cs-callout-tint), var(--color-background-primary));
+  --_edge: color-mix(in srgb, var(--_accent) var(--cs-callout-edge), transparent);
+
+  padding-block-end: var(--cs-space-3);
+  border: var(--cs-hairline) solid var(--_edge);
+  border-radius: var(--cs-radius);
+  background: var(--_tint);
+  box-shadow: none;
+}
+
+/* Each kind tints with Furo's own colour for it, so the tint matches Furo's icon. */
+.admonition.note {
+  --_accent: var(--color-admonition-title--note);
+
+  border-color: var(--_edge);
+}
+
+.admonition.tip {
+  --_accent: var(--color-admonition-title--tip);
+
+  border-color: var(--_edge);
+}
+
+.admonition.hint {
+  --_accent: var(--color-admonition-title--hint);
+
+  border-color: var(--_edge);
+}
+
+.admonition.important {
+  --_accent: var(--color-admonition-title--important);
+
+  border-color: var(--_edge);
+}
+
+.admonition.warning {
+  --_accent: var(--color-admonition-title--warning);
+
+  border-color: var(--_edge);
+}
+
+.admonition.attention {
+  --_accent: var(--color-admonition-title--attention);
+
+  border-color: var(--_edge);
+}
+
+.admonition.caution {
+  --_accent: var(--color-admonition-title--caution);
+
+  border-color: var(--_edge);
+}
+
+.admonition.danger {
+  --_accent: var(--color-admonition-title--danger);
+
+  border-color: var(--_edge);
+}
+
+.admonition.error {
+  --_accent: var(--color-admonition-title--error);
+
+  border-color: var(--_edge);
+}
+
+.admonition.seealso {
+  --_accent: var(--color-admonition-title--seealso);
+
+  border-color: var(--_edge);
+}
+
+/* Title in body ink at weight 600; the icon carries the kind's colour. */
+.admonition p.admonition-title {
+  font-weight: 600;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+
+.sidebar-tree .caption {
+  margin-block-start: var(--cs-space-6);
+  font-size: var(--cs-text-label);
+  letter-spacing: var(--cs-tracking-label);
+  text-transform: uppercase;
+  opacity: var(--cs-label-opacity);
+}
+
+/* Furo stacks the brand in a column. Here it holds only the name; the meta row sits outside the
+   anchor (components.css), since it holds links of its own and anchors cannot nest. */
+.sidebar-brand {
+  padding-block: var(--cs-space-4) 0;
+}
+
+.sidebar-brand-text {
+  margin-block: 0;
+  font-weight: 600;
+  line-height: var(--cs-leading-tight);
+  letter-spacing: var(--cs-tracking-brand);
+}
+
+/* Room for the shortcut hint, so the placeholder never runs under it. */
+.sidebar-search {
+  padding-inline-end: var(--cs-search-pad-end);
+  cursor: pointer;
+}

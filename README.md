@@ -62,6 +62,8 @@ class Library(App[None]):
 
 A complete, runnable version is in [`examples/books.py`](examples/books.py): `poetry run python examples/books.py`.
 
+<!-- docs:guide:start (docs/guide/usage.md includes from here to the end marker) -->
+
 ## The language
 
 | Syntax | Meaning |
@@ -135,6 +137,8 @@ suggest("by:le", 5, SCHEMA, vocab)  # completions for the token under the caret
 ```
 
 `render` is the inverse of `parse` (`parse(render(e)) == e`, checked by property tests), so queries can be edited as trees and written back out.
+
+<!-- docs:guide:end -->
 
 ## On the web
 
