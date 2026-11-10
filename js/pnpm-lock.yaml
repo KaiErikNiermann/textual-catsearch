@@ -41,6 +41,9 @@ importers:
       fast-check:
         specifier: ^4.10.2
         version: 4.10.2
+      globals:
+        specifier: ^17.14.0
+        version: 17.14.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0

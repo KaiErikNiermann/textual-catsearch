@@ -1,11 +1,24 @@
 import css from "@eslint/css";
 import js from "@eslint/js";
+import type { Linter } from "eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
 import security from "eslint-plugin-security";
 import sonarjs from "eslint-plugin-sonarjs";
 import unicorn from "eslint-plugin-unicorn";
 import { tailwind4 } from "tailwind-csstree";
 import tseslint from "typescript-eslint";
+
+/** The principled-css rules for every stylesheet: the example's here, the docs' in scripts/lint-docs.ts. */
+export const cssRules = {
+  "css/use-baseline": ["error", { available: "newly" }],
+  "css/no-important": "error",
+  "css/prefer-logical-properties": "error",
+  "css/selector-complexity": ["error", { maxCompounds: 2, maxTypes: 1 }],
+  "css/relative-font-units": ["error", { allowUnits: ["rem", "em"] }],
+  "css/font-family-fallbacks": "error",
+  // Tokens are defined in tokens.css and used everywhere else: unknown to a per-file check.
+  "css/no-invalid-properties": ["error", { allowUnknownVariables: true }],
+} satisfies Linter.RulesRecord;
 
 export default defineConfig([
   // unicode-data.ts is generated from Python (tests/conformance/unicode_tables.py).
@@ -78,16 +91,9 @@ export default defineConfig([
     extends: ["css/recommended"],
     languageOptions: { customSyntax: tailwind4 },
     rules: {
-      "css/use-baseline": ["error", { available: "newly" }],
-      "css/no-important": "error",
-      "css/prefer-logical-properties": "error",
+      ...cssRules,
       // Each file wraps itself in its layer (so each can be checked alone); imports carry none.
       "css/use-layers": ["error", { requireImportLayers: false }],
-      "css/selector-complexity": ["error", { maxCompounds: 2, maxTypes: 1 }],
-      "css/relative-font-units": ["error", { allowUnits: ["rem", "em"] }],
-      "css/font-family-fallbacks": "error",
-      // Tokens are defined in tokens.css and used everywhere else: unknown to a per-file check.
-      "css/no-invalid-properties": ["error", { allowUnknownVariables: true }],
     },
   },
 ]);
