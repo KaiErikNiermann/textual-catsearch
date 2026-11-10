@@ -6,9 +6,9 @@ set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
 echo "▶ ruff check"
-poetry run ruff check src tests examples
+poetry run ruff check src tests examples docs
 echo "▶ ruff format"
-poetry run ruff format --check src tests examples
+poetry run ruff format --check src tests examples docs
 echo "▶ pyright (strict)"
 poetry run pyright
 
@@ -43,6 +43,10 @@ echo "▶ js: tests (spec fixtures, properties, API)"
 pnpm -C js test
 echo "▶ js: size"
 pnpm -C js size
+# Sphinx with warnings as errors (autodoc, cross-references, the README include), then the demo
+# built into the site. Needs the docs group: poetry install --with docs.
+echo "▶ docs"
+make -C docs html
 # The principled-css markup rules (Tailwind arbitrary values, !important, breakpoint ladders in
 # class attributes): they live in the local skill, so they run where it is installed. Python
 # 3.13, since semgrep's ruamel-yaml-clib does not build for a free-threaded 3.14.
@@ -50,7 +54,7 @@ rules="$HOME/.claude/skills/principled-css/rules/principled-css.yml"
 if [ -f "$rules" ]; then
     echo "▶ semgrep (principled-css)"
     EIO_BACKEND=posix uvx --python 3.13 --from semgrep semgrep --quiet --metrics off --error \
-        --config "$rules" js/examples/search-bar
+        --config "$rules" js/examples/search-bar docs/_static docs/_templates
 else
     echo "▷ principled-css rules not installed, markup not checked" >&2
 fi

@@ -1,0 +1,61 @@
+# Build the docs (Sphinx + Furo) with the web demo inside them, and publish to GitHub Pages.
+# The demo is the Vite build of js/examples/search-bar, written to search-bar/ in the site so the
+# demo page can embed it from the same origin.
+name: pages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "docs/**"
+      - "src/**"
+      - "js/src/**"
+      - "js/examples/**"
+      - "js/package.json"
+      - "js/pnpm-lock.yaml"
+      - "README.md"
+      - "pyproject.toml"
+      - "poetry.lock"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: pipx install poetry
+      # The package itself is installed too: autodoc imports it for the Python API page.
+      - run: poetry install --with docs
+      - run: npm install --global pnpm@10
+      - run: pnpm -C js install --frozen-lockfile
+      - name: Sphinx (warnings are errors), then the demo into the site
+        run: make -C docs html
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs/_build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

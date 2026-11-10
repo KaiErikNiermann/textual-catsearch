@@ -71,7 +71,7 @@ extend-immutable-calls = ["textual_catsearch.lexer.Guarded", "textual_catsearch.
 known-first-party = ["textual_catsearch"]
 
 [tool.pyright]
-include = ["src", "tests", "examples"]
+include = ["src", "tests", "examples", "docs/conf.py", "docs/_ext"]
 extraPaths = ["tests", "examples"]
 typeCheckingMode = "strict"
 pythonVersion = "3.13"
