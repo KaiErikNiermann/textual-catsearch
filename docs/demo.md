@@ -1,6 +1,6 @@
 # Demo
 
-A search bar over a small media catalogue, built on the TypeScript package. Type words to search titles, or a field and a value: `kind:`, `year:`, `genre:`, `cast:`, `is:`. Known field keys turn into code chips as you type.
+A search bar over a small media catalogue, built on the TypeScript package. Type words to search titles, or a field and a value: `kind:`, `year:`, `genre:`, `cast:`, `is:`. Known field keys turn into code chips as you type, and once a value is complete (type a space, take a completion, or leave the bar) the key and value join into one chip, as in Discord's search.
 
 - On a keyboard, Tab takes the highlighted completion and Tab again walks to the next (Shift+Tab back); arrows and Enter pick; Escape closes the list.
 - On a phone, tap a completion.

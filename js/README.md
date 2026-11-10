@@ -50,7 +50,7 @@ The language, the field kinds (`textField`, `enumField`, `numberField`, `flagFie
 
 ## The example
 
-[`examples/search-bar`](examples/search-bar) is a search bar over a media catalogue; try it in the [docs](https://kaierikniermann.github.io/textual-catsearch/demo.html). Known field keys are drawn as monospace code chips as you type. A dropdown of completions narrows as you type: on a keyboard, Tab takes the highlighted one and Tab again walks to the next (Shift+Tab back), arrows and Enter pick, Escape closes; on a phone, tapping an option fills in the rest of the keyword.
+[`examples/search-bar`](examples/search-bar) is a search bar over a media catalogue; try it in the [docs](https://kaierikniermann.github.io/textual-catsearch/demo.html). Known field keys are drawn as monospace code chips as you type, and once a value is complete (a space typed after it, a completion taken, or the bar left) the key and its value become one chip, as Discord draws `from: user`. A value the parser rejects (`year:abc`) stays apart from its key. A dropdown of completions narrows as you type: on a keyboard, Tab takes the highlighted one and Tab again walks to the next (Shift+Tab back), arrows and Enter pick, Escape closes; on a phone, tapping an option fills in the rest of the keyword.
 
 ```sh
 pnpm install
