@@ -3,6 +3,20 @@
   "version": "0.1.0",
   "description": "Discord-style category search: declare your fields, get a query language, filtering and completion. The TypeScript port of textual-catsearch.",
   "license": "MIT",
+  "keywords": [
+    "search",
+    "query-language",
+    "filter",
+    "autocomplete",
+    "parser"
+  ],
+  "homepage": "https://kaierikniermann.github.io/textual-catsearch/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaiErikNiermann/textual-catsearch.git",
+    "directory": "js"
+  },
+  "bugs": "https://github.com/KaiErikNiermann/textual-catsearch/issues",
   "type": "module",
   "sideEffects": false,
   "exports": {

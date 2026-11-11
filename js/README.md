@@ -7,7 +7,7 @@ author:"le guin" year:1960..1980 -is:read
 (format:ebook OR format:hardcover) genre:sci-fi
 ```
 
-This is the TypeScript port of the Python package [`textual-catsearch`](../README.md), with the same language. No dependencies; 12.9 kB minified and gzipped for the whole API. It never throws on input: a half-typed query parses to the closest tree and says what it noticed.
+This is the TypeScript port of the Python package [`textual-catsearch`](https://github.com/KaiErikNiermann/textual-catsearch#readme), with the same language. No dependencies; 12.9 kB minified and gzipped for the whole API. It never throws on input: a half-typed query parses to the closest tree and says what it noticed.
 
 ## Quick start
 
@@ -40,7 +40,7 @@ render(query.expr, schema); // 'author:"le guin" -is:read'
 suggest("by:le", 5, schema, schema.vocabulary(books)); // completions for the token under the caret
 ```
 
-The language, the field kinds (`textField`, `enumField`, `numberField`, `flagField`, `customField`), relations, dynamic fields and the tab transforms (`pinned`, `withTerm`, `without`) are the Python package's; its [README](../README.md) describes them. The names are camelCase here, and options are objects.
+The language, the field kinds (`textField`, `enumField`, `numberField`, `flagField`, `customField`), relations, dynamic fields and the tab transforms (`pinned`, `withTerm`, `without`) are the Python package's; its [README](https://github.com/KaiErikNiermann/textual-catsearch#readme) describes them. The names are camelCase here, and options are objects.
 
 ## How it differs from the Python package
 
