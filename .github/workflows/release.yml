@@ -1,7 +1,7 @@
 # Cut a release from a tag.
 #
-# Building the distributions and attaching them to a GitHub release needs nothing but the
-# repository, so it always runs. Publishing to PyPI needs a trusted publisher that does not
+# Building the distributions (the Python wheel and sdist, and the npm tarball of js/) and
+# attaching them to a GitHub release needs nothing but the repository, so it always runs. Publishing to PyPI needs a trusted publisher that does not
 # exist yet, so that job detects its own absence and skips rather than failing every release.
 name: release
 
@@ -22,17 +22,23 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
+      # The gate runs the TypeScript port's checks too, and its scripts are .ts run by node.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
       - run: pipx install poetry
       - run: poetry install
-      - run: npm install --global jscpd@4
+      - run: npm install --global pnpm@10 jscpd@4
       - run: scripts/checks.sh
-      - name: the tag matches the version in pyproject
+      - name: the tag matches the versions in pyproject and js/package.json
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
           tagged="${GITHUB_REF_NAME#v}"
-          declared="$(poetry version --short)"
-          echo "tag ${tagged}, pyproject ${declared}"
-          test "${tagged}" = "${declared}"
+          python="$(poetry version --short)"
+          js="$(node -p 'require("./js/package.json").version')"
+          echo "tag ${tagged}, pyproject ${python}, js/package.json ${js}"
+          test "${tagged}" = "${python}"
+          test "${tagged}" = "${js}"
 
   build:
     needs: verify
@@ -42,6 +48,9 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
       - run: pipx install poetry
       - run: poetry build
       - name: the wheel installs and imports
@@ -49,10 +58,31 @@ jobs:
           python -m venv /tmp/smoke
           /tmp/smoke/bin/pip install --quiet dist/*.whl
           /tmp/smoke/bin/python -c "import textual_catsearch, textual_catsearch.widgets"
+      # The npm tarball goes in its own directory and artifact: the PyPI upload takes every file
+      # in `distributions` and would reject a .tgz.
+      - run: npm install --global pnpm@10
+      - run: pnpm -C js install --frozen-lockfile
+      - run: pnpm -C js build
+      - name: pack the npm tarball, with the licence beside it
+        run: |
+          cp LICENSE js/LICENSE
+          mkdir npm-dist
+          pnpm -C js pack --pack-destination "${PWD}/npm-dist"
+      - name: the tarball installs and imports
+        run: |
+          mkdir /tmp/npm-smoke
+          cd /tmp/npm-smoke
+          npm init --yes >/dev/null
+          npm install --silent "${GITHUB_WORKSPACE}"/npm-dist/*.tgz
+          node --input-type=module -e 'import { Schema, parse } from "catsearch"; console.log(typeof Schema, typeof parse)'
       - uses: actions/upload-artifact@v7
         with:
           name: distributions
           path: dist/
+      - uses: actions/upload-artifact@v7
+        with:
+          name: npm-package
+          path: npm-dist/
 
   github-release:
     needs: build
@@ -67,9 +97,19 @@ jobs:
         with:
           name: distributions
           path: dist/
+      - uses: actions/download-artifact@v8
+        with:
+          name: npm-package
+          path: dist/
+      # Notes come from .github/release-notes/<tag>.md; GitHub's generated list follows them.
+      - uses: actions/checkout@v7
+        with:
+          path: src
+          sparse-checkout: .github/release-notes
       - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           files: dist/*
+          body_path: src/.github/release-notes/${{ github.ref_name }}.md
           generate_release_notes: true
 
   pypi:
