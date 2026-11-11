@@ -1,5 +1,7 @@
 # textual-catsearch
 
+[![npm](https://img.shields.io/npm/v/catsearch)](https://www.npmjs.com/package/catsearch)
+
 Discord-style category search for [Textual](https://textual.textualize.io/) apps. You declare the fields your rows have; you get a query language over them, filtering, and a search bar that completes field names and values as you type.
 
 **Docs and live demo:** <https://kaierikniermann.github.io/textual-catsearch/>

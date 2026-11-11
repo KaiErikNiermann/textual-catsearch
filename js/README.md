@@ -1,5 +1,7 @@
 # catsearch
 
+[![npm](https://img.shields.io/npm/v/catsearch)](https://www.npmjs.com/package/catsearch)
+
 Discord-style category search for the web. Declare the fields your rows have; get a query language over them, filtering, rendering back to text, and completion of field names and values.
 
 ```text
