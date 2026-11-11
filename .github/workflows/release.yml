@@ -29,6 +29,9 @@ jobs:
       - run: pipx install poetry
       - run: poetry install
       - run: npm install --global pnpm@10 jscpd@4
+      # The gate ends with the e2e suite in Chromium and Firefox.
+      - run: pnpm -C js install --frozen-lockfile
+      - run: pnpm -C js exec playwright install --with-deps chromium firefox
       - run: scripts/checks.sh
       - name: the tag matches the versions in pyproject and js/package.json
         if: startsWith(github.ref, 'refs/tags/v')
