@@ -29,10 +29,10 @@ jobs:
       - run: pipx install poetry
       - run: poetry install
       - run: npm install --global pnpm@10 jscpd@4
-      # The gate ends with the e2e suite in Chromium and Firefox.
-      - run: pnpm -C js install --frozen-lockfile
-      - run: pnpm -C js exec playwright install --with-deps chromium firefox
+      # The e2e suite runs in the e2e job below, in Playwright's image.
       - run: scripts/checks.sh
+        env:
+          CATSEARCH_SKIP_E2E: "1"
       - name: the tag matches the versions in pyproject and js/package.json
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
@@ -43,8 +43,28 @@ jobs:
           test "${tagged}" = "${python}"
           test "${tagged}" = "${js}"
 
+  e2e:
+    # As in ci.yml: the browsers come with the image, not from the runner's apt mirror.
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      HOME: /root
+    defaults:
+      run:
+        working-directory: js
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: npm install --global pnpm@10
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm e2e
+
   build:
-    needs: verify
+    needs: [verify, e2e]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

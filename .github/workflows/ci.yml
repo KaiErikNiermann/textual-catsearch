@@ -88,6 +88,15 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    # Playwright's image has the browsers and their system libraries, so nothing comes from the
+    # runner's apt mirror; `playwright install --with-deps` took 31 to 46+ minutes against it.
+    # The tag must match @playwright/test in js/pnpm-lock.yaml, or the browsers are missing.
+    # HOME=/root: Firefox refuses a HOME owned by another user, and the job runs as root.
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      HOME: /root
     defaults:
       run:
         working-directory: js
@@ -98,7 +107,6 @@ jobs:
           node-version: "24"
       - run: npm install --global pnpm@10
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium firefox webkit
       - name: Chromium, Firefox, WebKit, a Pixel and an iPhone
         run: pnpm e2e
       - uses: actions/upload-artifact@v7

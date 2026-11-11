@@ -60,6 +60,11 @@ else
 fi
 
 # WebKit's Linux build needs Ubuntu's libraries; CI runs it, and
-# js/scripts/e2e-webkit-docker.sh runs it here.
-echo "▶ js: e2e (Chromium, Firefox, Chromium phone)"
-pnpm -C js e2e --project chromium --project firefox --project phone-chromium
+# js/scripts/e2e-webkit-docker.sh runs it here. CI sets CATSEARCH_SKIP_E2E=1 where a separate
+# job runs the whole e2e suite in Playwright's image, so a bare runner never installs browsers.
+if [ "${CATSEARCH_SKIP_E2E:-}" = 1 ]; then
+    echo "▷ js: e2e skipped here (CATSEARCH_SKIP_E2E=1), run by its own job" >&2
+else
+    echo "▶ js: e2e (Chromium, Firefox, Chromium phone)"
+    pnpm -C js e2e --project chromium --project firefox --project phone-chromium
+fi
