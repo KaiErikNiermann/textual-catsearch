@@ -1,14 +1,20 @@
 # Cut a release from a tag.
 #
 # Building the distributions (the Python wheel and sdist, and the npm tarball of js/) and
-# attaching them to a GitHub release needs nothing but the repository, so it always runs. Publishing to PyPI needs a trusted publisher that does not
-# exist yet, so that job detects its own absence and skips rather than failing every release.
+# attaching them to a GitHub release needs nothing but the repository, so it always runs.
+# Publishing to PyPI and npm uses trusted publishing; each job is off until its repository
+# variable says the publisher exists, so a release never fails on a registry not set up.
 name: release
 
 on:
   push:
     tags: ["v*"]
   workflow_dispatch:
+    inputs:
+      npm_prerelease:
+        description: "Publish <version>-ci.<run> to npm under the ci dist-tag (latest is untouched)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -150,3 +156,42 @@ jobs:
           name: distributions
           path: dist/
       - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+
+  npm:
+    # Trusted publishing: npmjs.com trusts this workflow file in the `npm` environment, and the
+    # repository variable NPM_TRUSTED_PUBLISHING=true turns the job on. A tag publishes the
+    # tarball the release attached, as `latest`. A manual run with npm_prerelease publishes
+    # this commit as <version>-ci.<run>.<attempt> under the `ci` dist-tag, which tests the
+    # whole path without moving `latest`.
+    needs: build
+    if: >-
+      vars.NPM_TRUSTED_PUBLISHING == 'true'
+      && (startsWith(github.ref, 'refs/tags/v') || inputs.npm_prerelease)
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+      # Trusted publishing needs npm 11.5.1 or later.
+      - run: npm install --global npm@11
+      - uses: actions/download-artifact@v8
+        with:
+          name: npm-package
+          path: npm-dist/
+      - name: publish the release tarball as latest
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: npm publish npm-dist/*.tgz
+      - name: publish a prerelease under the ci dist-tag
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        run: |
+          mkdir unpacked
+          tar -xzf npm-dist/*.tgz -C unpacked
+          cd unpacked/package
+          base="$(node -p 'require("./package.json").version')"
+          npm version --no-git-tag-version "${base}-ci.${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}"
+          npm publish --tag ci
