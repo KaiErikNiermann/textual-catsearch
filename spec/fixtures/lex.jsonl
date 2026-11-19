@@ -619,6 +619,8 @@
 {"case": {"op": "lex", "source": "is:upcoming tag:horror"}, "expect": [{"end": 11, "runs": [["is:upcoming", false]], "start": 0}, {"end": 22, "runs": [["tag:horror", false]], "start": 12}]}
 {"case": {"op": "lex", "source": "is:watched,blocked"}, "expect": [{"end": 18, "runs": [["is:watched,blocked", false]], "start": 0}]}
 {"case": {"op": "lex", "source": "is:watched is:blocked"}, "expect": [{"end": 10, "runs": [["is:watched", false]], "start": 0}, {"end": 21, "runs": [["is:blocked", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "tag:none,fantasy"}, "expect": [{"end": 16, "runs": [["tag:none,fantasy", false]], "start": 0}]}
+{"case": {"op": "lex", "source": "tag:fantasy tag:none"}, "expect": [{"end": 11, "runs": [["tag:fantasy", false]], "start": 0}, {"end": 20, "runs": [["tag:none", false]], "start": 12}]}
 {"case": {"op": "lex", "source": "blocked"}, "expect": [{"end": 7, "runs": [["blocked", false]], "start": 0}]}
 {"case": {"op": "lex", "source": "Disk full"}, "expect": [{"end": 4, "runs": [["Disk", false]], "start": 0}, {"end": 9, "runs": [["full", false]], "start": 5}]}
 {"case": {"op": "lex", "source": "disk ok"}, "expect": [{"end": 4, "runs": [["disk", false]], "start": 0}, {"end": 7, "runs": [["ok", false]], "start": 5}]}
@@ -626,6 +628,7 @@
 {"case": {"op": "lex", "source": "Banks"}, "expect": [{"end": 5, "runs": [["Banks", false]], "start": 0}]}
 {"case": {"op": "lex", "source": "is:available x"}, "expect": [{"end": 12, "runs": [["is:available", false]], "start": 0}, {"end": 14, "runs": [["x", false]], "start": 13}]}
 {"case": {"op": "lex", "source": "is:blocked is:available"}, "expect": [{"end": 10, "runs": [["is:blocked", false]], "start": 0}, {"end": 23, "runs": [["is:available", false]], "start": 11}]}
+{"case": {"op": "lex", "source": "fantasy"}, "expect": [{"end": 7, "runs": [["fantasy", false]], "start": 0}]}
 {"case": {"op": "lex", "source": "claimed twice"}, "expect": [{"end": 7, "runs": [["claimed", false]], "start": 0}, {"end": 13, "runs": [["twice", false]], "start": 8}]}
 {"case": {"op": "lex", "source": "shadows"}, "expect": [{"end": 7, "runs": [["shadows", false]], "start": 0}]}
 {"case": {"op": "lex", "source": "alias claimed twice"}, "expect": [{"end": 5, "runs": [["alias", false]], "start": 0}, {"end": 13, "runs": [["claimed", false]], "start": 6}, {"end": 19, "runs": [["twice", false]], "start": 14}]}

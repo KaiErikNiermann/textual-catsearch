@@ -110,6 +110,8 @@ describe("queries", () => {
     const q = parse("dune is:read", books);
     expect(pinned(q, "is", ["read"])).toBe("read");
     expect(withTerm(q, term("format", { values: ["ebook"] }))).toBe("format:ebook dune is:read");
+    // `none` in the replaced clause rides along, as `without` keeps it.
+    expect(withTerm(parse("format:none,hardcover", books), term("format", { values: ["ebook"] }))).toBe("format:none,ebook");
     expect(without(q, "is")).toBe("dune");
   });
 

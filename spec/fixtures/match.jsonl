@@ -619,6 +619,8 @@
 {"case": {"op": "match", "schema": "catalog", "source": "is:upcoming tag:horror"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "is:watched,blocked"}, "expect": [1, 4, 10]}
 {"case": {"op": "match", "schema": "catalog", "source": "is:watched is:blocked"}, "expect": [1, 4, 10]}
+{"case": {"op": "match", "schema": "catalog", "source": "tag:none,fantasy"}, "expect": [8]}
+{"case": {"op": "match", "schema": "catalog", "source": "tag:fantasy tag:none"}, "expect": [8]}
 {"case": {"op": "match", "schema": "catalog", "source": "blocked"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "Disk full"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "disk ok"}, "expect": []}
@@ -626,6 +628,7 @@
 {"case": {"op": "match", "schema": "catalog", "source": "Banks"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "is:available x"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "is:blocked is:available"}, "expect": [0, 2, 4, 6, 7, 9]}
+{"case": {"op": "match", "schema": "catalog", "source": "fantasy"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "claimed twice"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "shadows"}, "expect": []}
 {"case": {"op": "match", "schema": "catalog", "source": "alias claimed twice"}, "expect": []}
@@ -1541,6 +1544,8 @@
 {"case": {"op": "match", "schema": "units", "source": "is:upcoming tag:horror"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "is:watched,blocked"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "is:watched is:blocked"}, "expect": []}
+{"case": {"op": "match", "schema": "units", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"op": "match", "schema": "units", "source": "tag:fantasy tag:none"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "blocked"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "Disk full"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "disk ok"}, "expect": []}
@@ -1548,6 +1553,7 @@
 {"case": {"op": "match", "schema": "units", "source": "Banks"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "is:available x"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "is:blocked is:available"}, "expect": []}
+{"case": {"op": "match", "schema": "units", "source": "fantasy"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "claimed twice"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "shadows"}, "expect": []}
 {"case": {"op": "match", "schema": "units", "source": "alias claimed twice"}, "expect": []}
@@ -2473,6 +2479,8 @@
 {"case": {"op": "match", "schema": "dynamic", "source": "is:upcoming tag:horror"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "is:watched,blocked"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "is:watched is:blocked"}, "expect": []}
+{"case": {"op": "match", "schema": "dynamic", "source": "tag:none,fantasy"}, "expect": [0, 1, 2, 3]}
+{"case": {"op": "match", "schema": "dynamic", "source": "tag:fantasy tag:none"}, "expect": [0, 1, 2, 3]}
 {"case": {"op": "match", "schema": "dynamic", "source": "blocked"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "Disk full"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "disk ok"}, "expect": []}
@@ -2480,6 +2488,7 @@
 {"case": {"op": "match", "schema": "dynamic", "source": "Banks"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "is:available x"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "is:blocked is:available"}, "expect": []}
+{"case": {"op": "match", "schema": "dynamic", "source": "fantasy"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "claimed twice"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "shadows"}, "expect": []}
 {"case": {"op": "match", "schema": "dynamic", "source": "alias claimed twice"}, "expect": []}

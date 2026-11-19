@@ -718,3 +718,18 @@
 {"case": {"op": "with_term", "schema": "catalog", "source": "!year:desert,15\uff1a23", "term": {"absent": false, "field": "kind", "kind": "term", "negated": false, "ranges": [], "values": ["movie"], "via": []}}, "expect": "kind:movie -year:desert,\"15\uff1a23\""}
 {"case": {"among": ["available", "upcoming", "watched", "shelved"], "field": "is", "op": "without", "schema": "catalog", "source": "!year:desert,15\uff1a23"}, "expect": "-year:desert,\"15\uff1a23\""}
 {"case": {"field": "kind", "op": "without", "schema": "catalog", "source": "!year:desert,15\uff1a23"}, "expect": "-year:desert,\"15\uff1a23\""}
+{"case": {"op": "with_term", "schema": "catalog", "source": "tag:none,horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:none,fantasy"}
+{"case": {"among": ["fantasy", "horror"], "op": "with_term", "schema": "catalog", "source": "tag:none,horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:none,fantasy"}
+{"case": {"field": "tag", "op": "without", "schema": "catalog", "source": "tag:none,horror"}, "expect": "tag:none"}
+{"case": {"op": "with_term", "schema": "catalog", "source": "tag:none", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy tag:none"}
+{"case": {"among": ["fantasy", "horror"], "op": "with_term", "schema": "catalog", "source": "tag:none", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy tag:none"}
+{"case": {"field": "tag", "op": "without", "schema": "catalog", "source": "tag:none"}, "expect": "tag:none"}
+{"case": {"op": "with_term", "schema": "catalog", "source": "tag:horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy"}
+{"case": {"among": ["fantasy", "horror"], "op": "with_term", "schema": "catalog", "source": "tag:horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy"}
+{"case": {"field": "tag", "op": "without", "schema": "catalog", "source": "tag:horror"}, "expect": ""}
+{"case": {"op": "with_term", "schema": "catalog", "source": "tag:none,horror x", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:none,fantasy x"}
+{"case": {"among": ["fantasy", "horror"], "op": "with_term", "schema": "catalog", "source": "tag:none,horror x", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:none,fantasy x"}
+{"case": {"field": "tag", "op": "without", "schema": "catalog", "source": "tag:none,horror x"}, "expect": "tag:none x"}
+{"case": {"op": "with_term", "schema": "catalog", "source": "-tag:none,horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy -tag:none,horror"}
+{"case": {"among": ["fantasy", "horror"], "op": "with_term", "schema": "catalog", "source": "-tag:none,horror", "term": {"absent": false, "field": "tag", "kind": "term", "negated": false, "ranges": [], "values": ["fantasy"], "via": []}}, "expect": "tag:fantasy -tag:none,horror"}
+{"case": {"field": "tag", "op": "without", "schema": "catalog", "source": "-tag:none,horror"}, "expect": "-tag:none,horror"}

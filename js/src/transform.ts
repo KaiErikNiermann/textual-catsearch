@@ -48,20 +48,24 @@ export interface AmongOptions {
   readonly among?: Iterable<string>;
 }
 
-/** The query rewritten so `pin` pins its field, every other clause left intact. Source text. */
+/** The query rewritten so `pin` pins its field, every other clause left intact. Source text.
+ * Values of the replaced clause that are not categories ride along with `pin`, and so does its
+ * `none`, which is never a category (as `without` keeps it). */
 export function withTerm<Row>(query: Query<Row>, pin: Term, options: AmongOptions = {}): string {
   const isCategory = category(options.among);
   const others: string[] = [];
+  let absent = pin.absent;
   const kept: Expr[] = [];
   for (const part of topLevel(query.expr)) {
     if (part.kind === "term" && here(part, pin.field) && part.values.some((v) => isCategory(v))) {
       others.push(...part.values.filter((v) => !isCategory(v)));
+      absent ||= part.absent;
     } else {
       kept.push(part);
     }
   }
   const values = [...new Set([...pin.values, ...others])];
-  return render(and([{ ...pin, values }, ...kept]), query.schema);
+  return render(and([{ ...pin, values, absent }, ...kept]), query.schema);
 }
 
 /** The query with no pin on `field` (the "all" tab), every other clause left intact. */

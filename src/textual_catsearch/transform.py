@@ -72,11 +72,13 @@ def with_term[Row](
     The clause that already pinned the field is replaced and ``term`` goes first. With
     ``among``, only the category values are taken out of that clause and the rest ride along
     with ``term`` — a key written twice is one clause (``is:blocked is:unread`` *is*
-    ``is:blocked,unread``), so replacing it wholesale would drop ``blocked``. Returns source
-    text, ready for the bar.
+    ``is:blocked,unread``), so replacing it wholesale would drop ``blocked``. ``none`` is never
+    a category, so it rides along too, as :func:`without` keeps it. Returns source text, ready
+    for the bar.
     """
     is_category = _category(among)
     others: list[str] = []
+    absent = term.absent
     kept: list[Expr] = []
     for part in _top_level(query.expr):
         if (
@@ -85,9 +87,10 @@ def with_term[Row](
             and any(map(is_category, part.values))
         ):
             others.extend(v for v in part.values if not is_category(v))
+            absent = absent or part.absent
         else:
             kept.append(part)
-    pin = replace(term, values=tuple(dict.fromkeys((*term.values, *others))))
+    pin = replace(term, values=tuple(dict.fromkeys((*term.values, *others))), absent=absent)
     return render(And((pin, *kept)), query.schema)
 
 

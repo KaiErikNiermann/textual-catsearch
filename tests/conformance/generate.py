@@ -66,6 +66,20 @@ def _transform_cases() -> Iterator[tuple[str, Case]]:
         yield "transform", {"op": "with_term", **base, "term": kind}
         yield "transform", {"op": "without", **base, "field": "is", "among": list(BUCKETS)}
         yield "transform", {"op": "without", **base, "field": "kind"}
+    # `none` in the clause a pin replaces rides along like any value that is not a category;
+    # the generated sources above never pin a field whose clause holds `none`.
+    tag = encode_expr(Term("tag", ("fantasy",)))
+    for source in (
+        "tag:none,horror",
+        "tag:none",
+        "tag:horror",
+        "tag:none,horror x",
+        "-tag:none,horror",
+    ):
+        base = {"schema": "catalog", "source": source}
+        yield "transform", {"op": "with_term", **base, "term": tag}
+        yield "transform", {"op": "with_term", **base, "term": tag, "among": ["fantasy", "horror"]}
+        yield "transform", {"op": "without", **base, "field": "tag"}
 
 
 def _value_cases() -> Iterator[tuple[str, Case]]:

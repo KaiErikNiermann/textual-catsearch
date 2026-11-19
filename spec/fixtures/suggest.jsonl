@@ -1808,6 +1808,12 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "is:watched is:blocked"}, "expect": [{"applied": "is:watched is:blocked", "detail": "flag", "end": 10, "insert": "is:watched", "kind": "value", "label": "watched", "start": 0}]}
 {"case": {"cursor": 10, "op": "suggest", "schema": "catalog", "source": "is:watched is:blocked"}, "expect": [{"applied": "is:watched is:blocked", "detail": "flag", "end": 10, "insert": "is:watched", "kind": "value", "label": "watched", "start": 0}]}
 {"case": {"cursor": 21, "op": "suggest", "schema": "catalog", "source": "is:watched is:blocked"}, "expect": [{"applied": "is:watched is:blocked", "detail": "flag", "end": 21, "insert": "is:blocked", "kind": "value", "label": "blocked", "start": 11}]}
+{"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 8, "op": "suggest", "schema": "catalog", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 16, "op": "suggest", "schema": "catalog", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 10, "op": "suggest", "schema": "catalog", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 20, "op": "suggest", "schema": "catalog", "source": "tag:fantasy tag:none"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 3, "op": "suggest", "schema": "catalog", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 7, "op": "suggest", "schema": "catalog", "source": "blocked"}, "expect": []}
@@ -1829,6 +1835,9 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "is:blocked is:available"}, "expect": [{"applied": "is:blocked is:available", "detail": "flag", "end": 10, "insert": "is:blocked", "kind": "value", "label": "blocked", "start": 0}]}
 {"case": {"cursor": 11, "op": "suggest", "schema": "catalog", "source": "is:blocked is:available"}, "expect": [{"applied": "is:blocked is:available", "detail": "flag", "end": 23, "insert": "is:available", "kind": "value", "label": "available", "start": 11}]}
 {"case": {"cursor": 23, "op": "suggest", "schema": "catalog", "source": "is:blocked is:available"}, "expect": [{"applied": "is:blocked is:available", "detail": "flag", "end": 23, "insert": "is:available", "kind": "value", "label": "available", "start": 11}]}
+{"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 3, "op": "suggest", "schema": "catalog", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 7, "op": "suggest", "schema": "catalog", "source": "fantasy"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "catalog", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 6, "op": "suggest", "schema": "catalog", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 13, "op": "suggest", "schema": "catalog", "source": "claimed twice"}, "expect": []}
@@ -4512,6 +4521,12 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "is:watched is:blocked"}, "expect": []}
 {"case": {"cursor": 10, "op": "suggest", "schema": "units", "source": "is:watched is:blocked"}, "expect": []}
 {"case": {"cursor": 21, "op": "suggest", "schema": "units", "source": "is:watched is:blocked"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 8, "op": "suggest", "schema": "units", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 16, "op": "suggest", "schema": "units", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 10, "op": "suggest", "schema": "units", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 20, "op": "suggest", "schema": "units", "source": "tag:fantasy tag:none"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 3, "op": "suggest", "schema": "units", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 7, "op": "suggest", "schema": "units", "source": "blocked"}, "expect": []}
@@ -4533,6 +4548,9 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "is:blocked is:available"}, "expect": []}
 {"case": {"cursor": 11, "op": "suggest", "schema": "units", "source": "is:blocked is:available"}, "expect": []}
 {"case": {"cursor": 23, "op": "suggest", "schema": "units", "source": "is:blocked is:available"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 3, "op": "suggest", "schema": "units", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 7, "op": "suggest", "schema": "units", "source": "fantasy"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "units", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 6, "op": "suggest", "schema": "units", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 13, "op": "suggest", "schema": "units", "source": "claimed twice"}, "expect": []}
@@ -7245,6 +7263,12 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "is:watched is:blocked"}, "expect": []}
 {"case": {"cursor": 10, "op": "suggest", "schema": "dynamic", "source": "is:watched is:blocked"}, "expect": []}
 {"case": {"cursor": 21, "op": "suggest", "schema": "dynamic", "source": "is:watched is:blocked"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 8, "op": "suggest", "schema": "dynamic", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 16, "op": "suggest", "schema": "dynamic", "source": "tag:none,fantasy"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 10, "op": "suggest", "schema": "dynamic", "source": "tag:fantasy tag:none"}, "expect": []}
+{"case": {"cursor": 20, "op": "suggest", "schema": "dynamic", "source": "tag:fantasy tag:none"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 3, "op": "suggest", "schema": "dynamic", "source": "blocked"}, "expect": []}
 {"case": {"cursor": 7, "op": "suggest", "schema": "dynamic", "source": "blocked"}, "expect": []}
@@ -7266,6 +7290,9 @@
 {"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "is:blocked is:available"}, "expect": []}
 {"case": {"cursor": 11, "op": "suggest", "schema": "dynamic", "source": "is:blocked is:available"}, "expect": []}
 {"case": {"cursor": 23, "op": "suggest", "schema": "dynamic", "source": "is:blocked is:available"}, "expect": []}
+{"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 3, "op": "suggest", "schema": "dynamic", "source": "fantasy"}, "expect": []}
+{"case": {"cursor": 7, "op": "suggest", "schema": "dynamic", "source": "fantasy"}, "expect": []}
 {"case": {"cursor": 0, "op": "suggest", "schema": "dynamic", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 6, "op": "suggest", "schema": "dynamic", "source": "claimed twice"}, "expect": []}
 {"case": {"cursor": 13, "op": "suggest", "schema": "dynamic", "source": "claimed twice"}, "expect": []}

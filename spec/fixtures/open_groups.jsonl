@@ -619,6 +619,8 @@
 {"case": {"op": "open_groups", "source": "is:upcoming tag:horror"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "is:watched,blocked"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "is:watched is:blocked"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:none,fantasy"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "tag:fantasy tag:none"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "blocked"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "Disk full"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "disk ok"}, "expect": 0}
@@ -626,6 +628,7 @@
 {"case": {"op": "open_groups", "source": "Banks"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "is:available x"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "is:blocked is:available"}, "expect": 0}
+{"case": {"op": "open_groups", "source": "fantasy"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "claimed twice"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "shadows"}, "expect": 0}
 {"case": {"op": "open_groups", "source": "alias claimed twice"}, "expect": 0}

@@ -21,6 +21,7 @@ from textual_catsearch import (
     parse,
     pinned,
     with_term,
+    without,
 )
 from textual_catsearch.schema import numbers_of, strings_of
 
@@ -172,6 +173,18 @@ def test_pinning_only_replaces_the_categories_named() -> None:
     assert _pin("is:blocked is:available", "watched") == "is:watched,blocked"
     assert _pin("is:blocked", "watched") == "is:watched is:blocked"
     assert with_term(parse("is:blocked", SCHEMA), Term("is", ("tba",))) == "is:tba"
+
+
+def test_pinning_keeps_none_in_the_clause_it_replaces() -> None:
+    """`tag:none` names no value a tab could be, so it rides along like `is:blocked` does.
+
+    Whether the clause also held a category must not decide it: `tag:none` alone already
+    survives (as its own clause), and :func:`without` keeps it too.
+    """
+    pin = Term("tag", ("fantasy",))
+    assert with_term(parse("tag:none,horror", SCHEMA), pin) == "tag:none,fantasy"
+    assert with_term(parse("tag:none", SCHEMA), pin) == "tag:fantasy tag:none"
+    assert without(parse("tag:none,horror", SCHEMA), "tag") == "tag:none"
 
 
 def test_the_pinned_value_is_read_off_the_conjunctive_core() -> None:
