@@ -1,6 +1,6 @@
 {
   "name": "catsearch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Discord-style category search: declare your fields, get a query language, filtering and completion. The TypeScript port of textual-catsearch.",
   "license": "MIT",
   "keywords": [

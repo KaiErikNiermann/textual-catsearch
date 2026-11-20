@@ -1,6 +1,6 @@
 [project]
 name = "textual-catsearch"
-version = "0.1.0"
+version = "0.1.1"
 description = "Discord-style category search for Textual apps: declare your fields, get a query language, filtering and tab completion."
 authors = [{ name = "Kai Niermann" }]
 readme = "README.md"
