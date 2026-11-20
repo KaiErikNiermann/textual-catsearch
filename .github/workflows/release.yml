@@ -185,7 +185,8 @@ jobs:
           path: npm-dist/
       - name: publish the release tarball as latest
         if: startsWith(github.ref, 'refs/tags/v')
-        run: npm publish npm-dist/*.tgz
+        # The ./ matters: npm reads a bare `npm-dist/x.tgz` as the GitHub repo npm-dist/x.tgz.
+        run: npm publish ./npm-dist/*.tgz
       - name: publish a prerelease under the ci dist-tag
         if: "!startsWith(github.ref, 'refs/tags/v')"
         run: |
