@@ -79,3 +79,12 @@ Pushing to `master` deploys the site to GitHub Pages (`.github/workflows/pages.y
 ## Releases
 
 Pushing a `v*` tag runs `.github/workflows/release.yml`: the full gate on the tagged commit, a check that the tag matches the version in `pyproject.toml`, then the distributions attached to a GitHub release. Publishing to PyPI is wired but skips until a trusted publisher is set up.
+
+The `Justfile` at the root wraps the steps (`just --list` shows every task). The release notes come from `.github/release-notes/vX.Y.Z.md`, so they are committed before the tag:
+
+```sh
+just changes             # commits since the last tag, to write the notes from
+# write and commit .github/release-notes/vX.Y.Z.md
+just release patch       # or: just release-version X.Y.Z; bumps, runs the gate, tags and pushes
+just watch-release       # waits for release.yml, then for npm to serve the version
+```

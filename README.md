@@ -160,4 +160,4 @@ poetry run radon cc -s -n C src   # nothing should print
 pnpm -C js install && pnpm -C js lint && pnpm -C js test
 ```
 
-`scripts/checks.sh` runs all of it, as the pre-push hook does. When a change alters what the language answers, regenerate the spec from `tests/` with `poetry run python -m conformance.generate`.
+`scripts/checks.sh` (or `just check`) runs all of it, as the pre-push hook does; `just --list` shows the other tasks. When a change alters what the language answers, regenerate the spec from `tests/` with `poetry run python -m conformance.generate`.
